@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#1b5e20">
+    <title>ගිණුම්කරණ පද්ධතිය - මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="mobile-bottom-nav" id="mobileBottomNav">
+    <a href="#" class="mobile-nav-item" onclick="showSec('dash'); return false;">
+        <i class="fas fa-chart-bar"></i>
+        <span>පුවරුව</span>
+    </a>
+    <a href="#" class="mobile-nav-item" onclick="showSec('entry'); return false;">
+        <i class="fas fa-edit"></i>
+        <span>ඇතුළු කරන්න</span>
+    </a>
+    <a href="#" class="mobile-nav-item" onclick="openReport('CASHBOOK'); return false;">
+        <i class="fas fa-book"></i>
+        <span>මුදල් පොත</span>
+    </a>
+    <a href="#" class="mobile-nav-item" onclick="toggleMobileMenu(); return false;">
+        <i class="fas fa-bars"></i>
+        <span>තවත්</span>
+    </a>
+</div>
+<div id="loading-overlay">දත්ත සැකසෙමින් පවතී... කරුණාකර රැඳී සිටින්න.</div>
+<div id="toast" class="toast">දත්ත සාර්ථකව සුරැකිණි! ✅</div>
+<div id="confirmDialog" class="confirm-dialog">
+    <div class="confirm-content">
+        <h3 id="confirmTitle" style="color: var(--primary); margin-top: 0;"></h3>
+        <p id="confirmMessage"></p>
+        <div class="confirm-buttons">
+            <button id="confirmYes" class="btn" style="background: var(--danger); color: white; min-width: 100px;">ඔව්</button>
+            <button id="confirmNo" class="btn" style="background: var(--secondary); color: white; min-width: 100px;">නැත</button>
+        </div>
+    </div>
+</div>
+<div id="codeDetailsModal" class="code-details-modal">
+    <div class="code-details-content">
+        <div class="code-details-header">
+            <h3 id="modalCodeTitle" style="margin: 0;">කේතයේ විස්තර</h3>
+            <button class="close-modal-btn" onclick="closeCodeDetails()">×</button>
+        </div>
+        <div id="codeDetailsContent"></div>
+    </div>
+</div>
+<div id="periodReportModal" class="code-details-modal">
+    <div class="code-details-content" style="max-width: 1000px;">
+        <div class="code-details-header">
+            <h3 style="margin:0;">කාලපරිච්ඡේද වාර්තාව</h3>
+            <button class="close-modal-btn" onclick="document.getElementById('periodReportModal').style.display='none'">×</button>
+        </div>
+        <div id="periodReportContent"></div>
+        <div style="margin-top:20px; text-align:center;">
+            <button class="btn" style="background: #3498db; color:white;" onclick="printPeriodReport()">මුද්‍රණය</button>
+            <button class="btn admin-only" style="background: #e74c3c; color:white;" onclick="exportPeriodReportPDF()">PDF</button>
+        </div>
+    </div>
+</div>
+<div id="login-overlay">
+    <div class="card" style="text-align:center; width: 280px; padding: 60px;">
+        <h2 style="color:var(--primary); margin-bottom: 5px; font-size: 18px;">මූල්‍ය කළමනාකරණ පද්ධතිය</h2>
+        <p style="color: #666; margin-bottom: 38px;">මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</p>
+        <input type="password" id="passInput" placeholder="මුරපදය ඇතුළත් කරන්න" style="text-align:center; margin-bottom:20px; font-size: 12px;">
+        <button class="btn" style="width:100%; background: var(--primary); color: var(--gold);" onclick="checkLogin()">පද්ධතියට ඇතුළු වන්න</button>
+        <div style="margin-top:30px;">
+            <span style="color:var(--primary); font-weight: bold; font-size: 14px;">Created by: Tharanga Wijesinghe</span>
+        </div>
+    </div>
+</div>
+<div class="sidebar no-print">
+    <div class="sidebar-header">මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</div>
+    <div id="connection-status" class="status-glow-offline">සම්බන්ධතාවය පරීක්ෂා කරමින් පවතී...</div>
+    <div style="padding-top: 10px;">
+        <a class="nav-link active" id="nav-dash" onclick="showSec('dash')"><i class="fas fa-chart-bar"></i> ප්‍රධාන පුවරුව</a>
+        <a class="nav-link staff-only" id="nav-entry" onclick="showSec('entry')"><i class="fas fa-edit"></i> දත්ත ඇතුළු කිරීම</a>
+        <a class="nav-link" id="nav-cashbook" onclick="openReport('CASHBOOK')"><i class="fas fa-book"></i> මුදල් පොත</a>
+        <div class="nav-dropdown">
+            <a class="nav-link dropdown-toggle" onclick="toggleDropdown('analysis-dropdown')">
+                <i class="fas fa-chart-pie"></i> විශ්ලේෂණ වාර්තා
+            </a>
+            <div id="analysis-dropdown" class="dropdown-menu" style="display: none;">
+                <a class="nav-link sub-nav" onclick="openReport('IN')">
+                    <i class="fas fa-chart-line"></i> ලැබීම් විශ්ලේෂණය
+                </a>
+                <a class="nav-link sub-nav" onclick="openReport('EX')">
+                    <i class="fas fa-chart-pie"></i> ගෙවීම් විශ්ලේෂණය
+                </a>
+            </div>
+        </div>
+        <div class="nav-dropdown">
+            <a class="nav-link dropdown-toggle" onclick="toggleDropdown('budget-dropdown')">
+                <i class="fas fa-balance-scale"></i> ප්‍රතිපාදන සැසඳුම්
+            </a>
+            <div id="budget-dropdown" class="dropdown-menu" style="display: none;">
+                <a class="nav-link sub-nav" onclick="openReport('BUDGET_VS_INCOME')">
+                    <i class="fas fa-arrow-down"></i> ප්‍රතිපාදන හා ලැබීම්
+                </a>
+                <a class="nav-link sub-nav" onclick="openReport('VARIANCE')">
+                    <i class="fas fa-arrow-up"></i> ප්‍රතිපාදන හා ගෙවීම්
+                </a>
+            </div>
+        </div>
+        <a class="nav-link" id="nav-quarter" onclick="openReport('QUARTER')"><i class="fas fa-calendar-alt"></i> සිව්මස් වාර්තාව</a>
+        <a class="nav-link" id="nav-bank" onclick="openReport('BANK')"><i class="fas fa-university"></i> බැංකු සැසඳුම ප්‍රකාශය</a>
+        <a class="nav-link staff-only" id="nav-proj" onclick="showSec('proj')"><i class="fas fa-project-diagram"></i> ව්‍යාපෘති කළමනාකරණය</a>
+        <a class="nav-link" id="nav-petty" onclick="showSec('petty')"><i class="fas fa-coins"></i> සුළු මුදල් කළමනාකරණය</a>
+        <a class="nav-link" id="nav-codes" onclick="showSec('codes')"><i class="fas fa-file-alt"></i> තොරතුරු</a>
+        <div style="padding: 20px;">
+            <button class="btn" style="background:var(--danger); color:white; width:100%;" onclick="location.reload()">
+                <i class="fas fa-sign-out-alt"></i> LOGOUT
+            </button>
+        </div>
+		<a class="nav-link" onclick="manualRefresh()" style="background: transparent; color: #dcedc8; margin-top: 8px; padding: 10px 16px !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 8px; border-bottom: 4px solid rgba(255,255,255,0.05); transition: 0.3s; cursor: pointer;" 
+   onmouseover="this.style.background='var(--secondary)'; this.style.color='var(--gold)'; this.querySelector('i').style.color='var(--gold)';" 
+   onmouseout="this.style.background='transparent'; this.style.color='#dcedc8'; this.querySelector('i').style.color='#dcedc8';">
+    <i class="fas fa-sync-alt" style="font-size: 18px !important; color: #dcedc8; transition: 0.3s;"></i> 
+    <span style="font-size: 10px;">දත්ත අලුත් කරන්න</span>
+</a>
+</a>
+<div class="sidebar-backup-buttons">
+    <a class="backup-nav-btn" onclick="downloadBackupJSON()">
+        <i class="fas fa-database"></i> JSON BACKUP
+    </a>
+    <a class="backup-nav-btn" onclick="downloadBackupCSV()">
+        <i class="fas fa-file-csv"></i> CSV DOWNLOAD
+    </a>
+</div>
+    </div>
+    <div class="creator-brand">
+        <span class="creator-sub">Designed & Developed by</span>
+        <span class="creator-name">THARANGA WIJESINGHE</span>
+        <span class="creator-sub">© 2026 All Rights Reserved</span>
+    </div>
+</div>
+<div class="main-content">
+    <div class="school-header-banner">
+        <h1 style="font-size: 60px; margin: 0;">මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</h1>
+        <div style="margin-top: 10px; font-size: 30px; letter-spacing: 3px; opacity: 0.8;">මූල්‍ය කළමනාකරණ පද්ධතිය</div>
+    </div>
+    <div id="sec-report" class="section" style="display:none;">
+        <div id="printable-area" class="card">
+            <div class="report-school-name">
+                <h1>මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</h1>
+                <p>මූල්‍ය වාර්තාකරණය</p>
+                <hr>
+            </div>
+            <h2 id="report-header-title" style="text-align:center; color: var(--primary);"></h2>
+            <p id="report-date-range" style="text-align:center; font-weight:bold;"></p>
+            <div id="report-content"></div>
+            <div class="no-print" style="margin-top:30px; display:flex; gap:15px; background:#f9f9f9; padding:25px; border-radius:15px; border: 1px solid #eee; align-items: flex-end; flex-wrap: wrap;">
+                <div class="field"><label>සිට</label><input type="date" id="repFrom"></div>
+                <div class="field"><label>දක්වා</label><input type="date" id="repTo"></div>
+                <div class="field" id="filter-box" style="display:none;"><label>ගිණුම් කේතය</label><select id="repFilter"></select></div>
+                <div class="field" id="bank-bal-box" style="display:none;">
+                    <label>බැංකු ප්‍රකාශයේ ශේෂය</label>
+                    <input type="text" id="bankStmtInput" placeholder="0.00" oninput="formatAmount(this)" onblur="generateReport()">
+                </div>
+                <div class="button-container">
+                    <button class="btn" style="background: var(--primary); color: var(--gold);" onclick="generateReport()">
+                        <i class="fas fa-cog"></i> වාර්තාව සකසන්න
+                    </button>
+                    <button class="btn" id="print-btn" style="background: var(--secondary); color: white;" onclick="window.print()">
+                        <i class="fas fa-print"></i> Print Report
+                    </button>
+                    <button class="btn pdf-export-btn" id="pdf-btn" style="background: #e74c3c; color: white;" onclick="exportToPDF()">
+                        <i class="fas fa-file-pdf"></i> 📄 PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sec-dash" class="section">
+        <h2 class="section-title">වත්මන් මූල්‍ය තත්ත්වය</h2>
+        <div class="stat-grid">
+            <div class="stat-card" style="background: var(--primary);">
+                <h5>මුළු ලැබීම් (DR)</h5>
+                <h2 id="dash-in">0.00</h2>
+            </div>
+            <div class="stat-card" style="background: #a5d6a7; color: #1b5e20;">
+                <h5>මුළු ගෙවීම් (CR)</h5>
+                <h2 id="dash-ex">0.00</h2>
+            </div>
+            <div class="stat-card" style="background: var(--accent); color: #1b5e20;">
+                <h5>පවත්නා ශේෂය</h5>
+                <h2 id="dash-bal">0.00</h2>
+            </div>
+        </div>
+        <div class="card" style="background: white; border: 2px solid #e8f5e9; border-radius: 12px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <h3 style="text-align: center; color: var(--primary); margin-bottom: 25px; font-size: 19px; font-weight: 700; position: relative; padding-bottom: 15px;">
+                <span style="position: relative; padding: 0 15px;">
+                    අරමුදල් අනුව වත්මන් ශේෂයන්
+                    <span style="position: absolute; bottom: -5px; left: 0; right: 0; height: 3px; background: var(--accent); border-radius: 2px; transform: scaleX(0.5);"></span>
+                </span>
+            </h3>
+            <div class="fund-grid" id="dash-funds"></div>
+        </div>
+    </div>
+<div id="sec-entry" class="section" style="display:none;">
+    <h2 class="section-title">නව ගනුදෙනු ඇතුළත් කිරීම</h2>
+    <div class="form-row">
+        <div class="card field" style="border-top: 8px solid var(--success); flex: 1; min-width: 300px;">
+            <h3 style="color:var(--success); margin-top: 0;"><i class="fas fa-plus-circle"></i> ලැබීම් (හර)</h3>
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                <p style="margin: 0; font-size: 14px; color: #2e7d32;">⚠️ සියළුම දත්ත ඇතුළත් කරන්න...</p>
+            </div>
+            <input type="hidden" id="edit-id-in">
+            <div class="form-row">
+                <div class="field"><label class="required">දිනය</label><input type="date" id="inDate"></div>
+                <div class="field">
+                    <div class="row">
+                        <div class="col-md-6" style="padding-right: 5px;">
+                            <label class="required">ලදුපත් අංකය</label>
+                            <input type="text" id="inRefFrom" class="form-control" placeholder="001" required>
+                        </div>
+                        <div class="col-md-6" style="padding-left: 5px;">
+                            <label>දක්වා</label>
+                            <input type="text" id="inRefTo" class="form-control" placeholder="010 (විකල්ප)">
+                            <small style="color: #666; font-size: 10px;">*පරාසයක් නැත්නම් හිස් තබන්න</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="field"><label class="required">ලැබීම් කේතය</label><select id="inCodeSelect"></select></div>
+                <div class="field"><label class="required">මුදල (රු.)</label><input type="text" id="inAmt" class="amount-input" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)"></div>
+            </div>
+            <div class="field" style="margin-bottom: 15px;"><label>ව්‍යාපෘතිය</label><select id="inProjSelect"></select></div>
+            <label class="required">විස්තරය</label><textarea id="inDesc" rows="2"></textarea>
+            <button class="btn" style="margin-top:20px; width:100%; background: var(--success); color:white;" id="btn-save-in" onclick="saveData('IN')">
+                <i class="fas fa-save"></i> ලැබීම ගිණුම්ගත කරන්න
+            </button>
+        </div>
+        <div class="card field" style="border-top: 8px solid var(--danger); flex: 1; min-width: 300px;">
+            <h3 style="color:var(--danger); margin-top: 0;"><i class="fas fa-minus-circle"></i> ගෙවීම් (බැර)</h3>
+            <div style="background: #ffebee; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                <p style="margin: 0; font-size: 14px; color: #c62828;">⚠️ සියළුම දත්ත ඇතුළත් කරන්න...</p>
+            </div>
+            <input type="hidden" id="edit-id-ex">
+            <div class="form-row">
+                <div class="field"><label class="required">දිනය</label><input type="date" id="exDate"></div>
+                <div class="field"><label class="required">වවුචර් අංකය</label><input type="text" id="exVoucher"></div>
+            </div>
+            <div class="form-row">
+                <div class="field"><label>චෙක්පත් අංකය</label><input type="text" id="exRef"></div>
+                <div class="field"><label class="required">මුදල (රු.)</label><input type="text" id="exAmt" class="amount-input" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)"></div>
+            </div>
+            <div class="form-row">
+                <div class="field"><label class="required">ගෙවීම් කේතය</label><select id="exCodeSelect"></select></div>
+                <div class="field"><label class="required">මූලාශ්‍ර අරමුදල</label><select id="exSourceSelect"></select></div>
+            </div>
+            <div class="field" style="margin-bottom: 15px;"><label>ව්‍යාපෘතිය</label><select id="exProjSelect"></select></div>
+            <label class="required">විස්තරය</label><textarea id="exDesc" rows="2"></textarea>
+            <button class="btn" style="margin-top:20px; width:100%; background: var(--danger); color:white;" id="btn-save-ex" onclick="saveData('EX')">
+                <i class="fas fa-save"></i> ගෙවීම ගිණුම්ගත කරන්න
+            </button>
+        </div>
+    </div>
+    <div class="card foldable-card" style="margin-top: 25px; border-top: 5px solid #3498db; padding: 0;">
+        <div class="foldable-header" onclick="toggleFoldableCard('multiLineCard')" style="background: #f8f9fa; padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 15px 15px 0 0;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-layer-group" style="color: #3498db; font-size: 22px;"></i>
+                <h3 style="margin: 0; color: #3498db; font-size: 18px;">බහු-රේඛීය ලැබීම් (එකම ලදුපත් අංකයට කේත කිහිපයක්)</h3>
+            </div>
+            <i class="fas fa-chevron-down foldable-icon" id="multiLineCard-icon" style="font-size: 18px; color: #3498db; transition: transform 0.3s;"></i>
+        </div>
+        <div id="multiLineCard" class="foldable-content" style="padding: 20px; display: none;">
+            <div style="background:#e3f2fd; padding:15px; border-radius:10px; margin-bottom:20px;">
+                <p style="margin:0; font-size:14px;">⚠️ ලදුපත් අංකය එක වරක් ඇතුළත් කර, පහත පේළි එකතු කරන්න. සුරැකීමේදී සියලු පේළි එකම ලදුපත් අංකය සහිත වෙන වෙනම ගනුදෙනු ලෙස සුරැකේ.</p>
+            </div>
+            <div class="form-row">
+                <div class="field">
+                    <label class="required">ලදුපත් අංකය (සිට)</label>
+                    <input type="text" id="multiInRefFrom" class="form-control" placeholder="001">
+                </div>
+                <div class="field">
+                    <label>දක්වා (විකල්ප)</label>
+                    <input type="text" id="multiInRefTo" class="form-control" placeholder="010">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="field">
+                    <label class="required">දිනය</label>
+                    <input type="date" id="multiInDate" class="form-control">
+                </div>
+                <div class="field">
+                    <label>ව්‍යාපෘතිය (සියල්ලටම පොදු)</label>
+                    <select id="multiInProjSelect">
+                        <option value="">නොමැත</option>
+                    </select>
+                </div>
+            </div>
+            <div id="multiRowsContainer">
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button class="btn" style="background:#3498db; color:white;" onclick="addMultiRow()">
+                    <i class="fas fa-plus"></i> පේළියක් එකතු කරන්න
+                </button>
+                <button class="btn" style="background:#27ae60; color:white;" onclick="saveMultiLineReceipt()">
+                    <i class="fas fa-save"></i> බහු-රේඛීය ලැබීම සුරකින්න
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <h3 style="border-bottom: 2px solid #eee; padding-bottom: 10px;"><i class="fas fa-history"></i> මෑතකාලීන ගනුදෙනු</h3>
+        <div id="recent-transactions-table" style="margin-top: 20px;"></div>
+    </div>
+    <div class="card foldable-card admin-only" style="margin-top: 25px; border-top: 5px solid #8e44ad; padding: 0; display: none;">
+        <div class="foldable-header" onclick="toggleFoldableCard('adminCard')" style="background: #f8f9fa; padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 15px 15px 0 0;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-cog" style="color: #8e44ad; font-size: 22px;"></i>
+                <h3 style="margin: 0; color: #8e44ad; font-size: 18px;">පරිපාලන සැකසුම් (Admin Only)</h3>
+            </div>
+            <i class="fas fa-chevron-down foldable-icon" id="adminCard-icon" style="font-size: 18px; color: #8e44ad; transition: transform 0.3s;"></i>
+        </div>
+        <div id="adminCard" class="foldable-content" style="padding: 20px; display: none;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div style="border-right: 1px solid #eee; padding-right: 25px;">
+                    <h4 style="color: var(--primary); border-bottom: 1px solid var(--primary); padding-bottom: 8px; margin-top: 0;">
+                        <i class="fas fa-balance-scale"></i> ආරම්භක ශේෂයන්
+                    </h4>
+                    <div class="field" style="margin-bottom: 15px;">
+                        <label class="required">අරමුදල</label>
+                        <select id="opCodeSelect"></select>
+                    </div>
+                    <div class="field" style="margin-bottom: 15px;">
+                        <label class="required">මුදල (රු.)</label>
+                        <input type="text" id="opAmt" class="amount-input" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)" placeholder="0.00">
+                    </div>
+                    <button class="btn" style="width:100%; background: var(--accent); color: var(--primary);" onclick="saveOpening()">
+                        <i class="fas fa-save"></i> ශේෂය වෙනස් කරන්න
+                    </button>
+                </div>
+                <div>
+                    <h4 style="color: var(--primary); border-bottom: 1px solid var(--primary); padding-bottom: 8px; margin-top: 0;">
+                        <i class="fas fa-hand-holding-usd"></i> වාර්ෂික ප්‍රතිපාදන
+                    </h4>
+                    
+                    <div class="field" style="margin-bottom: 15px;">
+                        <label class="required">කේත වර්ගය</label>
+                        <select id="allocTypeSelect" class="form-control" onchange="updateAllocationCodeSelect()">
+                            <option value="IN">ලැබීම් කේත (S Codes)</option>
+                            <option value="EX">ගෙවීම් කේත (EX Codes)</option>
+                        </select>
+                    </div>
+                    <div class="field" style="margin-bottom: 15px;">
+                        <label class="required">කේතය තෝරන්න</label>
+                        <select id="allocCodeSelect"></select>
+                        <small style="color: #666; font-size: 11px; display: block; margin-top: 5px;">
+                            * කේත වර්ගය අනුව ලැබීම්/ගෙවීම් කේත පෙන්වයි
+                        </small>
+                    </div>
+                    <div class="field" style="margin-bottom: 15px;">
+                        <label class="required">ප්‍රතිපාදන මුදල (රු.)</label>
+                        <input type="text" id="allocAmt" class="amount-input" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)" placeholder="0.00">
+                    </div>
+                    <button class="btn" style="width:100%; background: var(--purple); color: white;" onclick="saveAllocation()">
+                        <i class="fas fa-save"></i> ප්‍රතිපාදන ගිණුම්ගත කරන්න
+                    </button>
+                    <div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 8px;">
+                        <small style="color: #666; display: block;">
+                            <i class="fas fa-info-circle" style="color: var(--primary);"></i> 
+                            <strong>මෙම ප්‍රතිපාදන:</strong><br>
+                            • ලැබීම් කේත (S Codes) → "ප්‍රතිපාදන හා ලැබීම් සැසඳුම" වාර්තාවේ<br>
+                            • ගෙවීම් කේත (EX Codes) → "ප්‍රතිපාදන හා ගෙවීම් සැසඳුම" වාර්තාවේ
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="sec-codes" class="section" style="display:none;">
+        <h2 class="section-title">ගිණුම් කේත සහ විස්තර</h2>
+        <div class="card transaction-search-card" style="border-top: 5px solid var(--deep-blue); margin-bottom: 25px;">
+            <h3 style="color: var(--deep-blue); display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-search"></i> ගනුදෙනු සෙවීම
+            </h3>
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                <p style="margin: 0; font-size: 14px; color: #0c5460;">
+                    ⚠️ මුදල, ලදුපත් අංකය, වවුචර් අංකය, චෙක්පත් අංකය, කේතය හෝ විස්තරය ඇතුළත් කර සොයන්න...
+                </p>
+            </div>
+            <div class="form-row">
+                <div class="field" style="flex: 2;">
+                    <label class="required">🔍 සෙවීමේ පදය</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="transactionSearchInput" class="form-control" placeholder="උදා: S1, REx1, 001, 12345, චෙක්, ලදුපත්, වවුචර්, මුදල..." 
+                               style="flex: 1; padding: 12px; font-size: 14px;" 
+                               onkeyup="searchTransactions(event)">
+                        <button class="btn" style="background: var(--deep-blue); color: white; min-width: 100px;" onclick="searchTransactions()">
+                            <i class="fas fa-search"></i> සොයන්න
+                        </button>
+                        <button class="btn" style="background: #95a5a6; color: white; min-width: 100px;" onclick="clearTransactionSearch()">
+                            <i class="fas fa-times"></i> ඉවත් කරන්න
+                        </button>
+                    </div>
+                    <small id="searchHint" style="color: var(--deep-blue); font-size: 11px; display: block; margin-top: 8px;">
+                        <i class="fas fa-info-circle"></i> Tip: කේතය (S1), ලදුපත් අංකය (001), චෙක්පත් අංකය (123), වවුචර් අංකය (V001), මුදල (1000.00), විස්තරය (ඕනෑම වචනයක්)
+                    </small>
+                </div>
+                <div class="field" style="flex: 0.5;">
+                    <label>වර්ගය</label>
+                    <select id="transactionTypeFilter" class="form-control" onchange="searchTransactions()">
+                        <option value="ALL">සියල්ල</option>
+                        <option value="IN">ලැබීම් (IN)</option>
+                        <option value="EX">ගෙවීම් (EX)</option>
+                    </select>
+                </div>
+                <div class="field" style="flex: 0.5;">
+                    <label>දින සීමාව</label>
+                    <select id="transactionDateFilter" class="form-control" onchange="searchTransactions()">
+                        <option value="ALL">සියලු දින</option>
+                        <option value="TODAY">අද</option>
+                        <option value="YESTERDAY">ඊයේ</option>
+                        <option value="THIS_WEEK">මෙම සතිය</option>
+                        <option value="THIS_MONTH">මෙම මාසය</option>
+                        <option value="LAST_MONTH">පසුගිය මාසය</option>
+                        <option value="THIS_YEAR">මෙම වර්ෂය</option>
+                    </select>
+                </div>
+            </div>
+            <div style="margin-top: 15px;">
+                <a href="#" onclick="toggleAdvancedSearch()" style="color: var(--deep-blue); text-decoration: none; font-size: 12px;" id="advancedSearchToggle">
+                    <i class="fas fa-chevron-down"></i> උසස් සෙවීම් විකල්ප
+                </a>
+            </div>
+            <div id="advancedSearchPanel" style="display: none; margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                <div class="form-row">
+                    <div class="field">
+                        <label>ලැබීම් කේතය (S Code)</label>
+                        <select id="searchInCode" class="form-control" onchange="searchTransactions()">
+                            <option value="">සියල්ල</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>ගෙවීම් කේතය (EX Code)</label>
+                        <select id="searchExCode" class="form-control" onchange="searchTransactions()">
+                            <option value="">සියල්ල</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>මූලාශ්‍ර අරමුදල</label>
+                        <select id="searchSource" class="form-control" onchange="searchTransactions()">
+                            <option value="">සියල්ල</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="field">
+                        <label>අවම මුදල (රු.)</label>
+                        <input type="text" id="searchMinAmount" class="amount-input" placeholder="0.00" oninput="formatAmount(this)" onkeyup="searchTransactions()">
+                    </div>
+                    <div class="field">
+                        <label>උපරිම මුදල (රු.)</label>
+                        <input type="text" id="searchMaxAmount" class="amount-input" placeholder="999999.99" oninput="formatAmount(this)" onkeyup="searchTransactions()">
+                    </div>
+                    <div class="field">
+                        <label>ව්‍යාපෘතිය</label>
+                        <select id="searchProject" class="form-control" onchange="searchTransactions()">
+                            <option value="">සියල්ල</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="transactionSearchResults" style="display: none;">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h3 style="color: var(--deep-blue); margin: 0; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-list"></i> සෙවුම් ප්‍රතිඵල
+                        <span id="searchResultCount" style="background: var(--deep-blue); color: white; padding: 3px 10px; border-radius: 20px; font-size: 12px;"></span>
+                    </h3>
+                    <div>
+                        <button class="btn admin-only" style="background: #27ae60; color: white;" onclick="exportSearchResults()">
+                            <i class="fas fa-download"></i> CSV බාගත කරන්න
+                        </button>
+                    </div>
+                </div>
+                <div id="transactionSearchResultsTable" style="overflow-x: auto;">
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="card field" style="border-top: 5px solid var(--primary);">
+                <h3 style="color:var(--primary);"><i class="fas fa-money-check-alt"></i> ලැබීම් කේත (S Codes)</h3>
+                <div id="codes-s" class="code-tag-container"></div>
+            </div>
+            <div class="card field" style="border-top: 5px solid var(--danger);">
+                <h3 style="color:var(--danger);"><i class="fas fa-money-bill-wave"></i> ගෙවීම් කේත (REx / CEx Codes)</h3>
+                <div id="codes-ex" class="code-tag-container"></div>
+            </div>
+        </div>
+    </div>
+    <div id="sec-proj" class="section" style="display:none;">
+        <h2 class="section-title">ව්‍යාපෘති කළමනාකරණය</h2>
+        <div class="card">
+            <div class="form-row">
+                <input type="hidden" id="edit-proj-id">
+                <div class="field"><label class="required">ව්‍යාපෘතියේ නම</label><input type="text" id="projName"></div>
+                <div class="field"><label class="required">ඇස්තමේන්තුගත මුදල (රු.)</label><input type="text" id="projEst" class="amount-input" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)"></div>
+                <button class="btn" style="align-self: flex-end; background: var(--primary); color: var(--gold);" onclick="saveProject()">
+                    <i class="fas fa-save"></i> ව්‍යාපෘතිය ගිණුම්ගත කරන්න
+                </button>
+            </div>
+        </div>
+        <div class="card"><div id="project-list-table"></div></div>
+        <div id="proj-detail-view" class="card" style="display:none; border-top: 5px solid var(--primary);">
+            <h3 id="detail-proj-name" style="color:var(--primary);"></h3>
+            <div id="project-expenses-list"></div>
+            <button class="btn" style="margin-top:20px; background:#95a5a6; color:white;" onclick="document.getElementById('proj-detail-view').style.display='none'">
+                <i class="fas fa-arrow-left"></i> ආපසු
+            </button>
+        </div>
+    </div>
+<div id="sec-petty" class="section" style="display:none;">
+    <h2 class="section-title">💰 සුළු මුදල් කළමනාකරණය</h2>
+    <div class="stat-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 20px;">
+        <div class="stat-card" style="background: linear-gradient(135deg, #1b5e20, #2e7d32);">
+            <h5>ස්ථාවර මුදල</h5>
+            <h2 id="pettyFloatDisplay">0.00</h2>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #0288d1, #039be5);">
+            <h5>මුළු ලැබීම්</h5>
+            <h2 id="pettyTotalReceipts">0.00</h2>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #e65100, #f57c00);">
+            <h5>මුළු වියදම්</h5>
+            <h2 id="pettyTotalExpenses">0.00</h2>
+        </div>
+        <div class="stat-card" style="background: linear-gradient(135deg, #c2185b, #d81b60);">
+            <h5>අතැති මුදල</h5>
+            <h2 id="pettyCashInHand">0.00</h2>
+        </div>
+    </div>
+    <div class="card" style="border-top: 5px solid var(--deep-blue); padding: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h3 style="color: var(--deep-blue); margin: 0;">
+                <i class="fas fa-book-open"></i> සුළු මුදල් පොත
+            </h3>
+        </div>
+        <div style="overflow-x: auto; border: 1px solid #ddd; border-radius: 8px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 13px; background: white;" id="pettyCashBookTable">
+                <thead>
+                    <tr style="background: var(--primary); color: white;">
+                        <th style="padding: 10px; border: 1px solid #388e3c;" rowspan="2">ලැබීම් (රු.)</th>
+                        <th style="padding: 10px; border: 1px solid #388e3c;" rowspan="2">වවුචර් අංකය</th>
+                        <th style="padding: 10px; border: 1px solid #388e3c;" rowspan="2">දිනය</th>
+                        <th style="padding: 10px; border: 1px solid #388e3c;" rowspan="2">විස්තරය</th>
+                        <th style="padding: 10px; border: 1px solid #388e3c;" rowspan="2">ගෙවීම් (රු.)</th>
+                        <th style="padding: 10px; border: 1px solid #388e3c;" colspan="5">ගෙවීම් විශ්ලේෂණය</th>
+                    </tr>
+                    <tr style="background: var(--primary); color: white;">
+                        <th style="padding: 10px; border: 1px solid #388e3c;">REx1</th>
+                        <th style="padding: 10px; border: 1px solid #388e3c;">REx5</th>
+                        <th style="padding: 10px; border: 1px solid #388e3c;">REx6</th>
+                        <th style="padding: 10px; border: 1px solid #388e3c;">REx7</th>
+                        <th style="padding: 10px; border: 1px solid #388e3c;">REx3</th>
+                    </tr>
+                </thead>
+                <tbody id="pettyCashBookBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card" style="border-top: 5px solid #e67e22; padding: 15px; margin-top: 15px;" id="petty-expense-form">
+        <h4 style="color: #e67e22; margin-top: 0; margin-bottom: 15px;">
+            <i class="fas fa-plus-circle"></i> නව සුළු මුදල් වියදමක් ඇතුළත් කරන්න
+        </h4>
+        <input type="hidden" id="edit-petty-id" value="">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+            <div>
+                <label class="required">දිනය</label>
+                <input type="date" id="pettyDate" class="form-control" style="width: 100%;">
+            </div>
+            <div>
+                <label class="required">විස්තරය</label>
+                <input type="text" id="pettyDesc" placeholder="උදා: පෑන් මිලදී ගැනීම" style="width: 100%;">
+            </div>
+            <div>
+                <label class="required">කාණ්ඩය</label>
+                <select id="pettyCategorySelect" style="width: 100%;">
+                    <option value="REx1">REx1 - ලිපි ද්‍රව්‍ය</option>
+                    <option value="REx5">REx5 - උපකරණ නඩත්තු</option>
+                    <option value="REx6">REx6 - සුළු නඩත්තු</option>
+                    <option value="REx7">REx7 - පවිත්‍රතා</option>
+                    <option value="REx3">REx3 - විවිධ</option>
+                </select>
+            </div>
+            <div>
+                <label class="required">වවුචර් අංකය</label>
+                <input type="text" id="pettyVoucher" placeholder="PV-001" style="width: 100%;">
+            </div>
+            <div>
+                <label class="required">මුදල (රු.)</label>
+                <input type="text" id="pettyAmt" class="amount-input" placeholder="0.00" oninput="formatAmount(this)" style="width: 100%;">
+            </div>
+          <div>
+    <button class="btn" style="background: #27ae60; color: white; width: 100%; height: 45px; padding: 8px 12px;" id="btn-save-petty" onclick="savePettyExpense()">
+        <i class="fas fa-save"></i> එකතු කරන්න
+    </button>
+</div>
+        </div>
+    </div>
+    <div class="card foldable-card admin-only" style="margin-top: 15px; border-top: 5px solid #2980b9; padding: 0;">
+        <div class="foldable-header" onclick="toggleFoldableCard('replenishmentCard')" style="background: #f8f9fa; padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 15px 15px 0 0;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-cog" style="color: #2980b9; font-size: 22px;"></i>
+                <h4 style="margin: 0; color: #2980b9; font-size: 16px;">සැකසුම් සහ ප්‍රතිපූරණය</h4>
+            </div>
+            <i class="fas fa-chevron-down foldable-icon" id="replenishmentCard-icon" style="font-size: 18px; color: #2980b9; transition: transform 0.3s;"></i>
+        </div>
+        <div id="replenishmentCard" class="foldable-content" style="padding: 20px; display: none;">
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 20px; align-items: end;">
+                <div>
+                    <label class="required">ස්ථාවර මුදල</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="pettyFloat" class="amount-input" value="5000" oninput="formatAmount(this)" style="flex: 1;">
+                        <button class="btn" style="background: #2980b9; color: white;" onclick="savePettyFloat()">
+                            <i class="fas fa-save"></i> සුරකින්න
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <label class="required">ප්‍රතිපූරණය</label>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <select id="replenishSourceSelect" style="min-width: 150px; flex: 1;">
+                            <option value=""></option>
+                        </select>
+                        <input type="text" id="replenishVoucher" placeholder="වවුචර් අංකය" style="flex: 1;">
+                        <input type="text" id="replenishCheque" placeholder="චෙක්පත් අංකය" style="flex: 1;">
+                        <button class="btn" style="background: #f39c12; color: white;" onclick="replenishPettyCash()">
+                            ප්‍රතිපූරණය
+                        </button>
+                    </div>
+                    <small id="replenishInfo" style="color: #2980b9; display: block; margin-top: 5px;"></small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card foldable-card" style="margin-top: 15px; border-top: 5px solid #8e44ad; padding: 0;">
+        <div class="foldable-header" onclick="toggleFoldableCard('periodSummaryCard')" style="background: #f8f9fa; padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 15px 15px 0 0;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-chart-pie" style="color: #8e44ad; font-size: 22px;"></i>
+                <h4 style="margin: 0; color: #8e44ad; font-size: 16px;">කාලපරිච්ඡේදය අවසාන සාරාංශය</h4>
+            </div>
+            <i class="fas fa-chevron-down foldable-icon" id="periodSummaryCard-icon" style="font-size: 18px; color: #8e44ad; transition: transform 0.3s;"></i>
+        </div>
+        <div id="periodSummaryCard" class="foldable-content" style="padding: 20px; display: none;">
+            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 15px;" id="periodCategoryTotals">
+            </div>
+            <div class="admin-only" style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;">
+                    <div>
+                        <label>REx1</label>
+                        <input type="text" id="manualREx1" class="amount-input" value="0" oninput="formatAmount(this); updatePeriodTotal();">
+                    </div>
+                    <div>
+                        <label>REx5</label>
+                        <input type="text" id="manualREx5" class="amount-input" value="0" oninput="formatAmount(this); updatePeriodTotal();">
+                    </div>
+                    <div>
+                        <label>REx6</label>
+                        <input type="text" id="manualREx6" class="amount-input" value="0" oninput="formatAmount(this); updatePeriodTotal();">
+                    </div>
+                    <div>
+                        <label>REx7</label>
+                        <input type="text" id="manualREx7" class="amount-input" value="0" oninput="formatAmount(this); updatePeriodTotal();">
+                    </div>
+                    <div>
+                        <label>REx3</label>
+                        <input type="text" id="manualREx3" class="amount-input" value="0" oninput="formatAmount(this); updatePeriodTotal();">
+                    </div>
+                    <div>
+                        <label>එකතුව</label>
+                        <input type="text" id="manualTotal" class="amount-input" readonly style="background: #eee;">
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 15px;">
+                    <button class="btn" style="background: #8e44ad; color: white;" onclick="saveManualPeriodExpenses()">
+                        <i class="fas fa-save"></i> REx වලට ඇතුළත් කරන්න
+                    </button>
+                    <button class="btn" style="background: #27ae60; color: white;" onclick="startNewPeriod()">
+                        <i class="fas fa-calendar-plus"></i> නව කාලපරිච්ඡේදය
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card foldable-card" style="margin-top: 15px; border-top: 5px solid #3498db; padding: 0;">
+        <div class="foldable-header" onclick="toggleFoldableCard('periodReportsCard')" style="background: #f8f9fa; padding: 18px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 15px 15px 0 0;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-calendar-alt" style="color: #3498db; font-size: 22px;"></i>
+                <h4 style="margin: 0; color: #3498db; font-size: 16px;">කාලපරිච්ඡේද වාර්තා</h4>
+            </div>
+            <i class="fas fa-chevron-down foldable-icon" id="periodReportsCard-icon" style="font-size: 18px; color: #3498db; transition: transform 0.3s;"></i>
+        </div>
+        <div id="periodReportsCard" class="foldable-content" style="padding: 20px; display: none;">
+            <div style="display: flex; gap: 15px; align-items: flex-end; flex-wrap: wrap;">
+                <div style="flex: 2;">
+                    <label>කාලපරිච්ඡේදය තෝරන්න</label>
+                    <select id="periodReportSelect" class="form-control" style="width: 100%;">
+                        <option value="">-- තෝරන්න --</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn" style="background: #3498db; color: white;" onclick="generatePeriodReport()">
+                        <i class="fas fa-file-alt"></i> වාර්තාව බලන්න
+                    </button>
+                    <button class="btn" style="background: #2ecc71; color: white;" onclick="printPeriodReport()">
+                        <i class="fas fa-print"></i> මුද්‍රණය
+                    </button>
+                    <button class="btn admin-only" style="background: #e74c3c; color: white;" onclick="exportPeriodReportPDF()">
+                        <i class="fas fa-file-pdf"></i> PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ <span class="footer-credit no-print" style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10px; color: #999; padding: 3px; background: linear-gradient(135deg, rgba(27, 94, 32, 0.05) 0%, rgba(46, 125, 50, 0.05) 100%); border-radius: 15px; margin: 10px; flex-wrap: wrap; border: 1px solid rgba(27, 94, 32, 0.1);">
+        <span class="footer-credit no-print" style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 8px; color: #666; padding: 6px 10px; background: #f8f9fa; border-radius: 6px; margin: 8px; flex-wrap: wrap; border: 1px solid #e9ecef; font-size: 12px; line-height: 1.2;">
+            <span style="font-weight: 500;">පද්ධති නිර්මාණය හා කළමනාකරණ :</span>
+            <a href="https://wa.me/94777944308?text=පද්ධතිය පිළිබඳ විමසීමක්" style="color: var(--primary); text-decoration: none; font-weight: bold; padding: 3px 10px; background: rgba(27, 94, 32, 0.08); border-radius: 4px; font-size: 12px;">
+                තරංග විජේසිංහ
+            </a>
+            <span style="color: #ddd;">|</span>
+            <a href="tel:+94777944308" style="display: flex; align-items: center; gap: 6px; background: #25D366; color: white; padding: 4px 14px; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.85rem; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); transition: 0.2s; flex-shrink: 0;">
+                0777944308
+            </a>
+			<a href="https://wa.me/94777944308?text=පද්ධතිය පිළිබඳ විමසීමක්" target="_blank" style="display: flex; align-items: center; gap: 6px; background: #25D366; color: white; padding: 4px 14px; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.85rem; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); transition: 0.2s; flex-shrink: 0;">
+        <img src="data:image/svg+xml,..." alt="WhatsApp" style="width: 14px; height: 14px;"> WhatsApp
+    </a>
+    <a href="https://www.facebook.com/dmtukw/" target="_blank" style="display: flex; align-items: center; gap: 6px; background: #0866FF; color: white; padding: 4px 14px; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.85rem; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); transition: 0.2s; flex-shrink: 0;">
+        <img src="data:image/svg+xml,..." alt="Facebook" style="width: 12px; height: 12px;"> Facebook
+    </a>
+        </span>
+    </span>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
