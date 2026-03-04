@@ -12,6 +12,9 @@
     --purple: #8e44ad;
     --deep-blue: #0984e3;
     --glass: rgba(255, 255, 255, 0.1);
+    /* නව variables */
+    --fab-bg: #1b5e20;
+    --fab-color: #ffeb3b;
 }
 
 body { 
@@ -22,8 +25,9 @@ body {
     font-size: 0.85em !important; 
 }
 
+/* ============ Sidebar - Desktop Default ============ */
 .sidebar { 
-    width: 300px; 
+    width: 280px; 
     height: 100vh; 
     background: var(--primary); 
     color: white; 
@@ -47,14 +51,14 @@ body {
 }
 
 .nav-link { 
-    padding: 15px 16px;
+    padding: 10px 12px;
     display: block; 
     color: #dcedc8; 
     text-decoration: none; 
     cursor: pointer; 
     border-bottom: 4px solid rgba(255,255,255,0.05); 
     transition: 0.3s; 
-    font-size: 12px;
+    font-size: 11px;
     display: flex !important;
     align-items: center;
 }
@@ -82,11 +86,60 @@ body {
 }
 
 .main-content { 
-    margin-left: 300px; 
+    margin-left: 280px; 
     padding: 20px; 
-    width: calc(100% - 300px); 
+    width: calc(100% - 280px); 
     position: relative; 
     min-height: 100vh; 
+}
+
+/* ============ Mobile Floating Action Button (FAB) ============ */
+.mobile-fab {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--fab-bg);
+    color: var(--fab-color);
+    border: 3px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.3s;
+}
+
+.mobile-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.mobile-fab:active {
+    transform: scale(0.95);
+}
+
+/* Mobile Sidebar Overlay */
+.mobile-sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.mobile-sidebar-overlay.active {
+    display: block;
+    opacity: 1;
 }
 
 .toast {
@@ -130,7 +183,7 @@ body {
     background: white;
     padding: 25px; 
     border-radius: 12px;
-    max-width: 25px;
+    max-width: 400px;
     width: 90%;
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     text-align: center;
@@ -239,64 +292,15 @@ body {
     content: '⚖️';
 }
 
-@media (max-width: 1024px) {
-    .stat-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    } 
-    .stat-card:nth-child(3) {
-        grid-column: span 2;
-    }
-    .stat-card {
-        padding: 20px;
-        min-height: 150px;
-    }
-    .stat-card h2 {
-        font-size: 28px;
-    }
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-    
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-        padding: 15px; 
-    }
-    
-    .stat-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    .stat-card:nth-child(3) {
-        grid-column: span 1;
-    }
-    .stat-card {
-        padding: 15px;
-        min-height: 120px;
-    }
-    .stat-card h2 {
-        font-size: 24px;
-    }
-    .stat-card h5 {
-        font-size: 12px;
-    }
-}
-
 .fund-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
+    gap: 20px;
 }
 
 /* Glassmorphic Fund Boxes */
 .fund-box {
-    padding: 15px;
+    padding: 30px;
     border-radius: 26px;
     color: #1b5e20;
     text-align: center;
@@ -305,7 +309,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 130px;
+    min-height: 180px;
+    min-width: 200px;
     position: relative;
     overflow: visible;
     
@@ -315,7 +320,7 @@ body {
     -webkit-backdrop-filter: blur(15px);
     
     /* Thick Border */
-    border: 3px solid rgba(46, 125, 50, 0.35);
+    border: 5px solid rgba(46, 125, 50, 0.35);
     
     /* 3D Shadow Effects */
     box-shadow: 
@@ -363,7 +368,7 @@ body {
     position: absolute;
     top: 12px;
     left: 15px;
-    font-size: 12px;
+    font-size: 18px;
     background: rgba(46, 125, 50, 0.15);
     color: #0a3d0e;
     padding: 4px 12px;
@@ -393,7 +398,21 @@ body {
         0 5px 0 rgba(27, 94, 32, 0.15),
         inset 0 1px 3px rgba(255, 255, 255, 0.6);
 }
+.fund-code {
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    color: #2e7d32 !important;
+    margin: 10px 0 5px 0 !important;
+}
 
+
+/* Fund description එක (අවශ්‍ය නම්) */
+.fund-description {
+    font-size: 10px !important;
+    color: #2e7d32 !important;
+    margin-top: 5px !important;
+    line-height: 1.3 !important;
+}
 /* Fund Amount with Enhanced 3D Effect and Thick Border */
 .fund-amount {
     font-size: 30px;
@@ -458,37 +477,6 @@ body {
     background: rgba(232, 245, 233, 0.65) !important;
     backdrop-filter: blur(15px) !important;
     border: 3px solid rgba(46, 125, 50, 0.35) !important;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .fund-box {
-        padding: 12px;
-        min-height: 110px;
-        border-radius: 22px;
-        border: 2.5px solid rgba(46, 125, 50, 0.35);
-    }
-    
-    .fund-box:hover {
-        border: 3.5px solid rgba(46, 125, 50, 0.6);
-    }
-    
-    .fund-amount {
-        border: 1.8px solid rgba(46, 125, 50, 0.25);
-    }
-}
-
-@media (max-width: 480px) {
-    .fund-box {
-        padding: 10px;
-        min-height: 100px;
-        border-radius: 20px;
-        border: 2px solid rgba(46, 125, 50, 0.35);
-    }
-    
-    .fund-box:hover {
-        border: 3px solid rgba(46, 125, 50, 0.6);
-    }
 }
 
 .status-badge {
@@ -672,45 +660,104 @@ tr:hover {
     min-width: 180px;
 }
 
-label { 
-    display: block; 
-    margin-bottom: 6px;
-    font-weight: 600; 
-    color: var(--secondary); 
-    font-size: 0.9em;
+/* ============ Labels - සියල්ලටම එකම ප්‍රමාණය ============ */
+label, 
+.required,
+.field label,
+.form-label,
+#sec-entry .field label,
+#sec-entry label,
+#sec-entry .required,
+#sec-petty .field label,
+#sec-petty label,
+#sec-petty .required,
+#replenishmentCard label,
+#periodSummaryCard label,
+#periodReportsCard label {
+    font-size: 11px !important;
+    margin-bottom: 6px !important;
+    font-weight: 900 !important;
+    color: var(--secondary) !important;
+    display: block;
 }
 
+/* Required field asterisk */
+.required::after {
+    content: " *";
+    color: var(--danger);
+    font-size: 14px;
+    margin-left: 2px;
+}
+
+/* ============ Input Fields - එකම උස හා ප්‍රමාණය ============ */
 input, select, textarea { 
     width: 100%; 
-    padding: 10px;
+    height: 40px;
+    padding: 8px 12px;
     border: 1.5px solid #dcedc8; 
     border-radius: 8px;
     transition: 0.3s; 
     box-sizing: border-box; 
-    font-size: 0.9em;
+    font-size: 10px;
+    line-height: normal;
 }
 
-input:focus { 
+textarea {
+    height: 80px;
+    min-height: 80px;
+    max-height: 150px;
+    resize: vertical;
+}
+
+input:focus, select:focus, textarea:focus { 
     border-color: var(--primary); 
     outline: none; 
     box-shadow: 0 0 4px rgba(27, 94, 32, 0.2); 
 }
 
+/* ============ Input Fields - අමතර නිර්වචන ============ */
+input[type="text"], 
+input[type="date"], 
+input[type="password"],
+input[type="number"],
+.amount-input,
+#pettyFloat,
+#pettyAmt,
+#bankStmtInput,
+#opAmt,
+#allocAmt,
+#inAmt,
+#exAmt,
+#inRefFrom,
+#inRefTo,
+#exVoucher,
+#exRef,
+#searchMinAmount,
+#searchMaxAmount,
+#transactionSearchInput {
+    font-size: 10px;
+    padding: 8px 12px;
+    height: 40px;
+    min-height: 40px;
+    box-sizing: border-box;
+}
+
+/* ============ BUTTONS - සියලුම බොත්තම් ප්‍රමාණය අඩු කරන ලදී ============ */
 .btn { 
-    padding: 12px 20px;
+    padding: 8px 16px;
     border: none; 
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer; 
     font-weight: bold; 
     transition: all 0.3s; 
-    font-size: 13px;
-    height: 42px;
+    font-size: 12px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 110px;
+    gap: 8px;
+    min-width: 90px;
 }
-
 .btn:hover { 
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
@@ -740,17 +787,22 @@ input:focus {
 
 .creator-brand {
     margin-top: auto;
-    padding: 30px 10px;
+    padding: 15px 10px;
     text-align: center;
     background: #0a3d0e;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 2px solid var(--gold);
     font-size: 0.9em;
+    position: sticky;
+    bottom: 0;
+    z-index: 101;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+    width: 100%;
 }
 
 .creator-name {
     display: block;
     color: var(--gold);
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 900;
     letter-spacing: 1px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
@@ -805,34 +857,6 @@ input:focus {
     color: var(--primary);
 }
 
-@media print {
-    @page { 
-        size: A4 portrait; 
-        margin: 10mm 10mm 10mm 10mm; 
-    }
-    .sidebar, .no-print, .school-header-banner, button, .footer-credit { display: none !important; }
-    .main-content { margin-left: 0 !important; padding: 0 !important; width: 100% !important; }
-    .card { box-shadow: none !important; border: 1px solid #ddd !important; padding: 8px !important; margin-bottom: 8px !important; }
-    .report-school-name { display: block !important; margin-bottom: 5px !important; text-align: center; }
-    .report-school-name h1 { font-size: 18px !important; margin: 0 !important; padding: 0 !important; }
-    #report-header-title { font-size: 14px !important; margin: 5px 0 !important; text-align: center; }
-    #report-date-range { font-size: 11px !important; margin-bottom: 8px !important; text-align: center; }
-    table, .q-table { 
-        width: 100% !important; 
-        border-collapse: collapse !important; 
-        font-size: 8pt !important; 
-        page-break-inside: auto !important;
-    }
-    th, td { 
-        padding: 3px 2px !important; 
-        border: 1px solid #333 !important; 
-        font-size: 8pt !important;
-    }
-    tr { page-break-inside: avoid !important; }
-    .q-table th, .q-table td { font-size: 7pt !important; padding: 2px 1px !important; }
-    .val-col { width: 70px !important; }
-}
-
 #login-overlay { 
     position: fixed; 
     top:0; 
@@ -879,11 +903,6 @@ input:focus {
 }
 
 .print-signatures { display: none; }
-
-@media print {
-    .print-signatures { display: flex !important; justify-content: space-between; text-align: center; margin-top: 40px; width: 100%; }
-    .sig-box { width: 30%; border-top: 1px solid #000; padding-top: 4px; font-size: 11px; }
-}
 
 #connection-status { 
     padding: 10px 12px;
@@ -975,32 +994,27 @@ input:focus {
     justify-content: center;
 }
 
-.required::after {
-    content: " *";
-    color: var(--danger);
-    font-size: 0.9em;
-}
-
 .amount-input {
     font-family: monospace;
     text-align: right;
     font-size: 0.9em;
 }
 
+/* ============ PDF Export Button - ප්‍රමාණය අඩු කරන ලදී ============ */
 .pdf-export-btn {
     background: #e74c3c;
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 8px 14px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    height: 42px;
-    min-width: 110px;
+    gap: 4px;
+    height: 36px;
+    min-width: 90px;
     transition: all 0.3s;
 }
 
@@ -1017,27 +1031,28 @@ input:focus {
 
 .button-container {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center; 
     width: 100%;            
-    margin-top: 15px;
+    margin-top: 12px;
 }
 
+/* ============ Table Button - ප්‍රමාණය අඩු කරන ලදී ============ */
 .table-btn {
-    padding: 6px 14px;
+    padding: 3px 8px;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s;
-    font-size: 12px;
-    height: 32px;
+    font-size: 10px;
+    height: 24px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 70px;
+    min-width: 50px;
 }
 
 .table-btn:hover {
@@ -1050,21 +1065,22 @@ input:focus {
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
+/* ============ View Details Button - ප්‍රමාණය අඩු කරන ලදී ============ */
 .view-details-btn {
     background: var(--success);
     color: white;
     border: none;
-    padding: 6px 14px;
-    border-radius: 6px;
+    padding: 3px 8px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 10px;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
     margin: 0 auto;
     transition: all 0.3s;
-    height: 32px;
-    min-width: 90px;
+    height: 24px;
+    min-width: 60px;
     justify-content: center;
 }
 
@@ -1078,6 +1094,7 @@ input:focus {
     display: none;
 }
 
+/* ============ Select2 Styles - එකම උස ============ */
 .select2-container .select2-selection--single {
     height: 40px !important;
     border: 1.5px solid #dcedc8 !important;
@@ -1085,12 +1102,33 @@ input:focus {
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-    line-height: 40px !important;
-    font-size: 0.9em;
+    line-height: 38px !important;
+    font-size: 10px !important;
+    padding-left: 10px !important;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 40px !important;
+    height: 38px !important;
+}
+
+.select2-container--default .select2-results__option {
+    font-size: 10px !important;
+    padding: 8px 12px !important;
+    line-height: 1.3 !important;
+}
+
+.select2-container--default .select2-dropdown {
+    font-size: 10px !important;
+}
+
+.select2-search--dropdown .select2-search__field {
+    font-size: 10px !important;
+    padding: 6px !important;
+    height: 36px !important;
+}
+
+.select2-selection__placeholder {
+    font-size: 10px !important;
 }
 
 .animate-fade-in {
@@ -1102,20 +1140,7 @@ input:focus {
     to { opacity: 1; }
 }
 
-.select2-container--default .select2-results__option {
-    font-size: 10px !important;
-    padding: 4px 8px !important;
-    line-height: 1.2 !important;
-}
-
-.select2-container--default .select2-dropdown {
-    font-size: 10px !important;
-}
-
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    font-size: 11px !important;
-}
-
+/* ============ Data Entry Section ============ */
 #sec-entry .card {
     padding: 12px 15px !important;
     margin-bottom: 12px !important;
@@ -1141,10 +1166,10 @@ input:focus {
 #sec-entry input[type="date"],
 #sec-entry input[type="text"],
 #sec-entry select {
-    height: 32px !important;
-    padding: 5px 8px !important;
-    font-size: 12px !important;
-    border-radius: 5px !important;
+    height: 40px !important;
+    padding: 8px 10px !important;
+    font-size: 14px !important;
+    border-radius: 8px !important;
 }
 
 #sec-entry select {
@@ -1152,31 +1177,43 @@ input:focus {
 }
 
 #sec-entry textarea {
-    min-height: 45px !important;
-    padding: 6px !important;
-    font-size: 12px !important;
+    min-height: 80px !important;
+    padding: 8px !important;
+    font-size: 14px !important;
     max-width: 350px !important;
+    height: auto !important;
 }
 
+/* ============ Data Entry Section Buttons ============ */
 #sec-entry .btn {
-    height: 36px !important;
-    padding: 6px 14px !important;
-    font-size: 13px !important;
-    min-width: 240px !important;
+    height: 40px !important;
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+    min-width: 150px !important;
+    gap: 8px !important;
+}
+
+#sec-entry .btn i {
+    font-size: 16px !important;
 }
 
 #sec-entry .select2-container--default .select2-selection--single {
-    height: 32px !important; 
-    max-width: 240px !important; 
+    height: 40px !important; 
+    max-width: 350px !important; 
 }
 
 #sec-entry .select2-container--default .select2-selection--single .select2-selection__rendered {
-    line-height: 30px !important;
-    font-size: 11px !important; 
+    line-height: 38px !important;
+    font-size: 14px !important; 
 }
 
 #sec-entry .select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 30px !important;
+    height: 38px !important;
+}
+
+#sec-entry .select2-container--default .select2-results__option {
+    font-size: 13px !important;
+    padding: 8px 12px !important;
 }
 
 .footer-credit {
@@ -1251,199 +1288,6 @@ input:focus {
     font-weight: normal;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .transaction-search-table {
-        font-size: 11px;
-    }
-    
-    .transaction-search-table th,
-    .transaction-search-table td {
-        padding: 6px 4px;
-    }
-    
-    #transactionSearchInput {
-        font-size: 14px;
-        padding: 10px;
-    }
-    
-    .transaction-search-card .form-row {
-        flex-direction: column;
-    }
-    
-    .transaction-search-card .field {
-        width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    .fund-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 10px; 
-    }
-    
-    .school-header-banner h1 {
-        font-size: 36px !important; 
-    }
-    
-    .school-header-banner div {
-        font-size: 18px !important; 
-    }
-}
-
-@media (min-width: 1200px) {
-    .fund-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 25px;
-    }
-    .fund-box {
-        padding: 25px;
-        min-height: 140px;
-    }
-    .fund-code {
-        font-size: 28px;
-    }
-    .fund-amount {
-        font-size: 34px;
-        padding: 12px 20px;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1199px) {
-    .fund-grid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 18px;
-    }
-    .fund-box {
-        padding: 20px;
-        min-height: 120px;
-    }
-    .fund-code {
-        font-size: 24px;
-    }
-    .fund-amount {
-        font-size: 28px;
-        padding: 10px 15px;
-    }
-}
-
-@media (max-width: 767px) {
-    .fund-grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 15px;
-    }
-    .fund-box {
-        padding: 15px;
-        min-height: 100px;
-    }
-    .fund-code {
-        font-size: 20px;
-    }
-    .fund-amount {
-        font-size: 24px;
-        padding: 8px 12px;
-    }
-}
-
-.admin-only, .staff-only { display: none; }
-
-/* Mobile Bottom Navigation */
-.mobile-bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: var(--primary);
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    z-index: 990;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    display: none;
-}
-
-.mobile-bottom-nav.active {
-    display: flex;
-}
-
-.mobile-nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #dcedc8;
-    text-decoration: none;
-    font-size: 12px;
-    padding: 5px;
-    border-radius: 8px;
-    transition: all 0.3s;
-}
-
-.mobile-nav-item.active {
-    color: var(--gold);
-    background: rgba(255, 235, 59, 0.1);
-}
-
-.mobile-nav-item i {
-    font-size: 20px;
-    margin-bottom: 3px;
-}
-
-@media (max-width: 768px) {
-    .mobile-bottom-nav {
-        display: flex;
-    }
-    
-    .main-content {
-        padding-bottom: 70px;
-    }
-}
-
-/* ============ Input Fields Font Size Fix ============ */
-input, select, textarea, 
-input[type="text"], 
-input[type="date"], 
-input[type="password"],
-input[type="number"],
-.amount-input,
-#pettyFloat,
-#pettyAmt,
-#bankStmtInput,
-#opAmt,
-#allocAmt,
-#inAmt,
-#exAmt,
-#inRefFrom,
-#inRefTo,
-#exVoucher,
-#exRef,
-#searchMinAmount,
-#searchMaxAmount,
-#transactionSearchInput {
-    font-size: 16px !important;
-    padding: 12px 10px !important;
-    height: auto !important;
-    min-height: 45px !important;
-}
-
-/* Select2 dropdown වල font size වැඩි කිරීම */
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    font-size: 10px !important;
-    line-height: 45px !important;
-}
-
-.select2-container--default .select2-selection--single {
-    height: 45px !important;
-}
-
-.select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 45px !important;
-}
-
-.select2-container--default .select2-results__option {
-    font-size: 15px !important;
-    padding: 10px 12px !important;
-}
-
 /* Amount display fields වල font size වැඩි කිරීම */
 .fund-amount,
 .stat-card h2,
@@ -1460,56 +1304,8 @@ td, th,
 .q-table th,
 .transaction-search-table td,
 .transaction-search-table th {
-    font-size: 12px !important;
-    padding: 12px 8px !important;
-}
-
-/* Labels වල font size වැඩි කිරීම */
-label, 
-.required,
-.field label,
-.form-label {
-    font-size: 16px !important;
-    margin-bottom: 8px !important;
-}
-
-/* Buttons වල font size වැඩි කිරීම */
-.btn, 
-.table-btn,
-.view-details-btn,
-.pdf-export-btn,
-.backup-btn {
-    font-size: 15px !important;
-    padding: 12px 18px !important;
-    height: auto !important;
-    min-height: 48px !important;
-}
-
-/* Mobile view සඳහා විශේෂ සැකසුම් */
-@media (max-width: 768px) {
-    input, select, textarea,
-    input[type="text"],
-    input[type="date"],
-    .amount-input {
-        font-size: 18px !important;
-        padding: 14px 12px !important;
-        min-height: 50px !important;
-    }
-    
-    .btn, 
-    .table-btn {
-        font-size: 17px !important;
-        padding: 14px 20px !important;
-        min-height: 52px !important;
-    }
-    
-    label, .required {
-        font-size: 17px !important;
-    }
-    
-    td, th {
-        font-size: 16px !important;
-    }
+    font-size: 10px !important;
+    padding: 10px 8px !important;
 }
 
 /* Petty Cash specific fields */
@@ -1549,10 +1345,6 @@ tr[style*="background-color: #e8f4fd"]:hover {
     animation: fadeIn 0.5s ease-in;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-}
 /* Dropdown Navigation Styles */
 .nav-dropdown {
     width: 100%;
@@ -1560,7 +1352,7 @@ tr[style*="background-color: #e8f4fd"]:hover {
 
 .dropdown-toggle {
     cursor: pointer;
-    padding: 20px 16px;
+    padding: 12px 12px;
     display: flex !important;
     align-items: center;
     justify-content: space-between;
@@ -1578,83 +1370,18 @@ tr[style*="background-color: #e8f4fd"]:hover {
     transform: rotate(180deg);
 }
 
-.dropdown-menu {
-    background: rgba(10, 61, 14, 0.5);
-    padding: 5px 0;
-}
-
-.sub-nav {
-    padding: 15px 16px 15px 45px !important;
-    font-size: 12px !important;
-    border-bottom: none !important;
-}
-
-.sub-nav i {
-    font-size: 16px !important;
-    width: 20px !important;
-    margin-right: 8px;
-    opacity: 0.8;
-}
-
-.sub-nav:hover {
-    background: var(--secondary);
-    padding-left: 55px !important;
-}
-
-.sub-nav:hover i {
-    opacity: 1;
-}
-/* Dropdown menus only show when active class is present */
-.dropdown-menu {
-    display: none !important;
-}
-
-.dropdown-menu.active {
-    display: block !important;
-}
-
-.dropdown-toggle.active + .dropdown-menu {
-    display: block !important;
-}
-/* Dropdown Navigation Styles - Updated */
-.nav-dropdown {
-    width: 100%;
-}
-
-.dropdown-toggle {
-    cursor: pointer;
-    padding: 20px 16px;
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-toggle::after {
-    content: '▼';
-    font-size: 12px;
-    margin-left: 8px;
-    transition: transform 0.3s;
-}
-
-.dropdown-toggle.active::after {
-    transform: rotate(180deg);
-}
-
-/* Dropdown menus - initially hidden, shown by JavaScript */
 .dropdown-menu {
     display: none;
     background: rgba(10, 61, 14, 0.5);
     padding: 5px 0;
 }
 
-/* When menu is active, show it */
 .dropdown-menu.active {
     display: block !important;
 }
 
 .sub-nav {
-    padding: 15px 16px 15px 45px !important;
+    padding: 10px 16px 15px 45px !important;
     font-size: 12px !important;
     border-bottom: none !important;
 }
@@ -1674,17 +1401,14 @@ tr[style*="background-color: #e8f4fd"]:hover {
 .sub-nav:hover i {
     opacity: 1;
 }
-.backup-btn {
-    height: 20px !important;
-    min-height: 10px !important;
-}
+
 /* Sidebar Backup Buttons Container */
 .sidebar-backup-buttons {
     margin-top: 10px;
-    border-top: 2px solid var(--gold);
+    border-top: 0px solid var(--gold);
     padding: 15px 10px;
     display: flex;
-    gap: 8px;
+    gap: 1px;
     justify-content: center;
 }
 
@@ -1692,25 +1416,25 @@ tr[style*="background-color: #e8f4fd"]:hover {
 .backup-nav-btn {
     background: transparent !important;
     color: #dcedc8 !important;
-    padding: 10px 8px !important;
+    padding: 6px 5px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    border-bottom: 4px solid rgba(255,255,255,0.05);
+    border-bottom: .5px solid rgba(255,255,255,0.05);
     transition: 0.3s;
     cursor: pointer;
     text-decoration: none;
-    font-size: 9px !important;
+    font-size: 8px !important;
     flex: 1;
     border-radius: 0 !important;
-    height: 10px !important;
+    height: 6px !important;
     min-height: 0 !important;
     margin: 0 !important;
 }
 
 .backup-nav-btn i {
-    font-size: 18px !important;
-    margin-right: 6px;
+    font-size: 14px !important;
+    margin-right: 4px;
     color: #dcedc8;
     transition: 0.3s;
 }
@@ -1727,94 +1451,665 @@ tr[style*="background-color: #e8f4fd"]:hover {
     transform: scale(1.1);
 }
 
-/* First button hover effect adjustment */
-.backup-nav-btn:first-child:hover {
-    padding-left: 15px !important;
-}
-
-/* Second button hover effect adjustment */
-.backup-nav-btn:last-child:hover {
-    padding-left: 15px !important;
-}
-/* ============ Entry Section Labels Font Size Fix ============ */
-#sec-entry .field label,
-#sec-entry label,
-#sec-entry .required {
-    font-size: 13px !important;  /* මේක ඔයාට ඕනෙ ප්‍රමාණයට වෙනස් කරන්න */
-    margin-bottom: 4px !important;
-    font-weight: 600 !important;
-}
-
-/* Amount input fields වලට වෙනම සැකසුම් */
+/* Entry Section Additional Styles */
 #sec-entry .amount-input,
 #sec-entry input[type="text"],
 #sec-entry input[type="date"],
 #sec-entry select,
 #sec-entry textarea {
-    font-size: 14px !important;  /* Input fields වල font size */
+    font-size: 14px !important;
     padding: 8px 10px !important;
 }
 
-/* Required fields වල * mark එක */
-#sec-entry .required::after {
-    font-size: 13px !important;
-}
-
-/* Small text (help text) */
 #sec-entry small {
     font-size: 11px !important;
     color: #666 !important;
 }
-.card.foldable-card.admin-only .foldable-header h3[style*="color: #8e44ad"] {
-    font-size: 26px !important;
-}
 
-/* නැත්නම් */
-#adminCard + .foldable-header h3 {
-    font-size: 24px !important;
-}
-/* Data Entry section එකේ බොත්තම් */
-#sec-entry .btn {
-    font-size: 17px !important;
-    padding: 16px 28px !important;
-    height: 56px !important;
-    min-width: 260px !important;
-    gap: 15px !important;
-}
-
-#sec-entry .btn i {
-    font-size: 20px !important;
-}
-/* Dropdown list එකේ font size එක අඩු කිරීම */
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    font-size: 10px !important;  /* මෙය අඩු කරන්න පුළුවන් */
-    line-height: 40px !important;
-}
-
-/* Dropdown එක විවෘත කළ විට පෙනෙන list එකේ font size */
-.select2-container--default .select2-results__option {
-    font-size: 10px !important;  /* list එකේ අකුරු ප්‍රමාණය */
-    padding: 8px 12px !important;
-}
-
-/* Dropdown එකේ search box එකේ font size */
-.select2-search--dropdown .select2-search__field {
-    font-size: 10px !important;
-    padding: 6px !important;
-}
-
-/* Placeholder text එකේ font size */
-.select2-selection__placeholder {
+/* Petty Cash Section Additional Styles */
+#sec-petty input,
+#sec-petty select,
+#sec-petty textarea {
     font-size: 13px !important;
+    padding: 8px 10px !important;
+    height: 38px !important;
 }
 
-/* Data Entry section එකේ dropdown list */
-#sec-entry .select2-container--default .select2-selection--single .select2-selection__rendered {
-    font-size: 10px !important;
-    line-height: 32px !important;
+#sec-petty textarea {
+    height: 70px !important;
+    min-height: 70px !important;
 }
 
-#sec-entry .select2-container--default .select2-results__option {
+#sec-petty .btn {
     font-size: 12px !important;
-    padding: 6px 10px !important;
+    padding: 6px 12px !important;
+    height: 36px !important;
+}
+
+/* Card Foldable Headers */
+.card.foldable-card.admin-only .foldable-header h3[style*="color: #8e44ad"] {
+    font-size: 18px !important;
+}
+
+#adminCard + .foldable-header h3 {
+    font-size: 18px !important;
+}
+
+/* දත්ත අලුත් කරන්න බොත්තම */
+.sidebar .nav-link[onclick="manualRefresh()"] {
+    padding: 4px 8px !important;
+    margin-top: 4px !important;
+    font-size: 10px !important;
+    min-height: 10px !important;
+    height: auto !important;
+}
+
+.sidebar .nav-link[onclick="manualRefresh()"] i {
+    font-size: 14px !important;
+    margin-right: 5px !important;
+}
+
+.sidebar .nav-link[onclick="manualRefresh()"]:hover {
+    padding-left: 18px !important;
+}
+
+/* ============ NEW RESPONSIVE STYLES ============ */
+
+/* Large Desktop (1920x1080 and above) */
+@media (min-width: 1600px) {
+    .sidebar {
+        width: 320px;
+        font-size: 1em;
+    }
+    
+    .main-content {
+        margin-left: 320px;
+        padding: 25px;
+    }
+    
+    .fund-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    
+    .fund-box {
+        min-height: 200px;
+        padding: 30px;
+    }
+    
+    .fund-amount {
+        font-size: 32px !important;
+    }
+    
+    .school-header-banner h1 {
+        font-size: 56px !important;
+    }
+}
+
+/* Medium Desktop (1280x1024, 1280x960) */
+@media (min-width: 1200px) and (max-width: 1599px) {
+    .sidebar {
+        width: 280px;
+    }
+    
+    .main-content {
+        margin-left: 280px;
+    }
+    
+    .fund-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+    
+    .fund-box {
+        min-height: 180px;
+        padding: 25px;
+    }
+    
+    .school-header-banner h1 {
+        font-size: 48px !important;
+    }
+}
+
+/* Tablet Landscape (1024x768) */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .sidebar {
+        width: 240px;
+        font-size: 0.85em;
+    }
+    
+    .sidebar .nav-link i {
+        font-size: 18px !important;
+        width: 24px !important;
+    }
+    
+    .main-content {
+        margin-left: 240px;
+        padding: 15px;
+    }
+    
+    .stat-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 18px;
+    }
+    
+    .stat-card h2 {
+        font-size: 28px !important;
+    }
+    
+    .fund-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .fund-box {
+        min-height: 160px;
+        padding: 20px;
+    }
+    
+    .fund-amount {
+        font-size: 22px !important;
+        min-width: 120px;
+    }
+    
+    .form-row {
+        gap: 10px;
+    }
+    
+    .school-header-banner h1 {
+        font-size: 36px !important;
+    }
+    
+    .school-header-banner div {
+        font-size: 24px !important;
+        padding: 15px 30px;
+    }
+}
+
+/* Tablet Portrait (768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+        font-size: 0.8em;
+    }
+    
+    .sidebar .nav-link i {
+        font-size: 16px !important;
+        width: 22px !important;
+    }
+    
+    .main-content {
+        margin-left: 220px;
+        padding: 12px;
+    }
+    
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-card h2 {
+        font-size: 24px !important;
+    }
+    
+    .fund-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .fund-box {
+        min-height: 150px;
+        padding: 18px;
+    }
+    
+    .fund-amount {
+        font-size: 20px !important;
+        min-width: 100px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .field {
+        min-width: 100%;
+    }
+    
+    #sec-entry .field {
+        min-width: 100% !important;
+        flex: 1 1 100% !important;
+    }
+    
+    .code-tag-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .school-header-banner h1 {
+        font-size: 28px !important;
+    }
+    
+    .school-header-banner div {
+        font-size: 18px !important;
+        padding: 12px 20px;
+    }
+    
+    .btn {
+        padding: 6px 12px;
+        font-size: 11px;
+        height: 34px;
+    }
+}
+
+/* Smart Phone (Mobile) */
+@media (max-width: 600px) {
+    /* Hide sidebar by default on mobile */
+    .sidebar {
+        transform: translateX(-100%);
+        width: 85%;
+        max-width: 320px;
+        position: fixed;
+        z-index: 1001;
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+    
+    /* Show FAB on mobile */
+    .mobile-fab {
+        display: flex;
+    }
+    
+    /* Mobile-specific styles */
+    .stat-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-card h2 {
+        font-size: 24px !important;
+    }
+    
+    .fund-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .fund-box {
+        min-height: 140px;
+        padding: 15px;
+    }
+    
+    .fund-amount {
+        font-size: 22px !important;
+        min-width: 120px;
+    }
+    
+    .fund-code {
+        font-size: 26px !important;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .field {
+        min-width: 100%;
+    }
+    
+    #sec-entry .field {
+        min-width: 100% !important;
+        flex: 1 1 100% !important;
+    }
+    
+    #sec-entry .btn {
+        width: 100%;
+        min-width: 100% !important;
+    }
+    
+    .code-tag-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+    }
+    
+    .school-header-banner {
+        padding: 10px;
+    }
+    
+    .school-header-banner h1 {
+        font-size: 24px !important;
+    }
+    
+    .school-header-banner div {
+        font-size: 16px !important;
+        padding: 10px 15px;
+        margin-top: 10px;
+    }
+    
+    /* Table styles for mobile */
+    table {
+        font-size: 11px;
+    }
+    
+    th, td {
+        padding: 6px 4px;
+    }
+    
+    .btn {
+        padding: 6px 10px;
+        font-size: 11px;
+        height: 32px;
+        min-width: 70px;
+    }
+    
+    .table-btn {
+        padding: 3px 6px;
+        font-size: 9px;
+        height: 22px;
+        min-width: 45px;
+    }
+    
+    /* Transaction search */
+    #transactionSearchInput {
+        font-size: 14px;
+        padding: 8px;
+    }
+    
+    #transactionSearchInput + div {
+        flex-direction: column;
+    }
+    
+    #advancedSearchPanel .form-row {
+        flex-direction: column;
+    }
+    
+    /* Petty cash section */
+    #sec-petty .stat-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #sec-petty input,
+    #sec-petty select {
+        font-size: 14px !important;
+    }
+    
+    /* Dropdown menus */
+    .dropdown-menu {
+        position: static;
+        width: 100%;
+    }
+    
+    .sub-nav {
+        padding-left: 35px !important;
+    }
+    
+    /* Backup buttons */
+    .sidebar-backup-buttons {
+        flex-direction: column;
+    }
+    
+    .backup-nav-btn {
+        font-size: 12px !important;
+        height: 40px !important;
+    }
+    
+    /* Modal dialogs */
+    .code-details-content {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .confirm-content {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    /* Creator footer */
+    .footer-credit {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .footer-credit a {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Small phones (320px - 375px) */
+@media (max-width: 375px) {
+    .school-header-banner h1 {
+        font-size: 20px !important;
+    }
+    
+    .school-header-banner div {
+        font-size: 14px !important;
+        padding: 8px 10px;
+    }
+    
+    .stat-card h2 {
+        font-size: 20px !important;
+    }
+    
+    .fund-amount {
+        font-size: 18px !important;
+        min-width: 100px;
+    }
+    
+    .fund-code {
+        font-size: 22px !important;
+    }
+    
+    .btn {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+}
+
+/* Touch-friendly improvements for mobile/tablet */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets for mobile */
+    .nav-link,
+    .btn,
+    .table-btn,
+    .view-details-btn,
+    .backup-nav-btn,
+    .mobile-fab {
+        cursor: default;
+        -webkit-tap-highlight-color: rgba(255, 235, 59, 0.3);
+    }
+    
+    .nav-link:active,
+    .btn:active,
+    .table-btn:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+    
+    /* Increase form field size for touch */
+    input, select, textarea {
+        font-size: 16px !important; /* Prevents zoom on focus in iOS */
+        height: 44px;
+    }
+    
+    textarea {
+        height: 100px;
+    }
+    
+    .select2-container .select2-selection--single {
+        height: 44px !important;
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 42px !important;
+        font-size: 16px !important;
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 42px !important;
+    }
+}
+/* Login Overlay සඳහා වැඩිදියුණු කිරීම් */
+#login-overlay .card {
+    max-width: 320px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 2px solid var(--gold);
+    border-radius: 20px;
+}
+
+#login-overlay select,
+#login-overlay input {
+    transition: all 0.3s;
+}
+
+#login-overlay select:focus,
+#login-overlay input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.2);
+    outline: none;
+}
+
+#login-overlay .btn {
+    transition: all 0.3s;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+#login-overlay .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#login-overlay .btn:active {
+    transform: translateY(0);
+}
+/* Sticky Table Headers */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--primary);
+}
+
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.table-container table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table-container thead th {
+    position: sticky;
+    top: 0;
+    background: var(--primary);
+    color: var(--gold);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Offline Queue Status Animation */
+@keyframes pulseQueue {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+#offlineQueueStatus {
+    animation: pulseQueue 2s infinite;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#offlineQueueStatus:hover {
+    transform: scale(1.1);
+    background: #e67e22;
+}
+
+/* Validation Warning Styles */
+.field .warning-message {
+    color: var(--danger);
+    font-size: 11px;
+    margin-top: 5px;
+    padding: 5px;
+    background-color: #ffebee;
+    border-radius: 4px;
+    border-left: 3px solid var(--danger);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Disabled Button Style */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Mobile Numeric Input Optimizations */
+@media (max-width: 600px) {
+    input[type="text"][inputmode="numeric"],
+    input[type="text"][inputmode="decimal"],
+    .amount-input {
+        font-size: 16px !important;
+        padding: 12px !important;
+        height: 48px !important;
+    }
+    
+    /* Sticky headers for mobile */
+    .table-container {
+        max-height: 300px;
+    }
+    
+    .table-container thead th {
+        font-size: 11px !important;
+        padding: 8px 4px !important;
+    }
+    
+    /* Better touch targets for validation warnings */
+    .warning-message {
+        padding: 8px !important;
+        font-size: 12px !important;
+    }
 }

@@ -2,7 +2,7 @@
 <html lang="si">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#1b5e20">
     <title>ගිණුම්කරණ පද්ධතිය - මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -10,24 +10,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="mobile-bottom-nav" id="mobileBottomNav">
-    <a href="#" class="mobile-nav-item" onclick="showSec('dash'); return false;">
-        <i class="fas fa-chart-bar"></i>
-        <span>පුවරුව</span>
-    </a>
-    <a href="#" class="mobile-nav-item" onclick="showSec('entry'); return false;">
-        <i class="fas fa-edit"></i>
-        <span>ඇතුළු කරන්න</span>
-    </a>
-    <a href="#" class="mobile-nav-item" onclick="openReport('CASHBOOK'); return false;">
-        <i class="fas fa-book"></i>
-        <span>මුදල් පොත</span>
-    </a>
-    <a href="#" class="mobile-nav-item" onclick="toggleMobileMenu(); return false;">
-        <i class="fas fa-bars"></i>
-        <span>තවත්</span>
-    </a>
-</div>
+<!-- Mobile Bottom Navigation ඉවත් කර ඇත -->
 <div id="loading-overlay">දත්ත සැකසෙමින් පවතී... කරුණාකර රැඳී සිටින්න.</div>
 <div id="toast" class="toast">දත්ත සාර්ථකව සුරැකිණි! ✅</div>
 <div id="confirmDialog" class="confirm-dialog">
@@ -63,13 +46,30 @@
     </div>
 </div>
 <div id="login-overlay">
-    <div class="card" style="text-align:center; width: 280px; padding: 60px;">
+    <div class="card" style="text-align:center; width: 260px; padding: 30px;">
         <h2 style="color:var(--primary); margin-bottom: 5px; font-size: 18px;">මූල්‍ය කළමනාකරණ පද්ධතිය</h2>
-        <p style="color: #666; margin-bottom: 38px;">මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</p>
-        <input type="password" id="passInput" placeholder="මුරපදය ඇතුළත් කරන්න" style="text-align:center; margin-bottom:20px; font-size: 12px;">
-        <button class="btn" style="width:100%; background: var(--primary); color: var(--gold);" onclick="checkLogin()">පද්ධතියට ඇතුළු වන්න</button>
+        <p style="color: #666; margin-bottom: 30px;">මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</p>
+        
+        <!-- Username Field -->
+        <select id="usernameSelect" style="width:100%; margin-bottom:15px; padding:10px; border:1.5px solid #dcedc8; border-radius:8px; font-size:14px;">
+            <option value="">-- පරිශීලක නාමය තෝරන්න --</option>
+            <option value="Admin">පරිපාලක (Admin)</option>
+            <option value="Staff">කාර්ය මණ්ඩලය (Staff)</option>
+            <option value="Guest">අමුත්තා (Guest)</option>
+        </select>
+        
+        <!-- Password Field -->
+        <input type="password" id="passInput" placeholder="මුරපදය ඇතුළත් කරන්න" 
+               style="width:100%; margin-bottom:20px; padding:10px; border:1.5px solid #dcedc8; border-radius:8px; font-size:14px; text-align:center;">
+        
+        <!-- Login Button -->
+        <button class="btn" style="width:100%; background: var(--primary); color: var(--gold); padding:12px; font-size:16px;" onclick="checkLogin()">
+            <i class="fas fa-sign-in-alt"></i> පද්ධතියට ඇතුළු වන්න
+        </button>
+        
+        <!-- Created by -->
         <div style="margin-top:30px;">
-            <span style="color:var(--primary); font-weight: bold; font-size: 14px;">Created by: Tharanga Wijesinghe</span>
+            <span style="color:var(--primary); font-weight: bold; font-size: 12px;">Created by: Tharanga Wijesinghe</span>
         </div>
     </div>
 </div>
@@ -116,21 +116,20 @@
                 <i class="fas fa-sign-out-alt"></i> LOGOUT
             </button>
         </div>
-		<a class="nav-link" onclick="manualRefresh()" style="background: transparent; color: #dcedc8; margin-top: 8px; padding: 10px 16px !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 8px; border-bottom: 4px solid rgba(255,255,255,0.05); transition: 0.3s; cursor: pointer;" 
-   onmouseover="this.style.background='var(--secondary)'; this.style.color='var(--gold)'; this.querySelector('i').style.color='var(--gold)';" 
-   onmouseout="this.style.background='transparent'; this.style.color='#dcedc8'; this.querySelector('i').style.color='#dcedc8';">
-    <i class="fas fa-sync-alt" style="font-size: 18px !important; color: #dcedc8; transition: 0.3s;"></i> 
-    <span style="font-size: 10px;">දත්ත අලුත් කරන්න</span>
-</a>
-</a>
-<div class="sidebar-backup-buttons">
-    <a class="backup-nav-btn" onclick="downloadBackupJSON()">
-        <i class="fas fa-database"></i> JSON BACKUP
-    </a>
-    <a class="backup-nav-btn" onclick="downloadBackupCSV()">
-        <i class="fas fa-file-csv"></i> CSV DOWNLOAD
-    </a>
-</div>
+        <a class="nav-link" onclick="manualRefresh()" style="background: transparent; color: #dcedc8; margin-top: 8px; padding: 10px 16px !important; display: flex !important; align-items: center !important; justify-content: center !important; gap: 8px; border-bottom: 4px solid rgba(255,255,255,0.05); transition: 0.3s; cursor: pointer;" 
+           onmouseover="this.style.background='var(--secondary)'; this.style.color='var(--gold)'; this.querySelector('i').style.color='var(--gold)';" 
+           onmouseout="this.style.background='transparent'; this.style.color='#dcedc8'; this.querySelector('i').style.color='#dcedc8';">
+            <i class="fas fa-sync-alt" style="font-size: 18px !important; color: #dcedc8; transition: 0.3s;"></i> 
+            <span style="font-size: 10px;">දත්ත අලුත් කරන්න</span>
+        </a>
+        <div class="sidebar-backup-buttons">
+            <a class="backup-nav-btn" onclick="downloadBackupJSON()">
+                <i class="fas fa-database"></i> JSON BACKUP
+            </a>
+            <a class="backup-nav-btn" onclick="downloadBackupCSV()">
+                <i class="fas fa-file-csv"></i> CSV DOWNLOAD
+            </a>
+        </div>
     </div>
     <div class="creator-brand">
         <span class="creator-sub">Designed & Developed by</span>
@@ -216,11 +215,14 @@
                     <div class="row">
                         <div class="col-md-6" style="padding-right: 5px;">
                             <label class="required">ලදුපත් අංකය</label>
-                            <input type="text" id="inRefFrom" class="form-control" placeholder="001" required>
+                            <input type="text" id="inRefFrom" class="form-control" placeholder="001" required 
+                                   inputmode="numeric" pattern="[0-9]*" 
+                                   onblur="validateReceiptNumber(this)">
                         </div>
                         <div class="col-md-6" style="padding-left: 5px;">
                             <label>දක්වා</label>
-                            <input type="text" id="inRefTo" class="form-control" placeholder="010 (විකල්ප)">
+                            <input type="text" id="inRefTo" class="form-control" placeholder="010 (විකල්ප)"
+                                   inputmode="numeric" pattern="[0-9]*">
                             <small style="color: #666; font-size: 10px;">*පරාසයක් නැත්නම් හිස් තබන්න</small>
                         </div>
                     </div>
@@ -228,7 +230,13 @@
             </div>
             <div class="form-row">
                 <div class="field"><label class="required">ලැබීම් කේතය</label><select id="inCodeSelect"></select></div>
-                <div class="field"><label class="required">මුදල (රු.)</label><input type="text" id="inAmt" class="amount-input" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)"></div>
+                <div class="field">
+                    <label class="required">මුදල (රු.)</label>
+                    <input type="text" id="inAmt" class="amount-input" 
+                           inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" 
+                           oninput="formatAmount(this)" 
+                           onblur="if(document.getElementById('exVoucher').value) validateVoucherNumber(document.getElementById('exVoucher'))">
+                </div>
             </div>
             <div class="field" style="margin-bottom: 15px;"><label>ව්‍යාපෘතිය</label><select id="inProjSelect"></select></div>
             <label class="required">විස්තරය</label><textarea id="inDesc" rows="2"></textarea>
@@ -244,11 +252,23 @@
             <input type="hidden" id="edit-id-ex">
             <div class="form-row">
                 <div class="field"><label class="required">දිනය</label><input type="date" id="exDate"></div>
-                <div class="field"><label class="required">වවුචර් අංකය</label><input type="text" id="exVoucher"></div>
+                <div class="field">
+                    <label class="required">වවුචර් අංකය</label>
+                    <input type="text" id="exVoucher" inputmode="text" onblur="validateVoucherNumber(this)">
+                </div>
             </div>
             <div class="form-row">
-                <div class="field"><label>චෙක්පත් අංකය</label><input type="text" id="exRef"></div>
-                <div class="field"><label class="required">මුදල (රු.)</label><input type="text" id="exAmt" class="amount-input" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)"></div>
+                <div class="field">
+                    <label>චෙක්පත් අංකය</label>
+                    <input type="text" id="exRef" inputmode="numeric" pattern="[0-9]*">
+                </div>
+                <div class="field">
+                    <label class="required">මුදල (රු.)</label>
+                    <input type="text" id="exAmt" class="amount-input" 
+                           inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" 
+                           oninput="formatAmount(this)"
+                           onblur="if(document.getElementById('exVoucher').value) validateVoucherNumber(document.getElementById('exVoucher'))">
+                </div>
             </div>
             <div class="form-row">
                 <div class="field"><label class="required">ගෙවීම් කේතය</label><select id="exCodeSelect"></select></div>
@@ -276,11 +296,13 @@
             <div class="form-row">
                 <div class="field">
                     <label class="required">ලදුපත් අංකය (සිට)</label>
-                    <input type="text" id="multiInRefFrom" class="form-control" placeholder="001">
+                    <input type="text" id="multiInRefFrom" class="form-control" placeholder="001" 
+                           inputmode="numeric" pattern="[0-9]*">
                 </div>
                 <div class="field">
                     <label>දක්වා (විකල්ප)</label>
-                    <input type="text" id="multiInRefTo" class="form-control" placeholder="010">
+                    <input type="text" id="multiInRefTo" class="form-control" placeholder="010"
+                           inputmode="numeric" pattern="[0-9]*">
                 </div>
             </div>
             <div class="form-row">
@@ -455,11 +477,11 @@
                 <div class="form-row">
                     <div class="field">
                         <label>අවම මුදල (රු.)</label>
-                        <input type="text" id="searchMinAmount" class="amount-input" placeholder="0.00" oninput="formatAmount(this)" onkeyup="searchTransactions()">
+                        <input type="text" id="searchMinAmount" class="amount-input" placeholder="0.00" inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)" onkeyup="searchTransactions()">
                     </div>
                     <div class="field">
                         <label>උපරිම මුදල (රු.)</label>
-                        <input type="text" id="searchMaxAmount" class="amount-input" placeholder="999999.99" oninput="formatAmount(this)" onkeyup="searchTransactions()">
+                        <input type="text" id="searchMaxAmount" class="amount-input" placeholder="999999.99" inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)" onkeyup="searchTransactions()">
                     </div>
                     <div class="field">
                         <label>ව්‍යාපෘතිය</label>
@@ -504,7 +526,7 @@
             <div class="form-row">
                 <input type="hidden" id="edit-proj-id">
                 <div class="field"><label class="required">ව්‍යාපෘතියේ නම</label><input type="text" id="projName"></div>
-                <div class="field"><label class="required">ඇස්තමේන්තුගත මුදල (රු.)</label><input type="text" id="projEst" class="amount-input" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)"></div>
+                <div class="field"><label class="required">ඇස්තමේන්තුගත මුදල (රු.)</label><input type="text" id="projEst" class="amount-input" pattern="[0-9]*\.?[0-9]{0,2}" inputmode="decimal" oninput="formatAmount(this)"></div>
                 <button class="btn" style="align-self: flex-end; background: var(--primary); color: var(--gold);" onclick="saveProject()">
                     <i class="fas fa-save"></i> ව්‍යාපෘතිය ගිණුම්ගත කරන්න
                 </button>
@@ -595,17 +617,22 @@
             </div>
             <div>
                 <label class="required">වවුචර් අංකය</label>
-                <input type="text" id="pettyVoucher" placeholder="PV-001" style="width: 100%;">
+                <input type="text" id="pettyVoucher" placeholder="PV-001" style="width: 100%;" 
+                       onblur="validatePettyVoucher(this)">
             </div>
             <div>
                 <label class="required">මුදල (රු.)</label>
-                <input type="text" id="pettyAmt" class="amount-input" placeholder="0.00" oninput="formatAmount(this)" style="width: 100%;">
+                <input type="text" id="pettyAmt" class="amount-input" placeholder="0.00" 
+                       inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" 
+                       oninput="formatAmount(this)"
+                       onblur="if(document.getElementById('pettyVoucher').value) validatePettyVoucher(document.getElementById('pettyVoucher'))" 
+                       style="width: 100%;">
             </div>
-          <div>
-    <button class="btn" style="background: #27ae60; color: white; width: 100%; height: 45px; padding: 8px 12px;" id="btn-save-petty" onclick="savePettyExpense()">
-        <i class="fas fa-save"></i> එකතු කරන්න
-    </button>
-</div>
+            <div>
+                <button class="btn" style="background: #27ae60; color: white; width: 100%; height: 45px; padding: 8px 12px;" id="btn-save-petty" onclick="savePettyExpense()">
+                    <i class="fas fa-save"></i> එකතු කරන්න
+                </button>
+            </div>
         </div>
     </div>
     <div class="card foldable-card admin-only" style="margin-top: 15px; border-top: 5px solid #2980b9; padding: 0;">
@@ -621,7 +648,7 @@
                 <div>
                     <label class="required">ස්ථාවර මුදල</label>
                     <div style="display: flex; gap: 10px;">
-                        <input type="text" id="pettyFloat" class="amount-input" value="5000" oninput="formatAmount(this)" style="flex: 1;">
+                        <input type="text" id="pettyFloat" class="amount-input" value="5000" inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this)" style="flex: 1;">
                         <button class="btn" style="background: #2980b9; color: white;" onclick="savePettyFloat()">
                             <i class="fas fa-save"></i> සුරකින්න
                         </button>
@@ -634,7 +661,7 @@
                             <option value=""></option>
                         </select>
                         <input type="text" id="replenishVoucher" placeholder="වවුචර් අංකය" style="flex: 1;">
-                        <input type="text" id="replenishCheque" placeholder="චෙක්පත් අංකය" style="flex: 1;">
+                        <input type="text" id="replenishCheque" placeholder="චෙක්පත් අංකය" style="flex: 1;" inputmode="numeric" pattern="[0-9]*">
                         <button class="btn" style="background: #f39c12; color: white;" onclick="replenishPettyCash()">
                             ප්‍රතිපූරණය
                         </button>
@@ -659,23 +686,23 @@
                 <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;">
                     <div>
                         <label>REx1</label>
-                        <input type="text" id="manualREx1" class="amount-input" value="0" oninput="formatAmount(this); updatePeriodTotal();">
+                        <input type="text" id="manualREx1" class="amount-input" value="0" inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this); updatePeriodTotal();">
                     </div>
                     <div>
                         <label>REx5</label>
-                        <input type="text" id="manualREx5" class="amount-input" value="0" oninput="formatAmount(this); updatePeriodTotal();">
+                        <input type="text" id="manualREx5" class="amount-input" value="0" inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this); updatePeriodTotal();">
                     </div>
                     <div>
                         <label>REx6</label>
-                        <input type="text" id="manualREx6" class="amount-input" value="0" oninput="formatAmount(this); updatePeriodTotal();">
+                        <input type="text" id="manualREx6" class="amount-input" value="0" inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this); updatePeriodTotal();">
                     </div>
                     <div>
                         <label>REx7</label>
-                        <input type="text" id="manualREx7" class="amount-input" value="0" oninput="formatAmount(this); updatePeriodTotal();">
+                        <input type="text" id="manualREx7" class="amount-input" value="0" inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this); updatePeriodTotal();">
                     </div>
                     <div>
                         <label>REx3</label>
-                        <input type="text" id="manualREx3" class="amount-input" value="0" oninput="formatAmount(this); updatePeriodTotal();">
+                        <input type="text" id="manualREx3" class="amount-input" value="0" inputmode="decimal" pattern="[0-9]*\.?[0-9]{0,2}" oninput="formatAmount(this); updatePeriodTotal();">
                     </div>
                     <div>
                         <label>එකතුව</label>
@@ -742,7 +769,25 @@
     </a>
         </span>
     </span>
+    
+    <!-- Offline Queue Status Display -->
+    <div id="offlineQueueStatus" style="display: none; position: fixed; bottom: 20px; left: 20px; background: #f39c12; color: white; padding: 8px 15px; border-radius: 30px; font-size: 12px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 10001; cursor: pointer;">
+        <i class="fas fa-clock"></i> <span id="offlineQueueCount">0</span> ගනුදෙනු පෝලිමේ
+    </div>
 </div>
+<!-- Mobile Floating Action Button -->
+<div class="mobile-fab no-print" onclick="toggleMobileSidebar()">
+    <i class="fas fa-bars"></i>
+</div>
+
+<!-- Mobile Sidebar Overlay -->
+<div class="mobile-sidebar-overlay" onclick="toggleMobileSidebar()"></div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
