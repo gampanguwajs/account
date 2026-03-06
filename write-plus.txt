@@ -1,0 +1,22 @@
+
+### Request Validation
+- All inputs sanitized against XSS
+- SQL injection prevention via parameterized queries
+- CSRF tokens required for state-changing operations
+- Request size limit: 10MB
+
+## Data Encryption
+
+### At Rest
+- Passwords: bcrypt (cost factor 12)
+- PII: AES-256-GCM encryption
+- Database: Transparent encryption
+- Backups: Encrypted with separate keys
+
+### In Transit
+- TLS 1.3 required
+- HSTS enabled (max-age=31536000)
+- Perfect forward secrecy
+- Strong cipher suites only
+
+## Security Headers
