@@ -3091,24 +3091,27 @@ function toggleLoading(show) {
 
 function applyPermissions() {
     if(userRole === 'GUEST') {
-        document.querySelectorAll('.staff-only').forEach(el => el.style.display = 'none');
-        document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+        // සියලු staff/admin elements සඟවන්න
+        document.querySelectorAll('.staff-only, .admin-only').forEach(el => el.style.display = 'none');
+        
+        // මුද්‍රණය, PDF, වගු බොත්තම් සඟවන්න
         document.getElementById('print-btn').style.display = 'none';
         document.getElementById('pdf-btn').style.display = 'none';
         document.querySelectorAll('.table-btn').forEach(btn => btn.style.display = 'none');
         document.getElementById('sec-entry').style.display = 'none';
         
+        // CSV බාගත කිරීම සඟවන්න
         const csvExportBtn = document.querySelector('#transactionSearchResults .btn[onclick*="exportSearchResults"]');
         if (csvExportBtn) csvExportBtn.style.display = 'none';
         
-        // Hide all navigation items except Dashboard and Analysis
-        const navItems = ['nav-entry', 'nav-proj', 'nav-petty', 'nav-codes', 'nav-cashbook', 'nav-quarter', 'nav-bank'];
-        navItems.forEach(id => {
+        // අනවශ්‍ය සියලුම navigation tabs සඟවන්න (Dashboard හැර)
+        const hideNavIds = ['nav-entry', 'nav-proj', 'nav-petty', 'nav-codes', 'nav-cashbook', 'nav-quarter', 'nav-bank'];
+        hideNavIds.forEach(id => {
             const el = document.getElementById(id);
             if(el) el.style.display = 'none';
         });
         
-        // Hide Budget dropdown completely
+        // Budget dropdown (ප්‍රතිපාදන සැසඳුම්) සම්පූර්ණයෙන්ම සඟවන්න
         const budgetDropdown = document.getElementById('budget-dropdown');
         if(budgetDropdown) {
             budgetDropdown.style.display = 'none';
@@ -3116,16 +3119,12 @@ function applyPermissions() {
             if(toggle) toggle.style.display = 'none';
         }
         
-        // Show only IN and EX in Analysis dropdown
+        // Analysis dropdown එක තුළ IN සහ EX පමණක් පෙන්වන්න
         const analysisDropdown = document.getElementById('analysis-dropdown');
         if(analysisDropdown) {
             analysisDropdown.querySelectorAll('.sub-nav').forEach(sub => {
                 const onclick = sub.getAttribute('onclick') || '';
-                if(onclick.includes("openReport('IN')") || onclick.includes("openReport('EX')")) {
-                    sub.style.display = 'block';
-                } else {
-                    sub.style.display = 'none';
-                }
+                sub.style.display = (onclick.includes("openReport('IN')") || onclick.includes("openReport('EX')")) ? 'block' : 'none';
             });
             analysisDropdown.style.display = 'block';
         }
@@ -3166,7 +3165,6 @@ function applyPermissions() {
         if(pettyNav) pettyNav.style.display = 'block';
     }
 }
-
 function initializeSelect2() {
     if (typeof $ !== 'undefined' && $.fn && $.fn.select2) {
         try {
