@@ -1,1 +1,5634 @@
-const _0x149fc9=_0xe167;(function(_0x2265c4,_0x27b98f){const _0x1c1fd6=_0xe167,_0x537124=_0x2265c4();while(!![]){try{const _0xa564bf=-parseInt(_0x1c1fd6(0x3d6))/0x1+-parseInt(_0x1c1fd6(0x235))/0x2*(-parseInt(_0x1c1fd6(0x3e4))/0x3)+-parseInt(_0x1c1fd6(0x492))/0x4*(-parseInt(_0x1c1fd6(0x517))/0x5)+-parseInt(_0x1c1fd6(0x1fa))/0x6*(-parseInt(_0x1c1fd6(0x271))/0x7)+parseInt(_0x1c1fd6(0x43a))/0x8*(-parseInt(_0x1c1fd6(0x422))/0x9)+-parseInt(_0x1c1fd6(0x5c3))/0xa*(parseInt(_0x1c1fd6(0x312))/0xb)+-parseInt(_0x1c1fd6(0x5bb))/0xc;if(_0xa564bf===_0x27b98f)break;else _0x537124['push'](_0x537124['shift']());}catch(_0x2a8f87){_0x537124['push'](_0x537124['shift']());}}}(_0x4c80,0x7764d));const SCRIPT_URL=_0x149fc9(0x2ca),S_CODES=['S1','S2','S3','S4','S5','S6','S7','S8','S9',_0x149fc9(0x317)],EX_CODES=[_0x149fc9(0x1cd),'REx2',_0x149fc9(0x237),'REx4',_0x149fc9(0x4f6),'REx6',_0x149fc9(0x441),'CEx1','CEx2',_0x149fc9(0x1e0),_0x149fc9(0x337),_0x149fc9(0x462),_0x149fc9(0x2e3),'PC'],CODE_INFO={'S1':_0x149fc9(0x31d),'S2':_0x149fc9(0x39b),'S3':_0x149fc9(0x2bc),'S4':'පාසල්\x20පාදක\x20ඉගෙනුම්\x20ප්‍රවර්ධන\x20ප්‍රදානයන්,\x20ගුණාත්මක\x20යෙදවුම්\x20හා\x20උසස්\x20මට්ටමේ\x20ඉගෙනුම්\x20ක්‍රියාවලි\x20සඳහා\x20ලැබෙන\x20අරමුදල්','S5':_0x149fc9(0x463),'S6':_0x149fc9(0x3bb),'S7':_0x149fc9(0x509),'S8':_0x149fc9(0x2ce),'S9':'පාසලේ\x20ඉගෙනුම්\x20ඉගැන්වීම්\x20ක්‍රියාවලියට\x20අදාළ\x20අත්‍යවශ්‍ය\x20ක්‍රියාකාරකම්\x20සඳහා\x20ලැබීම්','S10':'පාසල්\x20සංවර්ධන\x20සමිතිය\x20මඟින්\x20තීරණය\x20කරනු\x20ලබන\x20පාසලේ\x20අත්‍යවශ්‍ය\x20වියදම්\x20පියවා\x20ගැනීම\x20සඳහා\x20වන\x20අරමුදල්','REx1':_0x149fc9(0x4c2),'REx2':_0x149fc9(0x273),'REx3':_0x149fc9(0x251),'REx4':_0x149fc9(0x519),'REx5':'ප්‍රාග්ධන\x20භාණ්ඩ\x20හා\x20උපකරණ\x20නඩත්තු/අලුත්වැඩියා','REx6':'පාසලේ\x20ගොඩනැගිලි\x20සුළු\x20නඩත්තු/අලුත්වැඩියා','REx7':_0x149fc9(0x504),'CEx1':_0x149fc9(0x4b7),'CEx2':'විෂය\x20මාලා\x20ක්‍රියාත්මක\x20කිරීමට\x20අදාළ\x20ප්‍රාග්ධන\x20වියදම්','CEx3':_0x149fc9(0x248),'CEx4':_0x149fc9(0x402),'CEx5':_0x149fc9(0x301),'CEx6':_0x149fc9(0x2d1),'PC':_0x149fc9(0x2cd)},COLORS=[_0x149fc9(0x493),'#f9a825',_0x149fc9(0x2c7),_0x149fc9(0x3f9),_0x149fc9(0x259),_0x149fc9(0x4a1),_0x149fc9(0x21e),_0x149fc9(0x54e),_0x149fc9(0x3c3),'#ffee58'];let currentReport='',userRole='',allocations=JSON[_0x149fc9(0x250)](sessionStorage['getItem'](_0x149fc9(0x297))||'{}'),clearedStatus=JSON[_0x149fc9(0x250)](sessionStorage[_0x149fc9(0x4d0)]('sch_cleared')||'{}'),initialized=![],isLoading=![],pettyExpenses=JSON[_0x149fc9(0x250)](sessionStorage['getItem']('sch_petty_expenses')||'[]'),periodExpenses=JSON[_0x149fc9(0x250)](sessionStorage[_0x149fc9(0x4d0)](_0x149fc9(0x243))||'[]'),dbCache=null,projectsCache=null,allocationsCache=null,pettyExpensesCache=null,periodExpensesCache=null,offlineQueue=JSON[_0x149fc9(0x250)](localStorage['getItem'](_0x149fc9(0x568))||'[]'),isSyncing=![];function generateUUID(){const _0x3b25f0=_0x149fc9;return _0x3b25f0(0x1eb)[_0x3b25f0(0x5af)](/[xy]/g,function(_0x43b132){const _0x4f263d=_0x3b25f0;var _0x5e8164=Math[_0x4f263d(0x52a)]()*0x10|0x0,_0x21a72c=_0x43b132=='x'?_0x5e8164:_0x5e8164&0x3|0x8;return _0x21a72c[_0x4f263d(0x3e3)](0x10);});}function updateOnlineStatus(){const _0x4083f4=_0x149fc9,_0x4f4684=document['getElementById'](_0x4083f4(0x281));navigator[_0x4083f4(0x4af)]?(_0x4f4684['innerHTML']=_0x4083f4(0x47c),_0x4f4684[_0x4083f4(0x528)]='status-glow-online',processOfflineQueue()):(_0x4f4684[_0x4083f4(0x2bf)]=_0x4083f4(0x2ae),_0x4f4684[_0x4083f4(0x528)]=_0x4083f4(0x32b));}async function processOfflineQueue(){const _0x5adac2=_0x149fc9;if(!navigator[_0x5adac2(0x4af)]||isSyncing||offlineQueue[_0x5adac2(0x4e8)]===0x0)return;isSyncing=!![],showToast(_0x5adac2(0x1c4)+offlineQueue[_0x5adac2(0x4e8)]+'\x20ගනුදෙනු)');const _0x599586=[...offlineQueue],_0x43e58a=[];for(let _0x33253f=0x0;_0x33253f<_0x599586[_0x5adac2(0x4e8)];_0x33253f++){const _0x410e2f=_0x599586[_0x33253f];try{const _0x259fc3={..._0x410e2f[_0x5adac2(0x3dc)]},_0xff52db=await fetch(SCRIPT_URL,{'method':_0x5adac2(0x3b6),'body':JSON[_0x5adac2(0x45b)](_0x259fc3)}),_0x5ca000=await _0xff52db[_0x5adac2(0x4b8)]();if(_0x5ca000[_0x5adac2(0x3a2)]==='success'){_0x43e58a[_0x5adac2(0x495)](_0x410e2f['id']);if(_0x259fc3[_0x5adac2(0x1c9)]==='save_transaction'||_0x259fc3[_0x5adac2(0x1c9)]===_0x5adac2(0x43f)){let _0x4a882e=getData();const _0x3497fe=_0x4a882e[_0x5adac2(0x3a1)](_0x468475=>_0x468475['id']===_0x410e2f[_0x5adac2(0x3dc)]['id']);_0x3497fe!==-0x1?_0x4a882e[_0x3497fe]={..._0x410e2f[_0x5adac2(0x3dc)],'offline':![]}:_0x4a882e[_0x5adac2(0x495)]({..._0x410e2f[_0x5adac2(0x3dc)],'offline':![]}),setDataCache(_0x4a882e);}else{if(_0x259fc3[_0x5adac2(0x1c9)]===_0x5adac2(0x295)){let _0x36dafb=JSON[_0x5adac2(0x250)](sessionStorage['getItem'](_0x5adac2(0x478))||'[]');const _0x595117=_0x36dafb['findIndex'](_0x343f4b=>_0x343f4b['id']===_0x410e2f['data']['id']);_0x595117!==-0x1?_0x36dafb[_0x595117]={..._0x410e2f[_0x5adac2(0x3dc)],'offline':![]}:_0x36dafb['push']({..._0x410e2f[_0x5adac2(0x3dc)],'offline':![]}),sessionStorage[_0x5adac2(0x432)](_0x5adac2(0x478),JSON['stringify'](_0x36dafb));}}}}catch(_0x28e73b){console[_0x5adac2(0x46f)](_0x5adac2(0x2cf)+_0x410e2f['id']+_0x5adac2(0x491),_0x28e73b);}showToast(_0x5adac2(0x3c9)+(_0x33253f+0x1)+'/'+_0x599586[_0x5adac2(0x4e8)]);}offlineQueue=offlineQueue[_0x5adac2(0x52f)](_0x932d6e=>!_0x43e58a['includes'](_0x932d6e['id'])),localStorage['setItem'](_0x5adac2(0x568),JSON['stringify'](offlineQueue)),isSyncing=![],_0x43e58a[_0x5adac2(0x4e8)]>0x0&&(showToast(_0x5adac2(0x354)+_0x43e58a[_0x5adac2(0x4e8)]+'ක්\x20සමමුහුර්ත\x20කරන\x20ලදී!'),refreshDashboard(),loadRecentTable(),renderPettyBook()),updateOfflineQueueDisplay();}function addToOfflineQueue(_0x4a606b,_0x28e539){const _0x28bb66=_0x149fc9,_0x318e1d={'id':generateUUID(),'timestamp':new Date()[_0x28bb66(0x38a)](),'action':_0x4a606b,'data':_0x28e539};offlineQueue['push'](_0x318e1d),localStorage[_0x28bb66(0x432)](_0x28bb66(0x568),JSON[_0x28bb66(0x45b)](offlineQueue)),updateOfflineQueueDisplay(),showToast(_0x28bb66(0x3dd));}function updateOfflineQueueDisplay(){const _0x48d75a=_0x149fc9,_0x54f10d=document['getElementById'](_0x48d75a(0x3c0)),_0x2dc51f=document['getElementById'](_0x48d75a(0x4ad));if(!_0x54f10d||!_0x2dc51f)return;offlineQueue[_0x48d75a(0x4e8)]>0x0?(_0x2dc51f[_0x48d75a(0x4c0)]=offlineQueue['length'],_0x54f10d[_0x48d75a(0x2dc)][_0x48d75a(0x5bf)]=_0x48d75a(0x3a6)):_0x54f10d['style'][_0x48d75a(0x5bf)]=_0x48d75a(0x4f9);}function checkOfflineQueue(){const _0x360f01=_0x149fc9;navigator['onLine']&&offlineQueue[_0x360f01(0x4e8)]>0x0&&!isSyncing&&processOfflineQueue(),updateOfflineQueueDisplay();}function checkDuplicateInRealTime(_0x5541fb,_0x270aac,_0x2e8cd1,_0x3ff04c=null){const _0x5e960a=_0x149fc9,_0x59a393=getData(),_0x3aa63b=JSON['parse'](sessionStorage[_0x5e960a(0x4d0)](_0x5e960a(0x478))||'[]');let _0x5daeeb=[];if(_0x2e8cd1==='IN')_0x5daeeb=_0x59a393['filter'](_0x5a427a=>_0x5a427a[_0x5e960a(0x515)]==='IN'&&_0x5a427a[_0x5541fb]===_0x270aac&&(_0x3ff04c===null||_0x5a427a['id']!==_0x3ff04c));else{if(_0x2e8cd1==='EX')_0x5daeeb=_0x59a393[_0x5e960a(0x52f)](_0x42442e=>_0x42442e[_0x5e960a(0x515)]==='EX'&&_0x42442e[_0x5541fb]===_0x270aac&&(_0x3ff04c===null||_0x42442e['id']!==_0x3ff04c));else _0x2e8cd1===_0x5e960a(0x2e5)&&(_0x5daeeb=_0x3aa63b[_0x5e960a(0x52f)](_0x3dd288=>_0x3dd288[_0x5541fb]===_0x270aac&&(_0x3ff04c===null||_0x3dd288['id']!==_0x3ff04c)));}return _0x5daeeb[_0x5e960a(0x4e8)]>0x0;}function checkDuplicateTransaction(_0x1b1ce8,_0x413bbf,_0x66c0e8,_0x1b4cd9,_0x5a26c9=null){const _0x3d3573=_0x149fc9;if(!_0x413bbf||!_0x1b1ce8||_0x66c0e8<=0x0)return![];const _0x42de3a=getData(),_0xad6351=_0x42de3a[_0x3d3573(0x52f)](_0x24fcdd=>{const _0xd3499d=_0x3d3573;if(_0x24fcdd[_0xd3499d(0x515)]!==_0x1b4cd9)return![];if(_0x5a26c9!==null&&_0x24fcdd['id']===_0x5a26c9)return![];const _0x1dfc29=_0x24fcdd['date']===_0x1b1ce8;let _0x54dff3=![];_0x1b4cd9==='IN'?_0x54dff3=_0x24fcdd[_0xd3499d(0x5b7)]===_0x413bbf:_0x54dff3=_0x24fcdd[_0xd3499d(0x537)]===_0x413bbf;const _0x3ab311=Math[_0xd3499d(0x20f)](_0x24fcdd['amt']-_0x66c0e8)<0.01;return _0x1dfc29&&_0x54dff3&&_0x3ab311;});return _0xad6351['length']>0x0;}function checkDuplicatePettyExpense(_0x1f9e77,_0x20df19,_0xa744e3,_0x437e06,_0x3db1ca=null){const _0x12c143=_0x149fc9;if(!_0x20df19||!_0x1f9e77||_0xa744e3<=0x0)return![];const _0xc61ad3=JSON[_0x12c143(0x250)](sessionStorage[_0x12c143(0x4d0)](_0x12c143(0x478))||'[]'),_0x4f1402=_0xc61ad3[_0x12c143(0x52f)](_0x542658=>{const _0x457b1f=_0x12c143;if(_0x3db1ca!==null&&_0x542658['id']===_0x3db1ca)return![];const _0xfc7e1a=_0x542658[_0x457b1f(0x2a9)]===_0x1f9e77,_0x2b347b=_0x542658[_0x457b1f(0x469)]===_0x20df19,_0x2c41d3=Math[_0x457b1f(0x20f)](_0x542658[_0x457b1f(0x2f6)]-_0xa744e3)<0.01,_0x1e51b8=_0x542658[_0x457b1f(0x2b9)]===_0x437e06;return _0xfc7e1a&&_0x2b347b&&_0x2c41d3&&_0x1e51b8;});return _0x4f1402[_0x12c143(0x4e8)]>0x0;}function validateReceiptNumber(_0x25bc24){const _0x33d5b6=_0x149fc9,_0x7d77b8=document[_0x33d5b6(0x2aa)]('inRefFrom')[_0x33d5b6(0x1f3)]['trim'](),_0x4e24f0=document[_0x33d5b6(0x2aa)]('inRefTo')[_0x33d5b6(0x1f3)][_0x33d5b6(0x42a)](),_0x4d7700=document['getElementById']('edit-id-in')[_0x33d5b6(0x1f3)];if(!_0x7d77b8)return;const _0x5cd440=_0x4d7700?parseInt(_0x4d7700):null,_0x328c32=checkDuplicateReceipt(_0x7d77b8,_0x4e24f0,_0x5cd440),_0x25bced=document[_0x33d5b6(0x2aa)](_0x33d5b6(0x49c));if(_0x328c32[_0x33d5b6(0x2ff)]){_0x25bc24[_0x33d5b6(0x2dc)][_0x33d5b6(0x201)]=_0x33d5b6(0x530),_0x25bc24[_0x33d5b6(0x2dc)]['backgroundColor']=_0x33d5b6(0x2f8);if(!_0x25bced){const _0x3f0384=document[_0x33d5b6(0x1f1)](_0x33d5b6(0x3b1));_0x3f0384['id']=_0x33d5b6(0x49c),_0x3f0384[_0x33d5b6(0x2dc)]['color']=_0x33d5b6(0x530),_0x3f0384[_0x33d5b6(0x2dc)][_0x33d5b6(0x2d4)]=_0x33d5b6(0x3d7),_0x3f0384[_0x33d5b6(0x2dc)][_0x33d5b6(0x579)]=_0x33d5b6(0x594),_0x3f0384['style'][_0x33d5b6(0x29e)]=_0x33d5b6(0x594),_0x3f0384['style'][_0x33d5b6(0x27a)]=_0x33d5b6(0x2f8),_0x3f0384[_0x33d5b6(0x2dc)]['borderRadius']=_0x33d5b6(0x3de),_0x3f0384[_0x33d5b6(0x2bf)]=_0x33d5b6(0x5ca)+_0x328c32['message'],_0x25bc24['parentNode'][_0x33d5b6(0x4f7)](_0x3f0384);}}else{_0x25bc24[_0x33d5b6(0x2dc)][_0x33d5b6(0x201)]=_0x33d5b6(0x44e),_0x25bc24[_0x33d5b6(0x2dc)][_0x33d5b6(0x27a)]='';if(_0x25bced)_0x25bced[_0x33d5b6(0x2a1)]();}}function validateVoucherNumber(_0x4a177d){const _0x2d9eb8=_0x149fc9,_0x38f55f=_0x4a177d[_0x2d9eb8(0x1f3)][_0x2d9eb8(0x42a)](),_0x569c51=document[_0x2d9eb8(0x2aa)]('exDate')[_0x2d9eb8(0x1f3)],_0x1aaf57=parseAmount(document[_0x2d9eb8(0x2aa)]('exAmt')[_0x2d9eb8(0x1f3)]),_0x40d945=document[_0x2d9eb8(0x2aa)]('edit-id-ex')[_0x2d9eb8(0x1f3)];if(!_0x38f55f||!_0x569c51||_0x1aaf57<=0x0)return;const _0x39f4a7=_0x40d945?parseInt(_0x40d945):null,_0x55b889=checkDuplicateTransaction(_0x569c51,_0x38f55f,_0x1aaf57,'EX',_0x39f4a7),_0x5cb21b=document[_0x2d9eb8(0x2aa)](_0x2d9eb8(0x2c5));if(_0x55b889){_0x4a177d[_0x2d9eb8(0x2dc)][_0x2d9eb8(0x201)]=_0x2d9eb8(0x530),_0x4a177d[_0x2d9eb8(0x2dc)][_0x2d9eb8(0x27a)]='#ffebee';if(!_0x5cb21b){const _0x5a3140=document[_0x2d9eb8(0x1f1)](_0x2d9eb8(0x3b1));_0x5a3140['id']=_0x2d9eb8(0x2c5),_0x5a3140['style'][_0x2d9eb8(0x5b9)]=_0x2d9eb8(0x530),_0x5a3140[_0x2d9eb8(0x2dc)][_0x2d9eb8(0x2d4)]=_0x2d9eb8(0x3d7),_0x5a3140['style'][_0x2d9eb8(0x579)]=_0x2d9eb8(0x594),_0x5a3140[_0x2d9eb8(0x2dc)][_0x2d9eb8(0x29e)]=_0x2d9eb8(0x594),_0x5a3140[_0x2d9eb8(0x2dc)][_0x2d9eb8(0x27a)]='#ffebee',_0x5a3140[_0x2d9eb8(0x2dc)][_0x2d9eb8(0x25b)]='4px',_0x5a3140[_0x2d9eb8(0x2bf)]=_0x2d9eb8(0x3fc),_0x4a177d[_0x2d9eb8(0x227)][_0x2d9eb8(0x4f7)](_0x5a3140);}}else{_0x4a177d[_0x2d9eb8(0x2dc)][_0x2d9eb8(0x201)]=_0x2d9eb8(0x44e),_0x4a177d[_0x2d9eb8(0x2dc)][_0x2d9eb8(0x27a)]='';if(_0x5cb21b)_0x5cb21b[_0x2d9eb8(0x2a1)]();}}function validatePettyVoucher(_0x43bd9f){const _0x174948=_0x149fc9,_0x126789=_0x43bd9f[_0x174948(0x1f3)][_0x174948(0x42a)](),_0x4bbd8e=document[_0x174948(0x2aa)]('pettyDate')[_0x174948(0x1f3)],_0x1cb270=parseAmount(document[_0x174948(0x2aa)](_0x174948(0x366))[_0x174948(0x1f3)]),_0x59ad7a=$('#pettyCategorySelect')[_0x174948(0x2dd)](),_0x3a6fdb=document[_0x174948(0x2aa)]('edit-petty-id')['value'];if(!_0x126789||!_0x4bbd8e||_0x1cb270<=0x0||!_0x59ad7a)return;const _0x2d1f2a=_0x3a6fdb?parseInt(_0x3a6fdb):null,_0x5be272=checkDuplicatePettyExpense(_0x4bbd8e,_0x126789,_0x1cb270,_0x59ad7a,_0x2d1f2a),_0x96a9fb=document[_0x174948(0x2aa)]('pettyVoucherWarning');if(_0x5be272){_0x43bd9f['style'][_0x174948(0x201)]=_0x174948(0x530),_0x43bd9f[_0x174948(0x2dc)][_0x174948(0x27a)]=_0x174948(0x2f8);if(!_0x96a9fb){const _0x52d0b5=document[_0x174948(0x1f1)](_0x174948(0x3b1));_0x52d0b5['id']=_0x174948(0x5ab),_0x52d0b5[_0x174948(0x2dc)][_0x174948(0x5b9)]=_0x174948(0x530),_0x52d0b5['style']['fontSize']=_0x174948(0x3d7),_0x52d0b5[_0x174948(0x2dc)][_0x174948(0x579)]='5px',_0x52d0b5['style']['padding']=_0x174948(0x594),_0x52d0b5[_0x174948(0x2dc)][_0x174948(0x27a)]=_0x174948(0x2f8),_0x52d0b5[_0x174948(0x2dc)][_0x174948(0x25b)]='4px',_0x52d0b5[_0x174948(0x2bf)]=_0x174948(0x1d8),_0x43bd9f[_0x174948(0x227)][_0x174948(0x4f7)](_0x52d0b5);}}else{_0x43bd9f[_0x174948(0x2dc)][_0x174948(0x201)]=_0x174948(0x44e),_0x43bd9f[_0x174948(0x2dc)]['backgroundColor']='';if(_0x96a9fb)_0x96a9fb[_0x174948(0x2a1)]();}}function updateOnlineStatus(){const _0xbf4413=_0x149fc9,_0x14617a=document[_0xbf4413(0x2aa)]('connection-status');navigator['onLine']?(_0x14617a[_0xbf4413(0x2bf)]='🟢\x20ONLINE',_0x14617a[_0xbf4413(0x528)]=_0xbf4413(0x394)):(_0x14617a[_0xbf4413(0x2bf)]='🔴\x20OFFLINE',_0x14617a[_0xbf4413(0x528)]='status-glow-offline');}window[_0x149fc9(0x28c)](_0x149fc9(0x435),updateOnlineStatus),window[_0x149fc9(0x28c)]('offline',updateOnlineStatus),$(document)[_0x149fc9(0x1e4)](function(){const _0x521f24=_0x149fc9;updateOnlineStatus(),populateOptions(),setTimeout(()=>{initializeSelect2();},0x1f4);const _0x1a13c8=new Date()[_0x521f24(0x38a)]()[_0x521f24(0x3ec)]('T')[0x0];document[_0x521f24(0x2aa)](_0x521f24(0x1c5))['value']=_0x1a13c8,document[_0x521f24(0x2aa)](_0x521f24(0x447))[_0x521f24(0x1f3)]=_0x1a13c8,document[_0x521f24(0x2aa)](_0x521f24(0x50f))[_0x521f24(0x1f3)]=new Date(new Date()[_0x521f24(0x1fd)](),0x0,0x1)[_0x521f24(0x38a)]()['split']('T')[0x0],document[_0x521f24(0x2aa)](_0x521f24(0x481))[_0x521f24(0x1f3)]=_0x1a13c8,initPettyCashSection(),setTimeout(()=>{const _0x5ebc76=_0x521f24;document[_0x5ebc76(0x2aa)]('sec-petty')[_0x5ebc76(0x2dc)][_0x5ebc76(0x5bf)]===_0x5ebc76(0x57b)&&displaySavedPeriodSummaries();},0x3e8),addMultiRow(),$('#allocTypeSelect')['on'](_0x521f24(0x2b2),function(){updateAllocationCodeSelect();});const _0x56cb1d=document['getElementById'](_0x521f24(0x3c0));_0x56cb1d&&_0x56cb1d[_0x521f24(0x28c)](_0x521f24(0x4f4),function(){const _0x57b015=_0x521f24;if(navigator['onLine']&&offlineQueue[_0x57b015(0x4e8)]>0x0)processOfflineQueue();else!navigator['onLine']&&showToast(_0x57b015(0x3e6));}),updateOfflineQueueDisplay(),setInterval(checkOfflineQueue,0x7530);});function updateAllocationCodeSelect(){const _0xae0eb3=_0x149fc9,_0x394e41=$(_0xae0eb3(0x38b))['val'](),_0x3cfd43=$(_0xae0eb3(0x372));let _0x522406=_0xae0eb3(0x247);_0x394e41==='IN'?S_CODES[_0xae0eb3(0x1bd)](_0x42ab7f=>{const _0x103e57=_0xae0eb3;_0x522406+=_0x103e57(0x36a)+_0x42ab7f+'\x22>'+_0x42ab7f+'\x20-\x20'+CODE_INFO[_0x42ab7f][_0x103e57(0x1f6)](0x0,0x28)+_0x103e57(0x430);}):EX_CODES['forEach'](_0x7a8ede=>{const _0x1dca1c=_0xae0eb3;_0x522406+=_0x1dca1c(0x36a)+_0x7a8ede+'\x22>'+_0x7a8ede+_0x1dca1c(0x27f)+CODE_INFO[_0x7a8ede][_0x1dca1c(0x1f6)](0x0,0x28)+_0x1dca1c(0x430);}),_0x3cfd43[_0xae0eb3(0x21c)](_0x522406),_0x3cfd43[_0xae0eb3(0x30e)](_0xae0eb3(0x2b2));}function loadPettyFloat(){const _0x4a26d0=_0x149fc9,_0x52b7ec=localStorage[_0x4a26d0(0x4d0)]('sch_petty_float');return _0x52b7ec?parseFloat(_0x52b7ec):0x0;}function savePettyFloat(){const _0x4574b7=_0x149fc9;if(userRole!==_0x4574b7(0x49f)){showToast(_0x4574b7(0x29c));return;}const _0x31d22b=parseAmount(document[_0x4574b7(0x2aa)]('pettyFloat')[_0x4574b7(0x1f3)]);if(_0x31d22b<0x0){showToast(_0x4574b7(0x3d8));return;}localStorage[_0x4574b7(0x432)](_0x4574b7(0x30c),_0x31d22b),showToast('✅\x20ස්ථාවර\x20මුදල\x20සුරකින\x20ලදී!'),renderPettyBook();}function initPettyFloat(){const _0x1e520a=_0x149fc9,_0x336945=document['getElementById'](_0x1e520a(0x403));_0x336945&&(_0x336945[_0x1e520a(0x1f3)]=loadPettyFloat()[_0x1e520a(0x313)](0x2));}function renderPettyBook(){const _0x557448=_0x149fc9,_0x572495=getData(),_0x4bb04d=JSON[_0x557448(0x250)](sessionStorage[_0x557448(0x4d0)]('sch_petty_expenses')||'[]'),_0x39a16b=document[_0x557448(0x2aa)](_0x557448(0x309));if(!_0x39a16b)return;const _0x428945=[];_0x572495[_0x557448(0x52f)](_0x3b0d27=>_0x3b0d27[_0x557448(0x3f6)]==='PC'&&(_0x3b0d27[_0x557448(0x515)]==='IN'||_0x3b0d27[_0x557448(0x515)]==='EX'&&_0x3b0d27[_0x557448(0x437)][_0x557448(0x578)](_0x557448(0x5ac))))[_0x557448(0x1bd)](_0x5d64be=>{const _0x5d75d2=_0x557448;_0x428945[_0x5d75d2(0x495)]({'id':_0x5d64be['id'],'date':_0x5d64be[_0x5d75d2(0x2a9)],'vouch':_0x5d64be[_0x5d75d2(0x537)]||'','desc':_0x5d64be[_0x5d75d2(0x437)],'amt':parseFloat(_0x5d64be[_0x5d75d2(0x2f6)])||0x0,'isReceipt':!![],'isReplenishment':_0x5d64be[_0x5d75d2(0x437)][_0x5d75d2(0x578)](_0x5d75d2(0x5ac))||![],'category':_0x5d64be[_0x5d75d2(0x3f6)],'source':_0x5d64be[_0x5d75d2(0x320)]||'','isTransferred':![]});}),_0x4bb04d[_0x557448(0x1bd)](_0x5be755=>{const _0x5ce2ee=_0x557448;_0x428945[_0x5ce2ee(0x495)]({'id':_0x5be755['id'],'date':_0x5be755[_0x5ce2ee(0x2a9)],'vouch':_0x5be755[_0x5ce2ee(0x469)]||'','desc':_0x5be755['desc'],'amt':parseFloat(_0x5be755[_0x5ce2ee(0x2f6)])||0x0,'isReceipt':![],'isReplenishment':![],'category':_0x5be755[_0x5ce2ee(0x2b9)],'source':'PC','isTransferred':_0x5be755[_0x5ce2ee(0x34b)]===!![]});}),_0x428945[_0x557448(0x20c)]((_0x525709,_0x3cc5a3)=>new Date(_0x525709[_0x557448(0x2a9)])-new Date(_0x3cc5a3[_0x557448(0x2a9)]));const _0x3d6f22=[];_0x428945['forEach']((_0x1becba,_0x5464b2)=>{const _0x2e0b32=_0x557448;if(_0x1becba[_0x2e0b32(0x1db)])_0x3d6f22[_0x2e0b32(0x495)](_0x5464b2);});let _0x497ef1=[],_0x3347f2=0x0;for(let _0x95a8c7 of _0x3d6f22){_0x95a8c7>_0x3347f2&&_0x497ef1[_0x557448(0x495)]({'start':_0x3347f2,'end':_0x95a8c7-0x1,'openingBalance':0x0,'transactions':_0x428945[_0x557448(0x1d5)](_0x3347f2,_0x95a8c7),'hasReplenishment':![]}),_0x3347f2=_0x95a8c7;}_0x3347f2<_0x428945[_0x557448(0x4e8)]&&_0x497ef1[_0x557448(0x495)]({'start':_0x3347f2,'end':_0x428945[_0x557448(0x4e8)]-0x1,'openingBalance':0x0,'transactions':_0x428945[_0x557448(0x1d5)](_0x3347f2),'hasReplenishment':![]});_0x3d6f22[_0x557448(0x4e8)]===0x0&&_0x428945[_0x557448(0x4e8)]>0x0&&(_0x497ef1=[{'start':0x0,'end':_0x428945[_0x557448(0x4e8)]-0x1,'openingBalance':0x0,'transactions':_0x428945,'hasReplenishment':![]}]);let _0x50eb3e=0x0,_0x45a128={'REx1':0x0,'REx5':0x0,'REx6':0x0,'REx7':0x0,'REx3':0x0},_0xce99d2='';_0x497ef1['forEach']((_0x56f410,_0x4b655f)=>{const _0x1712ac=_0x557448,_0x58960e=_0x56f410['transactions'],_0x2fd537=_0x4b655f===0x0;let _0x44ca0f;_0x2fd537?_0x44ca0f=0x0:_0x44ca0f=_0x50eb3e;let _0x2919b9=0x0,_0x17fd9a=0x0,_0x4566fc={'REx1':0x0,'REx5':0x0,'REx6':0x0,'REx7':0x0,'REx3':0x0};_0x58960e[_0x1712ac(0x1bd)](_0x14fe52=>{const _0x5443f2=_0x1712ac;_0x14fe52['isReceipt']?_0x2919b9+=_0x14fe52[_0x5443f2(0x2f6)]:(_0x17fd9a+=_0x14fe52[_0x5443f2(0x2f6)],!_0x14fe52[_0x5443f2(0x541)]&&_0x4566fc[_0x5443f2(0x45c)](_0x14fe52[_0x5443f2(0x2b9)])&&(_0x4566fc[_0x14fe52[_0x5443f2(0x2b9)]]+=_0x14fe52[_0x5443f2(0x2f6)]));});if(!_0x2fd537){}else{const _0x528032=_0x58960e[_0x1712ac(0x2be)](_0x36df7e=>_0x36df7e[_0x1712ac(0x389)]&&!_0x36df7e[_0x1712ac(0x1db)]);_0x528032&&(_0xce99d2+=_0x1712ac(0x279)+_0x528032['date']+_0x1712ac(0x572)+_0x528032[_0x1712ac(0x2f6)][_0x1712ac(0x313)](0x2)+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x225\x22\x20style=\x22border:\x201px\x20solid\x20#000;\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>');}_0x58960e[_0x1712ac(0x1bd)](_0x2fc4fd=>{const _0x816e20=_0x1712ac,_0x243110=_0x2fc4fd[_0x816e20(0x2b9)]===_0x816e20(0x1cd)&&!_0x2fc4fd[_0x816e20(0x389)]?_0x2fc4fd['amt'][_0x816e20(0x313)](0x2):'',_0x13abd7=_0x2fc4fd[_0x816e20(0x2b9)]===_0x816e20(0x4f6)&&!_0x2fc4fd[_0x816e20(0x389)]?_0x2fc4fd['amt'][_0x816e20(0x313)](0x2):'',_0x145aca=_0x2fc4fd[_0x816e20(0x2b9)]===_0x816e20(0x1ed)&&!_0x2fc4fd[_0x816e20(0x389)]?_0x2fc4fd['amt'][_0x816e20(0x313)](0x2):'',_0x2cf843=_0x2fc4fd[_0x816e20(0x2b9)]==='REx7'&&!_0x2fc4fd[_0x816e20(0x389)]?_0x2fc4fd[_0x816e20(0x2f6)][_0x816e20(0x313)](0x2):'',_0x1ccd52=_0x2fc4fd[_0x816e20(0x2b9)]===_0x816e20(0x237)&&!_0x2fc4fd[_0x816e20(0x389)]?_0x2fc4fd[_0x816e20(0x2f6)]['toFixed'](0x2):'',_0x2b61ed=_0x2fc4fd[_0x816e20(0x389)]?_0x2fc4fd[_0x816e20(0x2f6)][_0x816e20(0x313)](0x2):'',_0x2c02e5=!_0x2fc4fd[_0x816e20(0x389)]?_0x2fc4fd[_0x816e20(0x2f6)][_0x816e20(0x313)](0x2):'';let _0x420433='',_0x360cce='';if(_0x2fc4fd[_0x816e20(0x541)])_0x420433=_0x816e20(0x363),_0x360cce=_0x816e20(0x5cc);else _0x2fc4fd[_0x816e20(0x1db)]&&(_0x420433=_0x816e20(0x2d3));let _0x49795a='';!_0x2fc4fd[_0x816e20(0x389)]&&((userRole===_0x816e20(0x49f)||userRole===_0x816e20(0x499))&&(_0x49795a+=_0x816e20(0x510)+_0x2fc4fd['id']+_0x816e20(0x287)),userRole==='ADMIN'&&(_0x49795a+='<button\x20class=\x22petty-delete-btn\x22\x20onclick=\x22deletePettyExpense('+_0x2fc4fd['id']+_0x816e20(0x470))),_0xce99d2+=_0x816e20(0x58d)+_0x420433+'>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x22>'+_0x2b61ed+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x20text-align:\x20center;\x22>'+_0x2fc4fd[_0x816e20(0x537)]+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x20text-align:\x20center;\x22>'+_0x2fc4fd['date']+_0x816e20(0x226)+_0x2fc4fd[_0x816e20(0x437)]+_0x360cce+'\x20'+_0x49795a+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x22>'+_0x2c02e5+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x22>'+_0x243110+_0x816e20(0x3cc)+_0x13abd7+_0x816e20(0x3cc)+_0x145aca+_0x816e20(0x3cc)+_0x2cf843+_0x816e20(0x3cc)+_0x1ccd52+_0x816e20(0x345);}),_0xce99d2+=_0x1712ac(0x3ae)+_0x17fd9a['toFixed'](0x2)+_0x1712ac(0x3f1)+_0x4566fc[_0x1712ac(0x1cd)][_0x1712ac(0x313)](0x2)+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x22>'+_0x4566fc['REx5'][_0x1712ac(0x313)](0x2)+_0x1712ac(0x3f1)+_0x4566fc[_0x1712ac(0x1ed)][_0x1712ac(0x313)](0x2)+_0x1712ac(0x3f1)+_0x4566fc[_0x1712ac(0x441)]['toFixed'](0x2)+_0x1712ac(0x3f1)+_0x4566fc[_0x1712ac(0x237)][_0x1712ac(0x313)](0x2)+_0x1712ac(0x5a4);_0x2919b9>0x0&&(_0xce99d2+=_0x1712ac(0x3b2)+_0x2919b9[_0x1712ac(0x313)](0x2)+_0x1712ac(0x345));const _0x2cc582=_0x44ca0f+_0x2919b9-_0x17fd9a;_0xce99d2+=_0x1712ac(0x2e8)+_0x2cc582[_0x1712ac(0x313)](0x2)+_0x1712ac(0x2e1);if(_0x4b655f<_0x497ef1[_0x1712ac(0x4e8)]-0x1){const _0x4ee502=_0x497ef1[_0x4b655f+0x1][_0x1712ac(0x41b)][0x0],_0x1aaec0=_0x4ee502?_0x4ee502['date']:'',[_0x1b21df,_0x58960c]=_0x1aaec0[_0x1712ac(0x3ec)]('-'),_0x3a44e8=getMonthName(_0x58960c);_0xce99d2+=_0x1712ac(0x555),_0xce99d2+=_0x1712ac(0x1d4)+_0x2cc582[_0x1712ac(0x313)](0x2)+_0x1712ac(0x234)+_0x1aaec0+_0x1712ac(0x58f)+_0x3a44e8+'\x20'+_0x1b21df+_0x1712ac(0x459);}_0x45a128[_0x1712ac(0x1cd)]+=_0x4566fc['REx1'],_0x45a128[_0x1712ac(0x4f6)]+=_0x4566fc['REx5'],_0x45a128[_0x1712ac(0x1ed)]+=_0x4566fc['REx6'],_0x45a128[_0x1712ac(0x441)]+=_0x4566fc[_0x1712ac(0x441)],_0x45a128[_0x1712ac(0x237)]+=_0x4566fc[_0x1712ac(0x237)],_0x50eb3e=_0x2cc582;}),_0x39a16b[_0x557448(0x2bf)]=_0xce99d2,updateCategoryTotalsDisplay(_0x45a128),document[_0x557448(0x2aa)](_0x557448(0x4e0))[_0x557448(0x1f3)]=_0x45a128[_0x557448(0x1cd)][_0x557448(0x313)](0x2),document[_0x557448(0x2aa)](_0x557448(0x54d))[_0x557448(0x1f3)]=_0x45a128['REx5']['toFixed'](0x2),document[_0x557448(0x2aa)](_0x557448(0x3c2))[_0x557448(0x1f3)]=_0x45a128[_0x557448(0x1ed)][_0x557448(0x313)](0x2),document[_0x557448(0x2aa)](_0x557448(0x219))[_0x557448(0x1f3)]=_0x45a128[_0x557448(0x441)]['toFixed'](0x2),document[_0x557448(0x2aa)](_0x557448(0x2ab))[_0x557448(0x1f3)]=_0x45a128[_0x557448(0x237)][_0x557448(0x313)](0x2),updatePeriodTotal();const _0x2f24c2=_0x428945[_0x557448(0x52f)](_0x17322f=>_0x17322f['isReceipt'])[_0x557448(0x513)]((_0x5a0ef2,_0x14b2a2)=>_0x5a0ef2+_0x14b2a2[_0x557448(0x2f6)],0x0),_0x236d15=_0x428945[_0x557448(0x52f)](_0x1cd3e2=>!_0x1cd3e2[_0x557448(0x389)])['reduce']((_0x23de87,_0x583dfc)=>_0x23de87+_0x583dfc[_0x557448(0x2f6)],0x0);document[_0x557448(0x2aa)](_0x557448(0x4f1))[_0x557448(0x473)]=loadPettyFloat()[_0x557448(0x313)](0x2),document[_0x557448(0x2aa)]('pettyTotalReceipts')['innerText']=_0x2f24c2[_0x557448(0x313)](0x2),document['getElementById'](_0x557448(0x303))[_0x557448(0x473)]=_0x236d15['toFixed'](0x2),document[_0x557448(0x2aa)](_0x557448(0x1e5))['innerText']=(_0x2f24c2-_0x236d15)[_0x557448(0x313)](0x2);}function getMonthName(_0x29e4b9){const _0x4182e2=_0x149fc9,_0xbbf218=['01','02','03','04','05','06','07','08','09','10','11','12'],_0x462929=['ජන',_0x4182e2(0x51d),_0x4182e2(0x3f7),_0x4182e2(0x3aa),_0x4182e2(0x4bc),_0x4182e2(0x52c),'ජූලි',_0x4182e2(0x464),_0x4182e2(0x2ba),_0x4182e2(0x22b),_0x4182e2(0x2a7),_0x4182e2(0x242)],_0x6c2982=_0xbbf218[_0x4182e2(0x228)](_0x29e4b9[_0x4182e2(0x5a2)](0x2,'0'));return _0x462929[_0x6c2982]||_0x29e4b9;}function updateCategoryTotalsDisplay(_0x495740){const _0x520448=_0x149fc9,_0xd19e1c=document[_0x520448(0x2aa)]('periodCategoryTotals');if(!_0xd19e1c)return;_0xd19e1c[_0x520448(0x2bf)]=_0x520448(0x581)+_0x495740['REx1'][_0x520448(0x313)](0x2)+_0x520448(0x53a)+_0x495740['REx5'][_0x520448(0x313)](0x2)+_0x520448(0x2e9)+_0x495740[_0x520448(0x1ed)][_0x520448(0x313)](0x2)+_0x520448(0x392)+_0x495740[_0x520448(0x441)]['toFixed'](0x2)+_0x520448(0x331)+_0x495740[_0x520448(0x237)]['toFixed'](0x2)+_0x520448(0x2ec);}function printPettyCashBook(){const _0x17e5b8=_0x149fc9,_0x585b0c=document[_0x17e5b8(0x2aa)](_0x17e5b8(0x521))[_0x17e5b8(0x1bf)](!![]),_0x41243e=window['open']('',_0x17e5b8(0x225));_0x41243e[_0x17e5b8(0x36c)]['write'](_0x17e5b8(0x39c)+new Date()[_0x17e5b8(0x24e)]('si-LK')+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x585b0c['outerHTML']+_0x17e5b8(0x27b)),_0x41243e[_0x17e5b8(0x36c)][_0x17e5b8(0x256)](),_0x41243e[_0x17e5b8(0x47e)]();}async function exportPettyCashToPDF(){const _0x3888d8=_0x149fc9;if(userRole===_0x3888d8(0x575)){showToast(_0x3888d8(0x502));return;}toggleLoading(!![]);try{const {jsPDF:_0x42c9f8}=window[_0x3888d8(0x214)],_0x38bc94=new _0x42c9f8('p','mm','a4'),_0x386344=document[_0x3888d8(0x2aa)]('pettyCashBookTable'),_0x18d50a=await html2canvas(_0x386344,{'scale':0x2,'useCORS':!![],'logging':![],'backgroundColor':_0x3888d8(0x53f)}),_0x14042b=_0x18d50a[_0x3888d8(0x35a)](_0x3888d8(0x3ce)),_0x349308=0xd2,_0x55da63=0x129,_0x1d0042=_0x18d50a[_0x3888d8(0x32c)]*_0x349308/_0x18d50a[_0x3888d8(0x4a0)];let _0x43052=_0x1d0042,_0x2f1771=0x0;_0x38bc94[_0x3888d8(0x597)](_0x14042b,'PNG',0x0,_0x2f1771,_0x349308,_0x1d0042),_0x43052-=_0x55da63;while(_0x43052>=0x0){_0x2f1771=_0x43052-_0x1d0042,_0x38bc94[_0x3888d8(0x5a0)](),_0x38bc94['addImage'](_0x14042b,'PNG',0x0,_0x2f1771,_0x349308,_0x1d0042),_0x43052-=_0x55da63;}_0x38bc94['save']('සුළු_මුදල්_පොත_'+new Date()[_0x3888d8(0x38a)]()[_0x3888d8(0x1d5)](0x0,0xa)+_0x3888d8(0x431)),showToast('✅\x20PDF\x20බාගත\x20කරන\x20ලදී!');}catch(_0x25e8c0){console[_0x3888d8(0x46f)](_0x3888d8(0x1ce),_0x25e8c0),showToast(_0x3888d8(0x2b0));}finally{toggleLoading(![]);}}function initPettyCashSection(){const _0x41e8c4=_0x149fc9,_0x386cfb=new Date()[_0x41e8c4(0x38a)]()['split']('T')[0x0],_0x375ee2=document[_0x41e8c4(0x2aa)](_0x41e8c4(0x4e9));if(_0x375ee2)_0x375ee2[_0x41e8c4(0x1f3)]=_0x386cfb;const _0x381a53=loadPettyFloat(),_0xcf3364=document['getElementById']('pettyFloat');if(_0xcf3364)_0xcf3364[_0x41e8c4(0x1f3)]=_0x381a53[_0x41e8c4(0x313)](0x2);const _0x185169=S_CODES[_0x41e8c4(0x54f)](_0x3892fc=>_0x41e8c4(0x36a)+_0x3892fc+'\x22>'+_0x3892fc+_0x41e8c4(0x27f)+CODE_INFO[_0x3892fc]+_0x41e8c4(0x2a5))['join'](''),_0x30b2e9=document[_0x41e8c4(0x2aa)](_0x41e8c4(0x3a8));if(_0x30b2e9)_0x30b2e9[_0x41e8c4(0x2bf)]='<option\x20value=\x22\x22></option>'+_0x185169;typeof $!==_0x41e8c4(0x35e)&&$['fn']&&$['fn'][_0x41e8c4(0x418)]&&$('#replenishSourceSelect,\x20#pettyCategorySelect')[_0x41e8c4(0x418)]({'placeholder':_0x41e8c4(0x291),'allowClear':!![],'width':_0x41e8c4(0x485)});}function editPettyExpense(_0x2b327e){const _0x4577ad=_0x149fc9,_0x2b215b=pettyExpenses[_0x4577ad(0x2be)](_0x49aa3d=>_0x49aa3d['id']==_0x2b327e);if(!_0x2b215b){showToast(_0x4577ad(0x1f4));return;}document[_0x4577ad(0x2aa)](_0x4577ad(0x4e9))['value']=_0x2b215b[_0x4577ad(0x2a9)],document[_0x4577ad(0x2aa)]('pettyDesc')[_0x4577ad(0x1f3)]=_0x2b215b[_0x4577ad(0x437)],$(_0x4577ad(0x209))[_0x4577ad(0x2dd)](_0x2b215b['category'])[_0x4577ad(0x30e)](_0x4577ad(0x2b2)),document['getElementById'](_0x4577ad(0x27e))['value']=_0x2b215b[_0x4577ad(0x469)],document[_0x4577ad(0x2aa)](_0x4577ad(0x366))['value']=_0x2b215b[_0x4577ad(0x2f6)][_0x4577ad(0x313)](0x2),document[_0x4577ad(0x2aa)](_0x4577ad(0x1bb))['value']=_0x2b215b['id'],document[_0x4577ad(0x2aa)](_0x4577ad(0x3e2))[_0x4577ad(0x473)]=_0x4577ad(0x53b),document['getElementById'](_0x4577ad(0x2c0))[_0x4577ad(0x245)]({'behavior':_0x4577ad(0x23b)});}async function savePettyExpense(){const _0x53136b=_0x149fc9;if(userRole===_0x53136b(0x575)){showToast(_0x53136b(0x3ab));return;}const _0x39ccca=document['getElementById'](_0x53136b(0x3e2));_0x39ccca[_0x53136b(0x341)]=!![],_0x39ccca['innerHTML']=_0x53136b(0x21d);const _0x1f052d=document[_0x53136b(0x2aa)](_0x53136b(0x4e9))[_0x53136b(0x1f3)],_0x578995=document[_0x53136b(0x2aa)](_0x53136b(0x576))[_0x53136b(0x1f3)][_0x53136b(0x42a)](),_0x27b3e3=$(_0x53136b(0x209))['val'](),_0x4f1f59=document['getElementById'](_0x53136b(0x27e))[_0x53136b(0x1f3)]['trim'](),_0x3a09e6=parseAmount(document['getElementById'](_0x53136b(0x366))[_0x53136b(0x1f3)]),_0x4d1c91=document[_0x53136b(0x2aa)](_0x53136b(0x1bb))?.[_0x53136b(0x1f3)],_0x500398=_0x4d1c91&&_0x4d1c91!=='';if(!_0x1f052d){showToast(_0x53136b(0x58b)),_0x39ccca[_0x53136b(0x341)]=![],_0x39ccca[_0x53136b(0x2bf)]=_0x53136b(0x1e2),document['getElementById']('pettyDate')['focus']();return;}if(!_0x578995){showToast(_0x53136b(0x3c1)),_0x39ccca[_0x53136b(0x341)]=![],_0x39ccca[_0x53136b(0x2bf)]=_0x53136b(0x1e2),document[_0x53136b(0x2aa)](_0x53136b(0x576))[_0x53136b(0x33c)]();return;}if(!_0x27b3e3){showToast(_0x53136b(0x1d0)),_0x39ccca[_0x53136b(0x341)]=![],_0x39ccca['innerHTML']='එකතු\x20කරන්න',$('#pettyCategorySelect')['select2']('open');return;}if(!_0x4f1f59){showToast(_0x53136b(0x436)),_0x39ccca[_0x53136b(0x341)]=![],_0x39ccca[_0x53136b(0x2bf)]='එකතු\x20කරන්න',document['getElementById']('pettyVoucher')[_0x53136b(0x33c)]();return;}if(_0x3a09e6<=0x0){showToast(_0x53136b(0x3d2)),_0x39ccca[_0x53136b(0x341)]=![],_0x39ccca['innerHTML']='එකතු\x20කරන්න',document[_0x53136b(0x2aa)](_0x53136b(0x366))[_0x53136b(0x33c)]();return;}const _0x311956=_0x500398?parseInt(_0x4d1c91):null;if(checkDuplicatePettyExpense(_0x1f052d,_0x4f1f59,_0x3a09e6,_0x27b3e3,_0x311956)){showToast('⚠️\x20මෙම\x20වවුචර්\x20අංකය,\x20දිනය,\x20කාණ්ඩය\x20සහ\x20මුදල\x20සහිත\x20වියදමක්\x20දැනටමත්\x20පවතී!'),_0x39ccca[_0x53136b(0x341)]=![],_0x39ccca[_0x53136b(0x2bf)]=_0x53136b(0x1e2);return;}const _0xf267ca=_0x500398?parseInt(_0x4d1c91):Date[_0x53136b(0x3ea)]()+Math[_0x53136b(0x21b)](Math[_0x53136b(0x52a)]()*0x3e8),_0x399666={'action':_0x53136b(0x295),'id':_0xf267ca,'date':_0x1f052d,'desc':_0x578995,'category':_0x27b3e3,'voucher':_0x4f1f59,'amt':_0x3a09e6,'clientId':generateUUID()};toggleLoading(!![]);try{if(!navigator[_0x53136b(0x4af)]){addToOfflineQueue('save_petty_expense',_0x399666);if(_0x500398){const _0xa73b85=pettyExpenses[_0x53136b(0x3a1)](_0x304073=>_0x304073['id']==_0xf267ca);_0xa73b85!==-0x1&&(pettyExpenses[_0xa73b85]={..._0x399666,'offline':!![]});}else pettyExpenses[_0x53136b(0x495)]({..._0x399666,'offline':!![]});sessionStorage[_0x53136b(0x432)](_0x53136b(0x478),JSON['stringify'](pettyExpenses)),showToast('📦\x20Offline\x20මාදිලියේ\x20සුරකින\x20ලදී!');}else{const _0x29e92c=await fetch(SCRIPT_URL,{'method':_0x53136b(0x3b6),'body':JSON[_0x53136b(0x45b)](_0x399666)}),_0x1731df=await _0x29e92c[_0x53136b(0x4b8)]();if(_0x1731df[_0x53136b(0x3a2)]===_0x53136b(0x561)){if(_0x500398){const _0x9cd47b=pettyExpenses['findIndex'](_0x36b829=>_0x36b829['id']==_0xf267ca);_0x9cd47b!==-0x1&&(pettyExpenses[_0x9cd47b]={..._0x399666,'offline':![]});}else pettyExpenses[_0x53136b(0x495)]({..._0x399666,'offline':![]});sessionStorage[_0x53136b(0x432)](_0x53136b(0x478),JSON[_0x53136b(0x45b)](pettyExpenses)),showToast(_0x500398?_0x53136b(0x5bd):'✅\x20සුළු\x20මුදල්\x20වියදම\x20එකතු\x20කරන\x20ලදී!');}else throw new Error(_0x1731df[_0x53136b(0x40d)]||_0x53136b(0x401));}document[_0x53136b(0x2aa)](_0x53136b(0x4e9))[_0x53136b(0x1f3)]=new Date()['toISOString']()[_0x53136b(0x3ec)]('T')[0x0],document[_0x53136b(0x2aa)](_0x53136b(0x576))[_0x53136b(0x1f3)]='',$('#pettyCategorySelect')[_0x53136b(0x2dd)]('')[_0x53136b(0x30e)]('change'),document[_0x53136b(0x2aa)](_0x53136b(0x27e))[_0x53136b(0x1f3)]='',document[_0x53136b(0x2aa)](_0x53136b(0x366))[_0x53136b(0x1f3)]='',document[_0x53136b(0x2aa)]('edit-petty-id')['value']='',renderPettyBook();}catch(_0x1b01a5){console['error'](_0x53136b(0x42c),_0x1b01a5),showToast('❌\x20සුරැකීමේ\x20දෝෂයක්!');}finally{toggleLoading(![]),_0x39ccca[_0x53136b(0x341)]=![],_0x39ccca[_0x53136b(0x2bf)]=_0x53136b(0x1e2);}}async function deletePettyExpense(_0x2c75cc){const _0x16dd0a=_0x149fc9;if(userRole!==_0x16dd0a(0x49f)){showToast(_0x16dd0a(0x567));return;}const _0x4b4ade=await showConfirmDialog('🗑️\x20සුළු\x20මුදල්\x20වියදම\x20මකන්න',_0x16dd0a(0x544),_0x16dd0a(0x46a),_0x16dd0a(0x50a));if(!_0x4b4ade)return;toggleLoading(!![]);try{const _0x36c38b=await fetch(SCRIPT_URL+_0x16dd0a(0x32d)+_0x2c75cc+_0x16dd0a(0x496)+Date[_0x16dd0a(0x3ea)]()),_0x69a5d9=await _0x36c38b[_0x16dd0a(0x4b8)]();if(_0x69a5d9[_0x16dd0a(0x3a2)]==='success')pettyExpenses=pettyExpenses['filter'](_0x6ec760=>_0x6ec760['id']!=_0x2c75cc),sessionStorage[_0x16dd0a(0x432)](_0x16dd0a(0x478),JSON[_0x16dd0a(0x45b)](pettyExpenses)),showToast('✅\x20වියදම\x20මකා\x20දමන\x20ලදී!'),renderPettyBook();else throw new Error(_0x69a5d9[_0x16dd0a(0x40d)]||'Delete\x20failed');}catch(_0x11f4a8){console[_0x16dd0a(0x46f)](_0x16dd0a(0x28b),_0x11f4a8),showToast(_0x16dd0a(0x3f0));}finally{toggleLoading(![]);}}async function replenishPettyCash(){const _0x7ac86=_0x149fc9;if(userRole!==_0x7ac86(0x49f)){showToast(_0x7ac86(0x25c));return;}const _0x1f9e9d=$(_0x7ac86(0x326))['val']();if(!_0x1f9e9d){showToast('⚠️\x20කරුණාකර\x20මූලාශ්‍ර\x20අරමුදල\x20තෝරන්න'),$('#replenishSourceSelect')['select2'](_0x7ac86(0x2ef));return;}const _0x3d3ab8=document[_0x7ac86(0x2aa)](_0x7ac86(0x311))[_0x7ac86(0x1f3)]['trim']();if(!_0x3d3ab8){showToast(_0x7ac86(0x436)),document[_0x7ac86(0x2aa)]('replenishVoucher')[_0x7ac86(0x33c)]();return;}const _0x2464d3=document[_0x7ac86(0x2aa)](_0x7ac86(0x53d))[_0x7ac86(0x1f3)][_0x7ac86(0x42a)](),_0x41e238=parseAmount(document[_0x7ac86(0x2aa)](_0x7ac86(0x403))[_0x7ac86(0x1f3)]);if(_0x41e238<0x0){showToast(_0x7ac86(0x310)),document[_0x7ac86(0x2aa)](_0x7ac86(0x403))[_0x7ac86(0x33c)]();return;}const _0x265648=getData(),_0x54807e=pettyExpenses,_0x21423e=_0x265648['filter'](_0x2e06bf=>_0x2e06bf[_0x7ac86(0x515)]==='EX'&&_0x2e06bf[_0x7ac86(0x3f6)]==='PC'&&_0x2e06bf['desc'][_0x7ac86(0x578)](_0x7ac86(0x5ac)))['reduce']((_0x53709b,_0x5ba602)=>_0x53709b+_0x5ba602[_0x7ac86(0x2f6)],0x0),_0x1cc8fa=_0x54807e[_0x7ac86(0x513)]((_0x352ad3,_0x136500)=>_0x352ad3+_0x136500[_0x7ac86(0x2f6)],0x0),_0x706aff=_0x21423e-_0x1cc8fa,_0x4d7488=_0x41e238-_0x706aff;if(_0x4d7488<=0x0){showToast(_0x7ac86(0x414)+_0x706aff[_0x7ac86(0x313)](0x2)+')');return;}const _0x232261=_0x7ac86(0x306)+_0x41e238[_0x7ac86(0x313)](0x2)+'\x0a'+(_0x7ac86(0x385)+_0x21423e[_0x7ac86(0x313)](0x2)+'\x0a')+(_0x7ac86(0x3bc)+_0x1cc8fa['toFixed'](0x2)+'\x0a')+(_0x7ac86(0x344)+_0x706aff[_0x7ac86(0x313)](0x2)+'\x0a\x0a')+(_0x7ac86(0x282)+_0x4d7488[_0x7ac86(0x313)](0x2)+'\x0a\x0a')+_0x7ac86(0x387),_0x3a590e=await showConfirmDialog(_0x7ac86(0x542),_0x232261,'ඔව්,\x20ප්‍රතිපූරණය\x20කරන්න',_0x7ac86(0x50a));if(!_0x3a590e)return;const _0x3b6147=new Date(),_0x1eb054=_0x3b6147[_0x7ac86(0x38a)]()[_0x7ac86(0x3ec)]('T')[0x0],_0x320208={'action':_0x7ac86(0x2d7),'id':Date['now'](),'date':_0x1eb054,'ref':_0x2464d3,'vouch':_0x3d3ab8,'code':'PC','amt':_0x4d7488,'desc':_0x7ac86(0x4ca)+_0x1f9e9d+')\x20-\x20'+_0x1eb054,'type':'EX','source':_0x1f9e9d,'proj':'','status':!![],'isOp':![],'isImprest':![],'clientId':generateUUID()};toggleLoading(!![]);try{if(!navigator['onLine']){addToOfflineQueue('save_transaction',_0x320208);let _0x2336c2=getData();_0x2336c2[_0x7ac86(0x495)]({..._0x320208,'offline':!![]}),setDataCache(_0x2336c2),showToast(_0x7ac86(0x2e4));}else{const _0x4deb12=await fetch(SCRIPT_URL,{'method':'POST','body':JSON[_0x7ac86(0x45b)](_0x320208)}),_0x32437d=await _0x4deb12[_0x7ac86(0x4b8)]();if(_0x32437d[_0x7ac86(0x3a2)]===_0x7ac86(0x561)){let _0x262ed2=getData();_0x262ed2[_0x7ac86(0x495)](_0x320208),setDataCache(_0x262ed2),showToast(_0x7ac86(0x3df)+_0x4d7488['toFixed'](0x2)+_0x7ac86(0x3b4)+_0x41e238['toFixed'](0x2)),document[_0x7ac86(0x2aa)](_0x7ac86(0x311))['value']='',document[_0x7ac86(0x2aa)]('replenishCheque')['value']='',$(_0x7ac86(0x326))[_0x7ac86(0x2dd)]('')[_0x7ac86(0x30e)](_0x7ac86(0x2b2)),renderPettyBook(),refreshDashboard();}else throw new Error(_0x32437d[_0x7ac86(0x40d)]||_0x7ac86(0x401));}}catch(_0x4ac27d){console[_0x7ac86(0x46f)](_0x7ac86(0x264),_0x4ac27d),showToast(_0x7ac86(0x434));}finally{toggleLoading(![]);}}function getReplenishmentPeriods(){const _0x4d78ed=_0x149fc9,_0x288b6c=getData(),_0x69e42c=_0x288b6c[_0x4d78ed(0x52f)](_0x4510c8=>_0x4510c8[_0x4d78ed(0x515)]==='EX'&&_0x4510c8[_0x4d78ed(0x3f6)]==='PC'&&_0x4510c8[_0x4d78ed(0x437)][_0x4d78ed(0x578)](_0x4d78ed(0x5ac)))[_0x4d78ed(0x20c)]((_0x6d75c3,_0x3d0c84)=>new Date(_0x6d75c3[_0x4d78ed(0x2a9)])-new Date(_0x3d0c84[_0x4d78ed(0x2a9)]));let _0x142b11=[];for(let _0x3e03f6=0x0;_0x3e03f6<_0x69e42c[_0x4d78ed(0x4e8)];_0x3e03f6++){const _0xb7083c=_0x69e42c[_0x3e03f6][_0x4d78ed(0x2a9)],_0x118e8e=_0x3e03f6<_0x69e42c[_0x4d78ed(0x4e8)]-0x1?_0x69e42c[_0x3e03f6+0x1][_0x4d78ed(0x2a9)]:new Date()['toISOString']()[_0x4d78ed(0x3ec)]('T')[0x0];_0x142b11['push']({'label':_0xb7083c+_0x4d78ed(0x4d3)+_0x118e8e+_0x4d78ed(0x4fc),'start':_0xb7083c,'end':_0x118e8e});}return _0x142b11;}function populatePeriodDropdown(){const _0x4994f2=_0x149fc9,_0x16847b=getReplenishmentPeriods(),_0x5509c2=document[_0x4994f2(0x2aa)](_0x4994f2(0x4b6));if(!_0x5509c2)return;_0x5509c2[_0x4994f2(0x2bf)]=_0x4994f2(0x2fd),_0x16847b[_0x4994f2(0x1bd)](_0x1f49f6=>{const _0x57f4ef=_0x4994f2,_0x206e3d=document['createElement'](_0x57f4ef(0x1c0));_0x206e3d[_0x57f4ef(0x1f3)]=_0x1f49f6[_0x57f4ef(0x5ae)],_0x206e3d[_0x57f4ef(0x3f2)](_0x57f4ef(0x39a),_0x1f49f6[_0x57f4ef(0x455)]),_0x206e3d[_0x57f4ef(0x3f2)](_0x57f4ef(0x573),_0x1f49f6[_0x57f4ef(0x353)]),_0x206e3d[_0x57f4ef(0x4c0)]=_0x1f49f6[_0x57f4ef(0x5ae)],_0x5509c2['appendChild'](_0x206e3d);});}function generatePeriodReport(){const _0x5e52f2=_0x149fc9,_0x104e5a=document[_0x5e52f2(0x2aa)](_0x5e52f2(0x4b6)),_0x59fe2f=_0x104e5a[_0x5e52f2(0x48e)][_0x104e5a[_0x5e52f2(0x565)]];if(!_0x59fe2f[_0x5e52f2(0x1f3)]){showToast(_0x5e52f2(0x40a));return;}const _0x51ffc8=_0x59fe2f[_0x5e52f2(0x543)](_0x5e52f2(0x39a)),_0x1b9652=_0x59fe2f[_0x5e52f2(0x543)]('data-end'),_0x19ab6e=getData(),_0x584848=pettyExpenses,_0x28507c=_0x19ab6e[_0x5e52f2(0x52f)](_0x1986d2=>_0x1986d2['type']==='EX'&&_0x1986d2['code']==='PC'&&_0x1986d2[_0x5e52f2(0x437)][_0x5e52f2(0x578)]('ප්‍රතිපූරණය')&&_0x1986d2[_0x5e52f2(0x2a9)]<_0x51ffc8)[_0x5e52f2(0x513)]((_0x150edf,_0x1c9b72)=>_0x150edf+_0x1c9b72[_0x5e52f2(0x2f6)],0x0),_0x37eeac=_0x584848['filter'](_0x597c40=>_0x597c40[_0x5e52f2(0x2a9)]<_0x51ffc8)[_0x5e52f2(0x513)]((_0x33b14c,_0xdf58f2)=>_0x33b14c+_0xdf58f2[_0x5e52f2(0x2f6)],0x0),_0x22c530=_0x28507c-_0x37eeac,_0x903c88=_0x19ab6e[_0x5e52f2(0x52f)](_0x18b0f4=>_0x18b0f4[_0x5e52f2(0x515)]==='EX'&&_0x18b0f4['code']==='PC'&&_0x18b0f4[_0x5e52f2(0x437)]['includes'](_0x5e52f2(0x5ac))&&_0x18b0f4['date']>=_0x51ffc8&&_0x18b0f4[_0x5e52f2(0x2a9)]<=_0x1b9652),_0x1ae32d=_0x903c88[_0x5e52f2(0x513)]((_0x4bece2,_0x28357f)=>_0x4bece2+_0x28357f[_0x5e52f2(0x2f6)],0x0),_0x3f6014=_0x584848['filter'](_0x3f1a08=>_0x3f1a08[_0x5e52f2(0x2a9)]>=_0x51ffc8&&_0x3f1a08['date']<=_0x1b9652),_0x8dd8c7=_0x3f6014[_0x5e52f2(0x513)]((_0x39ab4e,_0x266463)=>_0x39ab4e+_0x266463[_0x5e52f2(0x2f6)],0x0),_0x38b08a=_0x22c530+_0x1ae32d-_0x8dd8c7;let _0x3bfba6=_0x5e52f2(0x4eb)+_0x51ffc8+_0x5e52f2(0x4d3)+_0x1b9652+_0x5e52f2(0x207)+_0x22c530['toFixed'](0x2)+_0x5e52f2(0x453)+_0x1ae32d[_0x5e52f2(0x313)](0x2)+_0x5e52f2(0x4a5)+_0x8dd8c7['toFixed'](0x2)+_0x5e52f2(0x351)+_0x38b08a[_0x5e52f2(0x313)](0x2)+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h5>ගනුදෙනු\x20විස්තර</h5>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20style=\x22width:100%;\x20border-collapse:collapse;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22background:var(--primary);\x20color:white;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>දිනය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>විස්තරය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වවුචර්</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>කාණ්ඩය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ලැබීම්\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ගෙවීම්\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20';const _0x4a02de=[..._0x903c88[_0x5e52f2(0x54f)](_0x27d52e=>({..._0x27d52e,'isReceipt':!![],'categoryDisplay':_0x5e52f2(0x5ac),'voucherDisplay':_0x27d52e[_0x5e52f2(0x537)]})),..._0x3f6014['map'](_0x354a52=>({..._0x354a52,'isReceipt':![],'categoryDisplay':_0x354a52[_0x5e52f2(0x2b9)],'voucherDisplay':_0x354a52[_0x5e52f2(0x469)]}))][_0x5e52f2(0x20c)]((_0xedd476,_0x2b269e)=>new Date(_0xedd476[_0x5e52f2(0x2a9)])-new Date(_0x2b269e['date']));_0x4a02de[_0x5e52f2(0x1bd)](_0x395867=>{const _0x1c7a70=_0x5e52f2;_0x3bfba6+=_0x1c7a70(0x217)+_0x395867[_0x1c7a70(0x2a9)]+_0x1c7a70(0x3c6)+_0x395867[_0x1c7a70(0x437)]+_0x1c7a70(0x3c6)+(_0x395867[_0x1c7a70(0x2d8)]||'-')+_0x1c7a70(0x3c6)+(_0x395867[_0x1c7a70(0x389)]?'PC':_0x395867[_0x1c7a70(0x54c)])+_0x1c7a70(0x21f)+(_0x395867[_0x1c7a70(0x389)]?_0x395867[_0x1c7a70(0x2f6)][_0x1c7a70(0x313)](0x2):'-')+_0x1c7a70(0x21f)+(!_0x395867[_0x1c7a70(0x389)]?_0x395867['amt'][_0x1c7a70(0x313)](0x2):'-')+_0x1c7a70(0x5a4);}),_0x3bfba6+=_0x5e52f2(0x400),document['getElementById'](_0x5e52f2(0x2d0))[_0x5e52f2(0x2bf)]=_0x3bfba6,document[_0x5e52f2(0x2aa)](_0x5e52f2(0x506))['style'][_0x5e52f2(0x5bf)]='flex';}function printPeriodReport(){const _0x3b5dcc=_0x149fc9,_0x1df196=document['getElementById'](_0x3b5dcc(0x2d0))[_0x3b5dcc(0x2bf)],_0x5877c7=window[_0x3b5dcc(0x2ef)]('',_0x3b5dcc(0x225));_0x5877c7[_0x3b5dcc(0x36c)][_0x3b5dcc(0x33a)](_0x3b5dcc(0x1c8)+_0x1df196+_0x3b5dcc(0x37f)),_0x5877c7[_0x3b5dcc(0x36c)][_0x3b5dcc(0x256)](),_0x5877c7[_0x3b5dcc(0x47e)]();}async function exportPeriodReportPDF(){const _0x5c20d9=_0x149fc9;if(userRole===_0x5c20d9(0x575)){showToast(_0x5c20d9(0x502));return;}const _0x46ca75=document[_0x5c20d9(0x2aa)](_0x5c20d9(0x2d0));if(!_0x46ca75[_0x5c20d9(0x2bf)][_0x5c20d9(0x42a)]()){showToast(_0x5c20d9(0x1d3));return;}toggleLoading(!![]);try{const {jsPDF:_0x2d923e}=window['jspdf'],_0x330144=new _0x2d923e('p','mm','a4'),_0x2d4bc6=await html2canvas(_0x46ca75,{'scale':0x2,'useCORS':!![],'logging':![],'backgroundColor':'#ffffff'}),_0x367b5a=_0x2d4bc6['toDataURL'](_0x5c20d9(0x3ce)),_0x557d7a=0xd2,_0x3b30aa=0x129,_0x39469a=_0x2d4bc6[_0x5c20d9(0x32c)]*_0x557d7a/_0x2d4bc6[_0x5c20d9(0x4a0)];let _0x39d50f=_0x39469a,_0x170ea5=0x0;_0x330144[_0x5c20d9(0x597)](_0x367b5a,_0x5c20d9(0x347),0x0,_0x170ea5,_0x557d7a,_0x39469a),_0x39d50f-=_0x3b30aa;while(_0x39d50f>=0x0){_0x170ea5=_0x39d50f-_0x39469a,_0x330144[_0x5c20d9(0x5a0)](),_0x330144[_0x5c20d9(0x597)](_0x367b5a,_0x5c20d9(0x347),0x0,_0x170ea5,_0x557d7a,_0x39469a),_0x39d50f-=_0x3b30aa;}_0x330144[_0x5c20d9(0x44b)](_0x5c20d9(0x224)+new Date()[_0x5c20d9(0x38a)]()[_0x5c20d9(0x1d5)](0x0,0xa)+'.pdf'),showToast(_0x5c20d9(0x4cb));}catch(_0x18adff){console[_0x5c20d9(0x46f)]('PDF\x20export\x20error:',_0x18adff),showToast(_0x5c20d9(0x2b0));}finally{toggleLoading(![]);}}function formatReceiptRange(_0xcd9c10,_0x260cbf){const _0x15b881=_0x149fc9;_0xcd9c10=_0xcd9c10[_0x15b881(0x42a)](),_0xcd9c10=_0xcd9c10['replace'](/[^0-9]/g,'');const _0x3418ca=_0xcd9c10[_0x15b881(0x5a2)](0x3,'0');if(!_0x260cbf||_0x260cbf[_0x15b881(0x42a)]()==='')return _0x3418ca;_0x260cbf=_0x260cbf[_0x15b881(0x42a)]()[_0x15b881(0x5af)](/[^0-9]/g,'');if(_0x260cbf==='')return _0x3418ca;const _0x1df489=_0x260cbf[_0x15b881(0x5a2)](0x3,'0');return _0x3418ca===_0x1df489?_0x3418ca:_0x3418ca+_0x15b881(0x4d3)+_0x1df489+'\x20දක්වා';}function parseReceiptRange(_0x8e2c22){const _0x1ff78f=_0x149fc9;let _0x259f73='',_0x35ad27='';if(!_0x8e2c22)return{'fromRef':'','toRef':''};if(_0x8e2c22[_0x1ff78f(0x578)](_0x1ff78f(0x4d3))&&_0x8e2c22[_0x1ff78f(0x578)]('\x20දක්වා')){const _0x1492f1=_0x8e2c22[_0x1ff78f(0x3ec)](_0x1ff78f(0x4d3));_0x259f73=_0x1492f1[0x0],_0x35ad27=_0x1492f1[0x1]?_0x1492f1[0x1]['split'](_0x1ff78f(0x4fc))[0x0]:'';}else _0x259f73=_0x8e2c22,_0x35ad27='';return{'fromRef':_0x259f73,'toRef':_0x35ad27};}function checkDuplicateReceipt(_0x4513e3,_0x12be9d,_0x4d12c9=null){const _0x51a872=_0x149fc9,_0x536967=getData(),_0x5b90cd=parseInt(_0x4513e3)||0x0;let _0x5cd26e=_0x5b90cd;_0x12be9d&&_0x12be9d[_0x51a872(0x42a)]()!==''&&(_0x5cd26e=parseInt(_0x12be9d)||0x0);if(_0x12be9d&&_0x12be9d[_0x51a872(0x42a)]()!==''&&_0x5b90cd>_0x5cd26e)return{'isDuplicate':!![],'message':_0x51a872(0x4df)};const _0x44c071=_0x536967['filter'](_0x4dd006=>_0x4dd006[_0x51a872(0x515)]==='IN'&&!_0x4dd006[_0x51a872(0x3db)]&&(_0x4d12c9===null||_0x4dd006['id']!==_0x4d12c9));for(let _0x48b2ca of _0x44c071){const _0x38cc42=_0x48b2ca[_0x51a872(0x5b7)]||'';let _0x39014a=0x0,_0x148be0=0x0;if(_0x38cc42['includes'](_0x51a872(0x4d3))&&_0x38cc42['includes']('\x20දක්වා')){const _0x4dba5c=_0x38cc42[_0x51a872(0x3ec)](_0x51a872(0x4d3));_0x39014a=parseInt(_0x4dba5c[0x0])||0x0,_0x148be0=parseInt(_0x4dba5c[0x1]?.[_0x51a872(0x3ec)](_0x51a872(0x4fc))[0x0])||0x0;}else _0x39014a=parseInt(_0x38cc42)||0x0,_0x148be0=_0x39014a;if(_0x5b90cd>=_0x39014a&&_0x5b90cd<=_0x148be0||_0x5cd26e>=_0x39014a&&_0x5cd26e<=_0x148be0||_0x5b90cd<=_0x39014a&&_0x5cd26e>=_0x148be0){let _0xcdd956=''+_0x39014a[_0x51a872(0x3e3)]()['padStart'](0x3,'0');_0x39014a!==_0x148be0&&(_0xcdd956+='\x20සිට\x20'+_0x148be0[_0x51a872(0x3e3)]()[_0x51a872(0x5a2)](0x3,'0')+_0x51a872(0x4fc));let _0x3333d7=''+_0x5b90cd[_0x51a872(0x3e3)]()[_0x51a872(0x5a2)](0x3,'0');return _0x5b90cd!==_0x5cd26e&&(_0x3333d7+=_0x51a872(0x4d3)+_0x5cd26e[_0x51a872(0x3e3)]()[_0x51a872(0x5a2)](0x3,'0')+_0x51a872(0x4fc)),{'isDuplicate':!![],'message':_0x51a872(0x23d)+_0x3333d7+_0x51a872(0x2da)+_0xcdd956,'existingTransaction':_0x48b2ca};}}return{'isDuplicate':![]};}function searchTransactions(_0xe101b6){const _0x2eb373=_0x149fc9;_0xe101b6&&_0xe101b6['key']==='Enter'&&_0xe101b6[_0x2eb373(0x2db)]();const _0x2d2ae8=document['getElementById'](_0x2eb373(0x37a))?.['value']?.[_0x2eb373(0x42a)]()||'',_0x134f50=document[_0x2eb373(0x2aa)](_0x2eb373(0x3c5))?.['value']||_0x2eb373(0x32e),_0x15fa04=document[_0x2eb373(0x2aa)](_0x2eb373(0x3e8))?.[_0x2eb373(0x1f3)]||_0x2eb373(0x32e),_0x3e4792=document[_0x2eb373(0x2aa)](_0x2eb373(0x277))?.[_0x2eb373(0x1f3)]||'',_0x5dabf4=document['getElementById']('searchExCode')?.[_0x2eb373(0x1f3)]||'',_0xee109e=document[_0x2eb373(0x2aa)](_0x2eb373(0x238))?.[_0x2eb373(0x1f3)]||'',_0x32b09a=parseAmount(document[_0x2eb373(0x2aa)]('searchMinAmount')?.[_0x2eb373(0x1f3)]||'0'),_0xfc23e1=parseAmount(document[_0x2eb373(0x2aa)](_0x2eb373(0x525))?.[_0x2eb373(0x1f3)]||'0'),_0x4550d8=document[_0x2eb373(0x2aa)](_0x2eb373(0x511))?.[_0x2eb373(0x1f3)]||'',_0x3b2a1a=getData();let _0x10abb8=[..._0x3b2a1a];_0x134f50!==_0x2eb373(0x32e)&&(_0x10abb8=_0x10abb8[_0x2eb373(0x52f)](_0x1e8297=>_0x1e8297['type']===_0x134f50));_0x3e4792&&(_0x10abb8=_0x10abb8[_0x2eb373(0x52f)](_0x53422d=>_0x53422d[_0x2eb373(0x3f6)]===_0x3e4792||_0x53422d[_0x2eb373(0x320)]===_0x3e4792));_0x5dabf4&&(_0x10abb8=_0x10abb8[_0x2eb373(0x52f)](_0x3ef0fc=>_0x3ef0fc[_0x2eb373(0x3f6)]===_0x5dabf4));_0xee109e&&(_0x10abb8=_0x10abb8[_0x2eb373(0x52f)](_0x37be88=>_0x37be88[_0x2eb373(0x320)]===_0xee109e));_0x4550d8&&(_0x10abb8=_0x10abb8['filter'](_0x1a5786=>_0x1a5786[_0x2eb373(0x1e3)]===_0x4550d8));_0x32b09a>0x0&&(_0x10abb8=_0x10abb8[_0x2eb373(0x52f)](_0x315e84=>_0x315e84[_0x2eb373(0x2f6)]>=_0x32b09a));_0xfc23e1>0x0&&(_0x10abb8=_0x10abb8[_0x2eb373(0x52f)](_0x297fd8=>_0x297fd8[_0x2eb373(0x2f6)]<=_0xfc23e1));if(_0x15fa04!=='ALL'){const _0x3ebd69=new Date();_0x3ebd69['setHours'](0x0,0x0,0x0,0x0);const _0x4f084d=new Date(_0x3ebd69);_0x4f084d[_0x2eb373(0x220)](_0x4f084d[_0x2eb373(0x5b6)]()-0x1);const _0x27fb7e=new Date(_0x3ebd69);_0x27fb7e['setDate'](_0x3ebd69[_0x2eb373(0x5b6)]()-_0x3ebd69[_0x2eb373(0x244)]());const _0x5416b0=new Date(_0x3ebd69['getFullYear'](),_0x3ebd69[_0x2eb373(0x285)](),0x1),_0x473b86=new Date(_0x3ebd69[_0x2eb373(0x1fd)](),_0x3ebd69[_0x2eb373(0x285)]()-0x1,0x1),_0x26446b=new Date(_0x3ebd69[_0x2eb373(0x1fd)](),_0x3ebd69[_0x2eb373(0x285)](),0x0),_0x17418a=new Date(_0x3ebd69[_0x2eb373(0x1fd)](),0x0,0x1);_0x10abb8=_0x10abb8[_0x2eb373(0x52f)](_0xdddfab=>{const _0x46b37f=_0x2eb373,_0x2ea511=new Date(_0xdddfab['date']);_0x2ea511[_0x46b37f(0x26a)](0x0,0x0,0x0,0x0);switch(_0x15fa04){case'TODAY':return _0x2ea511['getTime']()===_0x3ebd69[_0x46b37f(0x508)]();case _0x46b37f(0x2a2):return _0x2ea511['getTime']()===_0x4f084d[_0x46b37f(0x508)]();case'THIS_WEEK':return _0x2ea511>=_0x27fb7e;case _0x46b37f(0x39e):return _0x2ea511>=_0x5416b0;case'LAST_MONTH':return _0x2ea511>=_0x473b86&&_0x2ea511<=_0x26446b;case _0x46b37f(0x4c7):return _0x2ea511>=_0x17418a;default:return!![];}});}if(_0x2d2ae8){const _0x1b8c78=_0x2d2ae8['toLowerCase']();_0x10abb8=_0x10abb8[_0x2eb373(0x52f)](_0x3d69bb=>{const _0x2f0d84=_0x2eb373;if(_0x3d69bb[_0x2f0d84(0x2f6)][_0x2f0d84(0x3e3)]()===_0x1b8c78||_0x3d69bb[_0x2f0d84(0x2f6)]['toFixed'](0x2)[_0x2f0d84(0x3e3)]()===_0x1b8c78||_0x3d69bb[_0x2f0d84(0x2f6)][_0x2f0d84(0x2d6)](_0x2f0d84(0x2c6),{'minimumFractionDigits':0x2})[_0x2f0d84(0x578)](_0x1b8c78))return!![];if(_0x3d69bb[_0x2f0d84(0x5b7)]&&_0x3d69bb[_0x2f0d84(0x5b7)]['toLowerCase']()[_0x2f0d84(0x578)](_0x1b8c78))return!![];if(_0x3d69bb[_0x2f0d84(0x537)]&&_0x3d69bb[_0x2f0d84(0x537)]['toLowerCase']()[_0x2f0d84(0x578)](_0x1b8c78))return!![];if(_0x3d69bb['type']==='EX'&&_0x3d69bb['ref']&&_0x3d69bb[_0x2f0d84(0x5b7)]['toLowerCase']()['includes'](_0x1b8c78))return!![];if(_0x3d69bb['code']&&_0x3d69bb[_0x2f0d84(0x3f6)][_0x2f0d84(0x272)]()[_0x2f0d84(0x578)](_0x1b8c78))return!![];if(_0x3d69bb[_0x2f0d84(0x320)]&&_0x3d69bb['source'][_0x2f0d84(0x272)]()[_0x2f0d84(0x578)](_0x1b8c78))return!![];if(_0x3d69bb[_0x2f0d84(0x437)]&&_0x3d69bb[_0x2f0d84(0x437)][_0x2f0d84(0x272)]()[_0x2f0d84(0x578)](_0x1b8c78))return!![];if(_0x3d69bb['id']&&_0x3d69bb['id'][_0x2f0d84(0x3e3)]()[_0x2f0d84(0x578)](_0x1b8c78))return!![];return![];});}displaySearchResults(_0x10abb8);}function displaySearchResults(_0xcaa56c){const _0x2e21c4=_0x149fc9,_0x1e2956=document['getElementById'](_0x2e21c4(0x2cb)),_0x176080=document[_0x2e21c4(0x2aa)](_0x2e21c4(0x4d4)),_0x473fe6=document[_0x2e21c4(0x2aa)](_0x2e21c4(0x29d));if(_0xcaa56c[_0x2e21c4(0x4e8)]===0x0){_0x176080[_0x2e21c4(0x2bf)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22text-align:\x20center;\x20padding:\x2040px;\x20background:\x20#f8f9fa;\x20border-radius:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-search\x22\x20style=\x22font-size:\x2048px;\x20color:\x20#ccc;\x20margin-bottom:\x2015px;\x22></i>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20style=\x22color:\x20#666;\x20margin-bottom:\x2010px;\x22>ගනුදෙනු\x20කිසිවක්\x20හමු\x20නොවීය</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22color:\x20#999;\x20font-size:\x2013px;\x22>කරුණාකර\x20වෙනත්\x20සෙවුම්\x20පදයක්\x20උත්සාහ\x20කරන්න</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',_0x473fe6[_0x2e21c4(0x4c0)]='ගනුදෙනු\x200ක්',_0x1e2956[_0x2e21c4(0x2dc)][_0x2e21c4(0x5bf)]=_0x2e21c4(0x57b);return;}_0xcaa56c[_0x2e21c4(0x20c)]((_0x1ff9fd,_0x2250bb)=>new Date(_0x2250bb[_0x2e21c4(0x2a9)])-new Date(_0x1ff9fd[_0x2e21c4(0x2a9)]));let _0x4caf1b=_0x2e21c4(0x582);_0xcaa56c[_0x2e21c4(0x1bd)](_0x4f8e69=>{const _0x34f7ec=_0x2e21c4,_0xb4d76e=_0x4f8e69[_0x34f7ec(0x515)]==='IN',_0x23e814=_0xb4d76e?_0x34f7ec(0x444):_0x34f7ec(0x530),_0x115b0c=_0xb4d76e?_0x34f7ec(0x2c9):_0x34f7ec(0x58c),_0x135e5e=_0xb4d76e?_0x34f7ec(0x563):_0x34f7ec(0x3fe);let _0x271f86='-';if(_0xb4d76e){if(_0x4f8e69[_0x34f7ec(0x5b7)]&&_0x4f8e69[_0x34f7ec(0x5b7)][_0x34f7ec(0x578)](_0x34f7ec(0x4d3))&&_0x4f8e69[_0x34f7ec(0x5b7)][_0x34f7ec(0x578)](_0x34f7ec(0x4fc))){const _0x5c5f9a=_0x4f8e69[_0x34f7ec(0x5b7)][_0x34f7ec(0x3ec)](_0x34f7ec(0x4d3)),_0x88cff5=_0x5c5f9a[0x0],_0x3836fb=_0x5c5f9a[0x1]?.[_0x34f7ec(0x3ec)]('\x20දක්වා')[0x0]||'';_0x88cff5===_0x3836fb?_0x271f86=_0x88cff5:_0x271f86=_0x4f8e69[_0x34f7ec(0x5b7)];}else _0x271f86=_0x4f8e69[_0x34f7ec(0x5b7)]||'-';}else _0x271f86=_0x4f8e69[_0x34f7ec(0x537)]||'-';const _0x1fa803=!_0xb4d76e?_0x4f8e69[_0x34f7ec(0x5b7)]||'-':'-';let _0x403ec1='';userRole===_0x34f7ec(0x49f)?_0x403ec1='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22editTransaction('+_0x4f8e69['id']+_0x34f7ec(0x59f)+_0x4f8e69['id']+_0x34f7ec(0x5a8):_0x403ec1=_0x34f7ec(0x322),_0x4caf1b+='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22border-bottom:\x201px\x20solid\x20#eee;\x20'+(_0xb4d76e?_0x34f7ec(0x254):_0x34f7ec(0x558))+'\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onmouseover=\x22this.style.background=\x27'+(_0xb4d76e?_0x34f7ec(0x255):_0x34f7ec(0x2f8))+_0x34f7ec(0x2c4)+(_0xb4d76e?'#f9fff9':_0x34f7ec(0x3da))+_0x34f7ec(0x42f)+_0x4f8e69['date']+_0x34f7ec(0x1d2)+_0x23e814+_0x34f7ec(0x231)+_0x115b0c+_0x34f7ec(0x518)+(_0xb4d76e?_0x34f7ec(0x355):_0x34f7ec(0x530))+_0x34f7ec(0x57c)+(_0x4f8e69[_0x34f7ec(0x3f6)]||'-')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20color:\x20var(--primary);\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x4f8e69['source']||'-')+_0x34f7ec(0x590)+_0x271f86+_0x34f7ec(0x590)+_0x1fa803+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x4f8e69['desc']||'-')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20font-weight:\x20bold;\x20color:\x20'+_0x135e5e+_0x34f7ec(0x57c)+_0x4f8e69['amt']['toLocaleString'](undefined,{'minimumFractionDigits':0x2})+_0x34f7ec(0x2b4)+(_0x4f8e69[_0x34f7ec(0x1e3)]||'-')+_0x34f7ec(0x23f)+_0x403ec1+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20';}),_0x4caf1b+=_0x2e21c4(0x2d5),_0x176080[_0x2e21c4(0x2bf)]=_0x4caf1b,_0x473fe6[_0x2e21c4(0x4c0)]='ගනුදෙනු\x20'+_0xcaa56c['length']+'ක්',_0x1e2956['style'][_0x2e21c4(0x5bf)]='block',setTimeout(()=>{const _0x34e6ca=_0x2e21c4;_0x1e2956[_0x34e6ca(0x245)]({'behavior':_0x34e6ca(0x23b),'block':_0x34e6ca(0x404)});},0x64);}async function deleteTransaction(_0x3caf5b){const _0x336fd5=_0x149fc9;if(userRole!==_0x336fd5(0x49f)){showToast(_0x336fd5(0x2c3));return;}const _0x224c43=await showConfirmDialog(_0x336fd5(0x4fb),_0x336fd5(0x424)+_0x3caf5b+_0x336fd5(0x583),_0x336fd5(0x46a),_0x336fd5(0x50a));if(!_0x224c43)return;toggleLoading(!![]);try{const _0x9da7b8=await fetch(SCRIPT_URL+'?action=delete&id='+_0x3caf5b+_0x336fd5(0x496)+Date[_0x336fd5(0x3ea)]()),_0x375b8c=await _0x9da7b8['json']();if(_0x375b8c['status']===_0x336fd5(0x561)){let _0x1f1b0b=getData();_0x1f1b0b=_0x1f1b0b[_0x336fd5(0x52f)](_0x512d65=>_0x512d65['id']!=_0x3caf5b),setDataCache(_0x1f1b0b),showToast(_0x336fd5(0x50b));const _0x241341=document[_0x336fd5(0x2aa)](_0x336fd5(0x2cb));_0x241341&&_0x241341[_0x336fd5(0x2dc)][_0x336fd5(0x5bf)]===_0x336fd5(0x57b)&&searchTransactions(),loadRecentTable(),refreshDashboard();}else throw new Error(_0x375b8c['message']||_0x336fd5(0x33e));}catch(_0x1fd906){console[_0x336fd5(0x46f)](_0x336fd5(0x4dd),_0x1fd906),showToast(_0x336fd5(0x3f0));}finally{toggleLoading(![]);}}function toggleAdvancedSearch(){const _0x3f383e=_0x149fc9,_0x3528cc=document[_0x3f383e(0x2aa)](_0x3f383e(0x429)),_0x19cba1=document[_0x3f383e(0x2aa)](_0x3f383e(0x399));_0x3528cc[_0x3f383e(0x2dc)][_0x3f383e(0x5bf)]===_0x3f383e(0x4f9)||_0x3528cc[_0x3f383e(0x2dc)][_0x3f383e(0x5bf)]===''?(_0x3528cc['style'][_0x3f383e(0x5bf)]=_0x3f383e(0x57b),_0x19cba1[_0x3f383e(0x2bf)]=_0x3f383e(0x215),populateAdvancedSearchFilters()):(_0x3528cc[_0x3f383e(0x2dc)]['display']='none',_0x19cba1[_0x3f383e(0x2bf)]='<i\x20class=\x22fas\x20fa-chevron-down\x22></i>\x20උසස්\x20සෙවීම්\x20විකල්ප');}function populateAdvancedSearchFilters(){const _0x300df9=_0x149fc9,_0x512930=document['getElementById']('searchInCode');if(_0x512930){let _0x153ca0=_0x300df9(0x37c);S_CODES[_0x300df9(0x1bd)](_0x3cba20=>{const _0x283d67=_0x300df9;_0x153ca0+=_0x283d67(0x36a)+_0x3cba20+'\x22>'+_0x3cba20+_0x283d67(0x27f)+CODE_INFO[_0x3cba20][_0x283d67(0x1f6)](0x0,0x1e)+_0x283d67(0x430);}),_0x512930[_0x300df9(0x2bf)]=_0x153ca0;}const _0x345e81=document['getElementById'](_0x300df9(0x38f));if(_0x345e81){let _0x447b03=_0x300df9(0x37c);EX_CODES[_0x300df9(0x1bd)](_0x123f5f=>{const _0x11ef07=_0x300df9;_0x447b03+='<option\x20value=\x22'+_0x123f5f+'\x22>'+_0x123f5f+_0x11ef07(0x27f)+CODE_INFO[_0x123f5f][_0x11ef07(0x1f6)](0x0,0x1e)+'...</option>';}),_0x345e81[_0x300df9(0x2bf)]=_0x447b03;}const _0x1ed8e4=document[_0x300df9(0x2aa)](_0x300df9(0x238));if(_0x1ed8e4){let _0xccf32b=_0x300df9(0x37c);S_CODES['forEach'](_0x23f9c9=>{const _0x27e99f=_0x300df9;_0xccf32b+=_0x27e99f(0x36a)+_0x23f9c9+'\x22>'+_0x23f9c9+_0x27e99f(0x27f)+CODE_INFO[_0x23f9c9][_0x27e99f(0x1f6)](0x0,0x1e)+_0x27e99f(0x430);}),_0x1ed8e4[_0x300df9(0x2bf)]=_0xccf32b;}const _0x24c6d5=document[_0x300df9(0x2aa)](_0x300df9(0x511));if(_0x24c6d5){const _0x19868b=getProjects(!![]);let _0x2cc963=_0x300df9(0x37c);_0x19868b[_0x300df9(0x1bd)](_0x1557c5=>{const _0x1fff10=_0x300df9;_0x2cc963+='<option\x20value=\x22'+_0x1557c5[_0x1fff10(0x391)]+'\x22>'+_0x1557c5[_0x1fff10(0x391)]+'\x20'+(_0x1557c5[_0x1fff10(0x31b)]?'(Completed)':'')+'</option>';}),_0x24c6d5['innerHTML']=_0x2cc963;}}function clearTransactionSearch(){const _0x29d4f2=_0x149fc9;document[_0x29d4f2(0x2aa)](_0x29d4f2(0x37a))[_0x29d4f2(0x1f3)]='',document[_0x29d4f2(0x2aa)](_0x29d4f2(0x3c5))['value']='ALL',document['getElementById'](_0x29d4f2(0x3e8))[_0x29d4f2(0x1f3)]='ALL';if(document[_0x29d4f2(0x2aa)](_0x29d4f2(0x277)))document[_0x29d4f2(0x2aa)](_0x29d4f2(0x277))[_0x29d4f2(0x1f3)]='';if(document[_0x29d4f2(0x2aa)](_0x29d4f2(0x38f)))document[_0x29d4f2(0x2aa)]('searchExCode')[_0x29d4f2(0x1f3)]='';if(document[_0x29d4f2(0x2aa)]('searchSource'))document[_0x29d4f2(0x2aa)]('searchSource')[_0x29d4f2(0x1f3)]='';if(document['getElementById'](_0x29d4f2(0x24d)))document[_0x29d4f2(0x2aa)](_0x29d4f2(0x24d))[_0x29d4f2(0x1f3)]='';if(document[_0x29d4f2(0x2aa)](_0x29d4f2(0x525)))document[_0x29d4f2(0x2aa)]('searchMaxAmount')[_0x29d4f2(0x1f3)]='';if(document[_0x29d4f2(0x2aa)](_0x29d4f2(0x511)))document[_0x29d4f2(0x2aa)]('searchProject')[_0x29d4f2(0x1f3)]='';document['getElementById'](_0x29d4f2(0x2cb))[_0x29d4f2(0x2dc)][_0x29d4f2(0x5bf)]='none',document[_0x29d4f2(0x2aa)]('transactionSearchInput')['focus'](),showToast('🧹\x20සෙවුම්\x20පෙරහන්\x20ඉවත්\x20කරන\x20ලදී');}function exportSearchResults(){const _0x5d92d3=_0x149fc9;if(userRole!==_0x5d92d3(0x49f)){showToast('❌\x20CSV\x20බාගත\x20කිරීමට\x20අවසර\x20ඇත්තේ\x20පරිපාලකට\x20පමණි!');return;}const _0x23ba2e=document[_0x5d92d3(0x440)]('#transactionSearchResultsTable\x20table');if(!_0x23ba2e){showToast(_0x5d92d3(0x40f));return;}try{let _0x3914c3=_0x5d92d3(0x4b1);const _0x2d3b95=_0x23ba2e[_0x5d92d3(0x4ea)]('tbody\x20tr');_0x2d3b95['forEach'](_0x3dee28=>{const _0x49618=_0x5d92d3,_0x4a526b=_0x3dee28[_0x49618(0x4ea)]('td'),_0x4506c2=[_0x4a526b[0x0]?.[_0x49618(0x473)]||'',_0x4a526b[0x1]?.[_0x49618(0x473)][_0x49618(0x5af)](/[^ලැබීම්ගෙවීම්]/g,'')||'',_0x4a526b[0x2]?.['innerText']||'',_0x4a526b[0x3]?.[_0x49618(0x473)]||'',_0x4a526b[0x4]?.[_0x49618(0x473)]||'',_0x4a526b[0x5]?.[_0x49618(0x473)]||'','\x22'+(_0x4a526b[0x6]?.[_0x49618(0x473)]||'')[_0x49618(0x5af)](/"/g,'\x22\x22')+'\x22',_0x4a526b[0x7]?.[_0x49618(0x473)]||'',_0x4a526b[0x8]?.['innerText']||''][_0x49618(0x204)](',');_0x3914c3+=_0x4506c2+'\x0a';});const _0x1ed2a5=new Blob(['\ufeff'+_0x3914c3],{'type':_0x5d92d3(0x475)}),_0x219024=URL['createObjectURL'](_0x1ed2a5),_0x15d7e9=document['createElement']('a');_0x15d7e9[_0x5d92d3(0x3f2)](_0x5d92d3(0x31e),_0x219024),_0x15d7e9[_0x5d92d3(0x3f2)]('download',_0x5d92d3(0x29f)+new Date()['toISOString']()[_0x5d92d3(0x1d5)](0x0,0xa)+_0x5d92d3(0x4e4)),document[_0x5d92d3(0x556)][_0x5d92d3(0x4f7)](_0x15d7e9),_0x15d7e9[_0x5d92d3(0x4f4)](),document[_0x5d92d3(0x556)][_0x5d92d3(0x471)](_0x15d7e9),showToast(_0x5d92d3(0x239));}catch(_0x1c239b){console[_0x5d92d3(0x46f)](_0x5d92d3(0x338),_0x1c239b),showToast(_0x5d92d3(0x4b0));}}function formatAmount(_0x5e7290){const _0x466e56=_0x149fc9;let _0xaf0d23=_0x5e7290[_0x466e56(0x1f3)][_0x466e56(0x5af)](/[^\d.]/g,'');if(_0xaf0d23[_0x466e56(0x578)]('.')){const _0x56c91b=_0xaf0d23[_0x466e56(0x3ec)]('.');_0x56c91b[0x1][_0x466e56(0x4e8)]>0x2&&(_0x56c91b[0x1]=_0x56c91b[0x1][_0x466e56(0x1f6)](0x0,0x2),_0xaf0d23=_0x56c91b[_0x466e56(0x204)]('.'));}_0x5e7290[_0x466e56(0x1f3)]=_0xaf0d23;const _0x1b3f4a=/^(\d+)(\.\d{0,2})?$/;_0xaf0d23&&!_0x1b3f4a[_0x466e56(0x47f)](_0xaf0d23)?(_0x5e7290[_0x466e56(0x2dc)][_0x466e56(0x201)]=_0x466e56(0x530),_0x5e7290[_0x466e56(0x2dc)][_0x466e56(0x1cc)]=_0x466e56(0x4d6)):(_0x5e7290['style'][_0x466e56(0x201)]=_0x466e56(0x44e),_0x5e7290[_0x466e56(0x2dc)][_0x466e56(0x1cc)]='none');}function parseAmount(_0x53e91d){if(!_0x53e91d)return 0x0;const _0x2fd21e=parseFloat(_0x53e91d);return isNaN(_0x2fd21e)?0x0:_0x2fd21e;}function showConfirmDialog(_0x1aacca,_0x37cae0,_0x2ad2dc='ඔව්',_0xe1f79b=_0x149fc9(0x457)){return new Promise(_0x3d6ecd=>{const _0x1d413f=_0xe167;document[_0x1d413f(0x2aa)](_0x1d413f(0x482))[_0x1d413f(0x4c0)]=_0x1aacca,document[_0x1d413f(0x2aa)](_0x1d413f(0x1ba))[_0x1d413f(0x4c0)]=_0x37cae0,document['getElementById'](_0x1d413f(0x3d0))[_0x1d413f(0x4c0)]=_0x2ad2dc,document[_0x1d413f(0x2aa)]('confirmNo')[_0x1d413f(0x4c0)]=_0xe1f79b;const _0x591b64=document['getElementById'](_0x1d413f(0x4d8));_0x591b64[_0x1d413f(0x2dc)][_0x1d413f(0x5bf)]=_0x1d413f(0x3a6),document['getElementById']('confirmYes')['onclick']=()=>{const _0x272c63=_0x1d413f;_0x591b64[_0x272c63(0x2dc)][_0x272c63(0x5bf)]='none',_0x3d6ecd(!![]);},document[_0x1d413f(0x2aa)](_0x1d413f(0x5c6))[_0x1d413f(0x2f2)]=()=>{const _0x3cf34b=_0x1d413f;_0x591b64[_0x3cf34b(0x2dc)][_0x3cf34b(0x5bf)]=_0x3cf34b(0x4f9),_0x3d6ecd(![]);};});}function setDataCache(_0x48f3e2){const _0x528514=_0x149fc9;dbCache=_0x48f3e2,sessionStorage[_0x528514(0x432)](_0x528514(0x1fe),JSON[_0x528514(0x45b)](_0x48f3e2));}function setProjectsCache(_0x384cec){const _0x32b5d9=_0x149fc9;projectsCache=_0x384cec,sessionStorage[_0x32b5d9(0x432)]('sch_projs',JSON[_0x32b5d9(0x45b)](_0x384cec));}function setAllocationsCache(_0x336f7b){const _0x4f5774=_0x149fc9;allocationsCache=_0x336f7b,allocations=_0x336f7b,sessionStorage[_0x4f5774(0x432)](_0x4f5774(0x297),JSON[_0x4f5774(0x45b)](_0x336f7b));}function setPettyExpensesCache(_0x1db65f){const _0x4e46a2=_0x149fc9;pettyExpensesCache=_0x1db65f,pettyExpenses=_0x1db65f,sessionStorage[_0x4e46a2(0x432)]('sch_petty_expenses',JSON[_0x4e46a2(0x45b)](_0x1db65f));}function setPeriodExpensesCache(_0x2e5f6b){const _0x53d034=_0x149fc9;periodExpensesCache=_0x2e5f6b,periodExpenses=_0x2e5f6b,sessionStorage[_0x53d034(0x432)](_0x53d034(0x243),JSON[_0x53d034(0x45b)](_0x2e5f6b));}function getData(){const _0x49ceec=_0x149fc9;return!dbCache&&(dbCache=JSON['parse'](sessionStorage['getItem'](_0x49ceec(0x1fe))||'[]')),dbCache;}function getProjects(_0x5b181e=!![]){const _0x38dbc2=_0x149fc9;!projectsCache&&(projectsCache=JSON[_0x38dbc2(0x250)](sessionStorage['getItem'](_0x38dbc2(0x30d))||'[]'));if(!_0x5b181e)return projectsCache['filter'](_0x34485b=>!_0x34485b[_0x38dbc2(0x31b)]);return projectsCache;}async function checkLogin(_0xd30188){const _0xd52c68=_0x149fc9;_0xd30188&&_0xd30188[_0xd52c68(0x2a8)]===_0xd52c68(0x314)&&_0xd30188[_0xd52c68(0x2db)]();const _0x185a86=document[_0xd52c68(0x2aa)](_0xd52c68(0x384))[_0xd52c68(0x1f3)],_0x56721d=document[_0xd52c68(0x2aa)](_0xd52c68(0x55f))['value'];if(!_0x185a86){showToast(_0xd52c68(0x3eb)),document[_0xd52c68(0x2aa)](_0xd52c68(0x384))[_0xd52c68(0x33c)]();return;}if(_0x185a86==='Admin'){if(_0x56721d==='Bunny')userRole=_0xd52c68(0x49f);else{showToast(_0xd52c68(0x335)),document[_0xd52c68(0x2aa)](_0xd52c68(0x55f))['value']='',document['getElementById'](_0xd52c68(0x55f))[_0xd52c68(0x33c)]();return;}}else{if(_0x185a86===_0xd52c68(0x595)){if(_0x56721d===_0xd52c68(0x3a0))userRole='STAFF';else{showToast(_0xd52c68(0x335)),document[_0xd52c68(0x2aa)]('passInput')['value']='',document[_0xd52c68(0x2aa)]('passInput')[_0xd52c68(0x33c)]();return;}}else{if(_0x185a86===_0xd52c68(0x332)){if(_0x56721d===_0xd52c68(0x332))userRole=_0xd52c68(0x575);else{showToast('❌\x20වැරදි\x20මුරපදය!\x20කරුණාකර\x20නැවත\x20උත්සාහ\x20කරන්න'),document[_0xd52c68(0x2aa)](_0xd52c68(0x55f))[_0xd52c68(0x1f3)]='',document[_0xd52c68(0x2aa)]('passInput')[_0xd52c68(0x33c)]();return;}}else{showToast(_0xd52c68(0x46e));return;}}}document['getElementById']('login-overlay')[_0xd52c68(0x2dc)][_0xd52c68(0x5bf)]='none',showSec(_0xd52c68(0x4d1)),applyPermissions(),showToast('✅\x20'+_0x185a86+'\x20ලෙස\x20පද්ධතියට\x20ඇතුළු\x20විය!\x20දත්ත\x20ලබා\x20ගනිමින්\x20පවතී...'),fetchAllDataParallel()['then'](()=>{const _0x5590f6=_0xd52c68;refreshDashboard(),loadRecentTable(),renderPettyBook(),renderCodesList(),updateProjectSelects(),renderProjectList(),displaySavedPeriodSummaries(),showToast(_0x5590f6(0x30b));})[_0xd52c68(0x505)](_0x2b0fa4=>{const _0x4b0a71=_0xd52c68;console[_0x4b0a71(0x46f)](_0x4b0a71(0x43c),_0x2b0fa4),showToast(_0x4b0a71(0x538));}),setTimeout(()=>{initializeSelect2();},0x64),initialized=!![];}document[_0x149fc9(0x28c)](_0x149fc9(0x37b),function(){const _0xb60762=_0x149fc9;document['getElementById']('usernameSelect')['addEventListener'](_0xb60762(0x5bc),function(_0xaf969c){const _0x16318a=_0xb60762;_0xaf969c[_0x16318a(0x2a8)]===_0x16318a(0x314)&&(_0xaf969c['preventDefault'](),checkLogin());}),document[_0xb60762(0x2aa)](_0xb60762(0x55f))[_0xb60762(0x28c)](_0xb60762(0x5bc),function(_0x2442f1){const _0x3a296a=_0xb60762;_0x2442f1[_0x3a296a(0x2a8)]===_0x3a296a(0x314)&&(_0x2442f1['preventDefault'](),checkLogin());});const _0x16bc73=document[_0xb60762(0x4ea)](_0xb60762(0x3f3)),_0x1bfd8a=document[_0xb60762(0x440)](_0xb60762(0x35c)),_0x291e8a=document['querySelector'](_0xb60762(0x1fb)),_0x4246ae=document['querySelector'](_0xb60762(0x428));_0x16bc73[_0xb60762(0x4e8)]>0x0&&_0x16bc73[_0xb60762(0x1bd)](_0x65f822=>{const _0x52ec09=_0xb60762;_0x65f822['addEventListener'](_0x52ec09(0x4f4),function(){const _0x2bfd69=_0x52ec09;window[_0x2bfd69(0x4f5)]<=0x258&&(_0x1bfd8a[_0x2bfd69(0x342)]['remove'](_0x2bfd69(0x562)),_0x291e8a[_0x2bfd69(0x342)][_0x2bfd69(0x2a1)]('active'),_0x4246ae&&(_0x4246ae['className']=_0x2bfd69(0x381)));});}),window['addEventListener'](_0xb60762(0x4e2),function(){const _0x326abd=_0xb60762;if(window[_0x326abd(0x4f5)]>0x258){_0x1bfd8a[_0x326abd(0x342)]['remove'](_0x326abd(0x562));if(_0x291e8a)_0x291e8a[_0x326abd(0x342)][_0x326abd(0x2a1)](_0x326abd(0x562));if(_0x4246ae)_0x4246ae[_0x326abd(0x528)]=_0x326abd(0x381);}});});async function fetchAllDataParallel(){const _0x28db57=_0x149fc9;if(!navigator[_0x28db57(0x4af)])return;try{const _0x1f3ab1=[fetchRemoteData(),fetchRemoteProjects(),fetchRemoteAllocations(),fetchRemotePettyExpenses(),fetchRemotePeriodExpenses()],_0x31b041=await Promise[_0x28db57(0x21a)](_0x1f3ab1);_0x31b041[_0x28db57(0x1bd)]((_0x3eef60,_0x713b48)=>{const _0x355460=_0x28db57;_0x3eef60['status']===_0x355460(0x3d4)&&console[_0x355460(0x46f)](_0x355460(0x535)+_0x713b48+_0x355460(0x42d),_0x3eef60['reason']);});}catch(_0x2ad070){console['error'](_0x28db57(0x2a4),_0x2ad070);}}async function fetchRemotePeriodSummaries(){const _0x1928bc=_0x149fc9;try{const _0x4f336c=await fetch(SCRIPT_URL+_0x1928bc(0x24b)+Date['now']()),_0x47d0ec=await _0x4f336c[_0x1928bc(0x4b8)]();return localStorage[_0x1928bc(0x432)](_0x1928bc(0x514),JSON[_0x1928bc(0x45b)](_0x47d0ec)),_0x47d0ec;}catch(_0x4cff60){return console[_0x1928bc(0x46f)](_0x1928bc(0x298),_0x4cff60),[];}}async function saveBatchTransactions(_0x2754ab){const _0x23e9f6=_0x149fc9;if(_0x2754ab[_0x23e9f6(0x4e8)]===0x0)return!![];let _0x373770=0x0;for(let _0x32582f of _0x2754ab){try{const _0x217d4a={..._0x32582f},_0x7820e9=await fetch(SCRIPT_URL,{'method':_0x23e9f6(0x3b6),'body':JSON['stringify'](_0x217d4a)}),_0x35b2aa=await _0x7820e9['json']();_0x35b2aa[_0x23e9f6(0x3a2)]===_0x23e9f6(0x561)?_0x373770++:console[_0x23e9f6(0x46f)]('Individual\x20save\x20failed:',_0x35b2aa);}catch(_0x68c2f1){console[_0x23e9f6(0x46f)](_0x23e9f6(0x59d),_0x32582f,_0x68c2f1);}}return _0x373770===_0x2754ab[_0x23e9f6(0x4e8)];}async function syncOfflineUpdates(){const _0x409fb9=_0x149fc9,_0x248c16=JSON['parse'](sessionStorage['getItem'](_0x409fb9(0x540))||'[]');if(_0x248c16['length']===0x0||!navigator[_0x409fb9(0x4af)])return;showToast(_0x409fb9(0x1c4)+_0x248c16[_0x409fb9(0x4e8)]+_0x409fb9(0x41d));const _0x4eef0a=await saveBatchTransactions(_0x248c16);_0x4eef0a?(sessionStorage['setItem'](_0x409fb9(0x540),'[]'),showToast(_0x409fb9(0x52d))):showToast(_0x409fb9(0x22a));}async function manualRefresh(){const _0x35d6c9=_0x149fc9;if(isLoading)return;toggleLoading(!![]),isLoading=!![];try{await syncOfflineUpdates(),await fetchAllDataParallel(),refreshDashboard(),loadRecentTable(),renderPettyBook(),showToast(_0x35d6c9(0x4fe));}catch(_0x55613b){console[_0x35d6c9(0x46f)](_0x35d6c9(0x4ec),_0x55613b),showToast('⚠️\x20දත්ත\x20අලුත්\x20කිරීමේ\x20දෝෂයක්');}finally{toggleLoading(![]),isLoading=![];}}function editTransaction(_0xbf3cf1){const _0x40f552=_0x149fc9;if(userRole!==_0x40f552(0x49f)){showToast(_0x40f552(0x5a1));return;}const _0x3c8d17=getData(),_0x21297e=_0x3c8d17[_0x40f552(0x2be)](_0x4cd44f=>_0x4cd44f['id']===_0xbf3cf1);if(!_0x21297e)return;showSec('entry');if(_0x21297e[_0x40f552(0x515)]==='IN'){document[_0x40f552(0x2aa)](_0x40f552(0x3c8))[_0x40f552(0x1f3)]=_0x21297e['id'],document[_0x40f552(0x2aa)](_0x40f552(0x1c5))[_0x40f552(0x1f3)]=_0x21297e[_0x40f552(0x2a9)][_0x40f552(0x3ec)]('T')[0x0];const {fromRef:_0x2027b1,toRef:_0x2fe9bf}=parseReceiptRange(_0x21297e[_0x40f552(0x5b7)]);document[_0x40f552(0x2aa)](_0x40f552(0x41f))[_0x40f552(0x1f3)]=_0x2027b1,document[_0x40f552(0x2aa)](_0x40f552(0x25f))[_0x40f552(0x1f3)]=_0x2fe9bf||'',$('#inCodeSelect')[_0x40f552(0x2dd)](_0x21297e['code'])[_0x40f552(0x30e)]('change'),document[_0x40f552(0x2aa)](_0x40f552(0x553))[_0x40f552(0x1f3)]=_0x21297e['amt'][_0x40f552(0x313)](0x2),$(_0x40f552(0x2e2))[_0x40f552(0x2dd)](_0x21297e[_0x40f552(0x1e3)])['trigger']('change'),document[_0x40f552(0x2aa)]('inDesc')[_0x40f552(0x1f3)]=_0x21297e['desc'],document[_0x40f552(0x2aa)]('btn-save-in')[_0x40f552(0x473)]='යාවත්කාලීන\x20කරන්න\x20(Update)',document[_0x40f552(0x2aa)](_0x40f552(0x2fb))['value']='';}else document['getElementById']('edit-id-ex')[_0x40f552(0x1f3)]=_0x21297e['id'],document[_0x40f552(0x2aa)](_0x40f552(0x447))[_0x40f552(0x1f3)]=_0x21297e[_0x40f552(0x2a9)][_0x40f552(0x3ec)]('T')[0x0],document[_0x40f552(0x2aa)](_0x40f552(0x1dd))[_0x40f552(0x1f3)]=_0x21297e[_0x40f552(0x537)],document[_0x40f552(0x2aa)]('exRef')[_0x40f552(0x1f3)]=_0x21297e['ref'],document[_0x40f552(0x2aa)]('exAmt')[_0x40f552(0x1f3)]=_0x21297e[_0x40f552(0x2f6)][_0x40f552(0x313)](0x2),$('#exCodeSelect')[_0x40f552(0x2dd)](_0x21297e[_0x40f552(0x3f6)])[_0x40f552(0x30e)](_0x40f552(0x2b2)),$(_0x40f552(0x24f))[_0x40f552(0x2dd)](_0x21297e['source'])[_0x40f552(0x30e)](_0x40f552(0x2b2)),$(_0x40f552(0x252))[_0x40f552(0x2dd)](_0x21297e['proj'])[_0x40f552(0x30e)]('change'),document[_0x40f552(0x2aa)](_0x40f552(0x1c3))[_0x40f552(0x1f3)]=_0x21297e['desc'],document[_0x40f552(0x2aa)](_0x40f552(0x3a3))[_0x40f552(0x473)]='යාවත්කාලීන\x20කරන්න\x20(Update)',document['getElementById'](_0x40f552(0x3c8))['value']='';window[_0x40f552(0x300)]({'top':0x0,'behavior':_0x40f552(0x23b)});}async function fetchRemoteData(){const _0x3bd91c=_0x149fc9;try{const _0x45ef56=await fetch(SCRIPT_URL+_0x3bd91c(0x56c)+Date[_0x3bd91c(0x3ea)]()),_0x24ddfd=await _0x45ef56[_0x3bd91c(0x4b8)]();setDataCache(_0x24ddfd);let _0x2ac47e={};return _0x24ddfd[_0x3bd91c(0x1bd)](_0x4903cc=>{const _0x326afb=_0x3bd91c;_0x4903cc['type']==='EX'&&_0x4903cc[_0x326afb(0x5b7)]&&_0x4903cc[_0x326afb(0x5b7)][_0x326afb(0x42a)]()!==''&&(_0x2ac47e[_0x4903cc['id']]=_0x4903cc['status']===!![]?'Cleared':_0x326afb(0x293));}),sessionStorage[_0x3bd91c(0x432)]('sch_cleared',JSON[_0x3bd91c(0x45b)](_0x2ac47e)),clearedStatus=_0x2ac47e,_0x24ddfd;}catch(_0x2b6b9a){return console[_0x3bd91c(0x46f)](_0x3bd91c(0x37d),_0x2b6b9a),getData();}}async function fetchRemoteProjects(){const _0x160dff=_0x149fc9;try{const _0xa2d371=await fetch(SCRIPT_URL+_0x160dff(0x294)+Date[_0x160dff(0x3ea)]()),_0x324ec8=await _0xa2d371[_0x160dff(0x4b8)](),_0x126150=_0x324ec8[_0x160dff(0x54f)](_0x2c8d6=>({..._0x2c8d6,'completed':_0x2c8d6[_0x160dff(0x31b)]||![]}));setProjectsCache(_0x126150);}catch(_0x2ffca3){console[_0x160dff(0x46f)](_0x160dff(0x526),_0x2ffca3);}}async function fetchRemoteAllocations(){const _0x5e3094=_0x149fc9;try{const _0xff8546=await fetch(SCRIPT_URL+'?action=read_allocations&t='+Date[_0x5e3094(0x3ea)]()),_0x5e6f8c=await _0xff8546[_0x5e3094(0x4b8)]();let _0x3e0407={};_0x5e6f8c[_0x5e3094(0x1bd)](_0x20e463=>{const _0x22fb08=_0x5e3094;_0x20e463[_0x22fb08(0x3f6)]&&(_0x3e0407[_0x20e463[_0x22fb08(0x3f6)]]=_0x20e463[_0x22fb08(0x3e5)],_0x20e463[_0x22fb08(0x515)]&&(_0x3e0407[_0x20e463[_0x22fb08(0x3f6)]+'_type']=_0x20e463[_0x22fb08(0x515)]));}),setAllocationsCache(_0x3e0407);}catch(_0x4d12e6){console[_0x5e3094(0x46f)](_0x5e3094(0x269),_0x4d12e6);}}async function fetchRemotePettyExpenses(){const _0x406f2f=_0x149fc9;try{const _0x11f495=await fetch(SCRIPT_URL+_0x406f2f(0x4b3)+Date['now']()),_0x57a1b4=await _0x11f495['json']();setPettyExpensesCache(_0x57a1b4);}catch(_0x9fc589){console[_0x406f2f(0x46f)]('Remote\x20petty\x20expenses\x20fetch\x20error:',_0x9fc589),pettyExpenses=JSON[_0x406f2f(0x250)](sessionStorage['getItem']('sch_petty_expenses')||'[]');}}async function fetchRemotePeriodExpenses(){const _0x1ee592=_0x149fc9;try{const _0x2d9bdb=await fetch(SCRIPT_URL+_0x1ee592(0x43e)+Date[_0x1ee592(0x3ea)]()),_0x476646=await _0x2d9bdb[_0x1ee592(0x4b8)]();setPeriodExpensesCache(_0x476646);}catch(_0x35b0a7){console[_0x1ee592(0x46f)](_0x1ee592(0x2e6),_0x35b0a7),periodExpenses=JSON[_0x1ee592(0x250)](sessionStorage[_0x1ee592(0x4d0)](_0x1ee592(0x243))||'[]');}}function getAllExpenseDataForReports(){const _0x3f7fc3=_0x149fc9,_0x4cea9c=getData(),_0x528d3d=periodExpenses[_0x3f7fc3(0x54f)](_0x2f9ca1=>({..._0x2f9ca1,'type':'EX','code':_0x2f9ca1['category'],'source':_0x2f9ca1[_0x3f7fc3(0x320)]||'PC','proj':'','ref':'','vouch':_0x2f9ca1[_0x3f7fc3(0x469)],'status':!![],'isOp':![]}));return[..._0x4cea9c,..._0x528d3d];}function updatePeriodTotal(){const _0x5d808f=_0x149fc9,_0x240f0c=parseAmount(document[_0x5d808f(0x2aa)]('manualREx1')[_0x5d808f(0x1f3)]),_0x22ac12=parseAmount(document[_0x5d808f(0x2aa)]('manualREx5')[_0x5d808f(0x1f3)]),_0x1929f8=parseAmount(document[_0x5d808f(0x2aa)](_0x5d808f(0x3c2))['value']),_0x5025c5=parseAmount(document[_0x5d808f(0x2aa)]('manualREx7')['value']),_0x383e44=parseAmount(document[_0x5d808f(0x2aa)]('manualREx3')[_0x5d808f(0x1f3)]),_0x37b422=_0x240f0c+_0x22ac12+_0x1929f8+_0x5025c5+_0x383e44;document[_0x5d808f(0x2aa)]('manualTotal')['value']=_0x37b422[_0x5d808f(0x313)](0x2);}function savePeriodCategorySummary(){const _0x2cf74f=_0x149fc9;if(userRole!==_0x2cf74f(0x49f)){showToast('❌\x20මෙම\x20ක්‍රියාව\x20සඳහා\x20අවසර\x20ඇත්තේ\x20පරිපාලකට\x20පමණි!');return;}const _0xdb2f23={'date':new Date()[_0x2cf74f(0x38a)]()[_0x2cf74f(0x3ec)]('T')[0x0],'REx1':parseAmount(document['getElementById'](_0x2cf74f(0x4e0))[_0x2cf74f(0x1f3)]),'REx5':parseAmount(document[_0x2cf74f(0x2aa)](_0x2cf74f(0x54d))[_0x2cf74f(0x1f3)]),'REx6':parseAmount(document[_0x2cf74f(0x2aa)]('manualREx6')[_0x2cf74f(0x1f3)]),'REx7':parseAmount(document[_0x2cf74f(0x2aa)](_0x2cf74f(0x219))[_0x2cf74f(0x1f3)]),'REx3':parseAmount(document[_0x2cf74f(0x2aa)](_0x2cf74f(0x2ab))[_0x2cf74f(0x1f3)]),'total':parseAmount(document['getElementById'](_0x2cf74f(0x52e))[_0x2cf74f(0x1f3)])};let _0x143f8f=JSON[_0x2cf74f(0x250)](localStorage[_0x2cf74f(0x4d0)](_0x2cf74f(0x449))||'[]');_0x143f8f[_0x2cf74f(0x495)]({..._0xdb2f23,'timestamp':new Date()[_0x2cf74f(0x38a)](),'id':Date[_0x2cf74f(0x3ea)]()}),_0x143f8f[_0x2cf74f(0x4e8)]>0xc&&(_0x143f8f=_0x143f8f[_0x2cf74f(0x1d5)](-0xc)),localStorage['setItem']('sch_period_summaries',JSON[_0x2cf74f(0x45b)](_0x143f8f)),showToast(_0x2cf74f(0x42b)),displaySavedPeriodSummaries();}function viewPeriodSummaryDetails(_0x13be43){const _0x5f3dc7=_0x149fc9,_0x1cc8b1=JSON[_0x5f3dc7(0x250)](localStorage[_0x5f3dc7(0x4d0)](_0x5f3dc7(0x449))||'[]'),_0x1d518f=_0x1cc8b1[_0x5f3dc7(0x2be)](_0x32e7b6=>_0x32e7b6['id']===_0x13be43);if(!_0x1d518f){showToast('⚠️\x20සාරාංශය\x20හමු\x20නොවීය!');return;}const _0x15bd18=periodExpenses['filter'](_0x48671f=>_0x48671f[_0x5f3dc7(0x2a9)]===_0x1d518f['date']&&['REx1',_0x5f3dc7(0x4f6),_0x5f3dc7(0x1ed),_0x5f3dc7(0x441),_0x5f3dc7(0x237)]['includes'](_0x48671f['category']));let _0x1770a6=_0x5f3dc7(0x2f1)+_0x1d518f[_0x5f3dc7(0x2a9)]+_0x5f3dc7(0x55c)+_0x1d518f[_0x5f3dc7(0x1cd)][_0x5f3dc7(0x313)](0x2)+'</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><td>REx5\x20(උපකරණ\x20නඩත්තු):</td><td\x20style=\x22text-align:right;\x20font-weight:bold;\x22>රු.\x20'+_0x1d518f[_0x5f3dc7(0x4f6)][_0x5f3dc7(0x313)](0x2)+_0x5f3dc7(0x3e1)+_0x1d518f[_0x5f3dc7(0x1ed)]['toFixed'](0x2)+'</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><td>REx7\x20(පවිත්‍රතා):</td><td\x20style=\x22text-align:right;\x20font-weight:bold;\x22>රු.\x20'+_0x1d518f[_0x5f3dc7(0x441)][_0x5f3dc7(0x313)](0x2)+_0x5f3dc7(0x3a5)+_0x1d518f[_0x5f3dc7(0x237)][_0x5f3dc7(0x313)](0x2)+_0x5f3dc7(0x53c)+_0x1d518f['total'][_0x5f3dc7(0x313)](0x2)+'</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#fff3e0;\x20padding:\x2015px;\x20border-radius:\x208px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h5\x20style=\x22margin:\x200\x200\x2010px\x200;\x20color:\x20#e65100;\x22>අදාළ\x20ගනුදෙනු</h5>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x15bd18[_0x5f3dc7(0x4e8)]>0x0?_0x5f3dc7(0x416)+_0x15bd18[_0x5f3dc7(0x54f)](_0x182d03=>_0x5f3dc7(0x1d7)+_0x182d03[_0x5f3dc7(0x2b9)]+_0x5f3dc7(0x409)+_0x182d03[_0x5f3dc7(0x437)][_0x5f3dc7(0x1f6)](0x0,0x14)+_0x5f3dc7(0x3fa)+(_0x182d03[_0x5f3dc7(0x469)]||'-')+_0x5f3dc7(0x571)+_0x182d03[_0x5f3dc7(0x2f6)][_0x5f3dc7(0x313)](0x2)+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')[_0x5f3dc7(0x204)]('')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20':_0x5f3dc7(0x552))+_0x5f3dc7(0x284)+_0x1d518f[_0x5f3dc7(0x24c)]['toFixed'](0x2)+'\x20කි.\x20මෙම\x20වියදම්\x20මුදල්\x20පොතට\x20ඇතුළත්\x20නොකර,\x20අදාළ\x20REx\x20ගෙවීම්\x20කේත\x20වලට\x20පමණක්\x20එකතු\x20කර\x20ඇත.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22margin-top:\x2020px;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22btn\x22\x20style=\x22background:\x20#95a5a6;\x20color:\x20white;\x22\x20onclick=\x22closePeriodSummaryDetails()\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-times\x22></i>\x20වසන්න\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22btn\x22\x20style=\x22background:\x20var(--deep-blue);\x20color:\x20white;\x22\x20onclick=\x22printPeriodSummaryDetails('+_0x13be43+')\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-print\x22></i>\x20මුද්‍රණය\x20කරන්න\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';const _0x3021a1=document[_0x5f3dc7(0x1f1)]('div');_0x3021a1['id']=_0x5f3dc7(0x29a),_0x3021a1[_0x5f3dc7(0x2dc)]['cssText']=_0x5f3dc7(0x551),_0x3021a1[_0x5f3dc7(0x2bf)]=_0x5f3dc7(0x29b)+_0x1770a6+_0x5f3dc7(0x5a7),document[_0x5f3dc7(0x556)][_0x5f3dc7(0x4f7)](_0x3021a1);}function closePeriodSummaryDetails(){const _0x3cf8f1=_0x149fc9,_0x469ca6=document[_0x3cf8f1(0x2aa)](_0x3cf8f1(0x29a));_0x469ca6&&_0x469ca6[_0x3cf8f1(0x2a1)]();}function printPeriodSummaryDetails(_0x16044e){const _0x3e2858=_0x149fc9,_0x3ff59c=JSON[_0x3e2858(0x250)](localStorage['getItem'](_0x3e2858(0x449))||'[]'),_0xd511ea=_0x3ff59c[_0x3e2858(0x2be)](_0x467ea2=>_0x467ea2['id']===_0x16044e);if(!_0xd511ea){showToast(_0x3e2858(0x546));return;}const _0x342b26=periodExpenses[_0x3e2858(0x52f)](_0x2e4e46=>_0x2e4e46[_0x3e2858(0x2a9)]===_0xd511ea['date']&&[_0x3e2858(0x1cd),_0x3e2858(0x4f6),_0x3e2858(0x1ed),_0x3e2858(0x441),_0x3e2858(0x237)][_0x3e2858(0x578)](_0x2e4e46[_0x3e2858(0x2b9)])),_0x1fb0b9=window[_0x3e2858(0x2ef)]('',_0x3e2858(0x225));_0x1fb0b9[_0x3e2858(0x36c)][_0x3e2858(0x33a)](_0x3e2858(0x286)+_0xd511ea['date']+_0x3e2858(0x4c6)+_0xd511ea[_0x3e2858(0x1cd)][_0x3e2858(0x313)](0x2)+'</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><td>උපකරණ\x20නඩත්තු</td><td>REx5</td><td\x20style=\x22text-align:right;\x22>'+_0xd511ea['REx5'][_0x3e2858(0x313)](0x2)+_0x3e2858(0x4f0)+_0xd511ea[_0x3e2858(0x1ed)]['toFixed'](0x2)+_0x3e2858(0x395)+_0xd511ea[_0x3e2858(0x441)][_0x3e2858(0x313)](0x2)+_0x3e2858(0x327)+_0xd511ea[_0x3e2858(0x237)][_0x3e2858(0x313)](0x2)+_0x3e2858(0x5c2)+_0xd511ea[_0x3e2858(0x24c)]['toFixed'](0x2)+_0x3e2858(0x479)+(_0x342b26['length']>0x0?_0x342b26['map'](_0x5d201a=>_0x3e2858(0x267)+_0x5d201a[_0x3e2858(0x2b9)]+_0x3e2858(0x5c7)+_0x5d201a[_0x3e2858(0x437)]+_0x3e2858(0x5c7)+(_0x5d201a['voucher']||'-')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>'+_0x5d201a[_0x3e2858(0x2f6)][_0x3e2858(0x313)](0x2)+_0x3e2858(0x3d5))[_0x3e2858(0x204)](''):_0x3e2858(0x1f7))+_0x3e2858(0x588)+new Date()[_0x3e2858(0x2d6)](_0x3e2858(0x599))+_0x3e2858(0x4de)),_0x1fb0b9[_0x3e2858(0x36c)][_0x3e2858(0x256)](),_0x1fb0b9[_0x3e2858(0x47e)]();}function printPeriodSummary(){const _0x4fd994=_0x149fc9,_0x1e715d=parseAmount(document[_0x4fd994(0x2aa)](_0x4fd994(0x4e0))[_0x4fd994(0x1f3)]),_0x24ff36=parseAmount(document['getElementById'](_0x4fd994(0x54d))[_0x4fd994(0x1f3)]),_0x1507b5=parseAmount(document['getElementById'](_0x4fd994(0x3c2))[_0x4fd994(0x1f3)]),_0x2b0fc5=parseAmount(document[_0x4fd994(0x2aa)](_0x4fd994(0x219))[_0x4fd994(0x1f3)]),_0x58efe4=parseAmount(document['getElementById']('manualREx3')[_0x4fd994(0x1f3)]),_0x520f5f=parseAmount(document[_0x4fd994(0x2aa)](_0x4fd994(0x52e))[_0x4fd994(0x1f3)]),_0x25a121=window[_0x4fd994(0x2ef)]('',_0x4fd994(0x225));_0x25a121['document'][_0x4fd994(0x33a)](_0x4fd994(0x57e)+new Date()[_0x4fd994(0x24e)](_0x4fd994(0x599))+_0x4fd994(0x539)+_0x1e715d[_0x4fd994(0x313)](0x2)+_0x4fd994(0x580)+_0x24ff36[_0x4fd994(0x313)](0x2)+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>සුළු\x20නඩත්තු</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>REx6</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>'+_0x1507b5[_0x4fd994(0x313)](0x2)+_0x4fd994(0x4e1)+_0x2b0fc5[_0x4fd994(0x313)](0x2)+_0x4fd994(0x467)+_0x58efe4[_0x4fd994(0x313)](0x2)+_0x4fd994(0x5cb)+_0x520f5f[_0x4fd994(0x313)](0x2)+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22footer\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>භාණ්ඩාගාරික</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22margin-top:\x2020px;\x22>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>විදුහල්පති</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22text-align:center;\x20margin-top:\x2020px;\x20color:\x20#666;\x20font-size:\x2012px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20මුද්‍රණය\x20කළ\x20දිනය:\x20'+new Date()[_0x4fd994(0x2d6)]('si-LK')+_0x4fd994(0x4de)),_0x25a121[_0x4fd994(0x36c)][_0x4fd994(0x256)](),_0x25a121[_0x4fd994(0x47e)]();}async function saveManualPeriodExpenses(){const _0x1ad015=_0x149fc9;if(userRole!==_0x1ad015(0x49f)){showToast(_0x1ad015(0x1d1));return;}const _0x47dc44=JSON[_0x1ad015(0x250)](sessionStorage['getItem'](_0x1ad015(0x478))||'[]'),_0x1b1275=_0x47dc44[_0x1ad015(0x52f)](_0x39b748=>!_0x39b748[_0x1ad015(0x34b)]);if(_0x1b1275[_0x1ad015(0x4e8)]===0x0){showToast('⚠️\x20මාරු\x20කිරීමට\x20අළුත්\x20සුළු\x20මුදල්\x20වියදම්\x20නැත!');return;}const _0x151e9f={'REx1':0x0,'REx5':0x0,'REx6':0x0,'REx7':0x0,'REx3':0x0};_0x1b1275[_0x1ad015(0x1bd)](_0x359805=>{const _0x259b2=_0x1ad015;_0x151e9f[_0x259b2(0x45c)](_0x359805[_0x259b2(0x2b9)])&&(_0x151e9f[_0x359805[_0x259b2(0x2b9)]]+=_0x359805['amt']);});const _0x26e634=Object[_0x1ad015(0x2ee)](_0x151e9f)[_0x1ad015(0x513)]((_0xe9fc0,_0xb77fc)=>_0xe9fc0+_0xb77fc,0x0);if(_0x26e634===0x0){showToast(_0x1ad015(0x531));return;}const _0x2eb026=new Date()[_0x1ad015(0x38a)]()[_0x1ad015(0x3ec)]('T')[0x0],_0x4f4708=_0x1b1275[_0x1ad015(0x20c)]((_0x3e98a9,_0x19d227)=>new Date(_0x3e98a9[_0x1ad015(0x2a9)])-new Date(_0x19d227[_0x1ad015(0x2a9)]))[0x0],_0x5dec77=_0x4f4708[_0x1ad015(0x2a9)],_0x34ae81=getData(),_0xc602ea=_0x34ae81['filter'](_0x3f41f6=>_0x3f41f6[_0x1ad015(0x515)]==='EX'&&_0x3f41f6[_0x1ad015(0x3f6)]==='PC'&&_0x3f41f6[_0x1ad015(0x437)][_0x1ad015(0x578)](_0x1ad015(0x5ac)))[_0x1ad015(0x20c)]((_0x8c3ef,_0x208845)=>new Date(_0x208845[_0x1ad015(0x2a9)])-new Date(_0x8c3ef[_0x1ad015(0x2a9)]))[0x0];let _0x3ca8c9=_0x5dec77;_0xc602ea&&new Date(_0xc602ea[_0x1ad015(0x2a9)])>new Date(_0x5dec77)&&(_0x3ca8c9=_0xc602ea[_0x1ad015(0x2a9)]);const _0x3a9162=_0x1b1275[_0x1ad015(0x20c)]((_0x3b0a15,_0x1ebf8b)=>new Date(_0x1ebf8b[_0x1ad015(0x2a9)])-new Date(_0x3b0a15[_0x1ad015(0x2a9)]))[0x0],_0x55ff78=_0x3a9162[_0x1ad015(0x2a9)]>_0x2eb026?_0x3a9162['date']:_0x2eb026,_0x15153c=_0x3ca8c9===_0x55ff78?_0x3ca8c9+_0x1ad015(0x411):_0x3ca8c9+'\x20සිට\x20'+_0x55ff78+'\x20දක්වා',_0x54d915=_0x1ad015(0x28f)+(_0x1ad015(0x2cc)+_0x15153c+'\x0a')+(_0x1ad015(0x1e6)+_0x1b1275[_0x1ad015(0x4e8)]+'\x0a\x0a')+(_0x1ad015(0x3fd)+_0x151e9f[_0x1ad015(0x1cd)][_0x1ad015(0x313)](0x2)+'\x0a')+(_0x1ad015(0x1cb)+_0x151e9f['REx5'][_0x1ad015(0x313)](0x2)+'\x0a')+(_0x1ad015(0x2a6)+_0x151e9f[_0x1ad015(0x1ed)][_0x1ad015(0x313)](0x2)+'\x0a')+(_0x1ad015(0x3e7)+_0x151e9f[_0x1ad015(0x441)][_0x1ad015(0x313)](0x2)+'\x0a')+(_0x1ad015(0x378)+_0x151e9f[_0x1ad015(0x237)][_0x1ad015(0x313)](0x2)+'\x0a\x0a')+(_0x1ad015(0x559)+_0x26e634[_0x1ad015(0x313)](0x2)+_0x1ad015(0x236))+_0x1ad015(0x3c4),_0xfa5b8e=await showConfirmDialog(_0x1ad015(0x415),_0x54d915,_0x1ad015(0x5b5),'අවලංගු\x20කරන්න');if(!_0xfa5b8e)return;toggleLoading(!![]);try{const _0x2aebc4=[],_0x29a1ec=Date['now']();for(const [_0x86e305,_0x491b42]of Object[_0x1ad015(0x523)](_0x151e9f)){if(_0x491b42<=0x0)continue;const _0x3cb78b=_0x29a1ec+Math[_0x1ad015(0x21b)](Math[_0x1ad015(0x52a)]()*0x3e8)+(_0x86e305===_0x1ad015(0x1cd)?0x64:_0x86e305==='REx5'?0xc8:_0x86e305===_0x1ad015(0x1ed)?0x12c:_0x86e305==='REx7'?0x190:0x1f4),_0x3287f7={'action':'save_period_expense','id':_0x3cb78b,'date':_0x2eb026,'desc':'කාලපරිච්ඡේද\x20සාරාංශය\x20-\x20'+getCategoryDescription(_0x86e305)+'\x20('+_0x15153c+')','category':_0x86e305,'voucher':_0x1ad015(0x358)+new Date()[_0x1ad015(0x1fd)]()+(new Date()[_0x1ad015(0x285)]()+0x1)[_0x1ad015(0x3e3)]()[_0x1ad015(0x5a2)](0x2,'0')+'-'+_0x86e305,'amt':_0x491b42,'source':'PC','periodStart':_0x3ca8c9,'periodEnd':_0x55ff78,'clientId':generateUUID()};_0x2aebc4[_0x1ad015(0x495)](_0x3287f7);}const _0x3a055c=[];let _0x598357=0x0;for(const _0x4a50e3 of _0x2aebc4){try{if(!navigator[_0x1ad015(0x4af)])addToOfflineQueue(_0x1ad015(0x1ec),_0x4a50e3),periodExpenses['push']({..._0x4a50e3,'offline':!![]}),_0x598357++,_0x3a055c[_0x1ad015(0x495)]({'id':_0x4a50e3['id'],'success':!![]});else{const _0x264469=await fetch(SCRIPT_URL,{'method':_0x1ad015(0x3b6),'body':JSON[_0x1ad015(0x45b)](_0x4a50e3)}),_0x5a2e20=await _0x264469[_0x1ad015(0x4b8)]();_0x5a2e20[_0x1ad015(0x3a2)]===_0x1ad015(0x561)?(_0x598357++,_0x3a055c[_0x1ad015(0x495)]({'id':_0x4a50e3['id'],'success':!![]}),periodExpenses[_0x1ad015(0x495)](_0x4a50e3)):(_0x3a055c['push']({'id':_0x4a50e3['id'],'success':![],'error':_0x5a2e20[_0x1ad015(0x40d)]}),console[_0x1ad015(0x46f)](_0x1ad015(0x308),_0x5a2e20));}}catch(_0x3b926b){_0x3a055c[_0x1ad015(0x495)]({'id':_0x4a50e3['id'],'success':![],'error':_0x3b926b[_0x1ad015(0x40d)]}),console[_0x1ad015(0x46f)](_0x1ad015(0x52b),_0x3b926b);}}setPeriodExpensesCache(periodExpenses);if(_0x598357>0x0){const _0x148c25=await markExpensesAsTransferred(_0x1b1275,_0x47dc44);try{const _0xb9d31f={'action':_0x1ad015(0x3ad),'date':_0x2eb026,'periodName':_0x15153c,'totalAmount':_0x26e634,'startDate':_0x3ca8c9,'endDate':_0x55ff78,'transactionCount':_0x1b1275[_0x1ad015(0x4e8)],'categoryBreakdown':{'REx1':_0x151e9f['REx1'],'REx5':_0x151e9f[_0x1ad015(0x4f6)],'REx6':_0x151e9f[_0x1ad015(0x1ed)],'REx7':_0x151e9f['REx7'],'REx3':_0x151e9f[_0x1ad015(0x237)]},'clientId':generateUUID()};!navigator[_0x1ad015(0x4af)]?addToOfflineQueue(_0x1ad015(0x3ad),_0xb9d31f):await fetch(SCRIPT_URL,{'method':_0x1ad015(0x3b6),'body':JSON[_0x1ad015(0x45b)](_0xb9d31f)})[_0x1ad015(0x505)](_0x270cb3=>console[_0x1ad015(0x30a)](_0x1ad015(0x570),_0x270cb3));}catch(_0x562b8d){console[_0x1ad015(0x46f)](_0x1ad015(0x5c5),_0x562b8d);}const _0x583e21={'date':_0x2eb026,'periodName':_0x15153c,'startDate':_0x3ca8c9,'endDate':_0x55ff78,'REx1':_0x151e9f[_0x1ad015(0x1cd)],'REx5':_0x151e9f[_0x1ad015(0x4f6)],'REx6':_0x151e9f['REx6'],'REx7':_0x151e9f[_0x1ad015(0x441)],'REx3':_0x151e9f[_0x1ad015(0x237)],'total':_0x26e634,'transactionCount':_0x1b1275[_0x1ad015(0x4e8)],'timestamp':new Date()[_0x1ad015(0x38a)](),'id':Date['now']()};let _0x57508c=JSON[_0x1ad015(0x250)](localStorage[_0x1ad015(0x4d0)]('sch_period_summaries')||'[]');_0x57508c['push'](_0x583e21);_0x57508c[_0x1ad015(0x4e8)]>0xc&&(_0x57508c=_0x57508c['slice'](-0xc));localStorage[_0x1ad015(0x432)]('sch_period_summaries',JSON[_0x1ad015(0x45b)](_0x57508c));const _0x5c1d1f=_0x2aebc4['length']-_0x598357;let _0x5d5e77=_0x1ad015(0x206)+_0x598357+_0x1ad015(0x22c);_0x5c1d1f>0x0&&(_0x5d5e77+='\x0a⚠️\x20ගනුදෙනු\x20'+_0x5c1d1f+_0x1ad015(0x490)),_0x148c25[_0x1ad015(0x20a)]>0x0&&(_0x5d5e77+=_0x1ad015(0x4ac)+_0x148c25[_0x1ad015(0x20a)]+'ක්\x20\x27Transferred\x27\x20ලෙස\x20සලකුණු\x20කිරීමට\x20නොහැකි\x20විය.'),showToast(_0x5d5e77);}else{let _0x413cdd=_0x3a055c['filter'](_0xb67a1c=>!_0xb67a1c[_0x1ad015(0x561)])[_0x1ad015(0x54f)](_0x528b85=>_0x528b85[_0x1ad015(0x46f)])[_0x1ad015(0x204)](',\x20');showToast(_0x1ad015(0x4c9)+(_0x413cdd?_0x1ad015(0x2fc)+_0x413cdd:''));}renderPettyBook(),refreshDashboard(),displaySavedPeriodSummaries();}catch(_0x1994af){console[_0x1ad015(0x46f)](_0x1ad015(0x359),_0x1994af),showToast(_0x1ad015(0x393)+_0x1994af[_0x1ad015(0x40d)]);}finally{toggleLoading(![]);}}async function markExpensesAsTransferred(_0x5d328b,_0x3ac809){const _0x400c7e=_0x149fc9,_0x9b6583={'success':0x0,'failed':0x0,'details':[]};for(let _0x4b6f26 of _0x5d328b){try{const _0x495d70={'action':_0x400c7e(0x398),'id':_0x4b6f26['id'],'transferred':!![],'clientId':generateUUID()};if(navigator['onLine']){const _0x3cc0eb=await fetch(SCRIPT_URL,{'method':_0x400c7e(0x3b6),'body':JSON['stringify'](_0x495d70)}),_0x7553c1=await _0x3cc0eb[_0x400c7e(0x4b8)]();if(_0x7553c1[_0x400c7e(0x3a2)]===_0x400c7e(0x561)){_0x9b6583[_0x400c7e(0x561)]++;const _0x9de531=_0x3ac809[_0x400c7e(0x3a1)](_0x3897bd=>_0x3897bd['id']===_0x4b6f26['id']);_0x9de531!==-0x1&&(_0x3ac809[_0x9de531]['transferred']=!![]);}else _0x9b6583[_0x400c7e(0x20a)]++,_0x9b6583[_0x400c7e(0x445)]['push']({'id':_0x4b6f26['id'],'error':_0x7553c1[_0x400c7e(0x40d)]});}else{addToOfflineQueue('mark_expense_transferred',_0x495d70);const _0x11e3e3=_0x3ac809[_0x400c7e(0x3a1)](_0x35db83=>_0x35db83['id']===_0x4b6f26['id']);_0x11e3e3!==-0x1&&(_0x3ac809[_0x11e3e3][_0x400c7e(0x34b)]=!![]),_0x9b6583[_0x400c7e(0x561)]++;}}catch(_0x17d5c7){_0x9b6583[_0x400c7e(0x20a)]++,_0x9b6583['details'][_0x400c7e(0x495)]({'id':_0x4b6f26['id'],'error':_0x17d5c7[_0x400c7e(0x40d)]}),console[_0x400c7e(0x46f)](_0x400c7e(0x456)+_0x4b6f26['id']+':',_0x17d5c7);}}return setPettyExpensesCache(_0x3ac809),_0x9b6583;}function getCategoryDescription(_0x4a3807){const _0x3cfa47=_0x149fc9,_0xe583a1={'REx1':_0x3cfa47(0x367),'REx5':_0x3cfa47(0x596),'REx6':_0x3cfa47(0x2c2),'REx7':_0x3cfa47(0x46d),'REx3':'විවිධ'};return _0xe583a1[_0x4a3807]||_0x4a3807;}async function startNewPeriod(){const _0x983f88=_0x149fc9;if(userRole!==_0x983f88(0x49f)){showToast(_0x983f88(0x1d1));return;}const _0x52e29c=parseAmount(document[_0x983f88(0x2aa)](_0x983f88(0x4e0))[_0x983f88(0x1f3)]),_0xf7b62c=parseAmount(document[_0x983f88(0x2aa)](_0x983f88(0x54d))[_0x983f88(0x1f3)]),_0x525885=parseAmount(document[_0x983f88(0x2aa)](_0x983f88(0x3c2))[_0x983f88(0x1f3)]),_0x3894e5=parseAmount(document['getElementById']('manualREx7')[_0x983f88(0x1f3)]),_0x379117=parseAmount(document[_0x983f88(0x2aa)](_0x983f88(0x2ab))[_0x983f88(0x1f3)]),_0x58105b=getData(),_0x4deaff=_0x58105b[_0x983f88(0x52f)](_0x59492c=>_0x59492c[_0x983f88(0x515)]==='EX'&&_0x59492c[_0x983f88(0x3f6)]==='PC'&&!_0x59492c['isImprest']),_0xe61eaf=_0x4deaff[_0x983f88(0x513)]((_0x2675b6,_0x30bb0a)=>_0x2675b6+_0x30bb0a[_0x983f88(0x2f6)],0x0),_0x5094f6=pettyExpenses[_0x983f88(0x513)]((_0x46f374,_0x392bca)=>_0x46f374+_0x392bca[_0x983f88(0x2f6)],0x0),_0x1a3863=_0xe61eaf-_0x5094f6,_0x42cab4=await showConfirmDialog(_0x983f88(0x494),'වත්මන්\x20කාලපරිච්ඡේදයේ\x20වියදම්\x20සාරාංශය:\x0a'+(_0x983f88(0x222)+_0x52e29c[_0x983f88(0x313)](0x2)+'\x0a')+('REx5:\x20රු.\x20'+_0xf7b62c[_0x983f88(0x313)](0x2)+'\x0a')+('REx6:\x20රු.\x20'+_0x525885['toFixed'](0x2)+'\x0a')+(_0x983f88(0x503)+_0x3894e5['toFixed'](0x2)+'\x0a')+(_0x983f88(0x380)+_0x379117['toFixed'](0x2)+'\x0a')+('අවසන්\x20ශේෂය:\x20රු.\x20'+_0x1a3863[_0x983f88(0x313)](0x2)+'\x0a\x0a')+_0x983f88(0x32a),_0x983f88(0x529),_0x983f88(0x50a));if(!_0x42cab4)return;const _0x4eabf1={'date':new Date()[_0x983f88(0x38a)]()[_0x983f88(0x3ec)]('T')[0x0],'REx1':_0x52e29c,'REx5':_0xf7b62c,'REx6':_0x525885,'REx7':_0x3894e5,'REx3':_0x379117,'balance':_0x1a3863,'total':_0x52e29c+_0xf7b62c+_0x525885+_0x3894e5+_0x379117,'timestamp':new Date()[_0x983f88(0x38a)](),'id':Date['now']()};let _0x531814=JSON[_0x983f88(0x250)](localStorage[_0x983f88(0x4d0)]('sch_period_summaries')||'[]');_0x531814['push'](_0x4eabf1),_0x531814['length']>0xc&&(_0x531814=_0x531814[_0x983f88(0x1d5)](-0xc)),localStorage[_0x983f88(0x432)](_0x983f88(0x449),JSON['stringify'](_0x531814)),document['getElementById'](_0x983f88(0x4e0))[_0x983f88(0x1f3)]='0',document[_0x983f88(0x2aa)]('manualREx5')[_0x983f88(0x1f3)]='0',document[_0x983f88(0x2aa)]('manualREx6')['value']='0',document[_0x983f88(0x2aa)](_0x983f88(0x219))[_0x983f88(0x1f3)]='0',document[_0x983f88(0x2aa)]('manualREx3')[_0x983f88(0x1f3)]='0',document['getElementById'](_0x983f88(0x52e))[_0x983f88(0x1f3)]='0',showToast(_0x983f88(0x5a5)),renderPettyBook(),displaySavedPeriodSummaries();}function displaySavedPeriodSummaries(){const _0x118def=_0x149fc9,_0x46c333=JSON[_0x118def(0x250)](localStorage[_0x118def(0x4d0)]('sch_period_summaries')||'[]'),_0x1a0829=document[_0x118def(0x2aa)](_0x118def(0x26c));if(!_0x1a0829)return;if(_0x46c333[_0x118def(0x4e8)]===0x0){_0x1a0829['innerHTML']='';return;}let _0x4fa15b='<h5\x20style=\x22margin:\x2020px\x200\x2010px\x200;\x22>පෙර\x20කාලපරිච්ඡේද\x20සාරාංශ</h5>';_0x4fa15b+=_0x118def(0x1e9),_0x46c333[_0x118def(0x1d5)]()[_0x118def(0x527)]()['forEach'](_0x3ca6b4=>{const _0x60da81=_0x118def;_0x4fa15b+=_0x60da81(0x233)+_0x3ca6b4['date']+_0x60da81(0x26b)+_0x3ca6b4['total']['toFixed'](0x2)+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22btn\x22\x20style=\x22font-size:\x2011px;\x20padding:\x203px\x208px;\x20margin-top:\x205px;\x22\x20onclick=\x22viewPeriodSummaryDetails('+_0x3ca6b4['id']+_0x60da81(0x4e3);}),_0x4fa15b+='</div>',_0x1a0829[_0x118def(0x2bf)]=_0x4fa15b;}function toggleLoading(_0x2cd321){const _0x5df9ef=_0x149fc9;_0x2cd321?document[_0x5df9ef(0x2aa)](_0x5df9ef(0x26f))[_0x5df9ef(0x2dc)]['display']=_0x5df9ef(0x3a6):document[_0x5df9ef(0x2aa)](_0x5df9ef(0x26f))['style']['display']=_0x5df9ef(0x4f9);}function applyPermissions(){const _0x839b01=_0x149fc9;if(userRole===_0x839b01(0x575)){document[_0x839b01(0x4ea)](_0x839b01(0x2f7))[_0x839b01(0x1bd)](_0x1e7619=>_0x1e7619['style'][_0x839b01(0x5bf)]='none'),document[_0x839b01(0x4ea)]('.admin-only')[_0x839b01(0x1bd)](_0x57fd59=>_0x57fd59[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x4f9)),document['getElementById']('print-btn')[_0x839b01(0x2dc)]['display']=_0x839b01(0x4f9),document['getElementById']('pdf-btn')[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x4f9),document['querySelectorAll'](_0x839b01(0x5a3))['forEach'](_0x3e1da0=>_0x3e1da0['style'][_0x839b01(0x5bf)]=_0x839b01(0x4f9)),document[_0x839b01(0x2aa)](_0x839b01(0x545))[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x4f9);const _0x10f524=document[_0x839b01(0x440)](_0x839b01(0x405));if(_0x10f524)_0x10f524[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x4f9);const _0x2a26ac=document['getElementById'](_0x839b01(0x3ee));_0x2a26ac&&(_0x2a26ac[_0x839b01(0x2dc)][_0x839b01(0x5bf)]='none');const _0x179e34=document[_0x839b01(0x2aa)](_0x839b01(0x498));_0x179e34&&(_0x179e34[_0x839b01(0x2dc)][_0x839b01(0x5bf)]='none');const _0x163c8a=document[_0x839b01(0x2aa)]('nav-petty');_0x163c8a&&(_0x163c8a[_0x839b01(0x2dc)]['display']=_0x839b01(0x4f9));}else{if(userRole==='ADMIN'){document['querySelectorAll']('.staff-only')[_0x839b01(0x1bd)](_0x16f443=>_0x16f443[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x57b)),document[_0x839b01(0x4ea)]('.admin-only')[_0x839b01(0x1bd)](_0x411a97=>_0x411a97['style'][_0x839b01(0x5bf)]=_0x839b01(0x57b)),document['getElementById'](_0x839b01(0x40e))[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x3a6),document['getElementById'](_0x839b01(0x23c))[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x3a6),document['querySelectorAll'](_0x839b01(0x5a3))[_0x839b01(0x1bd)](_0x31edd9=>_0x31edd9[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x550));const _0x139b4d=document['querySelector'](_0x839b01(0x405));if(_0x139b4d)_0x139b4d['style']['display']=_0x839b01(0x3a6);const _0x450bc1=document['getElementById']('nav-entry');_0x450bc1&&(_0x450bc1[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x57b));const _0x105724=document[_0x839b01(0x2aa)](_0x839b01(0x498));_0x105724&&(_0x105724[_0x839b01(0x2dc)]['display']=_0x839b01(0x57b));const _0x53c972=document[_0x839b01(0x2aa)](_0x839b01(0x4aa));_0x53c972&&(_0x53c972[_0x839b01(0x2dc)][_0x839b01(0x5bf)]='block');}else{if(userRole==='STAFF'){document['querySelectorAll'](_0x839b01(0x2f7))[_0x839b01(0x1bd)](_0x42678b=>_0x42678b[_0x839b01(0x2dc)][_0x839b01(0x5bf)]='block'),document[_0x839b01(0x4ea)]('.admin-only')[_0x839b01(0x1bd)](_0x598078=>_0x598078[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x4f9)),document[_0x839b01(0x2aa)](_0x839b01(0x40e))[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x3a6),document[_0x839b01(0x2aa)]('pdf-btn')[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x3a6);const _0x15ed0e=document[_0x839b01(0x440)](_0x839b01(0x405));if(_0x15ed0e)_0x15ed0e[_0x839b01(0x2dc)][_0x839b01(0x5bf)]='none';document[_0x839b01(0x4ea)](_0x839b01(0x270))[_0x839b01(0x1bd)](_0x250d49=>_0x250d49['style']['display']=_0x839b01(0x4f9));const _0x2abf5b=document[_0x839b01(0x2aa)](_0x839b01(0x3ee));_0x2abf5b&&(_0x2abf5b[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x57b));const _0x5142ac=document['getElementById']('nav-proj');_0x5142ac&&(_0x5142ac[_0x839b01(0x2dc)][_0x839b01(0x5bf)]=_0x839b01(0x57b));const _0xc940f0=document[_0x839b01(0x2aa)]('nav-petty');_0xc940f0&&(_0xc940f0['style'][_0x839b01(0x5bf)]=_0x839b01(0x57b));}}}}function initializeSelect2(){const _0x3509ad=_0x149fc9;if(typeof $!=='undefined'&&$['fn']&&$['fn'][_0x3509ad(0x418)]){try{$(_0x3509ad(0x318))[_0x3509ad(0x203)](function(){const _0x48cc2c=_0x3509ad;$(this)[_0x48cc2c(0x3dc)](_0x48cc2c(0x418))&&$(this)[_0x48cc2c(0x418)](_0x48cc2c(0x4ff));});}catch(_0x43fc56){console[_0x3509ad(0x30a)](_0x3509ad(0x56a));}$(_0x3509ad(0x31f))[_0x3509ad(0x203)](function(){const _0x5d2d91=_0x3509ad;$(this)[_0x5d2d91(0x4e8)]>0x0&&$(this)[_0x5d2d91(0x418)]({'placeholder':_0x5d2d91(0x291),'allowClear':!![],'width':_0x5d2d91(0x485)})['on']('select2:open',function(){const _0x565012=_0x5d2d91;$(this)['data'](_0x565012(0x418))['$dropdown'][_0x565012(0x2be)](_0x565012(0x34c))[_0x565012(0x33c)]();});});}}function populateOptions(){const _0x5b7cea=_0x149fc9,_0x40b48b=S_CODES[_0x5b7cea(0x54f)](_0x4f74d5=>_0x5b7cea(0x36a)+_0x4f74d5+'\x22>'+_0x4f74d5+_0x5b7cea(0x27f)+CODE_INFO[_0x4f74d5]+_0x5b7cea(0x2a5))[_0x5b7cea(0x204)](''),_0x30f396=EX_CODES['map'](_0x5c446b=>_0x5b7cea(0x36a)+_0x5c446b+'\x22>'+_0x5c446b+_0x5b7cea(0x27f)+CODE_INFO[_0x5c446b]+_0x5b7cea(0x2a5))['join'](''),_0x2c0f0b=_0x40b48b+_0x30f396;['inCodeSelect','exSourceSelect',_0x5b7cea(0x2b1)][_0x5b7cea(0x1bd)](_0x4b4003=>{const _0x38eeec=_0x5b7cea,_0x3202ac=document['getElementById'](_0x4b4003);_0x3202ac&&(_0x3202ac[_0x38eeec(0x2bf)]=_0x38eeec(0x247)+_0x40b48b);}),['exCodeSelect'][_0x5b7cea(0x1bd)](_0x2993f3=>{const _0x57ea20=_0x5b7cea,_0x1f1522=document[_0x57ea20(0x2aa)](_0x2993f3);_0x1f1522&&(_0x1f1522[_0x57ea20(0x2bf)]=_0x57ea20(0x247)+_0x30f396);});const _0x1fddd3=document[_0x5b7cea(0x2aa)](_0x5b7cea(0x4f8));_0x1fddd3&&(_0x1fddd3[_0x5b7cea(0x2bf)]=_0x5b7cea(0x247));const _0x55050a=document['getElementById'](_0x5b7cea(0x321));_0x55050a&&(_0x55050a[_0x5b7cea(0x2bf)]=_0x5b7cea(0x5c1));const _0x53975d=document[_0x5b7cea(0x2aa)]('replenishSourceSelect');_0x53975d&&(_0x53975d['innerHTML']=_0x5b7cea(0x247)+_0x40b48b);const _0x2806bb=document['getElementById'](_0x5b7cea(0x51a));_0x2806bb&&(_0x2806bb[_0x5b7cea(0x2bf)]=_0x5b7cea(0x5b1)+_0x40b48b+_0x30f396);const _0x12ac2e=document[_0x5b7cea(0x2aa)](_0x5b7cea(0x426));_0x12ac2e&&(_0x12ac2e['options'][_0x5b7cea(0x4e8)]===0x0&&(_0x12ac2e['innerHTML']=_0x5b7cea(0x41a))),setTimeout(function(){const _0x5c11bd=_0x5b7cea;$(_0x5c11bd(0x38b))[_0x5c11bd(0x4e8)]>0x0&&($(_0x5c11bd(0x38b))[_0x5c11bd(0x2dd)]('IN')[_0x5c11bd(0x30e)]('change'),updateAllocationCodeSelect());},0x64);}function toggleDropdown(_0x580424){const _0x15fd7f=_0x149fc9,_0x33bace=document[_0x15fd7f(0x2aa)](_0x580424),_0x310148=document[_0x15fd7f(0x440)]('[onclick=\x22toggleDropdown(\x27'+_0x580424+'\x27)\x22]');if(!_0x33bace||!_0x310148)return;_0x33bace[_0x15fd7f(0x2dc)][_0x15fd7f(0x5bf)]===_0x15fd7f(0x4f9)||_0x33bace[_0x15fd7f(0x2dc)][_0x15fd7f(0x5bf)]===''?(_0x33bace[_0x15fd7f(0x2dc)][_0x15fd7f(0x5bf)]='block',_0x310148[_0x15fd7f(0x342)][_0x15fd7f(0x5b3)](_0x15fd7f(0x562))):(_0x33bace[_0x15fd7f(0x2dc)][_0x15fd7f(0x5bf)]=_0x15fd7f(0x4f9),_0x310148[_0x15fd7f(0x342)][_0x15fd7f(0x2a1)]('active'));}function updateAllocationCodeSelect(){const _0x332a77=_0x149fc9,_0x2e1da2=$(_0x332a77(0x38b))[_0x332a77(0x2dd)](),_0x18474e=$('#allocCodeSelect');let _0x21cc05=_0x332a77(0x247);_0x2e1da2==='IN'?S_CODES[_0x332a77(0x1bd)](_0x5a50ad=>{const _0x1be805=_0x332a77;_0x21cc05+=_0x1be805(0x36a)+_0x5a50ad+'\x22>'+_0x5a50ad+'\x20-\x20'+CODE_INFO[_0x5a50ad][_0x1be805(0x1f6)](0x0,0x28)+'...</option>';}):EX_CODES[_0x332a77(0x1bd)](_0x28322e=>{const _0x50e12a=_0x332a77;_0x21cc05+='<option\x20value=\x22'+_0x28322e+'\x22>'+_0x28322e+'\x20-\x20'+CODE_INFO[_0x28322e][_0x50e12a(0x1f6)](0x0,0x28)+_0x50e12a(0x430);}),_0x18474e[_0x332a77(0x21c)](_0x21cc05),_0x18474e['trigger'](_0x332a77(0x2b2));}function renderCodesList(){const _0x2334eb=_0x149fc9;document[_0x2334eb(0x2aa)]('codes-s')[_0x2334eb(0x2bf)]=S_CODES[_0x2334eb(0x54f)](_0xe8a97f=>_0x2334eb(0x4cf)+_0xe8a97f+'</span>'+CODE_INFO[_0xe8a97f]+_0x2334eb(0x45a))[_0x2334eb(0x204)](''),document[_0x2334eb(0x2aa)](_0x2334eb(0x484))[_0x2334eb(0x2bf)]=EX_CODES[_0x2334eb(0x54f)](_0x38146d=>_0x2334eb(0x3cf)+_0x38146d+_0x2334eb(0x43d)+CODE_INFO[_0x38146d]+'</div>')[_0x2334eb(0x204)]('');}function validateForm(_0x32d945){const _0x119ca8=_0x149fc9,_0x5f475e=_0x32d945==='IN'?'in':'ex',_0xb01130=document[_0x119ca8(0x2aa)](_0x5f475e+_0x119ca8(0x487))[_0x119ca8(0x1f3)],_0x40dd80=document['getElementById'](_0x5f475e+_0x119ca8(0x522))['value'],_0x5f5bc7=$('#'+_0x5f475e+_0x119ca8(0x390))[_0x119ca8(0x2dd)](),_0x1bfecc=document[_0x119ca8(0x2aa)](_0x5f475e+_0x119ca8(0x30f))[_0x119ca8(0x1f3)];if(!_0xb01130)return showToast('⚠️\x20කරුණාකර\x20දිනය\x20ඇතුළත්\x20කරන්න'),document['getElementById'](_0x5f475e+_0x119ca8(0x487))[_0x119ca8(0x33c)](),![];if(!_0x40dd80||parseAmount(_0x40dd80)<=0x0)return showToast(_0x119ca8(0x3d2)),document[_0x119ca8(0x2aa)](_0x5f475e+_0x119ca8(0x522))[_0x119ca8(0x33c)](),![];if(!_0x5f5bc7||_0x5f5bc7==='')return showToast(_0x119ca8(0x268)+(_0x32d945==='IN'?_0x119ca8(0x2c9):_0x119ca8(0x58c))+_0x119ca8(0x31a)),$('#'+_0x5f475e+'CodeSelect')[_0x119ca8(0x418)](_0x119ca8(0x2ef)),![];if(!_0x1bfecc[_0x119ca8(0x42a)]())return showToast(_0x119ca8(0x3c1)),document[_0x119ca8(0x2aa)](_0x5f475e+_0x119ca8(0x30f))[_0x119ca8(0x33c)](),![];if(_0x32d945==='IN'){const _0x94ce8c=document[_0x119ca8(0x2aa)]('inRefFrom')[_0x119ca8(0x1f3)][_0x119ca8(0x42a)]();if(!_0x94ce8c)return showToast(_0x119ca8(0x1f8)),document[_0x119ca8(0x2aa)](_0x119ca8(0x41f))[_0x119ca8(0x33c)](),![];if(isNaN(parseInt(_0x94ce8c)))return showToast(_0x119ca8(0x2b3)),![];const _0x157258=document[_0x119ca8(0x2aa)]('inRefTo')['value'][_0x119ca8(0x42a)]();if(_0x157258!==''){if(isNaN(parseInt(_0x157258)))return showToast(_0x119ca8(0x2b3)),![];if(parseInt(_0x94ce8c)>parseInt(_0x157258))return showToast('⚠️\x20\x27දක්වා\x27\x20අංකය\x20\x27සිට\x27\x20අංකයට\x20වඩා\x20විශාල\x20විය\x20යුතුය!'),![];}}else{const _0x153522=document[_0x119ca8(0x2aa)](_0x119ca8(0x1dd))['value'],_0x37c3fc=$('#exSourceSelect')['val']();if(!_0x153522[_0x119ca8(0x42a)]())return showToast(_0x119ca8(0x436)),document[_0x119ca8(0x2aa)](_0x119ca8(0x1dd))['focus'](),![];if(!_0x37c3fc||_0x37c3fc==='')return showToast(_0x119ca8(0x397)),$(_0x119ca8(0x24f))[_0x119ca8(0x418)]('open'),![];}return!![];}async function saveData(_0x354da7){const _0x18d937=_0x149fc9;if(userRole==='GUEST'){showToast(_0x18d937(0x4c1));return;}if(!validateForm(_0x354da7))return;const _0x3b1bea=_0x354da7==='IN'?'in':'ex',_0xc256b9=document[_0x18d937(0x2aa)]('edit-id-'+_0x3b1bea)[_0x18d937(0x1f3)],_0x25ac5b=_0xc256b9&&_0xc256b9!=='',_0x41a18b=_0x25ac5b?parseInt(_0xc256b9):Date['now']()+Math[_0x18d937(0x21b)](Math[_0x18d937(0x52a)]()*0x3e8),_0x19b012=document[_0x18d937(0x2aa)]('btn-save-'+_0x3b1bea);_0x19b012[_0x18d937(0x341)]=!![],_0x19b012[_0x18d937(0x2bf)]=_0x18d937(0x21d);const _0x364720=_0x25ac5b?'update_transaction':_0x18d937(0x2d7);let _0x1fa416='';if(_0x354da7==='IN'){const _0xbfa86d=document[_0x18d937(0x2aa)](_0x18d937(0x41f))[_0x18d937(0x1f3)][_0x18d937(0x42a)](),_0x57eda7=document[_0x18d937(0x2aa)]('inRefTo')[_0x18d937(0x1f3)][_0x18d937(0x42a)](),_0x50aaa0=_0x25ac5b?_0x41a18b:null,_0x1f0ef0=checkDuplicateReceipt(_0xbfa86d,_0x57eda7,_0x50aaa0);if(_0x1f0ef0['isDuplicate']){showToast(_0x1f0ef0[_0x18d937(0x40d)]),_0x19b012[_0x18d937(0x341)]=![],_0x19b012[_0x18d937(0x2bf)]=_0x354da7==='IN'?_0x18d937(0x5b2):_0x18d937(0x33f);return;}_0x1fa416=formatReceiptRange(_0xbfa86d,_0x57eda7);}else{_0x1fa416=document['getElementById'](_0x3b1bea+_0x18d937(0x275))[_0x18d937(0x1f3)];const _0x328a2e=document[_0x18d937(0x2aa)](_0x18d937(0x1dd))[_0x18d937(0x1f3)],_0x216d5e=document[_0x18d937(0x2aa)]('exDate')[_0x18d937(0x1f3)],_0x37efdc=parseAmount(document['getElementById'](_0x18d937(0x386))[_0x18d937(0x1f3)]),_0xc4ca8b=_0x25ac5b?_0x41a18b:null;if(checkDuplicateTransaction(_0x216d5e,_0x328a2e,_0x37efdc,'EX',_0xc4ca8b)){showToast('⚠️\x20මෙම\x20වවුචර්\x20අංකය,\x20දිනය\x20සහ\x20මුදල\x20සහිත\x20ගනුදෙනුවක්\x20දැනටමත්\x20පවතී!'),_0x19b012['disabled']=![],_0x19b012[_0x18d937(0x2bf)]=_0x18d937(0x33f);return;}}const _0x52d51e={'action':_0x364720,'id':_0x41a18b,'date':document[_0x18d937(0x2aa)](_0x3b1bea+'Date')[_0x18d937(0x1f3)],'ref':_0x1fa416,'vouch':_0x354da7==='EX'?document['getElementById'](_0x18d937(0x1dd))[_0x18d937(0x1f3)]:'','code':$('#'+_0x3b1bea+_0x18d937(0x390))['val'](),'amt':parseAmount(document['getElementById'](_0x3b1bea+'Amt')?.[_0x18d937(0x1f3)]||0x0),'desc':document[_0x18d937(0x2aa)](_0x3b1bea+'Desc')[_0x18d937(0x1f3)],'type':_0x354da7,'source':_0x354da7==='EX'?$('#exSourceSelect')[_0x18d937(0x2dd)]():$('#inCodeSelect')['val'](),'proj':$('#'+_0x3b1bea+_0x18d937(0x379))[_0x18d937(0x2dd)](),'status':!![],'isOp':![],'isImprest':![],'clientId':generateUUID()};toggleLoading(!![]);try{if(!navigator[_0x18d937(0x4af)]){addToOfflineQueue(_0x364720,_0x52d51e);let _0x5f4a9b=getData();if(_0x25ac5b){const _0x1757ee=_0x5f4a9b[_0x18d937(0x3a1)](_0x1aef11=>_0x1aef11['id']===_0x41a18b);_0x1757ee!==-0x1&&(_0x5f4a9b[_0x1757ee]={..._0x52d51e,'offline':!![]});}else _0x5f4a9b[_0x18d937(0x495)]({..._0x52d51e,'offline':!![]});setDataCache(_0x5f4a9b),showToast(_0x18d937(0x591));}else{const _0x17c0ea=await fetch(SCRIPT_URL,{'method':'POST','body':JSON[_0x18d937(0x45b)](_0x52d51e)}),_0xa00436=await _0x17c0ea[_0x18d937(0x4b8)]();if(_0xa00436['status']===_0x18d937(0x561)){let _0x30f2ed=getData();if(_0x25ac5b){const _0x318ab0=_0x30f2ed[_0x18d937(0x3a1)](_0x513eb5=>_0x513eb5['id']===_0x41a18b);_0x318ab0!==-0x1&&(_0x30f2ed[_0x318ab0]={..._0x52d51e,'offline':![]});}else _0x30f2ed['push']({..._0x52d51e,'offline':![]});setDataCache(_0x30f2ed),showToast(_0x25ac5b?_0x18d937(0x3ca):_0x18d937(0x560));}else throw new Error(_0xa00436[_0x18d937(0x40d)]||_0x18d937(0x401));}}catch(_0x52d05f){console[_0x18d937(0x46f)]('Save\x20error:',_0x52d05f),showToast(_0x18d937(0x3a9));}finally{toggleLoading(![]),_0x19b012[_0x18d937(0x341)]=![],_0x19b012['innerHTML']=_0x354da7==='IN'?_0x18d937(0x5b2):_0x18d937(0x33f);}refreshDashboard(),loadRecentTable(),resetForms();}async function saveOpening(){const _0x3b019a=_0x149fc9;if(userRole===_0x3b019a(0x575)){showToast(_0x3b019a(0x55e));return;}const _0xc0bcb4=$(_0x3b019a(0x325))[_0x3b019a(0x2dd)](),_0x472f23=parseAmount(document[_0x3b019a(0x2aa)]('opAmt')[_0x3b019a(0x1f3)]||0x0);if(!_0xc0bcb4||_0xc0bcb4===''){showToast(_0x3b019a(0x2de)),$(_0x3b019a(0x325))[_0x3b019a(0x418)](_0x3b019a(0x2ef));return;}if(_0x472f23<=0x0){showToast(_0x3b019a(0x2f0)),document[_0x3b019a(0x2aa)](_0x3b019a(0x3b3))['focus']();return;}toggleLoading(!![]);const _0x40322c={'action':'save_transaction','id':Date[_0x3b019a(0x3ea)](),'date':_0x3b019a(0x2b5),'ref':'OPENING','vouch':'','code':_0xc0bcb4,'amt':_0x472f23,'desc':_0x3b019a(0x59a),'type':'IN','source':_0xc0bcb4,'isOp':!![],'status':!![],'isImprest':![],'clientId':generateUUID()};try{if(!navigator[_0x3b019a(0x4af)]){addToOfflineQueue('save_transaction',_0x40322c);let _0x23a828=getData();_0x23a828[_0x3b019a(0x495)]({..._0x40322c,'offline':!![]}),setDataCache(_0x23a828),showToast('📦\x20Offline\x20මාදිලියේ\x20සුරකින\x20ලදී!');}else{const _0x1b8c2a=await fetch(SCRIPT_URL,{'method':_0x3b019a(0x3b6),'body':JSON[_0x3b019a(0x45b)](_0x40322c)}),_0xe4bfae=await _0x1b8c2a['json']();if(_0xe4bfae[_0x3b019a(0x3a2)]===_0x3b019a(0x561)){let _0x1fc84b=getData();_0x1fc84b['push'](_0x40322c),setDataCache(_0x1fc84b),showToast('✅\x20ආරම්භක\x20ශේෂය\x20ගිණුම්ගත\x20කෙරිණි!');}else throw new Error(_0xe4bfae[_0x3b019a(0x40d)]||_0x3b019a(0x401));}}catch(_0x3268dc){console[_0x3b019a(0x46f)](_0x3b019a(0x4ab),_0x3268dc),showToast(_0x3b019a(0x3a9));}finally{toggleLoading(![]);}refreshDashboard(),document[_0x3b019a(0x2aa)](_0x3b019a(0x3b3))[_0x3b019a(0x1f3)]='';}async function saveAllocation(){const _0x40cbaf=_0x149fc9;if(userRole===_0x40cbaf(0x575)){showToast('❌\x20ප්‍රතිපාදන\x20ගිණුම්ගත\x20කිරීමට\x20ඔබට\x20අවසර\x20නැත.');return;}const _0x10a6ca=$(_0x40cbaf(0x372))[_0x40cbaf(0x2dd)](),_0x44c478=parseAmount(document[_0x40cbaf(0x2aa)]('allocAmt')[_0x40cbaf(0x1f3)]||0x0),_0x292118=$('#allocTypeSelect')[_0x40cbaf(0x2dd)]();if(!_0x10a6ca||_0x10a6ca===''){showToast(_0x40cbaf(0x360)),$(_0x40cbaf(0x372))[_0x40cbaf(0x418)](_0x40cbaf(0x2ef));return;}if(_0x44c478<=0x0){showToast(_0x40cbaf(0x3d8)),document[_0x40cbaf(0x2aa)](_0x40cbaf(0x425))['focus']();return;}toggleLoading(!![]);const _0xf1cad0={'action':_0x40cbaf(0x446),'allocCode':_0x10a6ca,'allocAmt':_0x44c478,'allocType':_0x292118,'clientId':generateUUID()};try{if(!navigator[_0x40cbaf(0x4af)])addToOfflineQueue(_0x40cbaf(0x446),_0xf1cad0),allocations[_0x10a6ca]=_0x44c478,allocations[_0x10a6ca+_0x40cbaf(0x22e)]=_0x292118,setAllocationsCache(allocations),showToast(_0x40cbaf(0x591));else{const _0x1cb0e3=await fetch(SCRIPT_URL,{'method':_0x40cbaf(0x3b6),'body':JSON[_0x40cbaf(0x45b)](_0xf1cad0)}),_0x1c5c2e=await _0x1cb0e3['json']();if(_0x1c5c2e[_0x40cbaf(0x3a2)]===_0x40cbaf(0x561))allocations[_0x10a6ca]=_0x44c478,allocations[_0x10a6ca+_0x40cbaf(0x22e)]=_0x292118,setAllocationsCache(allocations),showToast('✅\x20'+(_0x292118==='IN'?_0x40cbaf(0x2c9):'ගෙවීම්')+'\x20ප්‍රතිපාදන\x20ගිණුම්ගත\x20කරන\x20ලදී!'),(currentReport===_0x40cbaf(0x3c7)||currentReport==='VARIANCE')&&generateReport();else throw new Error(_0x1c5c2e[_0x40cbaf(0x40d)]||'Save\x20failed');}}catch(_0x403c22){console['error'](_0x40cbaf(0x3ac),_0x403c22),showToast(_0x40cbaf(0x316));}finally{toggleLoading(![]),document['getElementById'](_0x40cbaf(0x425))[_0x40cbaf(0x1f3)]='';}}function _0x4c80(){const _0x1632cd=['⚠️\x20කරුණාකර\x20කාලපරිච්ඡේදයක්\x20තෝරන්න','</div></div></div>','❌\x20ව්‍යාපෘතිය\x20අවසන්\x20කිරීමේ\x20දෝෂයක්!','message','print-btn','⚠️\x20බාගත\x20කිරීමට\x20දත්ත\x20නැත!','<div\x20style=\x22display:\x20grid;\x20grid-template-columns:\x201fr\x201fr;\x20gap:\x2015px;\x20margin-bottom:\x2020px;\x22>','\x20දින','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','text','⚠️\x20ප්‍රතිපූරණය\x20කිරීමට\x20අවශ්‍ය\x20මුදලක්\x20නැත.\x20(වත්මන්\x20ශේෂය:\x20රු.\x20','💰\x20කාලපරිච්ඡේද\x20වියදම්\x20ඇතුළත්\x20කිරීම','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20style=\x22width:100%;\x20font-size:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>කාණ්ඩය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>විස්තරය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වවුචර්</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22text-align:right;\x22>මුදල</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','multi-row','select2','</span></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22IN\x22>ලැබීම්\x20කේත\x20(S\x20Codes)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22EX\x22>ගෙවීම්\x20කේත\x20(EX\x20Codes)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','transactions','<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20font-weight:\x20bold;\x20color:\x20red;\x22>','\x20updates)','</b></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','inRefFrom','>✅\x20Cleared</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</select>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','<option\x20value=\x22\x22>නොමැත\x20/\x20සියල්ල</option>','180gfHRmi','.sub-nav','ID\x20','allocAmt','allocTypeSelect','<td\x20colspan=\x222\x22\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x22>මුළු\x20වියදම:</td>','.mobile-fab\x20i','advancedSearchPanel','trim','✅\x20කාලපරිච්ඡේද\x20වියදම්\x20සාරාංශය\x20සුරකින\x20ලදී!','Save\x20petty\x20expense\x20error:','\x20failed:','<th>විස්තරය</th>','\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x22>','...</option>','.pdf','setItem','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20color:red;\x22>','❌\x20ප්‍රතිපූරණය\x20අසාර්ථකයි!','online','⚠️\x20කරුණාකර\x20වවුචර්\x20අංකය\x20ඇතුළත්\x20කරන්න','desc','❌\x20චෙක්පත්\x20තත්ත්වය\x20වෙනස්\x20කිරීමට\x20ඔබට\x20අවසර\x20නැත.','අද\x20දිනට','171984DTXwGf','border','දත්ත\x20යාවත්කාලීන\x20දෝෂය:','</span>','?action=read_period_expenses&t=','update_transaction','querySelector','REx7','ගෙවීම්\x20විශ්ලේෂණ\x20වාර්තාව','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','var(--success)','details','save_allocation','exDate','</td><td\x20class=\x22val-col\x22>','sch_period_summaries','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','save','<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20center;font-size:\x2011px;\x22>ගනුදෙනු</th>','Server\x20error','#dcedc8','<p\x20style=\x22text-align:\x20center;\x20color:\x20#666;\x20padding:\x2020px;\x20background:\x20#f8f9fa;\x20border-radius:\x208px;\x22>ගෙවීම්\x20ගනුදෙනු\x20කිසිවක්\x20නැත</p>','btn\x20remove-row','</td></tr></table>','•\x20සුළු\x20මුදල්\x20වියදම්\x20REx\x20කේත\x20වලට\x20මාරු\x20කිරීමෙන්\x20පසු\x20ඒවා\x20අදාළ\x20REx\x20කේත\x20යටතේ\x20පෙන්වයි.<br>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:#e3f2fd;\x20padding:10px;\x20border-radius:8px;\x20text-align:center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>මෙම\x20කාලයේ\x20ලැබීම්</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:20px;\x20font-weight:bold;\x22>රු.\x20',')</span>','start','Error\x20updating\x20transferred\x20status\x20for\x20expense\x20','නැත','center','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x226\x22\x20style=\x22border:\x201px\x20solid\x20#000;\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','</div>','stringify','hasOwnProperty','PDF\x20generation\x20error:','Complete\x20project\x20error:','<tr><td\x20colspan=\x226\x22\x20style=\x22text-align:center;\x20padding:20px;\x22>⚠️\x20මෙම\x20කාල\x20සීමාව\x20තුළ\x20දත්ත\x20නොමැත</td></tr>','multiInRefFrom','#28a745','CEx5','රජය\x20විසින්\x20අනුමත\x20හා\x20ලියාපදිංචි\x20රාජ්‍ය\x20නොවන\x20සංවිධාන\x20වලින්\x20ලැබෙන\x20ආධාර','අගෝ','<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding-left:80px;\x22><b>මුළු\x20ඉදිරිපත්\x20නොකළ\x20චෙක්පත්\x20එකතුව</b></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20border-top:1px\x20solid\x20#000;\x20padding:\x208px;\x20font-weight:\x20bold;\x20color:\x20#c0392b;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20-\x20','<div\x20style=\x22font-size:\x2020px;\x20font-weight:\x20bold;\x20color:\x20green;\x22>','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>විවිධ</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>REx3</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','voucher','ඔව්,\x20මකන්න','<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x22>මුදල\x20(රු.)</th>','<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20color:\x20#c62828;\x20font-size:\x2016px;\x22>','පවිත්‍රතා','❌\x20පරිශීලක\x20නාමය\x20වලංගු\x20නොවේ!','error',')\x22\x20style=\x22background:none;\x20border:none;\x20color:#c0392b;\x20cursor:pointer;\x20margin-left:5px;\x22\x20title=\x22Delete\x22><i\x20class=\x22fas\x20fa-trash\x22></i></button>','removeChild','බහු-රේඛීය\x20ලැබීම','innerText','\x27)\x22\x20class=\x22table-btn\x22\x20style=\x22background:\x20#f39c12;\x20color:white;\x20margin-right:5px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-check-circle\x22></i>\x20අවසන්\x20කරන්න\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22deleteProject(\x27','text/csv;charset=utf-8;','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22val-col\x22>\x20-\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22val-col\x22>','%</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','sch_petty_expenses','</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20style=\x22margin-top:\x2030px;\x22>අදාළ\x20ගනුදෙනු\x20විස්තර</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>කාණ්ඩය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>විස්තරය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වවුචර්\x20අංකය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22text-align:right;\x22>මුදල\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','.multiAmt','printable-area','🟢\x20ONLINE','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','print','test','codes','repTo','confirmTitle','<div\x20style=\x22background:\x20#d4edda;\x20padding:\x2012px;\x20border-radius:\x208px;\x20text-align:\x20center;\x22>','codes-ex','100%',')\x22\x20class=\x22table-btn\x22\x20style=\x22background:var(--danger);\x20color:white;\x22>Delete</button>','Date','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22color:#999;\x20font-size:11px;\x22>-</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','[0-9]*\x5c.?[0-9]{0,2}','<div\x20style=\x22font-size:\x2012px;\x20color:\x20#0c5460;\x22>වියදම්\x20තොරතුරු</div>','blue',';\x22>','<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x22>ලදුපත්\x20අංකය/පරාසය</th>','options','<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x22>ව්‍යාපෘතිය</th>','ක්\x20අසාර්ථක\x20විය.','\x20sync\x20failed:','8FZLylD','#2e7d32','🔄\x20නව\x20කාලපරිච්ඡේදයක්\x20ආරම්භ\x20කරන්න','push','&t=','#1b5e20','nav-proj','STAFF','contains','\x20ලෙස\x20යාවත්කාලීන\x20කරන\x20ලදී!','receiptNumberWarning','</td><td\x20class=\x22val-col\x22>රු.\x20','#0984e3','ADMIN','width','#fdd835','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20font-weight:bold\x22>','fas\x20fa-times','#dc3545','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:#fff3e0;\x20padding:10px;\x20border-radius:8px;\x20text-align:center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>මෙම\x20කාලයේ\x20වියදම්</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:20px;\x20font-weight:bold;\x22>රු.\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22val-col\x22\x20style=\x22background:#f9f9f9\x22>','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:center;\x22>','Server\x20update\x20failed','<br><small\x20style=\x22color:\x20#666;\x22>','nav-petty','Opening\x20save\x20error:','\x0a⚠️\x20වියදම්\x20','offlineQueueCount','decimal','onLine','❌\x20CSV\x20බාගත\x20කිරීමේ\x20දෝෂයක්!','දිනය,වර්ගය,කේතය,මූලාශ්‍රය,ලදුපත්/වවුචර්,චෙක්පත්\x20අංකය,විස්තරය,මුදල\x20(රු.),ව්‍යාපෘතිය\x0a','<i\x20class=\x22fas\x20fa-chevron-down\x22></i>\x20උසස්\x20සෙවීම්\x20විකල්ප','?action=read_petty_expenses&t=','<table\x20style=\x22width:\x20100%;\x20border-collapse:\x20collapse;\x20margin-top:\x208px;\x20margin-bottom:\x2015px;\x20font-size:\x2012px;\x22>','multiCode','periodReportSelect','මූලික\x20පහසුකම්\x20-\x20නව\x20සැපයීම්','json','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:10px;\x20text-align:right;\x20font-weight:bold;\x22>','<span\x20style=\x22background:\x20var(--primary);\x20color:\x20white;\x20padding:\x202px\x206px;\x20border-radius:\x203px;\x20margin-right:\x208px;\x20font-size:\x206px;\x22>💰</span>','offline','මැයි','<tr\x20style=\x22background:#fff3e0;\x20font-weight:bold;\x20border-top:\x201px\x20solid\x20#333;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x224\x22\x20style=\x22text-align:right\x22>මාසික\x20එකතුව\x20සහ\x20ශේෂය:</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20color:green;\x22>','වියදම්\x20දරා\x20ඇති\x20ලැබීම්\x20කේත\x20(S\x20Codes)','150px','textContent','❌\x20ගනුදෙනු\x20ඇතුළත්\x20කිරීමට\x20ඔබට\x20අවසර\x20නැත.','විෂය\x20මාලා\x20ක්‍රියාත්මක\x20කිරීමට\x20අදාළ\x20පුනරාවර්තන\x20වියදම්','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','<div\x20style=\x22display:\x20grid;\x20grid-template-columns:\x201fr\x201fr\x201fr;\x20gap:\x2015px;\x20margin-bottom:\x2020px;\x22>','\x27)\x22\x20class=\x22table-btn\x22\x20style=\x22background:\x20var(--danger);\x20color:white;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-trash\x22></i>\x20ඉවත්\x20කරන්න\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>කාණ්ඩ\x20අනුව\x20වියදම්\x20එකතුව</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වියදම්\x20කාණ්ඩය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>කේතය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22text-align:right;\x22>මුදල\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><td>ලිපි\x20ද්‍රව්‍ය</td><td>REx1</td><td\x20style=\x22text-align:right;\x22>','THIS_YEAR','ක්\x20සුරකින\x20ලදී!','❌\x20කිසිදු\x20Period\x20Expense\x20එකක්\x20සුරැකීමට\x20නොහැකි\x20විය!\x20','සුළු\x20මුදල්\x20ප්‍රතිපූරණය\x20(','✅\x20PDF\x20බාගත\x20කරන\x20ලදී!','</tr></thead><tbody>','pattern','multiInDate','<div\x20class=\x22code-tag\x22><span\x20class=\x22code-num\x22>','getItem','dash','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','\x20සිට\x20','transactionSearchResultsTable','est','0\x200\x205px\x20rgba(231,\x2076,\x2060,\x200.5)','status-cleared','confirmDialog','✓\x20චෙක්පත්\x20තත්ත්වය\x20වෙනස්\x20කරන්න','</b></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x222\x22\x20style=\x22padding:\x208px;\x20color:\x20#1b5e20;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<b>එකතු\x20කිරීම:</b>\x20නිශ්කාෂණය\x20නොවූ\x20චෙක්පත්\x20ලැබීම්\x20(Uncredited\x20Cheque\x20Deposits)\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','<div\x20style=\x22font-size:\x2012px;\x20color:\x20#0c5460;\x22>ශේෂය</div>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>','Delete\x20error:','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</html>\x0a\x20\x20\x20\x20','⚠️\x20\x27දක්වා\x27\x20අංකය\x20\x27සිට\x27\x20අංකයට\x20වඩා\x20විශාල\x20විය\x20යුතුය!','manualREx1','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>පවිත්‍රතා</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>REx7</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>','resize',')\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-eye\x22></i>\x20බලන්න\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','.csv','✅\x20CSV\x20දත්ත\x20පිටපත\x20බාගත\x20කරන\x20ලදී!','exRef','bank-bal-box','length','pettyDate','querySelectorAll','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20style=\x22color:\x20var(--primary);\x22>කාලපරිච්ඡේද\x20වාර්තාව:\x20','Manual\x20refresh\x20error:','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22fund-amount\x20','✅\x20චෙක්පත්\x20තත්ත්වය\x20යාවත්කාලීන\x20කරන\x20ලදී!','Cheque\x20status\x20update\x20error:','</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><td>සුළු\x20නඩත්තු</td><td>REx6</td><td\x20style=\x22text-align:right;\x22>','pettyFloatDisplay','report-header-title','<td\x20colspan=\x224\x22\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x22>ලැබීම්\x20මුළු\x20එකතුව:</td>','click','innerWidth','REx5','appendChild','allocCodeSelect','none','<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x228\x22\x20style=\x22text-align:\x20center;\x20padding:\x2020px;\x20color:\x20#666;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-check-circle\x22\x20style=\x22color:\x20#27ae60;\x22></i>\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20Pending\x20තත්ත්වයේ\x20චෙක්පත්\x20කිසිවක්\x20නැත.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','🗑️\x20ගනුදෙනුව\x20මකා\x20දමන්න','\x20දක්වා','<table\x20class=\x22q-table\x22\x20style=\x22width:100%;\x20border-collapse:collapse;\x22>','✅\x20දත්ත\x20අලුත්\x20කරන\x20ලදී!','destroy','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:10px;\x20text-align:right;\x22>','<span\x20class=\x22sync-pending\x22>⏳\x20Offline</span>','❌\x20PDF\x20බාගත\x20කිරීමට\x20අවසර\x20නැත!','REx7:\x20රු.\x20','පවිත්‍රතා\x20හා\x20පිරිසිදු\x20කිරීම්','catch','periodReportModal','<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20font-weight:\x20bold;\x20color:\x20#2e7d32;\x22>','getTime','පාසලට\x20අයත්\x20වත්කම්\x20වලින්\x20උපයා\x20ගන්නා\x20ආදායම්','අවලංගු\x20කරන්න','✅\x20ගනුදෙනුව\x20මකා\x20දමන\x20ලදී!','1px\x20solid\x20#dcedc8','</b></td><td>','\x0aමුදල:\x20Rs.\x20','repFrom','<button\x20class=\x22petty-edit-btn\x22\x20onclick=\x22editPettyExpense(','searchProject','background','reduce','sch_remote_period_summaries','type',';\x20font-weight:\x20bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x222\x22\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x22>මුළු\x20එකතුව:</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20color:\x20#006400;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','1854085fMBaAr','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20font-weight:\x20bold;\x20color:\x20','කාර්ය\x20මණ්ඩල\x20පාරිශ්‍රමික','repFilter','#c0392b','<i\x20class=\x22fas\x20fa-save\x22></i>\x20බහු-රේඛීය\x20ලැබීම\x20සුරකින්න','පෙබ','report','<p\x20style=\x22text-align:\x20center;\x20color:\x20#666;\x20padding:\x2020px;\x20background:\x20#f8f9fa;\x20border-radius:\x208px;\x22>ලැබීම්\x20ගනුදෙනු\x20කිසිවක්\x20නැත</p>',')\x22\x20class=\x22table-btn\x22\x20style=\x22background:var(--deep-blue);\x20color:white;\x22>Edit</button>','pettyCashBookTable','Amt','entries','❌\x20දත්ත\x20බාගත\x20කිරීමේදී\x20දෝෂයක්\x20සිදු\x20විය!','searchMaxAmount','Remote\x20projects\x20fetch\x20error:','reverse','className','ඔව්,\x20ආරම්භ\x20කරන්න','random','Error\x20saving\x20period\x20expense:','ජූනි','✅\x20සමමුහුර්ත\x20කිරීම\x20සාර්ථකයි!','manualTotal','filter','var(--danger)','⚠️\x20මාරු\x20කිරීමට\x20වලංගු\x20වියදම්\x20නැත!','name','<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x22>වවුචර්\x20අංකය</th>','#d4edda','Data\x20fetch\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20font-weight:\x20bold;\x20color:\x20','vouch','⚠️\x20සමහර\x20දත්ත\x20යාවත්කාලීන\x20කිරීමේ\x20දෝෂයක්.\x20පැරණි\x20දත්ත\x20පෙන්වයි.','</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වියදම්\x20කාණ්ඩය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>කේතය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22text-align:right;\x22>මුදල\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>ලිපි\x20ද්‍රව්‍ය</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>REx1</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#e3f2fd;\x20padding:\x2010px;\x20border-radius:\x206px;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2012px;\x20color:\x20#01579b;\x22>REx5</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2016px;\x20font-weight:\x20bold;\x22>රු.\x20','යාවත්කාලීන\x20කරන්න','</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22border-top:\x202px\x20solid\x20#ddd;\x22><td><strong>මුළු\x20එකතුව:</strong></td><td\x20style=\x22text-align:right;\x20font-weight:bold;\x20color:\x20#1b5e20;\x22>රු.\x20','replenishCheque','rotate(0deg)','#ffffff','sch_offline_updates','isTransferred','💰\x20සුළු\x20මුදල්\x20ප්‍රතිපූරණය','getAttribute','මෙම\x20වියදම\x20ස්ථිරවම\x20මකා\x20දමන්නද?','sec-entry','⚠️\x20සාරාංශය\x20හමු\x20නොවීය!','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20style=\x22color:\x20#6c757d;\x20border-bottom:\x202px\x20solid\x20#6c757d;\x20padding-bottom:\x205px;\x20margin-top:\x2020px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-check-double\x22></i>\x20අවසන්\x20කළ\x20ව්‍යාපෘති\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22project-table\x22\x20style=\x22width:100%;\x20border-collapse:collapse;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22background:\x20#6c757d;\x20color:\x20white;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ව්‍යාපෘතිය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ඇස්තමේන්තුව\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ආදායම\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වියදම\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>අවසන්\x20ශේෂය\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','සිව්මස්\x20ගිණුම්\x20වාර්තාව','positive','විස්තරය\x20(විකල්ප)','<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20font-weight:\x20bold;\x20color:\x20#c62828;\x22>','categoryDisplay','manualREx5','#ffeb3b','map','inline-flex','\x0a\x20\x20\x20\x20\x20\x20\x20\x20position:\x20fixed;\x0a\x20\x20\x20\x20\x20\x20\x20\x20top:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20left:\x200;\x0a\x20\x20\x20\x20\x20\x20\x20\x20width:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20height:\x20100%;\x0a\x20\x20\x20\x20\x20\x20\x20\x20background:\x20rgba(0,0,0,0.7);\x0a\x20\x20\x20\x20\x20\x20\x20\x20z-index:\x2010003;\x0a\x20\x20\x20\x20\x20\x20\x20\x20display:\x20flex;\x0a\x20\x20\x20\x20\x20\x20\x20\x20justify-content:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20align-items:\x20center;\x0a\x20\x20\x20\x20','<p\x20style=\x22color:\x20#666;\x22>ගනුදෙනු\x20විස්තර\x20නැත</p>','inAmt','ප්‍රතිපාදන\x20හා\x20ගෙවීම්\x20සැසඳුම','<tr\x20style=\x22height:\x2010px;\x20background-color:\x20#1b5e20;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x2210\x22\x20style=\x22border:\x20none;\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','body','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x224\x22>මුළු\x20ගෙවීම්\x20එකතුව</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22val-col\x22>','background:\x20#fff9f9;','💰\x20**මුළු\x20වියදම්:\x20රු.\x20','-icon','ලැබීම්\x20විශ්ලේෂණ\x20වාර්තාව','\x20දින\x20සාරාංශ\x20විස්තර</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20grid;\x20grid-template-columns:\x20repeat(2,\x201fr);\x20gap:\x2015px;\x20margin-bottom:\x2020px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#e8f5e9;\x20padding:\x2015px;\x20border-radius:\x208px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h5\x20style=\x22margin:\x200\x200\x2010px\x200;\x20color:\x20#2e7d32;\x22>කාණ්ඩ\x20අනුව\x20වියදම්</h5>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20style=\x22width:100%;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><td>REx1\x20(ලිපි\x20ද්‍රව්‍ය):</td><td\x20style=\x22text-align:right;\x20font-weight:bold;\x22>රු.\x20','<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x228\x22\x20style=\x22text-align:\x20center;\x20padding:\x2030px;\x20color:\x20#666;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-check-circle\x22\x20style=\x22color:\x20#27ae60;\x20font-size:\x2030px;\x20margin-bottom:\x2010px;\x22></i><br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2016px;\x20font-weight:\x20bold;\x22>Pending\x20තත්ත්වයේ\x20චෙක්පත්\x20කිසිවක්\x20නැත</span><br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22font-size:\x2014px;\x22>සියලුම\x20චෙක්පත්\x20නිශ්කාෂණය\x20වී\x20ඇත.</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','❌\x20ආරම්භක\x20ශේෂයන්\x20වෙනස්\x20කිරීමට\x20ඔබට\x20අවසර\x20නැත.','passInput','✅\x20නව\x20ගනුදෙනුව\x20සාර්ථකව\x20ගිණුම්ගත\x20කරන\x20ලදී!','success','active','green','</td>\x0a\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20</tbody></table>','selectedIndex','❌\x20ව්‍යාපෘතිය\x20ඉවත්\x20කිරීමේ\x20දෝෂයක්!','❌\x20මකා\x20දැමීමට\x20අවසර\x20ඇත්තේ\x20පරිපාලකට\x20පමණි!','sch_offline_queue','\x22\x20ව්‍යාපෘතිය\x20සම්පූර්ණයෙන්ම\x20මකා\x20දමන්නද?\x0a\x0a⚠️\x20මෙය\x20ආපසු\x20හැරවිය\x20නොහැක!','Select2\x20destroy\x20error,\x20continuing...','</table>','?action=read&t=','0.00','createObjectURL','multiAmt\x20amount-input','Summary\x20save\x20non-critical\x20error:','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>රු.\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x22>ආරම්භක\x20අග්‍රිමය\x20(Opening\x20Imprest)</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x22>','data-end','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20font-weight:bold;\x20color:','GUEST','pettyDesc','<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','includes','marginTop','negative','block',';\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','minWidth','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<html>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<title>කාලපරිච්ඡේද\x20වියදම්\x20සාරාංශය</title>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20font-family:\x20\x27Noto\x20Sans\x20Sinhala\x27,\x20sans-serif;\x20padding:\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h1\x20{\x20color:\x20#1b5e20;\x20text-align:\x20center;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h2\x20{\x20color:\x20#2e7d32;\x20text-align:\x20center;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20table\x20{\x20width:\x20100%;\x20border-collapse:\x20collapse;\x20margin-top:\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20th\x20{\x20background:\x20#1b5e20;\x20color:\x20#ffeb3b;\x20padding:\x2010px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20td\x20{\x20padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.total\x20{\x20font-weight:\x20bold;\x20background:\x20#f0f0f0;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.footer\x20{\x20margin-top:\x2030px;\x20text-align:\x20right;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h1>මො/ගම්පංගුව\x20කනිෂ්ඨ\x20විද්‍යාලය</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2>කාලපරිච්ඡේද\x20වියදම්\x20සාරාංශය\x20-\x20','10px','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>උපකරණ\x20නඩත්තු</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>REx5</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#e8f5e9;\x20padding:\x2010px;\x20border-radius:\x206px;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2012px;\x20color:\x20#1b5e20;\x22>REx1</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2016px;\x20font-weight:\x20bold;\x22>රු.\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22table-container\x22\x20style=\x22overflow-x:\x20auto;\x20max-height:\x20400px;\x20overflow-y:\x20auto;\x20border:\x201px\x20solid\x20#ddd;\x20border-radius:\x208px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22transaction-search-table\x22\x20style=\x22width:\x20100%;\x20border-collapse:\x20collapse;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead\x20style=\x22position:\x20sticky;\x20top:\x200;\x20z-index:\x2010;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22background:\x20var(--deep-blue);\x20color:\x20white;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22>දිනය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22>වර්ගය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22>කේතය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22>මූලාශ්‍රය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22>ලදුපත්/වවුචර්</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22>චෙක්පත්\x20අංකය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22>විස්තරය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22>මුදල\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22>ව්‍යාපෘතිය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22>ක්‍රියා</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20','\x20සහිත\x20ගනුදෙනුව\x20ස්ථිරවම\x20මකා\x20දමන්නද?','select','(ලැබීම්\x20','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22fund-code\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</td><td\x20class=\x22val-col\x22\x20style=\x22color:red;\x22>රු.\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22footer\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>භාණ්ඩාගාරික</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22margin-top:\x2020px;\x22>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>විදුහල්පති</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22text-align:center;\x20margin-top:\x2020px;\x20color:\x20#666;\x20font-size:\x2012px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20මුද්‍රණය\x20කළ\x20දිනය:\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right\x22>','<span\x20style=\x22background:\x20var(--primary);\x20color:\x20white;\x20padding:\x202px\x206px;\x20border-radius:\x203px;\x20margin-right:\x208px;font-size:\x2012px;\x22>💸</span>','⚠️\x20කරුණාකර\x20දිනය\x20ඇතුළත්\x20කරන්න','ගෙවීම්','<tr\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tfoot>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22background:\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22border:\x201px\x20solid\x20#000;\x22>ශේෂය\x20ඉ/ගෙ\x20(Balance\x20b/f)\x20-\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20font-family:\x20monospace;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','📦\x20Offline\x20මාදිලියේ\x20සුරකින\x20ලදී!','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20color:\x20#006400;\x20font-weight:\x20bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','<span\x20style=\x22background:\x20#6c757d;\x20color:\x20white;\x20padding:\x203px\x208px;\x20border-radius:\x2012px;\x20font-size:\x2012px;\x22>','5px','Staff','උපකරණ\x20නඩත්තු','addImage','ID:\x20','si-LK','ආරම්භක\x20ශේෂය','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22background:#f0f0f0;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x22><b>උප\x20එකතුව\x20(Bank\x20Balance\x20+\x20Uncredited\x20Cheques)</b></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20padding:\x208px;\x22><b>\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20center;\x22>','Individual\x20save\x20failed\x20for\x20transaction:','\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20',')\x22\x20class=\x22table-btn\x22\x20style=\x22background:\x20var(--deep-blue);\x20color:\x20white;\x20padding:\x205px\x2010px;\x20font-size:\x2011px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-edit\x22></i>\x20Edit\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22deleteTransaction(','addPage','❌\x20ගනුදෙනු\x20සංස්කරණය\x20කිරීමට\x20අවසර\x20ඇත්තේ\x20පරිපාලකට\x20පමණි!','padStart','.table-btn','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</tr>','✅\x20නව\x20කාලපරිච්ඡේදය\x20ආරම්භ\x20කරන\x20ලදී!','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20',')\x22\x20class=\x22table-btn\x22\x20style=\x22background:\x20var(--danger);\x20color:\x20white;\x20padding:\x205px\x2010px;\x20font-size:\x2011px;\x20margin-left:\x205px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-trash\x22></i>\x20Del\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:center;\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</tr>','<th\x20style=\x22padding:\x206px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20center;\x20font-size:\x2011px;\x22>ගනුදෙනු</th>','pettyVoucherWarning','ප්‍රතිපූරණය','\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x22>මුළු\x20එකතුව\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20center;\x22>ක්‍රියා</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>','label','replace','<h4\x20style=\x22color:\x20var(--primary);\x20border-bottom:\x201px\x20solid\x20var(--primary);\x20padding-bottom:\x203px;\x20margin-top:\x2015px;\x20font-size:\x2014px;\x22>','<option\x20value=\x22ALL\x22>සියලුම\x20කේතයන්</option>','ලැබීම\x20ගිණුම්ගත\x20කරන්න','add','<th\x20style=\x22padding:\x206px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x20font-size:\x2011px;\x22>විස්තරය</th>','ඔව්,\x20ඇතුළත්\x20කරන්න','getDate','ref','⚠️\x20සියලු\x20පේළි\x20සඳහා\x20වලංගු\x20මුදලක්\x20ඇතුළත්\x20කරන්න','color','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22color:','9324132FUbfpS','keypress','✅\x20වියදම\x20යාවත්කාලීන\x20කරන\x20ලදී!','#multiRowsContainer\x20.multi-row','display','<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20color:\x20green;\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22\x22></option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22REx1\x22>ලිපි\x20ද්‍රව්‍ය\x20(REx1)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22REx5\x22>උපකරණ\x20නඩත්තු\x20(REx5)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22REx6\x22>සුළු\x20නඩත්තු\x20(REx6)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22REx7\x22>පවිත්‍රතා\x20(REx7)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22REx3\x22>විවිධ\x20(REx3)</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20class=\x22total\x22><td\x20colspan=\x222\x22\x20style=\x22text-align:right;\x22>මුළු\x20එකතුව:</td><td\x20style=\x22text-align:right;\x22>','180yHeuEo','\x22\x20ලෙස\x20වෙනස්\x20කරන්නද?','Period\x20summary\x20save\x20error\x20(non-critical):','confirmNo','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','sch_cleared','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22border-bottom:\x204px\x20double\x20#000;\x20background:\x20#fff8e1;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2012px;\x22><b\x20style=\x22font-size:1.2em;\x22>මුදල්\x20පොතේ\x20ශේෂය\x20(Cash\x20Book\x20Balance)</b></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20padding:\x2012px;\x22><b\x20style=\x22font-size:1.2em;\x20color:\x20#1b5e20;\x22>\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','⚠️\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20class=\x22total\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x222\x22\x20style=\x22text-align:right;\x22>මුළු\x20එකතුව:</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>','\x20<span\x20style=\x22background:\x20#2980b9;\x20color:\x20white;\x20font-size:\x209px;\x20padding:\x202px\x206px;\x20border-radius:\x2012px;\x20margin-left:\x208px;\x20display:\x20inline-block;\x20font-weight:\x20normal;\x22>✓\x20Period</span>','confirmMessage','edit-petty-id','fontWeight','forEach','</td></tr>','cloneNode','option','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20style=\x22color:\x20var(--success);\x20border-bottom:\x202px\x20solid\x20var(--success);\x20padding-bottom:\x205px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-play-circle\x22></i>\x20ක්‍රියාත්මක\x20ව්‍යාපෘති\x0a\x20\x20\x20\x20\x20\x20\x20\x20</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22project-table\x22\x20style=\x22width:100%;\x20border-collapse:collapse;\x20margin-bottom:30px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22background:\x20var(--primary);\x20color:\x20white;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ව්‍යාපෘතිය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ඇස්තමේන්තුව\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ආදායම\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වියදම\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ශේෂය\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22text-align:center;\x22>ක්‍රියා</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>\x0a\x20\x20\x20\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','exDesc','🔄\x20සමමුහුර්ත\x20කරමින්...\x20(','inDate','CSV\x20Download\x20Error:','<h4\x20style=\x22color:\x20var(--primary);\x20border-bottom:\x201px\x20solid\x20var(--primary);\x20padding-bottom:\x203px;\x20margin-top:\x2015px;font-size:\x2014px;\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<html>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<title>කාලපරිච්ඡේද\x20වාර්තාව</title>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20font-family:\x20\x27Noto\x20Sans\x20Sinhala\x27,\x20sans-serif;\x20padding:\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h1\x20{\x20color:\x20#1b5e20;\x20text-align:\x20center;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20table\x20{\x20width:\x20100%;\x20border-collapse:\x20collapse;\x20margin-top:\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20th\x20{\x20background:\x20#1b5e20;\x20color:\x20#ffeb3b;\x20padding:\x2010px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20td\x20{\x20padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.footer\x20{\x20margin-top:\x2030px;\x20text-align:\x20right;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h1>මො/ගම්පංගුව\x20කනිෂ්ඨ\x20විද්‍යාලය</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2>කාලපරිච්ඡේද\x20වාර්තාව</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','action','<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x22>දිනය</th>','REx5\x20(උපකරණ\x20නඩත්තු):\x20රු.\x20','boxShadow','REx1','PDF\x20export\x20error:','\x20|\x20ලදුපත්\x20අංකය:\x20','⚠️\x20කරුණාකර\x20කාණ්ඩය\x20තෝරන්න','❌\x20මෙම\x20ක්‍රියාව\x20සඳහා\x20අවසර\x20ඇත්තේ\x20පරිපාලකට\x20පමණි!','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22background:\x20','⚠️\x20මුලින්\x20වාර්තාවක්\x20ජනනය\x20කරන්න','<tr\x20style=\x22font-weight:\x20bold;\x20background-color:\x20#fff9c4;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:\x20right;\x20border:\x201px\x20solid\x20#000;\x22>','slice','Offline','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','⚠️\x20මෙම\x20වවුචර්\x20අංකය,\x20දිනය,\x20කාණ්ඩය\x20සහ\x20මුදල\x20සහිත\x20වියදමක්\x20දැනටමත්\x20පවතී!','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20color:green;\x22>','ID,දිනය,වර්ගය,කේතය,මූලාශ්‍ර,මුදල,විස්තරය,වවුචර්,ලදුපත්\x20අංකය/පරාසය,ව්‍යාපෘතිය,Status\x0a','isReplenishment','<thead><tr\x20style=\x22background:var(--primary);\x20color:white;\x22>','exVoucher','❌\x20ගනුදෙනු\x20සුරැකීම\x20අසාර්ථකයි!','<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20center;\x22>','CEx3','projEst','එකතු\x20කරන්න','proj','ready','pettyCashInHand','📊\x20ගනුදෙනු\x20ගණන:\x20','<th\x20style=\x22text-align:right;\x22>සැබෑ\x20ලැබීම්\x20(රු.)</th>','</td></tr></tfoot></table>','<div\x20style=\x22display:\x20grid;\x20grid-template-columns:\x20repeat(auto-fill,\x20minmax(200px,\x201fr));\x20gap:\x2010px;\x22>','ආරම්භය','xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx','save_period_expense','REx6','<th\x20style=\x22padding:\x206px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20font-size:\x2011px;\x22>මුළු\x20වියදම\x20(රු.)</th>','\x22>\x20','button','createElement','මෙම\x20ලැබීම්\x20කේතයෙන්\x20ගෙවා\x20ඇති\x20වියදම්\x20කේත\x20(EX\x20Codes)','value','⚠️\x20වියදම\x20සොයාගත\x20නොහැක!','<tr\x20style=\x22background:#f1f2f6;\x20font-weight:bold;\x22><td\x20colspan=\x222\x22>මුළු\x20එකතුව</td><td\x20class=\x22val-col\x22>\x20','substring','<tr><td\x20colspan=\x224\x22\x20style=\x22text-align:center;\x22>ගනුදෙනු\x20විස්තර\x20නැත</td></tr>','⚠️\x20කරුණාකර\x20ලදුපත්\x20අංකය\x20ඇතුළත්\x20කරන්න','</div></div></div></div>','888YlPduL','.mobile-sidebar-overlay','<button\x20onclick=\x22editTransaction(','getFullYear','sch_db','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22viewCodeDetails(\x27','<tr\x20style=\x22background:#e3f2fd;\x20font-weight:bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x226\x22>ඉදිරියට\x20ගෙන\x20ආ\x20ශේෂය\x20(Balance\x20B/F)\x20-\x20','borderColor','<table><tr><th>කේතය</th><th>විස්තරය</th><th\x20style=\x22text-align:right;\x22>මුළු\x20ලැබීම්\x20(රු.)</th><th\x20style=\x22text-align:right;\x22>වැය\x20කළ\x20වියදම\x20(රු.)</th><th\x20style=\x22text-align:right;\x22>ශේෂය\x20(රු.)</th></tr>','each','join','report-content','✅\x20කාලපරිච්ඡේද\x20වියදම්\x20','\x20දක්වා</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:\x20grid;\x20grid-template-columns:\x20repeat(4,1fr);\x20gap:10px;\x20margin-bottom:20px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:#e8f5e9;\x20padding:10px;\x20border-radius:8px;\x20text-align:center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>විවෘත\x20ශේෂය</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:20px;\x20font-weight:bold;\x22>රු.\x20','</small>','#pettyCategorySelect','failed','වාර්තා_','sort','<table><thead><tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>දිනය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>විස්තරය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ලදුපත්/වවුචර්</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>චෙක්පත්\x20අංකය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ලැබීම්\x20(+)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ගෙවීම්\x20(-)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ශේෂය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr></thead><tbody>','<div\x20style=\x22font-size:\x2014px;\x20color:\x20#0c5460;\x20margin-top:\x205px;\x22>','abs','<span\x20class=\x22sync-done\x22>✅\x20Online</span>','completeProject','<tr\x20class=\x22q-total-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x224\x22>මුළු\x20ලැබීම්\x20එකතුව\x20(ආරම්භක\x20ශේෂය\x20සහිතව)</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22val-col\x22>','❌\x20සර්වර්\x20එකට\x20සම්බන්ධ\x20වීමට\x20නොහැකි\x20විය.','jspdf','<i\x20class=\x22fas\x20fa-chevron-up\x22></i>\x20උසස්\x20සෙවීම්\x20විකල්ප\x20සඟවන්න','<tr\x20style=\x22background:#f8f9fa;\x20color:#666;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:10px;\x22>','<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','<div\x20style=\x22font-size:\x2016px;\x20font-weight:\x20bold;\x22>මාරු\x20කළ:\x20','manualREx7','allSettled','floor','html','<i\x20class=\x22fas\x20fa-spinner\x20fa-spin\x22></i>\x20සුරකිමින්...','#4caf50','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>','setDate','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20color:red;\x22>','REx1:\x20රු.\x20','backup.json','කාලපරිච්ඡේද_වාර්තාව_','_blank','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x22>','parentNode','indexOf','<div\x20style=\x22text-align:\x20right;\x22>','⚠️\x20සමහර\x20ගනුදෙනු\x20සමමුහුර්ත\x20කිරීම\x20අසාර්ථක\x20විය.','ඔක්','ක්\x20එකතු\x20කරන\x20ලදී!','rotate(180deg)','_type',';\x20color:\x20white;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x22>කේතය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x22>විස්තරය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x22>ආරම්භක\x20ශේෂය\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20center;\x22>ගනුදෙනු\x20ගණන</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x22>මුළු\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:\x20right;\x20font-weight:\x20bold;\x20color:\x20#c0392b;\x22>',';\x20color:\x20white;\x20padding:\x204px\x2010px;\x20border-radius:\x2020px;\x20font-size:\x2011px;\x20font-weight:\x20bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','</span></td></tr>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#f8f9fa;\x20padding:\x2010px;\x20border-radius:\x206px;\x20border-left:\x203px\x20solid\x20#8e44ad;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2012px;\x20color:\x20#666;\x22>','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22border:\x201px\x20solid\x20#000;\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:\x20center;\x20border:\x201px\x20solid\x20#000;\x22>','1613922HZjVgv','**\x0a\x0a','REx3','searchSource','✅\x20සෙවුම්\x20ප්‍රතිඵල\x20CSV\x20ලෙස\x20බාගත\x20කරන\x20ලදී!','<div\x20style=\x22font-size:\x2014px;\x20color:\x20#0c5460;\x22>','smooth','pdf-btn','⚠️\x20ලදුපත්\x20අංකය\x20(','<div\x20style=\x22background:\x20#d1ecf1;\x20padding:\x2012px;\x20border-radius:\x208px;\x20text-align:\x20center;\x22>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','මුදල','<h4\x20style=\x22font-size:\x2013px;color:\x20green;\x20border-bottom:\x202px\x20solid\x20#28a745;\x20padding-bottom:\x205px;\x20margin-top:\x2020px;\x22>','දෙසැ','sch_period_expenses','getDay','scrollIntoView','dash-in','<option\x20value=\x22\x22></option>','පුස්තකාල\x20පොත්\x20මිලට\x20ගැනීම්','marginBottom','<table\x20style=\x22width:\x20100%;\x20border-collapse:\x20collapse;\x20margin-top:\x208px;\x20margin-bottom:\x2015px;font-size:\x2012px;\x22>','?action=read_period_summaries&t=','total','searchMinAmount','toLocaleDateString','#exSourceSelect','parse','අධ්‍යාපන\x20පරිපාලන\x20හා\x20උපයෝගිතා\x20සේවා\x20හා\x20සුභසාධන\x20කටයුතු','#exProjSelect','multiInRefTo','background:\x20#f9fff9;','#e8f5e9','close','\x27)\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20style=\x22background:\x20','❌\x20ව්‍යාපෘති\x20ඇතුළත්\x20කිරීමට\x20ඔබට\x20අවසර\x20නැත.','#43a047','\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20+\x20නිශ්කාෂණය\x20නොවූ\x20චෙක්පත්\x20ලැබීම්\x20','borderRadius','❌\x20ප්‍රතිපූරණය\x20කිරීමට\x20අවසර\x20ඇත්තේ\x20පරිපාලකට\x20පමණි!','codeDetailsContent','bankStmtInput','inRefTo','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;font-size:\x2011px;\x22>මුළු\x20වියදම\x20(රු.)</th>','modalCodeTitle','<div\x20style=\x22font-size:\x2018px;\x20font-weight:\x20bold;\x20color:\x20','Replenishment\x20error:','<th\x20style=\x22text-align:right;\x22>වාර්ෂික\x20ප්‍රතිපාදන\x20(රු.)</th>','<th\x20style=\x22text-align:center;\x22>ඉවත්\x20කරන්න</th>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','⚠️\x20කරුණාකර\x20','Remote\x20allocations\x20fetch\x20error:','setHours','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2014px;\x20font-weight:\x20bold;\x22>රු.\x20','periodSummariesDisplay','placeholder','inDesc','loading-overlay','.admin-only','29316sIIJNy','toLowerCase','උපදේශන,\x20උසස්\x20අධ්‍යාපන\x20හා\x20විෂය\x20සමගාමී\x20ක්‍රියාකාරකම්','<span\x20style=\x22font-size:\x2015px;\x20font-weight:\x20bold;\x22>','Ref','•\x20මෙය\x20සුළු\x20මුදල්\x20ස්ථාවර\x20මුදල\x20(Petty\x20Cash\x20Float)\x20පමණක්\x20නිරූපණය\x20කරයි.<br>','searchInCode','<span\x20style=\x22color:\x20#999;\x20font-size:\x2012px;\x22>-</span>','<tr\x20style=\x22background:\x20#e3f2fd;\x20font-weight:\x20bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x20text-align:\x20center;\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x20text-align:\x20center;\x22>','backgroundColor','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22footer\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>භාණ්ඩාගාරික</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22margin-top:\x2020px;\x22>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>විදුහල්පති</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</html>\x0a\x20\x20\x20\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22val-col\x22>','multiRowsContainer','pettyVoucher','\x20-\x20','recent-transactions-table','connection-status','ප්‍රතිපූරණය\x20කළ\x20යුතු\x20මුදල:\x20රු.\x20','<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding-left:40px;\x20font-size:\x200.9em;\x20color:\x20#666;\x22>නිශ්කාෂණය\x20නොවූ\x20චෙක්පත්\x20ලැබීම්\x20නැත</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20padding-right:\x2020px;\x22>0.00</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#e3f2fd;\x20padding:\x2015px;\x20border-radius:\x208px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h5\x20style=\x22margin:\x200\x200\x2010px\x200;\x20color:\x20#0c5460;\x22>සටහන</h5>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22margin:\x200;\x22>මෙම\x20කාලපරිච්ඡේදයේ\x20සුළු\x20මුදල්\x20වියදම්\x20එකතුව\x20රු.\x20','getMonth','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<html>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<title>කාලපරිච්ඡේද\x20වියදම්\x20සාරාංශ\x20විස්තර</title>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20font-family:\x20\x27Noto\x20Sans\x20Sinhala\x27,\x20sans-serif;\x20padding:\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h1\x20{\x20color:\x20#1b5e20;\x20text-align:\x20center;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h2\x20{\x20color:\x20#2e7d32;\x20text-align:\x20center;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20table\x20{\x20width:\x20100%;\x20border-collapse:\x20collapse;\x20margin-top:\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20th\x20{\x20background:\x20#1b5e20;\x20color:\x20#ffeb3b;\x20padding:\x2010px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20td\x20{\x20padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.total\x20{\x20font-weight:\x20bold;\x20background:\x20#f0f0f0;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.footer\x20{\x20margin-top:\x2030px;\x20text-align:\x20right;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h1>මො/ගම්පංගුව\x20කනිෂ්ඨ\x20විද්‍යාලය</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2>කාලපරිච්ඡේද\x20වියදම්\x20සාරාංශ\x20විස්තර\x20-\x20',')\x22\x20style=\x22background:none;\x20border:none;\x20color:#2980b9;\x20cursor:pointer;\x20margin-left:5px;\x22\x20title=\x22Edit\x22><i\x20class=\x22fas\x20fa-edit\x22></i></button>','❌\x20දෝෂයක්\x20සිදු\x20විය!','✅\x20ලැබීම්\x20','\x20|\x20වවුචර්\x20අංකය:\x20','Delete\x20petty\x20expense\x20error:','addEventListener',';\x20position:relative;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22fund-index\x22>','<span\x20style=\x22font-size:\x2015px;\x20font-weight:\x20bold;\x22>PC\x20-\x20සුළු\x20මුදල්\x20(Petty\x20Cash)</span>','පහත\x20සුළු\x20මුදල්\x20වියදම්\x20REx\x20ගෙවීම්\x20ලෙස\x20ඇතුළත්\x20කරන්නද?\x0a\x0a','Cleared','තෝරන්න...','selected','Pending','?action=read_projects&t=','save_petty_expense','</td><td\x20class=\x22val-col\x22\x20style=\x22font-weight:bold;\x22>','sch_allocations','Remote\x20period\x20summaries\x20fetch\x20error:','exProjSelect','periodSummaryDetailsModal','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20white;\x20padding:\x2025px;\x20border-radius:\x2012px;\x20width:\x2090%;\x20max-width:\x20800px;\x20max-height:\x2080vh;\x20overflow-y:\x20auto;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','❌\x20අවසර\x20නැත!','searchResultCount','padding','ගනුදෙනු_සෙවුම්_ප්‍රතිඵල_','මුදල්\x20පොත','remove','YESTERDAY','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>','Parallel\x20fetch\x20error:','</option>','REx6\x20(සුළු\x20නඩත්තු):\x20රු.\x20','නොවැ','key','date','getElementById','manualREx3','<tr\x20style=\x22border-bottom:\x201px\x20solid\x20#eee;\x22>','saveProject','🔴\x20OFFLINE','\x20<span\x20style=\x22font-size:\x2010px;\x20color:\x20#666;\x22>(','❌\x20PDF\x20ජනනය\x20කිරීමේ\x20දෝෂයක්!','opCodeSelect','change','⚠️\x20කරුණාකර\x20වලංගු\x20අංකයක්\x20ඇතුළත්\x20කරන්න','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','2024-01-01','dash-bal','<th\x20style=\x22text-align:right;\x22>ශේෂය\x20(රු.)</th>','\x22\x20ව්‍යාපෘතිය\x20අවසන්\x20කරන\x20ලදී!','category','සැප්','<br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22color:\x20#666;\x20font-size:\x200.85em;\x22>චෙක්පත්\x20අංකය:\x20','රජයේ\x20ආධාර','</td>\x0a\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20<tr\x20class=\x22q-total-row\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x229\x22\x20style=\x22text-align:right\x22>අතැති\x20ශේෂය\x20(Balance)</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22val-col\x22\x20style=\x22background:var(--gold)\x22>','find','innerHTML','petty-expense-form','<div\x20style=\x22font-size:\x2020px;\x20font-weight:\x20bold;\x20color:\x20red;\x22>','සුළු\x20නඩත්තු','❌\x20ගනුදෙනු\x20මකා\x20දැමීමට\x20අවසර\x20ඇත්තේ\x20පරිපාලකට\x20පමණි!','\x27\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onmouseout=\x22this.style.background=\x27','voucherWarning','en-US','#388e3c','project-list-table','ලැබීම්','https://script.google.com/macros/s/AKfycbyufjwwM7DtWNJOYJ9L4n3aWAm2iwtfAgFCIqwasurKQ3UXARScn6_zUtTUeFSnpvaaRw/exec','transactionSearchResults','📅\x20කාලපරිච්ඡේදය:\x20','සුළු\x20මුදල්\x20අග්‍රිමය\x20(Petty\x20Cash\x20Imprest)','පාසල්\x20සංවර්ධන\x20සමිති\x20සාමාජික\x20මුදල්','Queue\x20item\x20','periodReportContent','විශේෂ\x20ව්‍යාපෘති\x20සඳහා\x20විශේෂ\x20ප්‍රාග්ධන\x20ආධාර','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22fund-box\x22\x20style=\x22background:','style=\x22background-color:\x20#fff9c4;\x22','fontSize','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tbody>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','toLocaleString','save_transaction','voucherDisplay','<div\x20style=\x22background:\x20#e8f4f8;\x20padding:\x2015px;\x20border-radius:\x208px;\x20margin-top:\x2020px;\x20border-left:\x205px\x20solid\x20#17a2b8;\x22>',')\x20දැනටමත්\x20භාවිතා\x20කර\x20ඇත!\x0aපවතින\x20ගනුදෙනුව:\x20','preventDefault','style','val','⚠️\x20කරුණාකර\x20අරමුදල්\x20කේතය\x20තෝරන්න','<tr><td><b>','<tr><td\x20colspan=\x226\x22\x20style=\x22text-align:center;\x20padding:20px;\x20color:#666;\x22>ක්‍රියාත්මක\x20ව්‍යාපෘති\x20කිසිවක්\x20නැත</td></tr>','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x225\x22\x20style=\x22border:\x201px\x20solid\x20#000;\x20background-color:\x20#bdc3c7;\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</tr>','#inProjSelect','CEx6','📦\x20Offline\x20මාදිලියේ\x20ප්‍රතිපූරණය\x20සුරකින\x20ලදී.','PETTY','Remote\x20period\x20expenses\x20fetch\x20error:','✅\x20\x22','<tr\x20style=\x22background-color:\x20#ecf0f1;\x20font-weight:\x20bold;\x20border-bottom:\x203px\x20double\x20#000;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x224\x22\x20style=\x22text-align:\x20right;\x20border:\x201px\x20solid\x20#000;\x22>ශේෂය\x20ප/ගෙ\x20(Balance\x20c/d)</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:\x20right;\x20border:\x201px\x20solid\x20#000;\x22>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#fff3e0;\x20padding:\x2010px;\x20border-radius:\x206px;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2012px;\x20color:\x20#e65100;\x22>REx6</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2016px;\x20font-weight:\x20bold;\x22>රු.\x20','\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20-\x20ඉදිරිපත්\x20නොවූ\x20චෙක්පත්\x20','<i\x20class=\x22fas\x20fa-times\x22></i>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20color:\x20#1b5e20;\x20font-size:\x2018px;\x20background:\x20#c8e6c9;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','values','open','⚠️\x20මුදල\x20ඇතුළත්\x20කරන්න','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22padding:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20style=\x22color:\x20var(--primary);\x20margin-top:\x200;\x22>📅\x20','onclick','delete_project','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tfoot>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</table>','</tbody><tfoot>','amt','.staff-only','#ffebee','</tbody></table>','<div>','edit-id-ex','දෝෂය:\x20','<option\x20value=\x22\x22>--\x20තෝරන්න\x20--</option>','.dropdown-menu','isDuplicate','scrollTo','ප්‍රාග්ධන\x20උපකරණ\x20මිලට\x20ගැනීම්','<tr\x20style=\x22background:\x20#d4edda;\x20font-weight:\x20bold;\x22>','pettyTotalExpenses','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:10px;\x20text-align:right;\x20font-weight:bold;\x20color:','VARIANCE','ස්ථාවර\x20මුදල:\x20රු.\x20','✅\x20ව්‍යාපෘතිය\x20සුරැකිණි!','Failed\x20to\x20save\x20period\x20expense:','pettyCashBookBody','log','✅\x20සියලු\x20දත්ත\x20යාවත්කාලීන\x20කරන\x20ලදී!','sch_petty_float','sch_projs','trigger','Desc','⚠️\x20කරුණාකර\x20වලංගු\x20ස්ථාවර\x20මුදලක්\x20ඇතුළත්\x20කරන්න\x20(0\x20හෝ\x20ඊට\x20වැඩි)','replenishVoucher','57189zrMjHq','toFixed','Enter','•\x20එමනිසා\x20PC\x20කේතය\x20යටතේ\x20පෙන්වන්නේ\x20වත්මන්\x20ස්ථාවර\x20මුදල\x20පමණි.','❌\x20ප්‍රතිපාදන\x20සුරැකීමේ\x20දෝෂයක්!','S10','.select2','<div\x20style=\x22font-size:\x2012px;\x20color:\x20#155724;\x22>ස්ථාවර\x20මුදල\x20(Float)</div>','\x20කේතය\x20තෝරන්න','completed','<thead><tr\x20style=\x22background:\x20#e8f5e9;\x22>','ඒකාබද්ධ\x20අරමුදල්\x20සහ\x20පළාත්\x20සභා\x20අරමුදල්','href','#inCodeSelect,\x20#exCodeSelect,\x20#exSourceSelect,\x20#opCodeSelect,\x20#allocCodeSelect,\x20#pettyCategorySelect,\x20#replenishSourceSelect,\x20#multiInProjSelect,\x20#allocTypeSelect','source','pettyCategorySelect','<span\x20style=\x22color:\x20#999;\x20font-size:\x2011px;\x22>-</span>','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22height:20px;\x22><td\x20colspan=\x227\x22\x20style=\x22border:none;\x22></td></tr>','<div\x20style=\x22font-size:\x2012px;\x20color:\x20#721c24;\x22>මුළු\x20ගෙවීම්</div>','#opCodeSelect','#replenishSourceSelect','</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><td>විවිධ</td><td>REx3</td><td\x20style=\x22text-align:right;\x22>','multiInProjSelect','<table><tr><th>දිනය</th><th>විස්තරය</th><th>ලදුපත්/වවුචර්</th><th>මුදල\x20(රු.)</th><th>Status</th><th>ක්‍රියා</th></tr>','මෙම\x20වියදම්\x20සාරාංශය\x20සුරකින\x20අතර\x20නව\x20කාලපරිච්ඡේදයක්\x20ආරම්භ\x20කරන්නද?','status-glow-offline','height','?action=delete_petty_expense&id=','ALL','<span\x20style=\x22background:\x20#dc3545;\x20color:\x20white;\x20padding:\x203px\x208px;\x20border-radius:\x204px;\x20margin-right:\x2010px;\x22>✗</span>','<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20color:\x20#c62828;\x20font-size:\x201px;\x22>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#f3e5f5;\x20padding:\x2010px;\x20border-radius:\x206px;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2012px;\x20color:\x20#4a148c;\x22>REx3</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2016px;\x20font-weight:\x20bold;\x22>රු.\x20','Guest','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22fund-description\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x20-\x20ගෙවීම්\x20','❌\x20වැරදි\x20මුරපදය!\x20කරුණාකර\x20නැවත\x20උත්සාහ\x20කරන්න','background:\x20#f9f9f9;','CEx4','CSV\x20Export\x20Error:','<div\x20style=\x22font-size:\x2014px;\x20color:\x20#0c5460;\x22>කේතය:\x20<strong>','write','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x22>','focus','<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x22>විස්තරය</th>','Delete\x20failed','ගෙවීම\x20ගිණුම්ගත\x20කරන්න','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','disabled','classList','<span\x20style=\x22background:\x20#28a745;\x20color:\x20white;\x20padding:\x203px\x208px;\x20border-radius:\x204px;\x20margin-right:\x2010px;\x22>✔</span>','වත්මන්\x20ශේෂය:\x20රු.\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','#inCodeSelect,\x20#exCodeSelect,\x20#exSourceSelect,\x20#inProjSelect,\x20#exProjSelect','PNG','<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding-left:40px;\x20font-size:\x200.9em;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20📅\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td><span\x20class=\x22status-badge\x20status-pending\x22\x20style=\x22background:\x20#fff3cd;\x20color:\x20#856404;\x20padding:\x205px\x2010px;\x20border-radius:\x2020px;\x22>⏳\x20Pending</span></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','</strong></div>','transferred',':input.select2-search__field','\x27,\x20this.value,\x20\x27','40px','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20color:green;\x22>','</td>\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:#f3e5f5;\x20padding:10px;\x20border-radius:8px;\x20text-align:center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div>අවසන්\x20ශේෂය</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:20px;\x20font-weight:bold;\x22>රු.\x20','</td>','end','✅\x20ගනුදෙනු\x20','var(--primary)','\x20|\x20ඉතිරි:\x20','codeDetailsModal','PE-','Manual\x20period\x20expenses\x20save\x20error:','toDataURL','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22color:\x20#f39c12;\x20margin-left:\x2010px;\x20font-size:\x200.85em;\x22>(Pending)</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20padding-right:\x2020px;\x20font-weight:\x20bold;\x20color:\x20#c0392b;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20-\x20','.sidebar','<div\x20style=\x22font-size:\x2020px;\x20font-weight:\x20bold;\x20color:\x20','undefined','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22no-print\x22\x20style=\x22margin-top:40px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<hr\x20style=\x22border:\x201px\x20solid\x20#1b5e20;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20style=\x22color:\x20var(--primary);\x20display:\x20flex;\x20align-items:\x20center;\x20gap:\x2010px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-money-check-alt\x22></i>\x20චෙක්පත්\x20තත්ත්වය\x20යාවත්කාලීන\x20කරන්න\x20(Pending\x20Cheques\x20Only)\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#e8f5e9;\x20padding:\x2015px;\x20border-radius:\x208px;\x20margin-bottom:\x2020px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22margin:\x200;\x20font-size:\x200.95em;\x20color:\x20#1b5e20;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-info-circle\x22></i>\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20මෙහි\x20පෙන්වන්නේ\x20<strong>Pending</strong>\x20තත්ත්වයේ\x20පවතින\x20චෙක්පත්\x20ගනුදෙනු\x20පමණි.\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22q-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>දිනය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>විස්තරය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>චෙක්පත්\x20අංකය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වවුචර්\x20අංකය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>මුදල\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ගෙවීම්\x20කේතය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>මූලාශ්‍ර\x20අරමුදල</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>තත්ත්වය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>','⚠️\x20කරුණාකර\x20කේතය\x20තෝරන්න','projName','ඔව්,\x20ඉවත්\x20කරන්න','style=\x22background-color:\x20#e8f4fd;\x20border-left:\x205px\x20solid\x20#2980b9;\x22',';\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','🗑️\x20ව්‍යාපෘතිය\x20ස්ථිරවම\x20ඉවත්\x20කරන්න','pettyAmt','ලිපි\x20ද්‍රව්‍ය','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<select\x20class=\x22status-select\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22display:\x20inline-block;\x20background:\x20','<option\x20value=\x22','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#ffffff;\x20padding:\x2020px;\x20border:\x202px\x20solid\x20#333;\x20border-radius:\x205px;\x20color:\x20#000;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20style=\x22text-align:center;\x20text-decoration:\x20underline;\x22>බැංකු\x20සැසඳුම්\x20ප්‍රකාශය\x20-\x20','document','keys','#6c757d','\x27,\x20\x27','.multiCode','⚠️\x20බාගත\x20කිරීමට\x20දත්ත\x20කිසිවක්\x20නැත!','#allocCodeSelect','<strong>PC\x20කේතය\x20පිළිබඳ\x20විස්තර:</strong><br>','පාසල්_ගිණුම්_දත්ත_',';\x20color:\x20white;\x20border:\x20none;\x20padding:\x2010px\x2020px;\x20border-radius:\x208px;\x20cursor:\x20pointer;\x20font-size:\x2013px;\x20display:\x20flex;\x20align-items:\x20center;\x20justify-content:\x20center;\x20gap:\x208px;\x20margin:\x200\x20auto;\x20height:\x2036px;\x20min-width:\x20100px;\x20transition:\x20all\x200.3s;\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onmouseover=\x22this.style.transform=\x27translateY(-2px)\x27;\x20this.style.boxShadow=\x270\x203px\x2010px\x20rgba(0,0,0,0.15)\x27\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onmouseout=\x22this.style.transform=\x27translateY(0)\x27;\x20this.style.boxShadow=\x27none\x27\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span>🔍</span>\x20විස්තර\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','dash-ex','QUARTER','REx3\x20(විවිධ):\x20රු.\x20','ProjSelect','transactionSearchInput','DOMContentLoaded','<option\x20value=\x22\x22>සියල්ල</option>','Remote\x20data\x20fetch\x20error:','ගෙවීම්\x20ගනුදෙනු','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22footer\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>භාණ්ඩාගාරික</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22margin-top:20px;\x22>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>විදුහල්පති</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</html>\x0a\x20\x20\x20\x20','REx3:\x20රු.\x20','fas\x20fa-bars','✅\x20PDF\x20වාර්තාව\x20බාගත\x20කරන\x20ලදී!','<div\x20style=\x22font-size:\x2012px;\x20color:\x20#666;\x20margin-top:\x205px;\x22>','usernameSelect','මෙතෙක්\x20ලැබුණු\x20මුළු\x20ප්‍රතිපූරණ:\x20රු.\x20','exAmt','මෙම\x20මුදල\x20නව\x20ප්‍රතිපූරණ\x20ගනුදෙනුවක්\x20ලෙස\x20එකතු\x20කරන්නද?','BANK','isReceipt','toISOString','#allocTypeSelect','8px\x2012px','<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td><b>','100','searchExCode','CodeSelect','projectName','</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#fce4ec;\x20padding:\x2010px;\x20border-radius:\x206px;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2012px;\x20color:\x20#880e4f;\x22>REx7</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22font-size:\x2016px;\x20font-weight:\x20bold;\x22>රු.\x20','❌\x20දත්ත\x20සුරැකීමේ\x20දෝෂයක්:\x20','status-glow-online','</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><td>පවිත්‍රතා</td><td>REx7</td><td\x20style=\x22text-align:right;\x22>','#e74c3c','⚠️\x20කරුණාකර\x20මූලාශ්‍ර\x20අරමුදල\x20තෝරන්න','mark_expense_transferred','advancedSearchToggle','data-start','සහයෝගිතා\x20ගිවිසුම්\x20යටතේ\x20ක්‍රියාත්මක\x20වන\x20වැඩසටහන්\x20හා\x20ව්‍යාපෘති\x20සඳහා\x20ලැබෙන\x20අරමුදල්','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<html>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<title>සුළු\x20මුදල්\x20පොත</title>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20body\x20{\x20font-family:\x20\x27Noto\x20Sans\x20Sinhala\x27,\x20sans-serif;\x20padding:\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h1\x20{\x20color:\x20#1b5e20;\x20text-align:\x20center;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20h2\x20{\x20color:\x20#2e7d32;\x20text-align:\x20center;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20table\x20{\x20width:\x20100%;\x20border-collapse:\x20collapse;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20th\x20{\x20background:\x20#1b5e20;\x20color:\x20#ffeb3b;\x20padding:\x208px;\x20border:\x201px\x20solid\x20#333;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20td\x20{\x20padding:\x206px;\x20border:\x201px\x20solid\x20#333;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.footer\x20{\x20margin-top:\x2030px;\x20text-align:\x20right;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20.school-name\x20{\x20text-align:\x20center;\x20margin-bottom:\x2020px;\x20}\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</style>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</head>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<body>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22school-name\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h1>මො/ගම්පංගුව\x20කනිෂ්ඨ\x20විද්‍යාලය</h1>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2>සුළු\x20මුදල්\x20පොත</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>මුද්‍රණය:\x20','<tr\x20style=\x22border-bottom:1px\x20solid\x20#eee;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:10px;\x20font-weight:bold;\x22>','THIS_MONTH','<h4\x20style=\x22font-size:\x2013px;color:\x20#dc3545;\x20border-bottom:\x202px\x20solid\x20#dc3545;\x20padding-bottom:\x205px;\x20margin-top:\x2020px;\x22>','gjsstaff','findIndex','status','btn-save-ex','\x22\x20ව්‍යාපෘතිය\x20ඉවත්\x20කරන\x20ලදී!','</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><td>REx3\x20(විවිධ):</td><td\x20style=\x22text-align:right;\x20font-weight:bold;\x22>රු.\x20','flex','✅\x20JSON\x20බැකප්\x20ලබා\x20ගන්නා\x20ලදී!','replenishSourceSelect','❌\x20දත්ත\x20සුරැකීමේ\x20දෝෂයක්!','අප්‍රේල්','❌\x20සුළු\x20මුදල්\x20වියදම්\x20ඇතුළත්\x20කිරීමට\x20ඔබට\x20අවසර\x20නැත.','Allocation\x20save\x20error:','save_period_summary','<tr\x20style=\x22font-weight:\x20bold;\x20background:\x20#eee;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x224\x22\x20style=\x22text-align:\x20right;\x20border:\x201px\x20solid\x20#000;\x20padding:\x208px;\x22>මුළු\x20වියදම\x20(Total\x20Expenses)\x20-\x20මෙම\x20කාලපරිච්ඡේදය</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x20padding:\x208px;\x22>','orange','<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x22>','div','<tr\x20style=\x22font-weight:\x20bold;\x20background:\x20#e8f5e9;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x224\x22\x20style=\x22text-align:\x20right;\x20border:\x201px\x20solid\x20#000;\x20padding:\x208px;\x22>මුළු\x20ලැබීම්\x20(Total\x20Receipts)\x20-\x20මෙම\x20කාලපරිච්ඡේදය</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x20padding:\x208px;\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x225\x22\x20style=\x22border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x22>','opAmt','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20අලුත්\x20ශේෂය:\x20රු.\x20','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:10px;\x20text-align:right;\x20color:red;\x22>','POST','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20color:\x20','dash-funds','🏁\x20ව්‍යාපෘතිය\x20අවසන්\x20කරන්න','Delete\x20project\x20error:','පාසලේ\x20දියුණුව\x20වෙනුවෙන්\x20ස්ව\x20කැමැත්තෙන්\x20දායකත්වය\x20ලබා\x20දෙන\x20ඕනෑම\x20පාර්ශවයක\x20පරිත්‍යාග','මෙතෙක්\x20වියදම්\x20කළ\x20මුළු\x20මුදල:\x20රු.\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22margin-top:40px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<hr\x20style=\x22border:\x201px\x20solid\x20#1b5e20;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h4\x20style=\x22color:\x20var(--primary);\x22><i\x20class=\x22fas\x20fa-money-check-alt\x22></i>\x20චෙක්පත්\x20තත්ත්වය\x20(Pending\x20Cheques)</h4>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22background:\x20#fff3cd;\x20padding:\x2010px;\x20border-radius:\x205px;\x20margin-bottom:\x2015px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p\x20style=\x22margin:\x200;\x20font-size:\x200.9em;\x20color:\x20#856404;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-info-circle\x22></i>\x20පෙන්වනු\x20ලබන්නේ\x20Pending\x20තත්ත්වයේ\x20චෙක්පත්\x20පමණි\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20class=\x22q-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>දිනය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>විස්තරය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>චෙක්පත්\x20අංකය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වවුචර්\x20අංකය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>මුදල\x20(රු.)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>ගෙවීම්\x20කේතය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>මූලාශ්‍ර\x20අරමුදල</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>තත්ත්වය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tbody>','input','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20color:green;\x22>','offlineQueueStatus','⚠️\x20කරුණාකර\x20විස්තරය\x20ඇතුළත්\x20කරන්න','manualREx6','#66bb6a','මෙම\x20මුදල්\x20අදාළ\x20REx\x20ගෙවීම්\x20කේත\x20වලට\x20එකතු\x20කර,\x20සුළු\x20මුදල්\x20ගනුදෙනු\x20\x27Transferred\x27\x20ලෙස\x20සලකුණු\x20කරන්නද?','transactionTypeFilter','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','BUDGET_VS_INCOME','edit-id-in','🔄\x20සමමුහුර්ත\x20කරමින්...\x20','✅\x20ගනුදෙනුව\x20සාර්ථකව\x20යාවත්කාලීන\x20කරන\x20ලදී!','update_cheque_status','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x22>','⚠️\x20කරුණාකර\x20අවම\x20වශයෙන්\x20එක්\x20පේළියක්\x20හෝ\x20එකතු\x20කරන්න','image/png','<div\x20class=\x22code-tag\x22><span\x20class=\x22code-num\x22\x20style=\x22background:var(--danger);\x20color:white;\x22>','confirmYes','</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<table\x20style=\x22width:100%;\x20border-collapse:\x20collapse;\x20margin-top:\x2020px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x208px;\x22><b>බැංකු\x20ප්‍රකාශය\x20අනුව\x20ශේෂය</b></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20padding:\x208px;\x22><b>\x20','⚠️\x20කරුණාකර\x20වලංගු\x20මුදලක්\x20ඇතුළත්\x20කරන්න','Multi-line\x20save\x20error:','rejected','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','378829njXcap','11px','⚠️\x20වලංගු\x20මුදලක්\x20ඇතුළත්\x20කරන්න','<div\x20style=\x22margin-bottom:\x2020px;\x22>','#fff9f9','isOp','data','📦\x20Offline\x20මාදිලියේ\x20සුරකින\x20ලදී.\x20සම්බන්ධ\x20වූ\x20පසු\x20සමමුහුර්ත\x20වේ.','4px','✅\x20ප්‍රතිපූරණය\x20සාර්ථකයි!\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20ප්‍රතිපූරණ\x20මුදල:\x20රු.\x20','download','</td></tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr><td>REx6\x20(සුළු\x20නඩත්තු):</td><td\x20style=\x22text-align:right;\x20font-weight:bold;\x22>රු.\x20','btn-save-petty','toString','3pdTZvu','amount','⚠️\x20අන්තර්ජාල\x20සම්බන්ධතාවයක්\x20නොමැත!','REx7\x20(පවිත්‍රතා):\x20රු.\x20','transactionDateFilter','✅\x20චෙක්පත\x20','now','⚠️\x20කරුණාකර\x20පරිශීලක\x20නාමය\x20තෝරන්න','split','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</b></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x222\x22\x20style=\x22padding:\x208px;\x20color:\x20#b71c1c;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<b>අඩු\x20කිරීම:</b>\x20ඉදිරිපත්\x20නොවූ\x20චෙක්පත්\x20(Unpresented\x20Cheques)\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>','nav-entry','⚠️\x20සියලු\x20පේළි\x20සඳහා\x20කේතය\x20තෝරන්න','❌\x20මකා\x20දැමීමේ\x20දෝෂයක්!','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22border:\x201px\x20solid\x20#000;\x20text-align:\x20right;\x22>','setAttribute','.nav-link','ලැබීම්\x20ගනුදෙනු','</td><td\x20class=\x22val-col\x22\x20style=\x22color:red;\x22>','code','මාර්','<tr\x20style=\x22background:\x20#f5c6cb;\x20font-weight:\x20bold;\x22>','#fbc02d','...</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','</h4>','⚠️\x20මෙම\x20වවුචර්\x20අංකය,\x20දිනය\x20සහ\x20මුදල\x20සහිත\x20ගනුදෙනුවක්\x20දැනටමත්\x20පවතී!','REx1\x20(ලිපි\x20ද්‍රව්‍ය):\x20රු.\x20','red','\x22\x20ව්‍යාපෘතිය\x20අවසන්\x20කර\x20Complete\x20ලෙස\x20සලකුණු\x20කරන්නද?\x0a\x0a⚠️\x20අවසන්\x20කළ\x20ව්‍යාපෘති\x20තවදුරටත්\x20dropdown\x20එකේ\x20නොපෙන්වයි.','</tbody></table></div>','Save\x20failed','ගොඩනැගිලි\x20නව\x20ඉදිකිරීම්,\x20වැඩිදියුණු\x20කිරීම්\x20හා\x20වෙනත්\x20ප්‍රාග්ධන\x20වියදම්','pettyFloat','nearest','#transactionSearchResults\x20.btn[onclick*=\x22exportSearchResults\x22]','❌\x20දෝෂයක්\x20ඇතිවිය!','<div\x20class=\x22print-signatures\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22width:\x2033%;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>පරීක්ෂා\x20කළේ</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22width:\x2033%;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>භාණ්ඩාගාරික</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x22width:\x2033%;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>....................................</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><b>විදුහල්පති</b></p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>','<table\x20style=\x22width:\x20100%;\x20border-collapse:\x20collapse;\x20margin-top:\x2010px;\x22>','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'];_0x4c80=function(){return _0x1632cd;};return _0x4c80();}function openReport(_0x5b672c){const _0x3dc741=_0x149fc9;currentReport=_0x5b672c,showSec(_0x3dc741(0x51e)),document[_0x3dc741(0x4ea)]('.sub-nav')['forEach'](_0x1affcb=>{const _0x42b5e7=_0x3dc741;_0x1affcb[_0x42b5e7(0x342)][_0x42b5e7(0x2a1)]('active');});const _0x1fb389=document['querySelectorAll'](_0x3dc741(0x423));_0x1fb389[_0x3dc741(0x1bd)](_0x3b05cf=>{const _0x5829ec=_0x3dc741;_0x3b05cf[_0x5829ec(0x543)](_0x5829ec(0x2f2))?.[_0x5829ec(0x578)](_0x5b672c)&&_0x3b05cf[_0x5829ec(0x342)][_0x5829ec(0x5b3)]('active');});const _0x452163=document[_0x3dc741(0x2aa)]('filter-box');_0x5b672c==='IN'||_0x5b672c==='EX'?(_0x452163[_0x3dc741(0x2dc)]['display']=_0x3dc741(0x57b),populateReportFilter(_0x5b672c)):_0x452163[_0x3dc741(0x2dc)]['display']=_0x3dc741(0x4f9);const _0x22e6a3=document[_0x3dc741(0x2aa)](_0x3dc741(0x4e7));_0x5b672c===_0x3dc741(0x388)?_0x22e6a3['style'][_0x3dc741(0x5bf)]=_0x3dc741(0x57b):_0x22e6a3[_0x3dc741(0x2dc)][_0x3dc741(0x5bf)]=_0x3dc741(0x4f9),generateReport();}function populateReportFilter(_0x5dcf8e){const _0x4b3401=_0x149fc9,_0x4613b1=document[_0x4b3401(0x2aa)](_0x4b3401(0x51a));_0x4613b1['innerHTML']='<option\x20value=\x22ALL\x22>සියලුම\x20කේතයන්</option>';const _0x558df8=_0x5dcf8e==='IN'?S_CODES:EX_CODES;_0x558df8[_0x4b3401(0x1bd)](_0xf909f3=>{const _0x7c69d6=_0x4b3401;_0x4613b1['innerHTML']+=_0x7c69d6(0x36a)+_0xf909f3+'\x22>'+_0xf909f3+_0x7c69d6(0x27f)+CODE_INFO[_0xf909f3]+_0x7c69d6(0x2a5);});}function viewCodeDetails(_0x2557ce,_0x1f13e8){const _0x29c20e=_0x149fc9;if(_0x2557ce==='PC'){const _0x5e5498=loadPettyFloat(),_0x3b8d13=JSON[_0x29c20e(0x250)](sessionStorage[_0x29c20e(0x4d0)](_0x29c20e(0x478))||'[]'),_0x5d0a50=_0x3b8d13[_0x29c20e(0x52f)](_0x4224ee=>_0x4224ee[_0x29c20e(0x34b)])[_0x29c20e(0x4e8)],_0x38dd4c=_0x3b8d13[_0x29c20e(0x52f)](_0x3b9c90=>!_0x3b9c90[_0x29c20e(0x34b)])[_0x29c20e(0x4e8)];let _0x3acf4b=_0x29c20e(0x3d9);_0x3acf4b+=_0x29c20e(0x410),_0x3acf4b+=_0x29c20e(0x483),_0x3acf4b+=_0x29c20e(0x319),_0x3acf4b+=_0x29c20e(0x466)+_0x5e5498[_0x29c20e(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x29c20e(0x45a),_0x3acf4b+=_0x29c20e(0x45a),_0x3acf4b+=_0x29c20e(0x23e),_0x3acf4b+=_0x29c20e(0x48a),_0x3acf4b+=_0x29c20e(0x218)+_0x5d0a50+_0x29c20e(0x356)+_0x38dd4c+_0x29c20e(0x45a),_0x3acf4b+=_0x29c20e(0x45a),_0x3acf4b+='</div>',_0x3acf4b+=_0x29c20e(0x2d9),_0x3acf4b+=_0x29c20e(0x23a),_0x3acf4b+=_0x29c20e(0x373),_0x3acf4b+=_0x29c20e(0x276),_0x3acf4b+=_0x29c20e(0x452),_0x3acf4b+='•\x20ප්‍රතිපූරණ\x20ගනුදෙනු\x20ඒවායේ\x20මූලාශ්‍ර\x20S\x20කේත\x20යටතේ\x20පෙන්වයි.<br>',_0x3acf4b+=_0x29c20e(0x315),_0x3acf4b+=_0x29c20e(0x40b),document[_0x29c20e(0x2aa)](_0x29c20e(0x262))[_0x29c20e(0x2bf)]=_0x29c20e(0x28e),document[_0x29c20e(0x2aa)](_0x29c20e(0x25d))[_0x29c20e(0x2bf)]=_0x3acf4b,document[_0x29c20e(0x2aa)]('codeDetailsModal')[_0x29c20e(0x2dc)][_0x29c20e(0x5bf)]=_0x29c20e(0x3a6);return;}const _0x2f13ec=getAllExpenseDataForReports(),_0x28ec37=document[_0x29c20e(0x2aa)](_0x29c20e(0x50f))['value'],_0x4d672e=document[_0x29c20e(0x2aa)](_0x29c20e(0x481))[_0x29c20e(0x1f3)];let _0xb7788a=[],_0x9959fb={},_0x5f27d4={},_0x271c4a=0x0,_0x2a0b9e=[];_0x1f13e8==='IN'&&(_0x2a0b9e=_0x2f13ec[_0x29c20e(0x52f)](_0x2aa77c=>_0x2aa77c[_0x29c20e(0x3db)]&&(_0x2aa77c[_0x29c20e(0x3f6)]===_0x2557ce||_0x2aa77c[_0x29c20e(0x320)]===_0x2557ce)),_0x271c4a=_0x2a0b9e['reduce']((_0x2df3e4,_0x52f34e)=>_0x2df3e4+_0x52f34e[_0x29c20e(0x2f6)],0x0));const _0x2626db=_0x2f13ec[_0x29c20e(0x52f)](_0x25ff38=>{const _0xcdc4f5=_0x29c20e;return _0x1f13e8==='IN'?!_0x25ff38[_0xcdc4f5(0x3db)]&&_0x25ff38[_0xcdc4f5(0x515)]==='IN'&&(_0x25ff38[_0xcdc4f5(0x3f6)]===_0x2557ce||_0x25ff38[_0xcdc4f5(0x320)]===_0x2557ce)&&(!_0x28ec37||_0x25ff38[_0xcdc4f5(0x2a9)]>=_0x28ec37)&&(!_0x4d672e||_0x25ff38['date']<=_0x4d672e):_0x25ff38[_0xcdc4f5(0x3f6)]===_0x2557ce&&_0x25ff38[_0xcdc4f5(0x515)]==='IN'&&(!_0x28ec37||_0x25ff38[_0xcdc4f5(0x2a9)]>=_0x28ec37)&&(!_0x4d672e||_0x25ff38['date']<=_0x4d672e);}),_0x17ab13=_0x2f13ec['filter'](_0x40347f=>{const _0x54165f=_0x29c20e;return _0x1f13e8==='EX'?_0x40347f[_0x54165f(0x3f6)]===_0x2557ce&&_0x40347f[_0x54165f(0x515)]==='EX'&&(!_0x28ec37||_0x40347f[_0x54165f(0x2a9)]>=_0x28ec37)&&(!_0x4d672e||_0x40347f[_0x54165f(0x2a9)]<=_0x4d672e):_0x40347f[_0x54165f(0x320)]===_0x2557ce&&_0x40347f[_0x54165f(0x515)]==='EX'&&(!_0x28ec37||_0x40347f[_0x54165f(0x2a9)]>=_0x28ec37)&&(!_0x4d672e||_0x40347f['date']<=_0x4d672e);}),_0x3982a7=_0x2626db['reduce']((_0x1f476d,_0x179613)=>_0x1f476d+_0x179613[_0x29c20e(0x2f6)],0x0),_0x2d256f=_0x271c4a+_0x3982a7,_0x1f8aa0=_0x17ab13[_0x29c20e(0x513)]((_0x154cd0,_0x41760a)=>_0x154cd0+_0x41760a[_0x29c20e(0x2f6)],0x0),_0x167382=_0x2d256f-_0x1f8aa0;_0x1f13e8==='EX'&&_0x17ab13[_0x29c20e(0x1bd)](_0x49e2c1=>{const _0x4b014b=_0x29c20e;_0x49e2c1[_0x4b014b(0x320)]&&CODE_INFO[_0x49e2c1[_0x4b014b(0x320)]]&&(!_0x9959fb[_0x49e2c1[_0x4b014b(0x320)]]&&(_0x9959fb[_0x49e2c1[_0x4b014b(0x320)]]={'code':_0x49e2c1[_0x4b014b(0x320)],'name':CODE_INFO[_0x49e2c1[_0x4b014b(0x320)]],'total':0x0,'transactions':[]}),_0x9959fb[_0x49e2c1['source']][_0x4b014b(0x24c)]+=_0x49e2c1[_0x4b014b(0x2f6)],_0x9959fb[_0x49e2c1[_0x4b014b(0x320)]][_0x4b014b(0x41b)][_0x4b014b(0x495)](_0x49e2c1));});_0x1f13e8==='IN'&&(_0x17ab13['forEach'](_0x1eb193=>{const _0x2e06fd=_0x29c20e;_0x1eb193['code']&&CODE_INFO[_0x1eb193[_0x2e06fd(0x3f6)]]&&(!_0x5f27d4[_0x1eb193[_0x2e06fd(0x3f6)]]&&(_0x5f27d4[_0x1eb193['code']]={'code':_0x1eb193[_0x2e06fd(0x3f6)],'name':CODE_INFO[_0x1eb193[_0x2e06fd(0x3f6)]],'total':0x0,'transactions':[]}),_0x5f27d4[_0x1eb193[_0x2e06fd(0x3f6)]]['total']+=_0x1eb193[_0x2e06fd(0x2f6)],_0x5f27d4[_0x1eb193[_0x2e06fd(0x3f6)]][_0x2e06fd(0x41b)][_0x2e06fd(0x495)](_0x1eb193));}),_0xb7788a=[..._0x2a0b9e,..._0x2626db]);document[_0x29c20e(0x2aa)]('modalCodeTitle')[_0x29c20e(0x2bf)]=_0x29c20e(0x274)+_0x2557ce+_0x29c20e(0x27f)+CODE_INFO[_0x2557ce]+_0x29c20e(0x2af)+(_0x1f13e8==='IN'?_0x29c20e(0x2c9):_0x29c20e(0x58c))+_0x29c20e(0x454)+_0x29c20e(0x43d);let _0x548ce4=_0x29c20e(0x3d9);_0x548ce4+=_0x29c20e(0x4c4),_0x548ce4+=_0x29c20e(0x483),_0x548ce4+='<div\x20style=\x22font-size:\x2012px;\x20color:\x20#155724;\x22>මුළු\x20ලැබීම්</div>',_0x548ce4+=_0x29c20e(0x466)+_0x2d256f[_0x29c20e(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x29c20e(0x45a),_0x548ce4+=_0x29c20e(0x45a),_0x548ce4+='<div\x20style=\x22background:\x20#f8d7da;\x20padding:\x2012px;\x20border-radius:\x208px;\x20text-align:\x20center;\x22>',_0x548ce4+=_0x29c20e(0x324),_0x548ce4+=_0x29c20e(0x2c1)+_0x1f8aa0['toLocaleString'](undefined,{'minimumFractionDigits':0x2})+'</div>',_0x548ce4+=_0x29c20e(0x45a),_0x548ce4+='<div\x20style=\x22background:\x20#d1ecf1;\x20padding:\x2012px;\x20border-radius:\x208px;\x20text-align:\x20center;\x22>',_0x548ce4+=_0x29c20e(0x4db),_0x548ce4+=_0x29c20e(0x35d)+(_0x167382>=0x0?_0x29c20e(0x48b):_0x29c20e(0x3af))+_0x29c20e(0x48c)+_0x167382[_0x29c20e(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x29c20e(0x45a),_0x548ce4+=_0x29c20e(0x45a),_0x548ce4+=_0x29c20e(0x45a);if(_0x1f13e8==='EX'&&Object[_0x29c20e(0x36d)](_0x9959fb)[_0x29c20e(0x4e8)]>0x0){_0x548ce4+=_0x29c20e(0x5b0),_0x548ce4+=_0x29c20e(0x4ba),_0x548ce4+=_0x29c20e(0x4be),_0x548ce4+=_0x29c20e(0x3fb),_0x548ce4+=_0x29c20e(0x4b4),_0x548ce4+=_0x29c20e(0x31c),_0x548ce4+='<th\x20style=\x22padding:\x206px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x20font-size:\x2011px;\x22>ලැබීම්\x20කේතය</th>',_0x548ce4+=_0x29c20e(0x5b4),_0x548ce4+=_0x29c20e(0x1ee),_0x548ce4+=_0x29c20e(0x5aa),_0x548ce4+='</tr></thead><tbody>';const _0x394bbc=Object['values'](_0x9959fb)[_0x29c20e(0x20c)]((_0x4f2320,_0x1a1600)=>{const _0x5b9aa2=_0x29c20e;return S_CODES[_0x5b9aa2(0x228)](_0x4f2320[_0x5b9aa2(0x3f6)])-S_CODES[_0x5b9aa2(0x228)](_0x1a1600[_0x5b9aa2(0x3f6)]);});_0x394bbc[_0x29c20e(0x1bd)](_0x37d7ac=>{const _0x4ce1d0=_0x29c20e;_0x548ce4+=_0x4ce1d0(0x2ac),_0x548ce4+=_0x4ce1d0(0x507)+_0x37d7ac[_0x4ce1d0(0x3f6)]+_0x4ce1d0(0x352),_0x548ce4+='<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x22>'+_0x37d7ac[_0x4ce1d0(0x532)]+_0x4ce1d0(0x352),_0x548ce4+=_0x4ce1d0(0x54b),_0x548ce4+=_0x37d7ac['total']['toLocaleString'](undefined,{'minimumFractionDigits':0x2}),_0x548ce4+=_0x4ce1d0(0x352),_0x548ce4+='<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20center;\x22>',_0x548ce4+=_0x4ce1d0(0x593),_0x548ce4+=_0x37d7ac['transactions']['length'],_0x548ce4+=_0x4ce1d0(0x232);}),_0x548ce4+=_0x29c20e(0x2f5),_0x548ce4+=_0x29c20e(0x302),_0x548ce4+=_0x29c20e(0x427),_0x548ce4+=_0x29c20e(0x330),_0x548ce4+=Object[_0x29c20e(0x2ee)](_0x9959fb)[_0x29c20e(0x513)]((_0x299fe6,_0x287e9b)=>_0x299fe6+_0x287e9b[_0x29c20e(0x24c)],0x0)[_0x29c20e(0x2d6)](undefined,{'minimumFractionDigits':0x2}),_0x548ce4+='</td>',_0x548ce4+=_0x29c20e(0x1df),_0x548ce4+=_0x17ab13[_0x29c20e(0x4e8)],_0x548ce4+=_0x29c20e(0x1e8);}if(_0x1f13e8==='IN'&&Object[_0x29c20e(0x36d)](_0x5f27d4)['length']>0x0){_0x548ce4+=_0x29c20e(0x1c7),_0x548ce4+=_0x29c20e(0x58a),_0x548ce4+=_0x29c20e(0x1f2),_0x548ce4+='</h4>',_0x548ce4+=_0x29c20e(0x24a),_0x548ce4+='<thead><tr\x20style=\x22background:\x20#fdeaea;\x22>',_0x548ce4+='<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;font-size:\x2011px;\x22>ගෙවීම්\x20කේතය</th>',_0x548ce4+='<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;font-size:\x2011px;\x22>විස්තරය</th>',_0x548ce4+=_0x29c20e(0x261),_0x548ce4+=_0x29c20e(0x44c),_0x548ce4+=_0x29c20e(0x4cc);const _0x4c9da9=Object[_0x29c20e(0x2ee)](_0x5f27d4)[_0x29c20e(0x20c)]((_0x5f29cd,_0x4390e3)=>{const _0x27ee0a=_0x29c20e;return EX_CODES['indexOf'](_0x5f29cd[_0x27ee0a(0x3f6)])-EX_CODES[_0x27ee0a(0x228)](_0x4390e3[_0x27ee0a(0x3f6)]);});_0x4c9da9[_0x29c20e(0x1bd)](_0x26d59d=>{const _0x275d87=_0x29c20e;_0x548ce4+='<tr\x20style=\x22border-bottom:\x201px\x20solid\x20#eee;\x22>',_0x548ce4+='<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20font-weight:\x20bold;\x20color:\x20#b71c1c;\x22>'+_0x26d59d[_0x275d87(0x3f6)]+_0x275d87(0x352),_0x548ce4+=_0x275d87(0x3b0)+_0x26d59d[_0x275d87(0x532)]+_0x275d87(0x352),_0x548ce4+='<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20font-weight:\x20bold;\x20color:\x20#c62828;\x22>',_0x548ce4+=_0x26d59d[_0x275d87(0x24c)][_0x275d87(0x2d6)](undefined,{'minimumFractionDigits':0x2}),_0x548ce4+=_0x275d87(0x352),_0x548ce4+=_0x275d87(0x59c),_0x548ce4+='<span\x20style=\x22background:\x20#6c757d;\x20color:\x20white;\x20padding:\x203px\x208px;\x20border-radius:\x2012px;\x20font-size:\x2012px;\x22>',_0x548ce4+=_0x26d59d[_0x275d87(0x41b)]['length'],_0x548ce4+=_0x275d87(0x232);}),_0x548ce4+='</tbody><tfoot>',_0x548ce4+=_0x29c20e(0x3f8),_0x548ce4+=_0x29c20e(0x427),_0x548ce4+=_0x29c20e(0x46c),_0x548ce4+=Object[_0x29c20e(0x2ee)](_0x5f27d4)[_0x29c20e(0x513)]((_0x215649,_0x112b3a)=>_0x215649+_0x112b3a[_0x29c20e(0x24c)],0x0)[_0x29c20e(0x2d6)](undefined,{'minimumFractionDigits':0x2}),_0x548ce4+=_0x29c20e(0x352),_0x548ce4+=_0x29c20e(0x1df),_0x548ce4+=_0x17ab13[_0x29c20e(0x4e8)],_0x548ce4+='</td></tr></tfoot></table>';}_0x1f13e8==='IN'&&(_0x548ce4+=_0x29c20e(0x241),_0x548ce4+=_0x29c20e(0x343),_0x548ce4+=_0x29c20e(0x3f4),_0x548ce4+='</h4>',_0xb7788a[_0x29c20e(0x4e8)]===0x0?_0x548ce4+=_0x29c20e(0x51f):(_0x548ce4+='<table\x20style=\x22width:\x20100%;\x20border-collapse:\x20collapse;\x20margin-top:\x2010px;\x22>',_0x548ce4+='<thead><tr\x20style=\x22background:\x20#d4edda;\x22>',_0x548ce4+=_0x29c20e(0x1ca),_0x548ce4+=_0x29c20e(0x33d),_0x548ce4+=_0x29c20e(0x48d),_0x548ce4+=_0x29c20e(0x48f),_0x548ce4+=_0x29c20e(0x46b),_0x548ce4+=_0x29c20e(0x4cc),_0xb7788a['sort']((_0x4e35a1,_0x294e6)=>new Date(_0x294e6['date'])-new Date(_0x4e35a1['date']))[_0x29c20e(0x1bd)](_0x4b7d93=>{const _0x236e0b=_0x29c20e;let _0x37dda8=_0x4b7d93[_0x236e0b(0x5b7)]||'-';_0x548ce4+=_0x236e0b(0x2ac),_0x548ce4+=_0x236e0b(0x3b0)+_0x4b7d93[_0x236e0b(0x2a9)]+_0x236e0b(0x352),_0x548ce4+=_0x236e0b(0x3b0)+_0x4b7d93[_0x236e0b(0x437)]+'</td>',_0x548ce4+=_0x236e0b(0x3b0)+_0x37dda8+_0x236e0b(0x352),_0x548ce4+=_0x236e0b(0x3b0)+(_0x4b7d93[_0x236e0b(0x1e3)]||'-')+_0x236e0b(0x352),_0x548ce4+='<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20font-weight:\x20bold;\x20color:\x20green;\x22>'+_0x4b7d93[_0x236e0b(0x2f6)][_0x236e0b(0x2d6)](undefined,{'minimumFractionDigits':0x2})+'</td>',_0x548ce4+='</tr>';}),_0x548ce4+=_0x29c20e(0x2f5),_0x548ce4+='<tr\x20style=\x22background:\x20#c3e6cb;\x20font-weight:\x20bold;\x22>',_0x548ce4+=_0x29c20e(0x4f3),_0x548ce4+=_0x29c20e(0x5c0)+_0x2d256f[_0x29c20e(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x29c20e(0x352),_0x548ce4+='</tr></tfoot></table>')),_0x1f13e8==='EX'&&(_0x548ce4+=_0x29c20e(0x39f),_0x548ce4+=_0x29c20e(0x32f),_0x548ce4+=_0x29c20e(0x37e),_0x548ce4+=_0x29c20e(0x3fb),_0x17ab13[_0x29c20e(0x4e8)]===0x0?_0x548ce4+=_0x29c20e(0x44f):(_0x548ce4+=_0x29c20e(0x408),_0x548ce4+='<thead><tr\x20style=\x22background:\x20#f8d7da;\x22>',_0x548ce4+=_0x29c20e(0x1ca),_0x548ce4+=_0x29c20e(0x33d),_0x548ce4+=_0x29c20e(0x533),_0x548ce4+='<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x22>ව්‍යාපෘතිය</th>',_0x548ce4+='<th\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20left;\x22>මූලාශ්‍ර\x20(S\x20Code)</th>',_0x548ce4+=_0x29c20e(0x46b),_0x548ce4+=_0x29c20e(0x4cc),_0x17ab13[_0x29c20e(0x20c)]((_0x3eac10,_0x2b57f6)=>new Date(_0x2b57f6[_0x29c20e(0x2a9)])-new Date(_0x3eac10['date']))[_0x29c20e(0x1bd)](_0x12be5b=>{const _0x287458=_0x29c20e;_0x548ce4+=_0x287458(0x2ac),_0x548ce4+=_0x287458(0x3b0)+_0x12be5b[_0x287458(0x2a9)]+_0x287458(0x352),_0x548ce4+=_0x287458(0x3b0)+_0x12be5b[_0x287458(0x437)]+_0x287458(0x352),_0x548ce4+=_0x287458(0x3b0)+(_0x12be5b[_0x287458(0x537)]||_0x12be5b['ref']||'-')+_0x287458(0x352),_0x548ce4+=_0x287458(0x3b0)+(_0x12be5b[_0x287458(0x1e3)]||'-')+'</td>',_0x548ce4+='<td\x20style=\x22padding:\x208px;\x20border:\x201px\x20solid\x20#ddd;\x20font-weight:\x20bold;\x20color:\x20#2e7d32;\x22>',_0x548ce4+=_0x12be5b[_0x287458(0x320)]||'-',_0x12be5b[_0x287458(0x320)]&&CODE_INFO[_0x12be5b['source']]&&(_0x548ce4+=_0x287458(0x4a9)+CODE_INFO[_0x12be5b[_0x287458(0x320)]]+_0x287458(0x208)),_0x548ce4+=_0x287458(0x352),_0x548ce4+=_0x287458(0x41c)+_0x12be5b['amt'][_0x287458(0x2d6)](undefined,{'minimumFractionDigits':0x2})+'</td>',_0x548ce4+='</tr>';}),_0x548ce4+='</tbody><tfoot>',_0x548ce4+=_0x29c20e(0x3f8),_0x548ce4+='<td\x20colspan=\x225\x22\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x22>ගෙවීම්\x20මුළු\x20එකතුව:</td>',_0x548ce4+='<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20color:\x20red;\x22>'+_0x1f8aa0[_0x29c20e(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x29c20e(0x352),_0x548ce4+='</tr></tfoot></table>')),_0x548ce4+='<div\x20style=\x22background:\x20#e8f4f8;\x20padding:\x2015px;\x20border-radius:\x208px;\x20margin-top:\x2030px;\x20border-left:\x205px\x20solid\x20#17a2b8;\x22>',_0x548ce4+='<div\x20style=\x22display:\x20flex;\x20justify-content:\x20space-between;\x20align-items:\x20center;\x22>',_0x548ce4+=_0x29c20e(0x2fa),_0x548ce4+=_0x29c20e(0x339)+_0x2557ce+_0x29c20e(0x34a),_0x548ce4+=_0x29c20e(0x20e)+CODE_INFO[_0x2557ce]+_0x29c20e(0x45a),_0x548ce4+=_0x29c20e(0x45a),_0x548ce4+=_0x29c20e(0x229),_0x548ce4+=_0x29c20e(0x263)+(_0x167382>=0x0?_0x29c20e(0x48b):_0x29c20e(0x3af))+_0x29c20e(0x48c),_0x548ce4+='අවසාන\x20ශේෂය:\x20'+_0x167382['toLocaleString'](undefined,{'minimumFractionDigits':0x2}),_0x548ce4+=_0x29c20e(0x45a),_0x548ce4+=_0x29c20e(0x383),_0x548ce4+=_0x29c20e(0x585)+_0x2d256f[_0x29c20e(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x29c20e(0x334)+_0x1f8aa0[_0x29c20e(0x2d6)](undefined,{'minimumFractionDigits':0x2})+')',_0x548ce4+=_0x29c20e(0x45a),_0x548ce4+=_0x29c20e(0x1f9),document[_0x29c20e(0x2aa)](_0x29c20e(0x25d))[_0x29c20e(0x2bf)]=_0x548ce4,document['getElementById'](_0x29c20e(0x357))[_0x29c20e(0x2dc)][_0x29c20e(0x5bf)]=_0x29c20e(0x3a6);}function closeCodeDetails(){const _0x392e20=_0x149fc9;document[_0x392e20(0x2aa)]('codeDetailsModal')[_0x392e20(0x2dc)][_0x392e20(0x5bf)]='none';}function generateReport(){const _0x4a94a3=_0x149fc9,_0x317535=getAllExpenseDataForReports(),_0x280a0e=getData(),_0x2492b8=document['getElementById']('repFrom')['value'],_0x30a5b6=document['getElementById']('repTo')[_0x4a94a3(0x1f3)],_0x3a5f76=document[_0x4a94a3(0x2aa)](_0x4a94a3(0x51a))[_0x4a94a3(0x1f3)];let _0x38aa87='',_0x155f3d=_0x317535[_0x4a94a3(0x52f)](_0x1d02fc=>!_0x1d02fc[_0x4a94a3(0x3db)]&&(!_0x2492b8||_0x1d02fc[_0x4a94a3(0x2a9)]>=_0x2492b8)&&(!_0x30a5b6||_0x1d02fc[_0x4a94a3(0x2a9)]<=_0x30a5b6));if(currentReport==='CASHBOOK'){document['getElementById'](_0x4a94a3(0x4f2))[_0x4a94a3(0x473)]=_0x4a94a3(0x2a0),document[_0x4a94a3(0x2aa)](_0x4a94a3(0x4f2))['style']['fontSize']='24px',document[_0x4a94a3(0x2aa)]('report-header-title')['style'][_0x4a94a3(0x1bc)]='bold',document[_0x4a94a3(0x2aa)]('report-header-title')[_0x4a94a3(0x2dc)]['color']=_0x4a94a3(0x49e);let _0x8a2dd3=_0x280a0e[_0x4a94a3(0x52f)](_0x12118f=>!_0x12118f['isOp'])['sort']((_0x19f746,_0x4ed931)=>new Date(_0x19f746[_0x4a94a3(0x2a9)])-new Date(_0x4ed931[_0x4a94a3(0x2a9)])),_0x207702=_0x280a0e['filter'](_0x6cee19=>_0x6cee19[_0x4a94a3(0x3db)])[_0x4a94a3(0x513)]((_0x3000e4,_0xabe666)=>_0x3000e4+_0xabe666[_0x4a94a3(0x2f6)],0x0),_0x1bd3ac=_0x207702,_0x545397={};_0x8a2dd3[_0x4a94a3(0x1bd)](_0xdfa07b=>{const _0x1deb39=_0x4a94a3;let _0x2756f3=_0xdfa07b[_0x1deb39(0x2a9)][_0x1deb39(0x1f6)](0x0,0x7);if(!_0x545397[_0x2756f3])_0x545397[_0x2756f3]=[];_0x545397[_0x2756f3][_0x1deb39(0x495)](_0xdfa07b);}),_0x38aa87=_0x4a94a3(0x20d),Object['keys'](_0x545397)['sort']()[_0x4a94a3(0x1bd)](_0x558057=>{const _0x137344=_0x4a94a3;let _0x2a3ab4=0x0,_0x596724=0x0,_0x4d705c=_0x1bd3ac,_0x28fc34=(!_0x2492b8||_0x558057>=_0x2492b8[_0x137344(0x1f6)](0x0,0x7))&&(!_0x30a5b6||_0x558057<=_0x30a5b6[_0x137344(0x1f6)](0x0,0x7));_0x28fc34&&(_0x38aa87+=_0x137344(0x200)+_0x558057+_0x137344(0x589)+_0x4d705c['toLocaleString'](undefined,{'minimumFractionDigits':0x2})+_0x137344(0x260)),_0x545397[_0x558057][_0x137344(0x1bd)](_0x4f0671=>{const _0x1778cc=_0x137344;let _0x72415f=_0x4f0671[_0x1778cc(0x2f6)]||0x0;_0x4f0671[_0x1778cc(0x515)]==='IN'?(_0x1bd3ac+=_0x72415f,_0x2a3ab4+=_0x72415f):(_0x1bd3ac-=_0x72415f,_0x596724+=_0x72415f);if(_0x28fc34){if((!_0x2492b8||_0x4f0671[_0x1778cc(0x2a9)]>=_0x2492b8)&&(!_0x30a5b6||_0x4f0671[_0x1778cc(0x2a9)]<=_0x30a5b6)){let _0x5b7910=_0x4f0671[_0x1778cc(0x515)]==='IN'?_0x4f0671[_0x1778cc(0x5b7)]||'-':_0x4f0671[_0x1778cc(0x537)]||'-';_0x38aa87+='<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+(_0x4f0671['date']?_0x4f0671[_0x1778cc(0x2a9)]['split']('T')[0x0]:'')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+_0x4f0671[_0x1778cc(0x437)]+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+_0x5b7910+_0x1778cc(0x443)+(_0x4f0671['type']==='EX'?_0x4f0671[_0x1778cc(0x5b7)]||'-':'-')+_0x1778cc(0x34f)+(_0x4f0671['type']==='IN'?_0x72415f['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):'-')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20color:red;\x22>'+(_0x4f0671[_0x1778cc(0x515)]==='EX'?_0x72415f[_0x1778cc(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'-')+_0x1778cc(0x4a2)+_0x1bd3ac[_0x1778cc(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x1778cc(0x44a);}}}),_0x28fc34&&(_0x38aa87+=_0x137344(0x4bd)+_0x2a3ab4[_0x137344(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x137344(0x433)+_0x596724[_0x137344(0x2d6)](undefined,{'minimumFractionDigits':0x2})+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22background:#f0f0f0;\x20font-weight:bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x226\x22\x20style=\x22text-align:right\x22>පහළට\x20ගෙන\x20ගිය\x20ශේෂය\x20(Balance\x20C/D):</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right\x22>\x20'+_0x1bd3ac[_0x137344(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x137344(0x323));}),_0x38aa87+='</tbody></table>',document[_0x4a94a3(0x2aa)](_0x4a94a3(0x205))[_0x4a94a3(0x2bf)]=_0x38aa87;}else{if(currentReport==='IN'||currentReport==='EX'){document[_0x4a94a3(0x2aa)]('report-header-title')['innerText']=(currentReport==='IN'?_0x4a94a3(0x55b):_0x4a94a3(0x442))+(_0x3a5f76!==_0x4a94a3(0x32e)?_0x4a94a3(0x27f)+_0x3a5f76:'');let _0x1d37a9;if(currentReport==='EX'&&_0x3a5f76==='ALL')EX_CODES[_0x4a94a3(0x578)]('PC')?_0x1d37a9=EX_CODES:_0x1d37a9=[...EX_CODES,'PC'];else _0x3a5f76===_0x4a94a3(0x32e)?_0x1d37a9=currentReport==='IN'?S_CODES:EX_CODES:_0x1d37a9=[_0x3a5f76];const _0x34c507={};_0x1d37a9[_0x4a94a3(0x1bd)](_0x4b1c92=>{const _0x18c744=_0x4a94a3,_0x14c797=_0x317535[_0x18c744(0x52f)](_0xd3ea49=>_0xd3ea49[_0x18c744(0x3db)]&&_0xd3ea49[_0x18c744(0x320)]===_0x4b1c92)[_0x18c744(0x513)]((_0x130ad8,_0x45e3bf)=>_0x130ad8+_0x45e3bf[_0x18c744(0x2f6)],0x0);_0x34c507[_0x4b1c92]=_0x14c797;}),_0x38aa87='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<table\x20style=\x22width:\x20100%;\x20border-collapse:\x20collapse;\x20border:\x202px\x20solid\x20'+(currentReport==='IN'?_0x4a94a3(0x461):_0x4a94a3(0x4a4))+';\x20margin-bottom:\x2030px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22background:\x20'+(currentReport==='IN'?_0x4a94a3(0x461):'#dc3545')+_0x4a94a3(0x22f)+(currentReport==='IN'?_0x4a94a3(0x2c9):_0x4a94a3(0x58c))+_0x4a94a3(0x5ad);let _0x3c02de=0x0,_0x1d0ae6=0x0,_0x58d43d=0x0;_0x1d37a9[_0x4a94a3(0x1bd)](_0xc0f7d8=>{const _0x43db4c=_0x4a94a3;let _0x2912e6=[],_0x318b6d=0x0,_0x1877b1=0x0,_0x5a1445=CODE_INFO[_0xc0f7d8]||(_0xc0f7d8==='PC'?'සුළු\x20මුදල්\x20අග්‍රිමය\x20(Petty\x20Cash\x20Imprest)':'');if(currentReport==='EX'&&_0xc0f7d8==='PC'){const _0x1c8041=loadPettyFloat();_0x318b6d=_0x1c8041,_0x1877b1=0x1;}else _0x2912e6=_0x317535['filter'](_0x54aaff=>_0x54aaff[_0x43db4c(0x515)]===currentReport&&_0x54aaff[_0x43db4c(0x3f6)]===_0xc0f7d8&&(!_0x2492b8||_0x54aaff[_0x43db4c(0x2a9)]>=_0x2492b8)&&(!_0x30a5b6||_0x54aaff[_0x43db4c(0x2a9)]<=_0x30a5b6)),_0x318b6d=_0x2912e6[_0x43db4c(0x513)]((_0x7dbe1a,_0x309840)=>_0x7dbe1a+_0x309840[_0x43db4c(0x2f6)],0x0),_0x1877b1=_0x2912e6[_0x43db4c(0x4e8)];const _0x49ff1a=_0x34c507[_0xc0f7d8]||0x0,_0x2e4389=currentReport==='IN'?_0x49ff1a:0x0,_0x1f6ee1=currentReport==='IN'?_0x2e4389+_0x318b6d:_0x318b6d;_0x3c02de+=_0x1f6ee1,_0x1d0ae6+=_0x1877b1,_0x58d43d+=_0x2e4389,_0x38aa87+='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr\x20style=\x22border-bottom:\x201px\x20solid\x20#eee;\x20'+(_0x1877b1>0x0?_0x43db4c(0x336):'')+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20font-weight:\x20bold;\x20color:\x20var(--primary);\x22>'+_0xc0f7d8+_0x43db4c(0x33b)+_0x5a1445+_0x43db4c(0x592)+(_0x2e4389>0x0?_0x2e4389['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):_0x43db4c(0x27f))+_0x43db4c(0x369)+(_0x1877b1>0x0?currentReport==='IN'?'#28a745':_0x43db4c(0x4a4):_0x43db4c(0x36e))+';\x20color:\x20white;\x20padding:\x203px\x208px;\x20border-radius:\x2012px;\x20font-size:\x2012px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x1877b1+_0x43db4c(0x536)+(currentReport==='IN'?_0x43db4c(0x563):_0x43db4c(0x3fe))+_0x43db4c(0x48c)+(_0x318b6d>0x0?_0x318b6d['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):'\x20-\x20')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2010px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20right;\x20font-weight:\x20bold;\x20color:\x20#1b5e20;\x20background:\x20#e8f5e9;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x1f6ee1>0x0?_0x1f6ee1['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):_0x43db4c(0x27f))+_0x43db4c(0x23f)+(_0xc0f7d8!=='PC'?_0x43db4c(0x1ff)+_0xc0f7d8+'\x27,\x20\x27'+currentReport+_0x43db4c(0x257)+(currentReport==='IN'?_0x43db4c(0x444):'var(--danger)')+_0x43db4c(0x375):'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22color:\x20#999;\x20font-size:\x2011px;\x22>ස්ථාවර\x20මුදල</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20')+_0x43db4c(0x468);}),_0x38aa87+=_0x4a94a3(0x58e)+(currentReport==='IN'?_0x4a94a3(0x534):'#f8d7da')+_0x4a94a3(0x516)+(_0x58d43d>0x0?_0x58d43d[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'\x20-\x20')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:\x2012px;\x20border:\x201px\x20solid\x20#ddd;\x20text-align:\x20center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22display:\x20inline-block;\x20background:\x20#343a40;\x20color:\x20white;\x20padding:\x204px\x2010px;\x20border-radius:\x2012px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+_0x1d0ae6+_0x4a94a3(0x3b7)+(currentReport==='IN'?_0x4a94a3(0x563):'red')+_0x4a94a3(0x364)+(_0x3c02de-_0x58d43d>0x0?(_0x3c02de-_0x58d43d)['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):'\x20-\x20')+_0x4a94a3(0x2ed)+(_0x3c02de>0x0?_0x3c02de['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+_0x4a94a3(0x2f4),document[_0x4a94a3(0x2aa)](_0x4a94a3(0x205))[_0x4a94a3(0x2bf)]=_0x38aa87;}else{if(currentReport===_0x4a94a3(0x388)){document['getElementById']('report-header-title')[_0x4a94a3(0x473)]='බැංකු\x20සැසඳුම්\x20ප්‍රකාශය';let _0x3cee9d=parseAmount(document[_0x4a94a3(0x2aa)](_0x4a94a3(0x25e))[_0x4a94a3(0x1f3)]||0x0),_0x397ec8=_0x280a0e[_0x4a94a3(0x52f)](_0x255e65=>_0x255e65[_0x4a94a3(0x515)]==='IN'&&_0x255e65[_0x4a94a3(0x537)]&&_0x255e65['vouch'][_0x4a94a3(0x42a)]()!==''&&_0x255e65[_0x4a94a3(0x3db)]!==!![]&&(clearedStatus[_0x255e65['id']]||_0x4a94a3(0x293))==='Pending'&&(!_0x2492b8||_0x255e65[_0x4a94a3(0x2a9)]>=_0x2492b8)&&(!_0x30a5b6||_0x255e65[_0x4a94a3(0x2a9)]<=_0x30a5b6)),_0xca7dd8=_0x397ec8['reduce']((_0x193fde,_0x4cdb62)=>_0x193fde+_0x4cdb62[_0x4a94a3(0x2f6)],0x0),_0x3108fa=_0x280a0e['filter'](_0x5a621c=>_0x5a621c['type']==='EX'&&_0x5a621c[_0x4a94a3(0x5b7)]&&_0x5a621c[_0x4a94a3(0x5b7)][_0x4a94a3(0x42a)]()!==''&&(clearedStatus[_0x5a621c['id']]||_0x4a94a3(0x293))===_0x4a94a3(0x293)&&(!_0x2492b8||_0x5a621c[_0x4a94a3(0x2a9)]>=_0x2492b8)&&(!_0x30a5b6||_0x5a621c[_0x4a94a3(0x2a9)]<=_0x30a5b6)),_0x29469b=_0x3108fa[_0x4a94a3(0x513)]((_0x2dffe9,_0x4af0f5)=>_0x2dffe9+_0x4af0f5[_0x4a94a3(0x2f6)],0x0),_0x4f3c52=_0x3cee9d+_0xca7dd8-_0x29469b;_0x38aa87=_0x4a94a3(0x36b)+(_0x30a5b6||_0x4a94a3(0x439))+_0x4a94a3(0x3d1)+(_0x3cee9d>0x0?_0x3cee9d[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x56d))+_0x4a94a3(0x4da);_0x397ec8[_0x4a94a3(0x4e8)]>0x0?_0x397ec8[_0x4a94a3(0x20c)]((_0x42e3c6,_0x570651)=>new Date(_0x570651[_0x4a94a3(0x2a9)])-new Date(_0x42e3c6['date']))[_0x4a94a3(0x1bd)](_0x36dfdd=>{const _0x502f25=_0x4a94a3;_0x38aa87+=_0x502f25(0x348)+_0x36dfdd['date'][_0x502f25(0x3ec)]('T')[0x0]+_0x502f25(0x27f)+_0x36dfdd[_0x502f25(0x437)]+_0x502f25(0x2bb)+(_0x36dfdd[_0x502f25(0x537)]||'-')+_0x502f25(0x1cf)+(_0x36dfdd['ref']||'-')+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22color:\x20#f39c12;\x20margin-left:\x2010px;\x20font-size:\x200.85em;\x22>(Pending)</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20padding-right:\x2020px;\x20font-weight:\x20bold;\x20color:\x20#27ae60;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20+\x20'+(_0x36dfdd[_0x502f25(0x2f6)]>0x0?_0x36dfdd[_0x502f25(0x2f6)][_0x502f25(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x502f25(0x56d))+_0x502f25(0x340);}):_0x38aa87+=_0x4a94a3(0x283);_0x38aa87+='<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding-left:80px;\x22><b>මුළු\x20නිශ්කාෂණය\x20නොවූ\x20චෙක්පත්\x20ලැබීම්\x20එකතුව</b></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20border-top:1px\x20solid\x20#000;\x20padding:\x208px;\x20font-weight:\x20bold;\x20color:\x20#27ae60;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20+\x20'+(_0xca7dd8>0x0?_0xca7dd8['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x56d))+_0x4a94a3(0x59b)+(_0x3cee9d+_0xca7dd8>0x0?(_0x3cee9d+_0xca7dd8)['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x56d))+_0x4a94a3(0x3ed);_0x3108fa[_0x4a94a3(0x4e8)]>0x0?_0x3108fa[_0x4a94a3(0x20c)]((_0x281f21,_0x3d562e)=>new Date(_0x3d562e['date'])-new Date(_0x281f21[_0x4a94a3(0x2a9)]))[_0x4a94a3(0x1bd)](_0x30ce22=>{const _0x521261=_0x4a94a3;_0x38aa87+=_0x521261(0x348)+_0x30ce22[_0x521261(0x2a9)][_0x521261(0x3ec)]('T')[0x0]+'\x20-\x20'+_0x30ce22['desc']+'<br>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20style=\x22color:\x20#666;\x20font-size:\x200.85em;\x22>චෙක්පත්\x20අංකය:\x20'+(_0x30ce22[_0x521261(0x5b7)]||'-')+_0x521261(0x28a)+(_0x30ce22[_0x521261(0x537)]||'-')+_0x521261(0x35b)+(_0x30ce22[_0x521261(0x2f6)]>0x0?_0x30ce22[_0x521261(0x2f6)][_0x521261(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x521261(0x56d))+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>';}):_0x38aa87+='<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding-left:40px;\x20font-size:\x200.9em;\x20color:\x20#666;\x22>ඉදිරිපත්\x20නොවූ\x20චෙක්පත්\x20නැත</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20padding-right:\x2020px;\x22>0.00</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>';_0x38aa87+=_0x4a94a3(0x465)+(_0x29469b>0x0?_0x29469b['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x56d))+_0x4a94a3(0x5c9)+(_0x4f3c52>0x0?_0x4f3c52[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'0.00')+'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</b></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x222\x22\x20style=\x22padding:\x2010px;\x20text-align:\x20right;\x20font-size:\x200.85em;\x20color:\x20#666;\x20border-top:\x201px\x20dashed\x20#999;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-calculator\x22></i>\x20ගණනය\x20කිරීම:\x20බැංකු\x20ශේෂය\x20'+_0x3cee9d[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x4a94a3(0x25a)+_0xca7dd8['toLocaleString'](undefined,{'minimumFractionDigits':0x2})+_0x4a94a3(0x2ea)+_0x29469b[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x4a94a3(0x5a6);if(userRole===_0x4a94a3(0x49f)||userRole===_0x4a94a3(0x499)){_0x38aa87+=_0x4a94a3(0x35f);let _0x54941a=_0x280a0e['filter'](_0x4deebc=>_0x4deebc[_0x4a94a3(0x515)]==='EX'&&_0x4deebc[_0x4a94a3(0x5b7)]&&_0x4deebc['ref'][_0x4a94a3(0x42a)]()!==''&&(clearedStatus[_0x4deebc['id']]||'Pending')===_0x4a94a3(0x293)&&(!_0x2492b8||_0x4deebc['date']>=_0x2492b8)&&(!_0x30a5b6||_0x4deebc['date']<=_0x30a5b6));_0x54941a[_0x4a94a3(0x4e8)]>0x0?_0x54941a[_0x4a94a3(0x20c)]((_0x5cdec9,_0xdd4a63)=>new Date(_0xdd4a63[_0x4a94a3(0x2a9)])-new Date(_0x5cdec9[_0x4a94a3(0x2a9)]))[_0x4a94a3(0x1bd)](_0x41f140=>{const _0x1ebc10=_0x4a94a3;let _0x325fe7=clearedStatus[_0x41f140['id']]||'Pending';_0x38aa87+=_0x1ebc10(0x577)+_0x41f140['date']['split']('T')[0x0]+_0x1ebc10(0x4c3)+_0x41f140[_0x1ebc10(0x437)]+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td><span\x20style=\x22background:\x20#f0f0f0;\x20padding:\x203px\x208px;\x20border-radius:\x204px;\x20font-family:\x20monospace;\x22>'+(_0x41f140[_0x1ebc10(0x5b7)]||'-')+_0x1ebc10(0x419)+(_0x41f140['vouch']||'-')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:\x20right;\x20font-weight:\x20bold;\x20color:\x20#c0392b;\x22>'+(_0x41f140[_0x1ebc10(0x2f6)]>0x0?_0x41f140[_0x1ebc10(0x2f6)][_0x1ebc10(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x1ebc10(0x56d))+_0x1ebc10(0x4c3)+(_0x41f140['code']||'-')+_0x1ebc10(0x4c3)+(_0x41f140[_0x1ebc10(0x320)]||'-')+_0x1ebc10(0x368)+(_0x325fe7===_0x1ebc10(0x290)?_0x1ebc10(0x4d7):'status-pending')+'\x22\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20onchange=\x22updateClearedChequeStatus(\x27'+_0x41f140['id']+_0x1ebc10(0x34d)+_0x41f140[_0x1ebc10(0x2a9)]+_0x1ebc10(0x36f)+_0x41f140[_0x1ebc10(0x5b7)]+_0x1ebc10(0x36f)+_0x41f140[_0x1ebc10(0x2f6)]+_0x1ebc10(0x36f)+_0x41f140[_0x1ebc10(0x437)]+'\x27)\x22\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20style=\x22padding:\x206px;\x20border-radius:\x204px;\x20font-size:\x2012px;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22Pending\x22\x20'+(_0x325fe7===_0x1ebc10(0x293)?_0x1ebc10(0x292):'')+'>⏳\x20Pending</option>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<option\x20value=\x22Cleared\x22\x20'+(_0x325fe7===_0x1ebc10(0x290)?'selected':'')+_0x1ebc10(0x420);}):_0x38aa87+=_0x4a94a3(0x55d),_0x38aa87+=_0x4a94a3(0x400);}else{_0x38aa87+=_0x4a94a3(0x3bd);let _0x4708ab=_0x280a0e[_0x4a94a3(0x52f)](_0x4effbc=>_0x4effbc[_0x4a94a3(0x515)]==='EX'&&_0x4effbc[_0x4a94a3(0x5b7)]&&_0x4effbc[_0x4a94a3(0x5b7)]['trim']()!==''&&(clearedStatus[_0x4effbc['id']]||_0x4a94a3(0x293))==='Pending'&&(!_0x2492b8||_0x4effbc['date']>=_0x2492b8)&&(!_0x30a5b6||_0x4effbc[_0x4a94a3(0x2a9)]<=_0x30a5b6));_0x4708ab[_0x4a94a3(0x4e8)]>0x0?_0x4708ab['sort']((_0xd3e5d0,_0x4965da)=>new Date(_0x4965da[_0x4a94a3(0x2a9)])-new Date(_0xd3e5d0[_0x4a94a3(0x2a9)]))[_0x4a94a3(0x1bd)](_0x1671a8=>{const _0x33e1f9=_0x4a94a3;_0x38aa87+=_0x33e1f9(0x577)+_0x1671a8[_0x33e1f9(0x2a9)][_0x33e1f9(0x3ec)]('T')[0x0]+_0x33e1f9(0x4c3)+_0x1671a8[_0x33e1f9(0x437)]+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td><span\x20style=\x22background:\x20#f0f0f0;\x20padding:\x203px\x208px;\x20border-radius:\x204px;\x22>'+(_0x1671a8[_0x33e1f9(0x5b7)]||'-')+_0x33e1f9(0x419)+(_0x1671a8[_0x33e1f9(0x537)]||'-')+_0x33e1f9(0x230)+(_0x1671a8[_0x33e1f9(0x2f6)]>0x0?_0x1671a8[_0x33e1f9(0x2f6)][_0x33e1f9(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x33e1f9(0x56d))+_0x33e1f9(0x4c3)+(_0x1671a8[_0x33e1f9(0x3f6)]||'-')+_0x33e1f9(0x4c3)+(_0x1671a8[_0x33e1f9(0x320)]||'-')+_0x33e1f9(0x349);}):_0x38aa87+=_0x4a94a3(0x4fa),_0x38aa87+='</tbody></table></div>';}}else{if(currentReport===_0x4a94a3(0x305)){document[_0x4a94a3(0x2aa)](_0x4a94a3(0x4f2))[_0x4a94a3(0x473)]=_0x4a94a3(0x554),_0x38aa87=_0x4a94a3(0x4fd),_0x38aa87+=_0x4a94a3(0x1dc),_0x38aa87+='<th>ගෙවීම්\x20කේතය</th>',_0x38aa87+=_0x4a94a3(0x42e),_0x38aa87+=_0x4a94a3(0x265),_0x38aa87+='<th\x20style=\x22text-align:right;\x22>සැබෑ\x20ගෙවීම්\x20(රු.)</th>',_0x38aa87+=_0x4a94a3(0x2b7),_0x38aa87+='<th\x20style=\x22text-align:center;\x22>භාවිත\x20%</th>',_0x38aa87+='</tr></thead><tbody>';let _0x5acc37=0x0,_0x3e49de=0x0,_0x24cf28=![];EX_CODES[_0x4a94a3(0x1bd)](_0x5a9dc0=>{const _0x15976c=_0x4a94a3,_0x1ca66d=_0x317535['filter'](_0xecefff=>_0xecefff[_0x15976c(0x515)]==='EX'&&_0xecefff[_0x15976c(0x3f6)]===_0x5a9dc0&&(!_0x2492b8||_0xecefff[_0x15976c(0x2a9)]>=_0x2492b8)&&(!_0x30a5b6||_0xecefff['date']<=_0x30a5b6))[_0x15976c(0x513)]((_0x41b531,_0x2428c7)=>_0x41b531+_0x2428c7['amt'],0x0),_0x3085c0=allocations[_0x5a9dc0]||0x0,_0x11fcee=_0x3085c0-_0x1ca66d,_0x5ecd79=_0x3085c0>0x0?(_0x1ca66d/_0x3085c0*0x64)[_0x15976c(0x313)](0x1):_0x1ca66d>0x0?'100':'0';if(_0x1ca66d>0x0||_0x3085c0>0x0)_0x24cf28=!![];_0x5acc37+=_0x3085c0,_0x3e49de+=_0x1ca66d,_0x38aa87+=_0x15976c(0x38d)+_0x5a9dc0+_0x15976c(0x41e)+CODE_INFO[_0x5a9dc0]+_0x15976c(0x2a3)+(_0x3085c0>0x0?_0x3085c0['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):'-')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20color:red;\x22>'+(_0x1ca66d>0x0?_0x1ca66d[_0x15976c(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'-')+_0x15976c(0x574)+(_0x11fcee>=0x0?'#1b5e20':_0x15976c(0x51b))+_0x15976c(0x48c)+(_0x11fcee!==0x0?_0x11fcee[_0x15976c(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'-')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:center;\x22>'+_0x5ecd79+'%</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>';}),!_0x24cf28&&(_0x38aa87+=_0x4a94a3(0x45f)),_0x38aa87+='<tr\x20class=\x22q-total-row\x22\x20style=\x22background:#f0f0f0;\x20font-weight:bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x222\x22\x20style=\x22text-align:right;\x22>මුළු\x20එකතුව</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>'+(_0x5acc37>0x0?_0x5acc37['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):'-')+_0x4a94a3(0x221)+(_0x3e49de>0x0?_0x3e49de[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'-')+_0x4a94a3(0x21f)+(_0x5acc37-_0x3e49de)[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x4a94a3(0x5a9),_0x38aa87+=_0x4a94a3(0x2f9),document['getElementById'](_0x4a94a3(0x205))[_0x4a94a3(0x2bf)]=_0x38aa87;}else{if(currentReport===_0x4a94a3(0x3c7)){document[_0x4a94a3(0x2aa)]('report-header-title')[_0x4a94a3(0x473)]='ප්‍රතිපාදන\x20හා\x20ලැබීම්\x20සැසඳුම',_0x38aa87='<table\x20class=\x22q-table\x22\x20style=\x22width:100%;\x20border-collapse:collapse;\x22>',_0x38aa87+=_0x4a94a3(0x1dc),_0x38aa87+='<th>ලැබීම්\x20කේතය</th>',_0x38aa87+=_0x4a94a3(0x42e),_0x38aa87+='<th\x20style=\x22text-align:right;\x22>වාර්ෂික\x20ප්‍රතිපාදන\x20(රු.)</th>',_0x38aa87+=_0x4a94a3(0x1e7),_0x38aa87+=_0x4a94a3(0x2b7),_0x38aa87+='<th\x20style=\x22text-align:center;\x22>භාවිත\x20%</th>',_0x38aa87+='</tr></thead><tbody>';let _0x3d3c81=0x0,_0x232241=0x0,_0x5e1bcd=![];S_CODES['forEach'](_0x238e3f=>{const _0x3d83fa=_0x4a94a3,_0x5e8cc9=_0x317535['filter'](_0x194e7a=>_0x194e7a['type']==='IN'&&(_0x194e7a[_0x3d83fa(0x3f6)]===_0x238e3f||_0x194e7a['source']===_0x238e3f)&&(!_0x2492b8||_0x194e7a[_0x3d83fa(0x2a9)]>=_0x2492b8)&&(!_0x30a5b6||_0x194e7a[_0x3d83fa(0x2a9)]<=_0x30a5b6)),_0x2b2a39=_0x5e8cc9[_0x3d83fa(0x513)]((_0x494fec,_0x19e5ed)=>_0x494fec+_0x19e5ed['amt'],0x0),_0x16409f=_0x5e8cc9[_0x3d83fa(0x4e8)],_0x315b34=allocations[_0x238e3f]||0x0,_0x528c09=_0x315b34-_0x2b2a39,_0x478399=_0x315b34>0x0?(_0x2b2a39/_0x315b34*0x64)[_0x3d83fa(0x313)](0x1):_0x2b2a39>0x0?_0x3d83fa(0x38e):'0';if(_0x2b2a39>0x0||_0x315b34>0x0||_0x16409f>0x0)_0x5e1bcd=!![];_0x3d3c81+=_0x315b34,_0x232241+=_0x2b2a39,_0x38aa87+=_0x3d83fa(0x38d)+_0x238e3f+'</b></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+CODE_INFO[_0x238e3f]+_0x3d83fa(0x2a3)+(_0x315b34>0x0?_0x315b34[_0x3d83fa(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'-')+_0x3d83fa(0x3bf)+(_0x2b2a39>0x0?_0x2b2a39['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):'-')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x20font-weight:bold;\x20color:'+(_0x528c09>=0x0?_0x3d83fa(0x497):_0x3d83fa(0x51b))+_0x3d83fa(0x48c)+(_0x528c09!==0x0?_0x528c09['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):'-')+_0x3d83fa(0x4a7)+_0x478399+_0x3d83fa(0x477);}),!_0x5e1bcd&&(_0x38aa87+='<tr><td\x20colspan=\x226\x22\x20style=\x22text-align:center;\x20padding:20px;\x22>⚠️\x20මෙම\x20කාල\x20සීමාව\x20තුළ\x20දත්ත\x20නොමැත</td></tr>'),_0x38aa87+='<tr\x20class=\x22q-total-row\x22\x20style=\x22background:#f0f0f0;\x20font-weight:bold;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20colspan=\x222\x22\x20style=\x22text-align:right;\x22>මුළු\x20එකතුව</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>'+(_0x3d3c81>0x0?_0x3d3c81[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'-')+_0x4a94a3(0x1d9)+(_0x232241>0x0?_0x232241['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):'-')+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22text-align:right;\x22>'+(_0x3d3c81-_0x232241)['toLocaleString'](undefined,{'minimumFractionDigits':0x2})+_0x4a94a3(0x5a9),_0x38aa87+=_0x4a94a3(0x2f9),document[_0x4a94a3(0x2aa)]('report-content')[_0x4a94a3(0x2bf)]=_0x38aa87;}else{if(currentReport===_0x4a94a3(0x377)){document[_0x4a94a3(0x2aa)](_0x4a94a3(0x4f2))[_0x4a94a3(0x473)]=_0x4a94a3(0x548);const _0x5c8ff5=new Date(document[_0x4a94a3(0x2aa)]('repFrom')[_0x4a94a3(0x1f3)]),_0x42acfe=new Date(document[_0x4a94a3(0x2aa)](_0x4a94a3(0x481))[_0x4a94a3(0x1f3)]),_0x5ec067=new Date(_0x5c8ff5['getFullYear'](),0x0,0x1);let _0xe22e30=_0x317535[_0x4a94a3(0x52f)](_0x24bbb3=>_0x24bbb3[_0x4a94a3(0x3db)])[_0x4a94a3(0x513)]((_0xd5b24f,_0x1819d1)=>_0xd5b24f+_0x1819d1[_0x4a94a3(0x2f6)],0x0),_0x2a26bf=_0xe22e30,_0x5dcbea=0x0;_0x38aa87='<table\x20class=\x22q-table\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20colspan=\x225\x22\x20class=\x22q-header\x22>ලැබීම්\x20(හර)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th\x20colspan=\x225\x22\x20class=\x22q-header\x22>ගෙවීම්\x20(බැර)</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>කේතය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වාර්ෂික\x20ඇස්තමේන්තුව</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>පෙර\x20සිව්මස\x20දක්වා</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>මෙම\x20සිව්මස</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>මුළු\x20එකතුව</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>කේතය</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>වාර්ෂික\x20ප්‍රතිපාදන</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>පෙර\x20සිව්මස\x20දක්වා</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>මෙම\x20සිව්මස</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>මුළු\x20එකතුව</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</tr>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</thead>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<tbody>';const _0x248c6a=Math['max'](S_CODES[_0x4a94a3(0x4e8)],EX_CODES[_0x4a94a3(0x4e8)]);for(let _0x11ec63=0x0;_0x11ec63<_0x248c6a;_0x11ec63++){let _0x482260=S_CODES[_0x11ec63]||'',_0x3bfd26=EX_CODES[_0x11ec63]||'',_0x40ce76=_0x482260?_0x317535[_0x4a94a3(0x52f)](_0x5dc69c=>_0x5dc69c[_0x4a94a3(0x3db)]&&_0x5dc69c[_0x4a94a3(0x320)]===_0x482260)[_0x4a94a3(0x513)]((_0xec3cf3,_0x36cf1e)=>_0xec3cf3+_0x36cf1e[_0x4a94a3(0x2f6)],0x0):0x0,_0x382586=_0x482260?_0x317535[_0x4a94a3(0x52f)](_0x5fe0f1=>_0x5fe0f1[_0x4a94a3(0x515)]==='IN'&&!_0x5fe0f1[_0x4a94a3(0x3db)]&&_0x5fe0f1[_0x4a94a3(0x320)]===_0x482260&&new Date(_0x5fe0f1[_0x4a94a3(0x2a9)])<_0x5c8ff5)[_0x4a94a3(0x513)]((_0x2d563e,_0x65376e)=>_0x2d563e+_0x65376e[_0x4a94a3(0x2f6)],0x0):0x0,_0xd1b8c9=_0x482260?_0x317535[_0x4a94a3(0x52f)](_0x29687b=>_0x29687b['type']==='IN'&&_0x29687b[_0x4a94a3(0x320)]===_0x482260&&new Date(_0x29687b[_0x4a94a3(0x2a9)])>=_0x5c8ff5&&new Date(_0x29687b['date'])<=_0x42acfe)[_0x4a94a3(0x513)]((_0x551d95,_0x436a6d)=>_0x551d95+_0x436a6d[_0x4a94a3(0x2f6)],0x0):0x0,_0x4556dd=_0x40ce76+_0x382586,_0x2772c6=0x0,_0x3a0846=0x0;if(_0x3bfd26==='PC'){const _0x480951=loadPettyFloat();_0x2772c6=0x0,_0x3a0846=_0x480951;}else _0x2772c6=_0x3bfd26?_0x317535[_0x4a94a3(0x52f)](_0x3f0a4e=>_0x3f0a4e[_0x4a94a3(0x515)]==='EX'&&_0x3f0a4e[_0x4a94a3(0x3f6)]===_0x3bfd26&&new Date(_0x3f0a4e[_0x4a94a3(0x2a9)])<_0x5c8ff5&&new Date(_0x3f0a4e[_0x4a94a3(0x2a9)])>=_0x5ec067)[_0x4a94a3(0x513)]((_0x473dad,_0x17aa7c)=>_0x473dad+_0x17aa7c['amt'],0x0):0x0,_0x3a0846=_0x3bfd26?_0x317535['filter'](_0x4c832b=>_0x4c832b[_0x4a94a3(0x515)]==='EX'&&_0x4c832b[_0x4a94a3(0x3f6)]===_0x3bfd26&&new Date(_0x4c832b[_0x4a94a3(0x2a9)])>=_0x5c8ff5&&new Date(_0x4c832b[_0x4a94a3(0x2a9)])<=_0x42acfe)[_0x4a94a3(0x513)]((_0xcf1955,_0x2eff3d)=>_0xcf1955+_0x2eff3d['amt'],0x0):0x0;_0x2a26bf+=_0x382586+_0xd1b8c9,_0x5dcbea+=_0x2772c6+_0x3a0846,_0x38aa87+=_0x4a94a3(0x217)+_0x482260+_0x4a94a3(0x476)+(_0x4556dd>0x0?_0x4556dd[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+_0x4a94a3(0x27c)+(_0xd1b8c9>0x0?_0xd1b8c9[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20class=\x22val-col\x22\x20style=\x22background:#f9f9f9\x22>'+(_0x4556dd+_0xd1b8c9>0x0?(_0x4556dd+_0xd1b8c9)[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+_0x4a94a3(0x4d2)+_0x3bfd26+_0x4a94a3(0x27c)+(_0x3bfd26==='PC'?loadPettyFloat()[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):(allocations[_0x3bfd26]||0x0)>0x0?allocations[_0x3bfd26][_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+_0x4a94a3(0x27c)+(_0x2772c6>0x0?_0x2772c6[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+_0x4a94a3(0x27c)+(_0x3a0846>0x0?_0x3a0846[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'\x20-\x20')+_0x4a94a3(0x4a6)+(_0x2772c6+_0x3a0846>0x0?(_0x2772c6+_0x3a0846)[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'\x20-\x20')+_0x4a94a3(0x5a4);}_0x38aa87+=_0x4a94a3(0x212)+(_0x2a26bf>0x0?_0x2a26bf[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'\x20-\x20')+_0x4a94a3(0x557)+(_0x5dcbea>0x0?_0x5dcbea[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+_0x4a94a3(0x2bd)+(_0x2a26bf-_0x5dcbea>0x0?(_0x2a26bf-_0x5dcbea)['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+_0x4a94a3(0x564);}else{document[_0x4a94a3(0x2aa)](_0x4a94a3(0x4f2))['innerText']=currentReport==='IN'?_0x4a94a3(0x55b):'ගෙවීම්\x20විශ්ලේෂණ\x20වාර්තාව';const _0x4f6e92=_0x3a5f76===_0x4a94a3(0x32e)?currentReport==='IN'?S_CODES:EX_CODES:[_0x3a5f76];currentReport==='IN'?_0x38aa87=_0x4a94a3(0x202):_0x38aa87='<table><tr><th>කේතය</th><th>විස්තරය</th><th\x20style=\x22text-align:right;\x22>මුදල\x20(රු.)</th></tr>';let _0x87f58d=0x0,_0x38e5b9=0x0;_0x4f6e92[_0x4a94a3(0x1bd)](_0x1b599a=>{const _0x3e31c6=_0x4a94a3,_0x4cbacd=_0x317535[_0x3e31c6(0x52f)](_0x1e8d48=>{const _0x2b2a3a=_0x3e31c6,_0x52f20e=_0x1e8d48[_0x2b2a3a(0x515)]==='IN',_0x26f286=_0x1e8d48[_0x2b2a3a(0x3f6)]===_0x1b599a||_0x1e8d48['source']===_0x1b599a,_0x4762ab=(!_0x2492b8||_0x1e8d48['date']>=_0x2492b8)&&(!_0x30a5b6||_0x1e8d48['date']<=_0x30a5b6);return _0x52f20e&&_0x26f286&&(_0x4762ab||_0x1e8d48[_0x2b2a3a(0x3db)]===!![]);})[_0x3e31c6(0x513)]((_0x3d1e06,_0x55bed9)=>_0x3d1e06+_0x55bed9['amt'],0x0);if(currentReport==='IN'){const _0x356f55=_0x317535[_0x3e31c6(0x52f)](_0x16ba40=>_0x16ba40[_0x3e31c6(0x515)]==='EX'&&_0x16ba40[_0x3e31c6(0x320)]===_0x1b599a&&(!_0x2492b8||_0x16ba40[_0x3e31c6(0x2a9)]>=_0x2492b8)&&(!_0x30a5b6||_0x16ba40[_0x3e31c6(0x2a9)]<=_0x30a5b6))[_0x3e31c6(0x513)]((_0x24d758,_0xf2e58d)=>_0x24d758+_0xf2e58d[_0x3e31c6(0x2f6)],0x0),_0x18d1bb=_0x4cbacd-_0x356f55;_0x38aa87+=_0x3e31c6(0x2df)+_0x1b599a+_0x3e31c6(0x50d)+CODE_INFO[_0x1b599a]+'</td><td\x20class=\x22val-col\x22>'+(_0x4cbacd>0x0?_0x4cbacd['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):_0x3e31c6(0x27f))+_0x3e31c6(0x3f5)+(_0x356f55>0x0?_0x356f55[_0x3e31c6(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x3e31c6(0x27f))+_0x3e31c6(0x296)+(_0x18d1bb>0x0?_0x18d1bb[_0x3e31c6(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'\x20-\x20')+_0x3e31c6(0x1be),_0x87f58d+=_0x4cbacd,_0x38e5b9+=_0x356f55;}else _0x38aa87+=_0x3e31c6(0x2df)+_0x1b599a+_0x3e31c6(0x50d)+CODE_INFO[_0x1b599a]+_0x3e31c6(0x448)+(_0x4cbacd>0x0?_0x4cbacd[_0x3e31c6(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x3e31c6(0x27f))+_0x3e31c6(0x1be),_0x87f58d+=_0x4cbacd;}),currentReport==='IN'?_0x38aa87+=_0x4a94a3(0x1f5)+(_0x87f58d>0x0?_0x87f58d[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+_0x4a94a3(0x587)+(_0x38e5b9>0x0?_0x38e5b9['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+_0x4a94a3(0x49d)+(_0x87f58d-_0x38e5b9>0x0?(_0x87f58d-_0x38e5b9)[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):_0x4a94a3(0x27f))+_0x4a94a3(0x451):_0x38aa87+=_0x4a94a3(0x1f5)+(_0x87f58d>0x0?_0x87f58d[_0x4a94a3(0x2d6)](undefined,{'minimumFractionDigits':0x2}):'\x20-\x20')+_0x4a94a3(0x451);}}}}}}_0x38aa87+=_0x4a94a3(0x407),document[_0x4a94a3(0x2aa)](_0x4a94a3(0x205))['innerHTML']=_0x38aa87,document[_0x4a94a3(0x2aa)]('report-date-range')[_0x4a94a3(0x473)]='කාලසීමාව:\x20'+(_0x2492b8||_0x4a94a3(0x1ea))+'\x20සිට\x20'+(_0x30a5b6||'අද')+_0x4a94a3(0x4fc);}async function updateClearedChequeStatus(_0x579ec9,_0x356c4,_0x27cbf7,_0x331fed,_0x4d6bd4,_0x3ac5b8){const _0x1fcae5=_0x149fc9;if(userRole===_0x1fcae5(0x575)){showToast(_0x1fcae5(0x438));return;}const _0x581022=await showConfirmDialog(_0x1fcae5(0x4d9),_0x1fcae5(0x598)+_0x579ec9+'\x0aචෙක්පත්\x20අංකය:\x20'+_0x331fed+_0x1fcae5(0x50e)+parseFloat(_0x4d6bd4)[_0x1fcae5(0x313)](0x2)+'\x0a\x0aතත්ත්වය\x20\x22'+_0x356c4+_0x1fcae5(0x5c4),'ඔව්,\x20වෙනස්\x20කරන්න',_0x1fcae5(0x50a));if(!_0x581022){generateReport();return;}toggleLoading(!![]),clearedStatus[_0x579ec9]=_0x356c4,sessionStorage['setItem'](_0x1fcae5(0x5c8),JSON[_0x1fcae5(0x45b)](clearedStatus));let _0x7954c6=getData(),_0x5b3f97=_0x7954c6[_0x1fcae5(0x3a1)](_0x82835b=>_0x82835b['id']==_0x579ec9);_0x5b3f97!==-0x1&&(_0x7954c6[_0x5b3f97]['status']=_0x356c4===_0x1fcae5(0x290),setDataCache(_0x7954c6));try{if(!navigator[_0x1fcae5(0x4af)]){const _0x59ae52={'action':_0x1fcae5(0x3cb),'id':_0x579ec9,'status':_0x356c4===_0x1fcae5(0x290)?!![]:![],'date':_0x27cbf7,'ref':_0x331fed,'amt':parseFloat(_0x4d6bd4),'desc':_0x3ac5b8,'clientId':generateUUID()};addToOfflineQueue(_0x1fcae5(0x3cb),_0x59ae52),showToast(_0x1fcae5(0x591));}else{const _0x57dc39=await fetch(SCRIPT_URL,{'method':_0x1fcae5(0x3b6),'body':JSON[_0x1fcae5(0x45b)]({'action':_0x1fcae5(0x3cb),'id':_0x579ec9,'status':_0x356c4===_0x1fcae5(0x290)?!![]:![],'date':_0x27cbf7,'ref':_0x331fed,'amt':parseFloat(_0x4d6bd4),'desc':_0x3ac5b8})}),_0x124e4b=await _0x57dc39[_0x1fcae5(0x4b8)]();if(_0x124e4b[_0x1fcae5(0x3a2)]===_0x1fcae5(0x561))showToast(_0x1fcae5(0x3e9)+_0x356c4+_0x1fcae5(0x49b));else throw new Error(_0x124e4b[_0x1fcae5(0x40d)]||_0x1fcae5(0x4a8));}}catch(_0x1c1ea3){console['error'](_0x1fcae5(0x4ef),_0x1c1ea3),showToast(_0x1fcae5(0x213));}finally{toggleLoading(![]),generateReport();}}function updateClearedStatus(_0x300eb6,_0x19d6bc){const _0x46ce92=_0x149fc9;if(userRole==='GUEST'){showToast(_0x46ce92(0x438));return;}clearedStatus[_0x300eb6]=_0x19d6bc,sessionStorage[_0x46ce92(0x432)](_0x46ce92(0x5c8),JSON['stringify'](clearedStatus)),generateReport(),showToast(_0x46ce92(0x4ee));}async function refreshDashboard(){const _0x1bc568=_0x149fc9,_0x398763=getData(),_0x1e31b2=_0x398763[_0x1bc568(0x52f)](_0x3f2fa7=>_0x3f2fa7[_0x1bc568(0x515)]==='IN')[_0x1bc568(0x513)]((_0x2c8a13,_0x466083)=>_0x2c8a13+_0x466083[_0x1bc568(0x2f6)],0x0),_0x860229=_0x398763[_0x1bc568(0x52f)](_0x351bc0=>_0x351bc0[_0x1bc568(0x515)]==='EX')['reduce']((_0x7030a6,_0x7fe5de)=>_0x7030a6+_0x7fe5de['amt'],0x0);document[_0x1bc568(0x2aa)](_0x1bc568(0x246))[_0x1bc568(0x473)]=_0x1e31b2[_0x1bc568(0x2d6)](undefined,{'minimumFractionDigits':0x2}),document[_0x1bc568(0x2aa)](_0x1bc568(0x376))[_0x1bc568(0x473)]=_0x860229[_0x1bc568(0x2d6)](undefined,{'minimumFractionDigits':0x2}),document[_0x1bc568(0x2aa)](_0x1bc568(0x2b6))[_0x1bc568(0x473)]=(_0x1e31b2-_0x860229)[_0x1bc568(0x2d6)](undefined,{'minimumFractionDigits':0x2});let _0x93146d='';S_CODES[_0x1bc568(0x1bd)]((_0x3a6652,_0x4aeef0)=>{const _0x59e55f=_0x1bc568,_0x38f0c6=_0x398763['filter'](_0x2c081e=>_0x2c081e['source']===_0x3a6652)[_0x59e55f(0x513)]((_0x46183a,_0xf5786e)=>_0x46183a+(_0xf5786e[_0x59e55f(0x515)]==='IN'?_0xf5786e['amt']:-_0xf5786e[_0x59e55f(0x2f6)]),0x0),_0x3d0b44=_0x38f0c6[_0x59e55f(0x2d6)](undefined,{'minimumFractionDigits':0x2,'maximumFractionDigits':0x2});_0x93146d+=_0x59e55f(0x2d2)+COLORS[_0x4aeef0]+_0x59e55f(0x28d)+(_0x4aeef0+0x1)+_0x59e55f(0x586)+_0x3a6652+_0x59e55f(0x4ed)+(_0x38f0c6>=0x0?_0x59e55f(0x549):_0x59e55f(0x57a))+_0x59e55f(0x59e)+_0x3d0b44+_0x59e55f(0x333)+CODE_INFO[_0x3a6652]+_0x59e55f(0x4dc);}),document['getElementById'](_0x1bc568(0x3b8))[_0x1bc568(0x2bf)]=_0x93146d;}async function loadRecentTable(){const _0x5a4d5e=_0x149fc9,_0x3bdb87=await getData();let _0x48befc=_0x5a4d5e(0x329);_0x3bdb87[_0x5a4d5e(0x20c)]((_0x508a30,_0x5228c0)=>_0x5228c0['id']-_0x508a30['id'])[_0x5a4d5e(0x1d5)](0x0,0x5)['forEach'](_0x1fe3bc=>{const _0x5ee51d=_0x5a4d5e,_0x11ffaf=_0x1fe3bc[_0x5ee51d(0x4bb)]?_0x5ee51d(0x501):_0x5ee51d(0x210);let _0x22395d='';_0x1fe3bc[_0x5ee51d(0x515)]==='IN'?_0x22395d=_0x1fe3bc[_0x5ee51d(0x5b7)]||'-':_0x22395d=_0x1fe3bc[_0x5ee51d(0x537)]||_0x1fe3bc['ref']||'-';let _0x150883=[];userRole==='ADMIN'&&(_0x150883['push'](_0x5ee51d(0x1fc)+_0x1fe3bc['id']+_0x5ee51d(0x520)),_0x150883[_0x5ee51d(0x495)]('<button\x20onclick=\x22deleteTransaction('+_0x1fe3bc['id']+_0x5ee51d(0x486)));const _0x2a796a=_0x150883['length']>0x0?_0x150883[_0x5ee51d(0x204)]('\x20'):_0x5ee51d(0x278);_0x48befc+=_0x5ee51d(0x217)+_0x1fe3bc[_0x5ee51d(0x2a9)][_0x5ee51d(0x3ec)]('T')[0x0]+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+_0x1fe3bc[_0x5ee51d(0x437)]+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+_0x22395d+_0x5ee51d(0x5ba)+(_0x1fe3bc[_0x5ee51d(0x515)]==='IN'?'green':'red')+_0x5ee51d(0x1ef)+(_0x1fe3bc[_0x5ee51d(0x2f6)]>0x0?_0x1fe3bc['amt']['toLocaleString'](undefined,{'minimumFractionDigits':0x2}):'\x20-\x20')+_0x5ee51d(0x3c6)+_0x11ffaf+_0x5ee51d(0x350)+_0x2a796a+_0x5ee51d(0x5a4);}),document[_0x5a4d5e(0x2aa)](_0x5a4d5e(0x280))['innerHTML']=_0x48befc+_0x5a4d5e(0x56b);}async function saveProject(){const _0x1b3012=_0x149fc9;if(userRole===_0x1b3012(0x575)){showToast(_0x1b3012(0x258));return;}const _0x1d5ab5=document[_0x1b3012(0x2aa)](_0x1b3012(0x361))[_0x1b3012(0x1f3)]['trim'](),_0x2ddf5e=parseAmount(document['getElementById'](_0x1b3012(0x1e1))[_0x1b3012(0x1f3)]);if(!_0x1d5ab5||!_0x2ddf5e){showToast('⚠️\x20කරුණාකර\x20ව්‍යාපෘතියේ\x20නම\x20සහ\x20ඇස්තමේන්තුගත\x20මුදල\x20ඇතුළත්\x20කරන්න');return;}toggleLoading(!![]);try{if(!navigator[_0x1b3012(0x4af)]){const _0x19ef34={'action':_0x1b3012(0x2ad),'projectName':_0x1d5ab5,'est':_0x2ddf5e,'completed':![],'clientId':generateUUID()};addToOfflineQueue(_0x1b3012(0x2ad),_0x19ef34);let _0x2659d7=getProjects(!![]);_0x2659d7[_0x1b3012(0x495)]({..._0x19ef34,'offline':!![]}),setProjectsCache(_0x2659d7),showToast(_0x1b3012(0x591));}else await fetch(SCRIPT_URL,{'method':_0x1b3012(0x3b6),'body':JSON[_0x1b3012(0x45b)]({'action':_0x1b3012(0x2ad),'projectName':_0x1d5ab5,'est':_0x2ddf5e,'completed':![]})}),showToast(_0x1b3012(0x307)),await fetchRemoteProjects();updateProjectSelects(),renderProjectList();}catch(_0x1dbcd7){console[_0x1b3012(0x46f)]('Save\x20project\x20error:',_0x1dbcd7),showToast(_0x1b3012(0x406));}toggleLoading(![]),document[_0x1b3012(0x2aa)](_0x1b3012(0x361))[_0x1b3012(0x1f3)]='',document[_0x1b3012(0x2aa)](_0x1b3012(0x1e1))['value']='';}async function completeProject(_0x26deff){const _0x4eaf0f=_0x149fc9;if(userRole!==_0x4eaf0f(0x49f)){showToast('❌\x20ව්‍යාපෘති\x20අවසන්\x20කිරීමට\x20අවසර\x20ඇත්තේ\x20පරිපාලකට\x20පමණි!');return;}const _0x9cb6e6=await showConfirmDialog(_0x4eaf0f(0x3b9),'\x22'+_0x26deff+_0x4eaf0f(0x3ff),'ඔව්,\x20අවසන්\x20කරන්න',_0x4eaf0f(0x50a));if(!_0x9cb6e6)return;toggleLoading(!![]);try{if(!navigator[_0x4eaf0f(0x4af)]){const _0x339c29={'action':_0x4eaf0f(0x211),'projectName':_0x26deff,'completed':!![],'clientId':generateUUID()};addToOfflineQueue(_0x4eaf0f(0x211),_0x339c29);let _0x2cb33d=getProjects(!![]);_0x2cb33d=_0x2cb33d[_0x4eaf0f(0x54f)](_0xe9c178=>{const _0x10f958=_0x4eaf0f;if(_0xe9c178[_0x10f958(0x391)]===_0x26deff)return{..._0xe9c178,'completed':!![],'offline':!![]};return _0xe9c178;}),setProjectsCache(_0x2cb33d),showToast(_0x4eaf0f(0x591));}else{const _0x14510d=await fetch(SCRIPT_URL,{'method':_0x4eaf0f(0x3b6),'body':JSON[_0x4eaf0f(0x45b)]({'action':_0x4eaf0f(0x211),'projectName':_0x26deff,'completed':!![]})}),_0x3c08a8=await _0x14510d[_0x4eaf0f(0x4b8)]();if(_0x3c08a8[_0x4eaf0f(0x3a2)]===_0x4eaf0f(0x561)){let _0x2f2a31=getProjects(!![]);_0x2f2a31=_0x2f2a31['map'](_0x10513b=>{if(_0x10513b['projectName']===_0x26deff)return{..._0x10513b,'completed':!![]};return _0x10513b;}),setProjectsCache(_0x2f2a31),showToast('✅\x20\x22'+_0x26deff+_0x4eaf0f(0x2b8));}else throw new Error(_0x3c08a8[_0x4eaf0f(0x40d)]||_0x4eaf0f(0x44d));}renderProjectList(),updateProjectSelects();}catch(_0x56aad6){console[_0x4eaf0f(0x46f)](_0x4eaf0f(0x45e),_0x56aad6),showToast(_0x4eaf0f(0x40c));}finally{toggleLoading(![]);}}async function deleteProject(_0x5ef250){const _0x505b25=_0x149fc9;if(userRole!==_0x505b25(0x49f)){showToast('❌\x20ව්‍යාපෘති\x20ඉවත්\x20කිරීමට\x20අවසර\x20ඇත්තේ\x20පරිපාලකට\x20පමණි!');return;}const _0x4d8fa5=await showConfirmDialog(_0x505b25(0x365),'\x22'+_0x5ef250+_0x505b25(0x569),_0x505b25(0x362),_0x505b25(0x50a));if(!_0x4d8fa5)return;toggleLoading(!![]);try{if(!navigator[_0x505b25(0x4af)]){const _0x4f03f={'action':_0x505b25(0x2f3),'name':_0x5ef250,'clientId':generateUUID()};addToOfflineQueue(_0x505b25(0x2f3),_0x4f03f);let _0x5414ac=getProjects(!![]);_0x5414ac=_0x5414ac[_0x505b25(0x52f)](_0x1bca1c=>_0x1bca1c[_0x505b25(0x391)]!==_0x5ef250),setProjectsCache(_0x5414ac),showToast('📦\x20Offline\x20මාදිලියේ\x20සුරකින\x20ලදී!');}else{const _0x5868c5=await fetch(SCRIPT_URL+'?action=delete_project&name='+encodeURIComponent(_0x5ef250)),_0x1be0dc=await _0x5868c5[_0x505b25(0x4b8)]();if(_0x1be0dc[_0x505b25(0x3a2)]===_0x505b25(0x561)){let _0x36db14=getProjects(!![]);_0x36db14=_0x36db14[_0x505b25(0x52f)](_0x354e2a=>_0x354e2a['projectName']!==_0x5ef250),setProjectsCache(_0x36db14),showToast(_0x505b25(0x2e7)+_0x5ef250+_0x505b25(0x3a4));}else throw new Error(_0x1be0dc[_0x505b25(0x40d)]||_0x505b25(0x44d));}renderProjectList(),updateProjectSelects();}catch(_0x586ff7){console[_0x505b25(0x46f)](_0x505b25(0x3ba),_0x586ff7),showToast(_0x505b25(0x566));}finally{toggleLoading(![]);}}function renderProjectList(){const _0x43e88a=_0x149fc9,_0x119012=getProjects(!![]),_0x3fa009=_0x119012[_0x43e88a(0x52f)](_0x320b08=>!_0x320b08[_0x43e88a(0x31b)]),_0xd56bf4=_0x119012['filter'](_0x1718fb=>_0x1718fb['completed']===!![]),_0x58951c=getData();let _0x2b600c=_0x43e88a(0x1c1);_0x3fa009[_0x43e88a(0x4e8)]===0x0?_0x2b600c+=_0x43e88a(0x2e0):_0x3fa009[_0x43e88a(0x1bd)](_0x1cbd42=>{const _0x597da2=_0x43e88a,_0x419f05=_0x58951c[_0x597da2(0x52f)](_0x771fb9=>_0x771fb9[_0x597da2(0x1e3)]===_0x1cbd42[_0x597da2(0x391)]&&_0x771fb9[_0x597da2(0x515)]==='IN')[_0x597da2(0x513)]((_0x27fb8b,_0x65e565)=>_0x27fb8b+_0x65e565['amt'],0x0),_0x247e9c=_0x58951c['filter'](_0x4b3b5d=>_0x4b3b5d['proj']===_0x1cbd42[_0x597da2(0x391)]&&_0x4b3b5d['type']==='EX')[_0x597da2(0x513)]((_0x21679c,_0x13beec)=>_0x21679c+_0x13beec[_0x597da2(0x2f6)],0x0),_0x219abe=_0x1cbd42[_0x597da2(0x4d5)]+_0x419f05-_0x247e9c;_0x2b600c+=_0x597da2(0x39d)+_0x1cbd42[_0x597da2(0x391)]+_0x597da2(0x500)+_0x1cbd42[_0x597da2(0x4d5)][_0x597da2(0x2d6)](undefined,{'minimumFractionDigits':0x2})+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:10px;\x20text-align:right;\x20color:green;\x22>'+_0x419f05['toLocaleString'](undefined,{'minimumFractionDigits':0x2})+_0x597da2(0x3b5)+_0x247e9c[_0x597da2(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x597da2(0x304)+(_0x219abe>=0x0?'#1b5e20':'#c0392b')+_0x597da2(0x48c)+_0x219abe[_0x597da2(0x2d6)](undefined,{'minimumFractionDigits':0x2})+'</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:10px;\x20text-align:center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20'+(userRole===_0x597da2(0x49f)?'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22completeProject(\x27'+_0x1cbd42[_0x597da2(0x391)]+_0x597da2(0x474)+_0x1cbd42[_0x597da2(0x391)]+_0x597da2(0x4c5):userRole===_0x597da2(0x499)?_0x597da2(0x488):'')+_0x597da2(0x468);}),_0x2b600c+='</tbody></table>',_0xd56bf4[_0x43e88a(0x4e8)]>0x0&&(_0x2b600c+=_0x43e88a(0x547)+(userRole===_0x43e88a(0x49f)?_0x43e88a(0x266):'')+_0x43e88a(0x412),_0xd56bf4[_0x43e88a(0x1bd)](_0x481028=>{const _0x1f798d=_0x43e88a,_0x311876=_0x58951c[_0x1f798d(0x52f)](_0x5a1e77=>_0x5a1e77[_0x1f798d(0x1e3)]===_0x481028[_0x1f798d(0x391)]&&_0x5a1e77[_0x1f798d(0x515)]==='IN')[_0x1f798d(0x513)]((_0x17da98,_0x53b26d)=>_0x17da98+_0x53b26d['amt'],0x0),_0x2f207a=_0x58951c['filter'](_0x3eaa12=>_0x3eaa12[_0x1f798d(0x1e3)]===_0x481028[_0x1f798d(0x391)]&&_0x3eaa12[_0x1f798d(0x515)]==='EX')['reduce']((_0x2a5a4d,_0x18f311)=>_0x2a5a4d+_0x18f311[_0x1f798d(0x2f6)],0x0),_0x40a2b7=_0x481028[_0x1f798d(0x4d5)]+_0x311876-_0x2f207a;_0x2b600c+=_0x1f798d(0x216)+_0x481028[_0x1f798d(0x391)]+_0x1f798d(0x500)+_0x481028[_0x1f798d(0x4d5)][_0x1f798d(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x1f798d(0x500)+_0x311876[_0x1f798d(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x1f798d(0x500)+_0x2f207a[_0x1f798d(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x1f798d(0x4b9)+_0x40a2b7[_0x1f798d(0x2d6)](undefined,{'minimumFractionDigits':0x2})+_0x1f798d(0x1c2)+(userRole===_0x1f798d(0x49f)?'\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td\x20style=\x22padding:10px;\x20text-align:center;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20onclick=\x22deleteProject(\x27'+_0x481028['projectName']+'\x27)\x22\x20class=\x22table-btn\x22\x20style=\x22background:\x20var(--danger);\x20color:white;\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<i\x20class=\x22fas\x20fa-trash\x22></i>\x20ඉවත්\x20කරන්න\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20':'')+_0x1f798d(0x47d);}),_0x2b600c+=_0x43e88a(0x2f9)),document['getElementById'](_0x43e88a(0x2c8))['innerHTML']=_0x2b600c;}function updateProjectSelects(){const _0x5a9686=_0x149fc9,_0x142bcd=getProjects(![]);['inProjSelect',_0x5a9686(0x299),'searchProject',_0x5a9686(0x328)][_0x5a9686(0x1bd)](_0x2a83b5=>{const _0xb36485=_0x5a9686,_0x1c08a4=document['getElementById'](_0x2a83b5);_0x1c08a4&&(_0x1c08a4[_0xb36485(0x2bf)]=_0xb36485(0x421),_0x142bcd[_0xb36485(0x1bd)](_0x719454=>{const _0x199c98=_0xb36485;_0x1c08a4[_0x199c98(0x2bf)]+='<option\x20value=\x22'+_0x719454[_0x199c98(0x391)]+'\x22>'+_0x719454['projectName']+'</option>';}));});}function showSec(_0x2056b8){const _0x584354=_0x149fc9;document[_0x584354(0x4ea)]('.section')[_0x584354(0x1bd)](_0x2790b6=>_0x2790b6[_0x584354(0x2dc)][_0x584354(0x5bf)]=_0x584354(0x4f9)),document[_0x584354(0x4ea)](_0x584354(0x3f3))[_0x584354(0x1bd)](_0x21093a=>_0x21093a['classList']['remove'](_0x584354(0x562))),document[_0x584354(0x2aa)]('sec-'+_0x2056b8)[_0x584354(0x2dc)][_0x584354(0x5bf)]=_0x584354(0x57b),document['getElementById']('nav-'+_0x2056b8)?.[_0x584354(0x342)][_0x584354(0x5b3)](_0x584354(0x562)),document[_0x584354(0x4ea)](_0x584354(0x2fe))[_0x584354(0x1bd)](_0x47331e=>{const _0x439f7c=_0x584354;_0x47331e[_0x439f7c(0x2dc)]['display']=_0x439f7c(0x4f9);}),document[_0x584354(0x4ea)]('.dropdown-toggle')[_0x584354(0x1bd)](_0x593269=>{const _0x4c4bb0=_0x584354;_0x593269['classList'][_0x4c4bb0(0x2a1)]('active');});if(_0x2056b8==='entry')loadRecentTable();if(_0x2056b8==='proj')renderProjectList();if(_0x2056b8==='dash')refreshDashboard();_0x2056b8==='petty'&&(initPettyFloat(),renderPettyBook(),populatePeriodDropdown(),setTimeout(()=>{displaySavedPeriodSummaries();},0x1f4)),_0x2056b8===_0x584354(0x480)&&(renderCodesList(),setTimeout(()=>{const _0x22c9c7=_0x584354;populateAdvancedSearchFilters();const _0x27151c=document[_0x22c9c7(0x2aa)]('transactionSearchResults');if(_0x27151c)_0x27151c[_0x22c9c7(0x2dc)][_0x22c9c7(0x5bf)]=_0x22c9c7(0x4f9);const _0x584cd6=document[_0x22c9c7(0x2aa)]('advancedSearchPanel');if(_0x584cd6)_0x584cd6[_0x22c9c7(0x2dc)][_0x22c9c7(0x5bf)]=_0x22c9c7(0x4f9);const _0x530bfa=document[_0x22c9c7(0x2aa)](_0x22c9c7(0x399));if(_0x530bfa)_0x530bfa[_0x22c9c7(0x2bf)]=_0x22c9c7(0x4b2);},0x64));}function resetForms(){const _0x96c915=_0x149fc9;document[_0x96c915(0x2aa)]('edit-id-in')['value']='',document[_0x96c915(0x2aa)](_0x96c915(0x2fb))['value']='',[_0x96c915(0x41f),_0x96c915(0x25f),'inAmt',_0x96c915(0x26e),_0x96c915(0x1dd),_0x96c915(0x4e6),_0x96c915(0x386),'exDesc'][_0x96c915(0x1bd)](_0x47bbb7=>{const _0x29ef68=_0x96c915;document[_0x29ef68(0x2aa)](_0x47bbb7)&&(document['getElementById'](_0x47bbb7)[_0x29ef68(0x1f3)]='');});const _0x1e32ee=new Date()['toISOString']()[_0x96c915(0x3ec)]('T')[0x0];document['getElementById'](_0x96c915(0x1c5))['value']=_0x1e32ee,document[_0x96c915(0x2aa)]('exDate')[_0x96c915(0x1f3)]=_0x1e32ee,$(_0x96c915(0x346))[_0x96c915(0x2dd)]('')[_0x96c915(0x30e)](_0x96c915(0x2b2)),document[_0x96c915(0x2aa)]('btn-save-in')[_0x96c915(0x473)]=_0x96c915(0x5b2),document[_0x96c915(0x2aa)]('btn-save-ex')[_0x96c915(0x473)]=_0x96c915(0x33f);}function downloadBackupJSON(){const _0x777ba4=_0x149fc9,_0x2a8316=getData(),_0x2df588=new Blob([JSON['stringify'](_0x2a8316,null,0x2)],{'type':'application/json'}),_0x4168ab=document[_0x777ba4(0x1f1)]('a');_0x4168ab[_0x777ba4(0x31e)]=URL['createObjectURL'](_0x2df588),_0x4168ab[_0x777ba4(0x3e0)]=_0x777ba4(0x223),_0x4168ab[_0x777ba4(0x4f4)](),showToast(_0x777ba4(0x3a7));}function downloadBackupCSV(){const _0xc9716=_0x149fc9;try{const _0x229545=getData();if(_0x229545['length']===0x0){showToast(_0xc9716(0x371));return;}let _0xcac755=_0xc9716(0x1da);_0x229545[_0xc9716(0x1bd)](_0x1b1677=>{const _0x23c0c8=_0xc9716,_0x57b1af=[_0x1b1677['id'],_0x1b1677[_0x23c0c8(0x2a9)],_0x1b1677[_0x23c0c8(0x515)],_0x1b1677[_0x23c0c8(0x3f6)],_0x1b1677[_0x23c0c8(0x320)]||'',_0x1b1677[_0x23c0c8(0x2f6)],'\x22'+_0x1b1677[_0x23c0c8(0x437)]['replace'](/"/g,'\x22\x22')+'\x22',_0x1b1677['vouch']||'',_0x1b1677[_0x23c0c8(0x5b7)]||'',_0x1b1677[_0x23c0c8(0x1e3)]||'',_0x1b1677[_0x23c0c8(0x4bb)]?_0x23c0c8(0x1d6):'Online'][_0x23c0c8(0x204)](',');_0xcac755+=_0x57b1af+'\x0a';});const _0xab8289=new Blob(['\ufeff'+_0xcac755],{'type':'text/csv;charset=utf-8;'}),_0x2c94b2=URL[_0xc9716(0x56e)](_0xab8289),_0x368852=document[_0xc9716(0x1f1)]('a');_0x368852[_0xc9716(0x3f2)](_0xc9716(0x31e),_0x2c94b2),_0x368852[_0xc9716(0x3f2)](_0xc9716(0x3e0),_0xc9716(0x374)+new Date()[_0xc9716(0x38a)]()['slice'](0x0,0xa)+_0xc9716(0x4e4)),document[_0xc9716(0x556)][_0xc9716(0x4f7)](_0x368852),_0x368852[_0xc9716(0x4f4)](),document['body'][_0xc9716(0x471)](_0x368852),showToast(_0xc9716(0x4e5));}catch(_0x5a483c){console['error'](_0xc9716(0x1c6),_0x5a483c),showToast(_0xc9716(0x524));}}function showToast(_0x53e1d6){const _0x307e2b=_0x149fc9,_0x9585b1=document[_0x307e2b(0x2aa)]('toast');_0x9585b1['innerText']=_0x53e1d6,_0x9585b1[_0x307e2b(0x2dc)][_0x307e2b(0x5bf)]=_0x307e2b(0x57b),setTimeout(()=>{const _0x13a274=_0x307e2b;_0x9585b1['style'][_0x13a274(0x5bf)]=_0x13a274(0x4f9);},0x1770);}async function exportToPDF(){const _0x56d920=_0x149fc9;if(userRole===_0x56d920(0x575)){showToast(_0x56d920(0x502));return;}toggleLoading(!![]);try{const {jsPDF:_0x209aba}=window[_0x56d920(0x214)],_0x55e4ad=new _0x209aba('p','mm','a4'),_0x531bd1=document[_0x56d920(0x2aa)](_0x56d920(0x47b)),_0xaf8c5a=await html2canvas(_0x531bd1,{'scale':0x2,'useCORS':!![],'logging':![],'backgroundColor':_0x56d920(0x53f)}),_0x392496=_0xaf8c5a[_0x56d920(0x35a)](_0x56d920(0x3ce)),_0x3e9efd=0xd2,_0x47bbf9=0x129,_0x55d641=_0xaf8c5a[_0x56d920(0x32c)]*_0x3e9efd/_0xaf8c5a[_0x56d920(0x4a0)];let _0x413b22=_0x55d641,_0x8eed4b=0x0;_0x55e4ad['addImage'](_0x392496,_0x56d920(0x347),0x0,_0x8eed4b,_0x3e9efd,_0x55d641),_0x413b22-=_0x47bbf9;while(_0x413b22>=0x0){_0x8eed4b=_0x413b22-_0x55d641,_0x55e4ad[_0x56d920(0x5a0)](),_0x55e4ad[_0x56d920(0x597)](_0x392496,'PNG',0x0,_0x8eed4b,_0x3e9efd,_0x55d641),_0x413b22-=_0x47bbf9;}_0x55e4ad[_0x56d920(0x44b)](_0x56d920(0x20b)+currentReport+'_'+new Date()[_0x56d920(0x38a)]()[_0x56d920(0x1d5)](0x0,0xa)+_0x56d920(0x431)),showToast(_0x56d920(0x382));}catch(_0x37552d){console[_0x56d920(0x46f)](_0x56d920(0x45d),_0x37552d),showToast(_0x56d920(0x2b0));}finally{toggleLoading(![]);}}function addMultiRow(){const _0x33c74b=_0x149fc9,_0x265a05=document['getElementById'](_0x33c74b(0x27d));if(!_0x265a05)return;const _0x54dc83=document['createElement'](_0x33c74b(0x3b1));_0x54dc83[_0x33c74b(0x528)]=_0x33c74b(0x417),_0x54dc83[_0x33c74b(0x2dc)][_0x33c74b(0x5bf)]=_0x33c74b(0x3a6),_0x54dc83[_0x33c74b(0x2dc)]['gap']='10px',_0x54dc83[_0x33c74b(0x2dc)][_0x33c74b(0x249)]=_0x33c74b(0x57f),_0x54dc83[_0x33c74b(0x2dc)]['alignItems']=_0x33c74b(0x458);const _0x8691f=document[_0x33c74b(0x1f1)](_0x33c74b(0x584));_0x8691f[_0x33c74b(0x528)]=_0x33c74b(0x4b5),_0x8691f[_0x33c74b(0x2dc)][_0x33c74b(0x3a6)]='2',_0x8691f[_0x33c74b(0x2dc)][_0x33c74b(0x57d)]=_0x33c74b(0x4bf),_0x8691f[_0x33c74b(0x2dc)][_0x33c74b(0x29e)]='8px',_0x8691f[_0x33c74b(0x2dc)][_0x33c74b(0x43b)]=_0x33c74b(0x50c),_0x8691f[_0x33c74b(0x2dc)][_0x33c74b(0x25b)]=_0x33c74b(0x594),S_CODES[_0x33c74b(0x1bd)](_0x492225=>{const _0x4a661f=_0x33c74b,_0x43dc46=document[_0x4a661f(0x1f1)](_0x4a661f(0x1c0));_0x43dc46[_0x4a661f(0x1f3)]=_0x492225,_0x43dc46[_0x4a661f(0x4c0)]=_0x492225+_0x4a661f(0x27f)+CODE_INFO[_0x492225]['substring'](0x0,0x1e),_0x8691f[_0x4a661f(0x4f7)](_0x43dc46);});const _0x5ee4e4=document[_0x33c74b(0x1f1)](_0x33c74b(0x3be));_0x5ee4e4[_0x33c74b(0x515)]=_0x33c74b(0x413),_0x5ee4e4[_0x33c74b(0x528)]=_0x33c74b(0x56f),_0x5ee4e4[_0x33c74b(0x26d)]=_0x33c74b(0x240),_0x5ee4e4[_0x33c74b(0x2dc)][_0x33c74b(0x3a6)]='1',_0x5ee4e4['oninput']=function(){formatAmount(this);},_0x5ee4e4['inputMode']=_0x33c74b(0x4ae),_0x5ee4e4[_0x33c74b(0x4cd)]=_0x33c74b(0x489);const _0x462353=document[_0x33c74b(0x1f1)](_0x33c74b(0x3be));_0x462353[_0x33c74b(0x515)]=_0x33c74b(0x413),_0x462353[_0x33c74b(0x528)]='multiDesc',_0x462353[_0x33c74b(0x26d)]=_0x33c74b(0x54a),_0x462353[_0x33c74b(0x2dc)][_0x33c74b(0x3a6)]='2';const _0x1cbc4b=document['createElement'](_0x33c74b(0x1f0));_0x1cbc4b[_0x33c74b(0x515)]=_0x33c74b(0x1f0),_0x1cbc4b['className']=_0x33c74b(0x450),_0x1cbc4b[_0x33c74b(0x2dc)][_0x33c74b(0x512)]=_0x33c74b(0x396),_0x1cbc4b[_0x33c74b(0x2dc)][_0x33c74b(0x5b9)]='white',_0x1cbc4b[_0x33c74b(0x2dc)][_0x33c74b(0x57d)]=_0x33c74b(0x34e),_0x1cbc4b[_0x33c74b(0x2dc)][_0x33c74b(0x29e)]=_0x33c74b(0x38c),_0x1cbc4b[_0x33c74b(0x2bf)]=_0x33c74b(0x2eb),_0x1cbc4b[_0x33c74b(0x2f2)]=function(){const _0x1fd1d9=_0x33c74b;_0x54dc83[_0x1fd1d9(0x2a1)]();},_0x54dc83[_0x33c74b(0x4f7)](_0x8691f),_0x54dc83[_0x33c74b(0x4f7)](_0x5ee4e4),_0x54dc83[_0x33c74b(0x4f7)](_0x462353),_0x54dc83[_0x33c74b(0x4f7)](_0x1cbc4b),_0x265a05[_0x33c74b(0x4f7)](_0x54dc83);}function _0xe167(_0x527c3a,_0x1cdda7){_0x527c3a=_0x527c3a-0x1ba;const _0x4c8015=_0x4c80();let _0xe16749=_0x4c8015[_0x527c3a];return _0xe16749;}async function saveMultiLineReceipt(){const _0x524cb8=_0x149fc9;if(userRole===_0x524cb8(0x575)){showToast(_0x524cb8(0x4c1));return;}const _0x1df1be=document[_0x524cb8(0x2aa)](_0x524cb8(0x460))[_0x524cb8(0x1f3)]['trim'](),_0x5dd91d=document[_0x524cb8(0x2aa)](_0x524cb8(0x253))[_0x524cb8(0x1f3)][_0x524cb8(0x42a)](),_0x272b1e=document['getElementById']('multiInDate')[_0x524cb8(0x1f3)],_0x3a12ef=document[_0x524cb8(0x2aa)](_0x524cb8(0x328))['value'];if(!_0x1df1be){showToast(_0x524cb8(0x1f8)),document[_0x524cb8(0x2aa)]('multiInRefFrom')[_0x524cb8(0x33c)]();return;}if(isNaN(parseInt(_0x1df1be))){showToast(_0x524cb8(0x2b3));return;}if(_0x5dd91d&&isNaN(parseInt(_0x5dd91d))){showToast(_0x524cb8(0x2b3));return;}if(_0x5dd91d&&parseInt(_0x1df1be)>parseInt(_0x5dd91d)){showToast('⚠️\x20\x27දක්වා\x27\x20අංකය\x20\x27සිට\x27\x20අංකයට\x20වඩා\x20විශාල\x20විය\x20යුතුය!');return;}if(!_0x272b1e){showToast(_0x524cb8(0x58b)),document[_0x524cb8(0x2aa)](_0x524cb8(0x4ce))[_0x524cb8(0x33c)]();return;}const _0x2df86e=document[_0x524cb8(0x4ea)](_0x524cb8(0x5be));if(_0x2df86e['length']===0x0){showToast(_0x524cb8(0x3cd));return;}const _0x3c02cd=[];let _0x5a61ed=0x0;for(let _0x3a12a1 of _0x2df86e){const _0x4963c9=_0x3a12a1[_0x524cb8(0x440)](_0x524cb8(0x370)),_0x272876=_0x3a12a1[_0x524cb8(0x440)](_0x524cb8(0x47a)),_0x5a0160=_0x3a12a1[_0x524cb8(0x440)]('.multiDesc');if(!_0x4963c9||!_0x272876)continue;const _0x58b083=_0x4963c9[_0x524cb8(0x1f3)],_0x345564=parseAmount(_0x272876[_0x524cb8(0x1f3)]),_0x2605b5=_0x5a0160[_0x524cb8(0x1f3)]['trim']()||_0x524cb8(0x472);if(!_0x58b083){showToast(_0x524cb8(0x3ef));return;}if(_0x345564<=0x0){showToast(_0x524cb8(0x5b8));return;}_0x5a61ed+=_0x345564,_0x3c02cd[_0x524cb8(0x495)]({'action':'save_transaction','id':Date[_0x524cb8(0x3ea)]()+Math[_0x524cb8(0x21b)](Math[_0x524cb8(0x52a)]()*0x3e8)+_0x3c02cd['length'],'date':_0x272b1e,'ref':formatReceiptRange(_0x1df1be,_0x5dd91d),'vouch':'','code':_0x58b083,'amt':_0x345564,'desc':_0x2605b5,'type':'IN','source':_0x58b083,'proj':_0x3a12ef,'status':!![],'isOp':![],'isImprest':![],'clientId':generateUUID()});}const _0x2a7853=checkDuplicateReceipt(_0x1df1be,_0x5dd91d,null);if(_0x2a7853['isDuplicate']){showToast(_0x2a7853[_0x524cb8(0x40d)]);return;}const _0xaf952=document['querySelector']('button[onclick=\x22saveMultiLineReceipt()\x22]');_0xaf952[_0x524cb8(0x341)]=!![],_0xaf952[_0x524cb8(0x2bf)]=_0x524cb8(0x21d),toggleLoading(!![]);try{if(!navigator[_0x524cb8(0x4af)]){_0x3c02cd[_0x524cb8(0x1bd)](_0x1eb63c=>{const _0x3be71f=_0x524cb8;addToOfflineQueue(_0x3be71f(0x2d7),_0x1eb63c);});let _0x27e844=getData();_0x27e844[_0x524cb8(0x495)](..._0x3c02cd[_0x524cb8(0x54f)](_0xe3b050=>({..._0xe3b050,'offline':!![]}))),setDataCache(_0x27e844),showToast('📦\x20Offline\x20මාදිලියේ\x20ගනුදෙනු\x20'+_0x3c02cd['length']+_0x524cb8(0x4c8));}else{const _0x335afc=await saveBatchTransactions(_0x3c02cd);if(_0x335afc){let _0x4415ff=getData();_0x4415ff[_0x524cb8(0x495)](..._0x3c02cd),setDataCache(_0x4415ff),showToast(_0x524cb8(0x289)+_0x3c02cd[_0x524cb8(0x4e8)]+'ක්\x20සාර්ථකව\x20ගිණුම්ගත\x20කරන\x20ලදී!');}else showToast(_0x524cb8(0x1de));}document[_0x524cb8(0x2aa)](_0x524cb8(0x460))['value']='',document[_0x524cb8(0x2aa)](_0x524cb8(0x253))['value']='',document[_0x524cb8(0x2aa)](_0x524cb8(0x4ce))[_0x524cb8(0x1f3)]=new Date()[_0x524cb8(0x38a)]()[_0x524cb8(0x3ec)]('T')[0x0],document[_0x524cb8(0x2aa)](_0x524cb8(0x328))['value']='',document[_0x524cb8(0x2aa)](_0x524cb8(0x27d))[_0x524cb8(0x2bf)]='',addMultiRow(),refreshDashboard(),loadRecentTable();}catch(_0x1dacff){console[_0x524cb8(0x46f)](_0x524cb8(0x3d3),_0x1dacff),showToast(_0x524cb8(0x288));}finally{toggleLoading(![]),_0xaf952[_0x524cb8(0x341)]=![],_0xaf952[_0x524cb8(0x2bf)]=_0x524cb8(0x51c);}}function toggleFoldableCard(_0x12bdf5){const _0x6688f=_0x149fc9,_0x3446a2=document[_0x6688f(0x2aa)](_0x12bdf5),_0x5febb0=document['getElementById'](_0x12bdf5+_0x6688f(0x55a));_0x3446a2['style'][_0x6688f(0x5bf)]===_0x6688f(0x4f9)||_0x3446a2[_0x6688f(0x2dc)][_0x6688f(0x5bf)]===''?(_0x3446a2['style'][_0x6688f(0x5bf)]=_0x6688f(0x57b),_0x5febb0&&(_0x5febb0[_0x6688f(0x2dc)]['transform']=_0x6688f(0x22d))):(_0x3446a2[_0x6688f(0x2dc)]['display']=_0x6688f(0x4f9),_0x5febb0&&(_0x5febb0['style']['transform']=_0x6688f(0x53e)));}function toggleMobileSidebar(){const _0x5f1f85=_0x149fc9,_0x5a3712=document['querySelector'](_0x5f1f85(0x35c)),_0x5745ea=document['querySelector'](_0x5f1f85(0x1fb)),_0x432c1e=document['querySelector'](_0x5f1f85(0x428));_0x5a3712[_0x5f1f85(0x342)][_0x5f1f85(0x49a)](_0x5f1f85(0x562))?(_0x5a3712[_0x5f1f85(0x342)][_0x5f1f85(0x2a1)](_0x5f1f85(0x562)),_0x5745ea['classList'][_0x5f1f85(0x2a1)](_0x5f1f85(0x562)),_0x432c1e&&(_0x432c1e[_0x5f1f85(0x528)]=_0x5f1f85(0x381))):(_0x5a3712['classList'][_0x5f1f85(0x5b3)](_0x5f1f85(0x562)),_0x5745ea['classList'][_0x5f1f85(0x5b3)](_0x5f1f85(0x562)),_0x432c1e&&(_0x432c1e[_0x5f1f85(0x528)]=_0x5f1f85(0x4a3)));}document[_0x149fc9(0x28c)]('DOMContentLoaded',function(){const _0x3777a7=_0x149fc9,_0x4231ce=document[_0x3777a7(0x4ea)](_0x3777a7(0x3f3)),_0x2aec8b=document[_0x3777a7(0x440)]('.sidebar'),_0x58aabb=document[_0x3777a7(0x440)]('.mobile-sidebar-overlay'),_0x4317dc=document[_0x3777a7(0x440)](_0x3777a7(0x428));_0x4231ce[_0x3777a7(0x1bd)](_0x8ceea4=>{const _0x52364e=_0x3777a7;_0x8ceea4['addEventListener'](_0x52364e(0x4f4),function(){const _0x12f234=_0x52364e;window[_0x12f234(0x4f5)]<=0x258&&(_0x2aec8b[_0x12f234(0x342)]['remove']('active'),_0x58aabb[_0x12f234(0x342)]['remove'](_0x12f234(0x562)),_0x4317dc&&(_0x4317dc[_0x12f234(0x528)]=_0x12f234(0x381)));});}),window['addEventListener'](_0x3777a7(0x4e2),function(){const _0x304571=_0x3777a7;if(window['innerWidth']>0x258){_0x2aec8b[_0x304571(0x342)]['remove'](_0x304571(0x562));if(_0x58aabb)_0x58aabb[_0x304571(0x342)]['remove']('active');if(_0x4317dc)_0x4317dc[_0x304571(0x528)]=_0x304571(0x381);}});const _0x303fea=document[_0x3777a7(0x2aa)]('offlineQueueStatus');_0x303fea&&_0x303fea[_0x3777a7(0x28c)](_0x3777a7(0x4f4),function(){const _0x1641f4=_0x3777a7;if(navigator[_0x1641f4(0x4af)]&&offlineQueue[_0x1641f4(0x4e8)]>0x0)processOfflineQueue();else!navigator[_0x1641f4(0x4af)]&&showToast(_0x1641f4(0x3e6));}),setInterval(checkOfflineQueue,0x7530),updateOfflineQueueDisplay();});
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyufjwwM7DtWNJOYJ9L4n3aWAm2iwtfAgFCIqwasurKQ3UXARScn6_zUtTUeFSnpvaaRw/exec";
+const S_CODES = ["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10"];
+const EX_CODES = ["REx1","REx2","REx3","REx4","REx5","REx6","REx7","CEx1","CEx2","CEx3","CEx4","CEx5","CEx6","PC"];
+const CODE_INFO = {
+    "S1":"ඒකාබද්ධ අරමුදල් සහ පළාත් සභා අරමුදල්", "S2":"සහයෝගිතා ගිවිසුම් යටතේ ක්‍රියාත්මක වන වැඩසටහන් හා ව්‍යාපෘති සඳහා ලැබෙන අරමුදල්", "S3":"රජයේ ආධාර", "S4":"පාසල් පාදක ඉගෙනුම් ප්‍රවර්ධන ප්‍රදානයන්, ගුණාත්මක යෙදවුම් හා උසස් මට්ටමේ ඉගෙනුම් ක්‍රියාවලි සඳහා ලැබෙන අරමුදල්", "S5":"රජය විසින් අනුමත හා ලියාපදිංචි රාජ්‍ය නොවන සංවිධාන වලින් ලැබෙන ආධාර", "S6":"පාසලේ දියුණුව වෙනුවෙන් ස්ව කැමැත්තෙන් දායකත්වය ලබා දෙන ඕනෑම පාර්ශවයක පරිත්‍යාග", "S7":"පාසලට අයත් වත්කම් වලින් උපයා ගන්නා ආදායම්", "S8":"පාසල් සංවර්ධන සමිති සාමාජික මුදල්", "S9":"පාසලේ ඉගෙනුම් ඉගැන්වීම් ක්‍රියාවලියට අදාළ අත්‍යවශ්‍ය ක්‍රියාකාරකම් සඳහා ලැබීම්", "S10":"පාසල් සංවර්ධන සමිතිය මඟින් තීරණය කරනු ලබන පාසලේ අත්‍යවශ්‍ය වියදම් පියවා ගැනීම සඳහා වන අරමුදල්",
+    "REx1":"විෂය මාලා ක්‍රියාත්මක කිරීමට අදාළ පුනරාවර්තන වියදම්", "REx2":"උපදේශන, උසස් අධ්‍යාපන හා විෂය සමගාමී ක්‍රියාකාරකම්", "REx3":"අධ්‍යාපන පරිපාලන හා උපයෝගිතා සේවා හා සුභසාධන කටයුතු", "REx4":"කාර්ය මණ්ඩල පාරිශ්‍රමික", "REx5":"ප්‍රාග්ධන භාණ්ඩ හා උපකරණ නඩත්තු/අලුත්වැඩියා", "REx6":"පාසලේ ගොඩනැගිලි සුළු නඩත්තු/අලුත්වැඩියා", "REx7":"පවිත්‍රතා හා පිරිසිදු කිරීම්", 
+    "CEx1":"මූලික පහසුකම් - නව සැපයීම්", "CEx2":"විෂය මාලා ක්‍රියාත්මක කිරීමට අදාළ ප්‍රාග්ධන වියදම්", "CEx3":"පුස්තකාල පොත් මිලට ගැනීම්", "CEx4":"ගොඩනැගිලි නව ඉදිකිරීම්, වැඩිදියුණු කිරීම් හා වෙනත් ප්‍රාග්ධන වියදම්", "CEx5":"ප්‍රාග්ධන උපකරණ මිලට ගැනීම්", "CEx6":"විශේෂ ව්‍යාපෘති සඳහා විශේෂ ප්‍රාග්ධන ආධාර",
+    "PC":"සුළු මුදල් අග්‍රිමය (Petty Cash Imprest)"
+};
+const COLORS = ["#2e7d32", "#f9a825", "#388e3c", "#fbc02d", "#43a047", "#fdd835", "#4caf50", "#ffeb3b", "#66bb6a", "#ffee58"];
+let currentReport = '';
+let userRole = '';
+let allocations = JSON.parse(sessionStorage.getItem('sch_allocations') || '{}');
+let clearedStatus = JSON.parse(sessionStorage.getItem('sch_cleared') || '{}');
+let initialized = false;
+let isLoading = false;
+let pettyExpenses = JSON.parse(sessionStorage.getItem('sch_petty_expenses') || '[]');
+let periodExpenses = JSON.parse(sessionStorage.getItem('sch_period_expenses') || '[]');
+let dbCache = null;
+let projectsCache = null;
+let allocationsCache = null;
+let pettyExpensesCache = null;
+let periodExpensesCache = null;
+
+// ============ Offline Queue Management ============
+let offlineQueue = JSON.parse(localStorage.getItem('sch_offline_queue') || '[]');
+let isSyncing = false;
+
+// අනන්‍ය ID උත්පාදනය (UUID v4)
+function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+// සම්බන්ධතාවය නිරීක්ෂණය
+function updateOnlineStatus() {
+    const statusDiv = document.getElementById('connection-status');
+    if (navigator.onLine) {
+        statusDiv.innerHTML = "🟢 ONLINE";
+        statusDiv.className = "status-glow-online";
+        // සම්බන්ධතාවය ලැබුණු විට පෝලිමේ ඇති දත්ත සමමුහුර්ත කරන්න
+        processOfflineQueue();
+    } else {
+        statusDiv.innerHTML = "🔴 OFFLINE";
+        statusDiv.className = "status-glow-offline";
+    }
+}
+
+// පසුබිම් සමමුහුර්තකරණය
+async function processOfflineQueue() {
+    if (!navigator.onLine || isSyncing || offlineQueue.length === 0) return;
+    
+    isSyncing = true;
+    showToast(`🔄 සමමුහුර්ත කරමින්... (${offlineQueue.length} ගනුදෙනු)`);
+    
+    const queue = [...offlineQueue];
+    const successIds = [];
+    
+    for (let i = 0; i < queue.length; i++) {
+        const item = queue[i];
+        try {
+            // action එක නිවැරදිව සැකසීම
+            const data = { ...item.data };
+            
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                successIds.push(item.id);
+                
+                // දේශීය cache එකට එකතු කරන්න
+                if (data.action === 'save_transaction' || data.action === 'update_transaction') {
+                    let db = getData();
+                    const existingIndex = db.findIndex(t => t.id === item.data.id);
+                    if (existingIndex !== -1) {
+                        db[existingIndex] = { ...item.data, offline: false };
+                    } else {
+                        db.push({ ...item.data, offline: false });
+                    }
+                    setDataCache(db);
+                } else if (data.action === 'save_petty_expense') {
+                    let petty = JSON.parse(sessionStorage.getItem('sch_petty_expenses') || '[]');
+                    const existingIndex = petty.findIndex(e => e.id === item.data.id);
+                    if (existingIndex !== -1) {
+                        petty[existingIndex] = { ...item.data, offline: false };
+                    } else {
+                        petty.push({ ...item.data, offline: false });
+                    }
+                    sessionStorage.setItem('sch_petty_expenses', JSON.stringify(petty));
+                }
+            }
+        } catch (error) {
+            console.error(`Queue item ${item.id} sync failed:`, error);
+        }
+        
+        // UI යාවත්කාලීන කිරීම
+        showToast(`🔄 සමමුහුර්ත කරමින්... ${i+1}/${queue.length}`);
+    }
+    
+    // සාර්ථකව යැවූ අයිතම පෝලිමෙන් ඉවත් කරන්න
+    offlineQueue = offlineQueue.filter(item => !successIds.includes(item.id));
+    localStorage.setItem('sch_offline_queue', JSON.stringify(offlineQueue));
+    
+    isSyncing = false;
+    
+    if (successIds.length > 0) {
+        showToast(`✅ ගනුදෙනු ${successIds.length}ක් සමමුහුර්ත කරන ලදී!`);
+        
+        // UI යාවත්කාලීන කිරීම
+        refreshDashboard();
+        loadRecentTable();
+        renderPettyBook();
+    }
+    
+    updateOfflineQueueDisplay();
+}
+
+// පෝලිමට එකතු කිරීම
+function addToOfflineQueue(action, data) {
+    const queueItem = {
+        id: generateUUID(),
+        timestamp: new Date().toISOString(),
+        action: action,
+        data: data
+    };
+    
+    offlineQueue.push(queueItem);
+    localStorage.setItem('sch_offline_queue', JSON.stringify(offlineQueue));
+    updateOfflineQueueDisplay();
+    
+    showToast(`📦 Offline මාදිලියේ සුරකින ලදී. සම්බන්ධ වූ පසු සමමුහුර්ත වේ.`);
+}
+
+// Offline queue display යාවත්කාලීන කිරීම
+function updateOfflineQueueDisplay() {
+    const queueStatus = document.getElementById('offlineQueueStatus');
+    const queueCount = document.getElementById('offlineQueueCount');
+    
+    if (!queueStatus || !queueCount) return;
+    
+    if (offlineQueue.length > 0) {
+        queueCount.textContent = offlineQueue.length;
+        queueStatus.style.display = 'flex';
+    } else {
+        queueStatus.style.display = 'none';
+    }
+}
+
+// Offline queue පරීක්ෂා කිරීම
+function checkOfflineQueue() {
+    if (navigator.onLine && offlineQueue.length > 0 && !isSyncing) {
+        processOfflineQueue();
+    }
+    updateOfflineQueueDisplay();
+}
+
+// ============ වැඩි දියුණු කළ Validation Functions ============
+
+// තත්ය කාලීන අනුපිටපත් පරීක්ෂාව
+function checkDuplicateInRealTime(field, value, type, excludeId = null) {
+    const db = getData();
+    const pettyEx = JSON.parse(sessionStorage.getItem('sch_petty_expenses') || '[]');
+    
+    let duplicates = [];
+    
+    if (type === 'IN') {
+        duplicates = db.filter(t => 
+            t.type === 'IN' && 
+            t[field] === value &&
+            (excludeId === null || t.id !== excludeId)
+        );
+    } else if (type === 'EX') {
+        duplicates = db.filter(t => 
+            t.type === 'EX' && 
+            t[field] === value &&
+            (excludeId === null || t.id !== excludeId)
+        );
+    } else if (type === 'PETTY') {
+        duplicates = pettyEx.filter(e => 
+            e[field] === value &&
+            (excludeId === null || e.id !== excludeId)
+        );
+    }
+    
+    return duplicates.length > 0;
+}
+
+// Multi-field Validation (වවුචර් අංකය + දිනය + මුදල)
+function checkDuplicateTransaction(date, voucher, amount, type, excludeId = null) {
+    if (!voucher || !date || amount <= 0) return false;
+    
+    const db = getData();
+    
+    const duplicates = db.filter(t => {
+        if (t.type !== type) return false;
+        if (excludeId !== null && t.id === excludeId) return false;
+        
+        // දිනය සමානද?
+        const dateMatch = t.date === date;
+        
+        // වවුචර් අංකය සමානද? (IN සඳහා ref, EX සඳහා vouch)
+        let voucherMatch = false;
+        if (type === 'IN') {
+            voucherMatch = t.ref === voucher;
+        } else {
+            voucherMatch = t.vouch === voucher;
+        }
+        
+        // මුදල සමානද? (ආසන්න වශයෙන්)
+        const amountMatch = Math.abs(t.amt - amount) < 0.01;
+        
+        return dateMatch && voucherMatch && amountMatch;
+    });
+    
+    return duplicates.length > 0;
+}
+
+// Petty Expense Multi-field Validation
+function checkDuplicatePettyExpense(date, voucher, amount, category, excludeId = null) {
+    if (!voucher || !date || amount <= 0) return false;
+    
+    const pettyEx = JSON.parse(sessionStorage.getItem('sch_petty_expenses') || '[]');
+    
+    const duplicates = pettyEx.filter(e => {
+        if (excludeId !== null && e.id === excludeId) return false;
+        
+        const dateMatch = e.date === date;
+        const voucherMatch = e.voucher === voucher;
+        const amountMatch = Math.abs(e.amt - amount) < 0.01;
+        const categoryMatch = e.category === category;
+        
+        return dateMatch && voucherMatch && amountMatch && categoryMatch;
+    });
+    
+    return duplicates.length > 0;
+}
+
+// ලදුපත් අංකය තත්ය කාලීනව පරීක්ෂා කිරීම
+function validateReceiptNumber(element) {
+    const fromRef = document.getElementById('inRefFrom').value.trim();
+    const toRef = document.getElementById('inRefTo').value.trim();
+    const editId = document.getElementById('edit-id-in').value;
+    
+    if (!fromRef) return;
+    
+    const excludeId = editId ? parseInt(editId) : null;
+    const duplicateCheck = checkDuplicateReceipt(fromRef, toRef, excludeId);
+    
+    const warningElement = document.getElementById('receiptNumberWarning');
+    
+    if (duplicateCheck.isDuplicate) {
+        element.style.borderColor = 'var(--danger)';
+        element.style.backgroundColor = '#ffebee';
+        
+        if (!warningElement) {
+            const warning = document.createElement('div');
+            warning.id = 'receiptNumberWarning';
+            warning.style.color = 'var(--danger)';
+            warning.style.fontSize = '11px';
+            warning.style.marginTop = '5px';
+            warning.style.padding = '5px';
+            warning.style.backgroundColor = '#ffebee';
+            warning.style.borderRadius = '4px';
+            warning.innerHTML = `⚠️ ${duplicateCheck.message}`;
+            element.parentNode.appendChild(warning);
+        }
+    } else {
+        element.style.borderColor = '#dcedc8';
+        element.style.backgroundColor = '';
+        if (warningElement) warningElement.remove();
+    }
+}
+
+// වවුචර් අංකය තත්ය කාලීනව පරීක්ෂා කිරීම
+function validateVoucherNumber(element) {
+    const voucher = element.value.trim();
+    const date = document.getElementById('exDate').value;
+    const amount = parseAmount(document.getElementById('exAmt').value);
+    const editId = document.getElementById('edit-id-ex').value;
+    
+    if (!voucher || !date || amount <= 0) return;
+    
+    const excludeId = editId ? parseInt(editId) : null;
+    const isDuplicate = checkDuplicateTransaction(date, voucher, amount, 'EX', excludeId);
+    
+    const warningElement = document.getElementById('voucherWarning');
+    
+    if (isDuplicate) {
+        element.style.borderColor = 'var(--danger)';
+        element.style.backgroundColor = '#ffebee';
+        
+        if (!warningElement) {
+            const warning = document.createElement('div');
+            warning.id = 'voucherWarning';
+            warning.style.color = 'var(--danger)';
+            warning.style.fontSize = '11px';
+            warning.style.marginTop = '5px';
+            warning.style.padding = '5px';
+            warning.style.backgroundColor = '#ffebee';
+            warning.style.borderRadius = '4px';
+            warning.innerHTML = `⚠️ මෙම වවුචර් අංකය, දිනය සහ මුදල සහිත ගනුදෙනුවක් දැනටමත් පවතී!`;
+            element.parentNode.appendChild(warning);
+        }
+    } else {
+        element.style.borderColor = '#dcedc8';
+        element.style.backgroundColor = '';
+        if (warningElement) warningElement.remove();
+    }
+}
+
+// Petty Expense වවුචර් අංකය තත්ය කාලීනව පරීක්ෂා කිරීම
+function validatePettyVoucher(element) {
+    const voucher = element.value.trim();
+    const date = document.getElementById('pettyDate').value;
+    const amount = parseAmount(document.getElementById('pettyAmt').value);
+    const category = $('#pettyCategorySelect').val();
+    const editId = document.getElementById('edit-petty-id').value;
+    
+    if (!voucher || !date || amount <= 0 || !category) return;
+    
+    const excludeId = editId ? parseInt(editId) : null;
+    const isDuplicate = checkDuplicatePettyExpense(date, voucher, amount, category, excludeId);
+    
+    const warningElement = document.getElementById('pettyVoucherWarning');
+    
+    if (isDuplicate) {
+        element.style.borderColor = 'var(--danger)';
+        element.style.backgroundColor = '#ffebee';
+        
+        if (!warningElement) {
+            const warning = document.createElement('div');
+            warning.id = 'pettyVoucherWarning';
+            warning.style.color = 'var(--danger)';
+            warning.style.fontSize = '11px';
+            warning.style.marginTop = '5px';
+            warning.style.padding = '5px';
+            warning.style.backgroundColor = '#ffebee';
+            warning.style.borderRadius = '4px';
+            warning.innerHTML = `⚠️ මෙම වවුචර් අංකය, දිනය, කාණ්ඩය සහ මුදල සහිත වියදමක් දැනටමත් පවතී!`;
+            element.parentNode.appendChild(warning);
+        }
+    } else {
+        element.style.borderColor = '#dcedc8';
+        element.style.backgroundColor = '';
+        if (warningElement) warningElement.remove();
+    }
+}
+
+function updateOnlineStatus() {
+    const statusDiv = document.getElementById('connection-status');
+    if (navigator.onLine) {
+        statusDiv.innerHTML = "🟢 ONLINE";
+        statusDiv.className = "status-glow-online";
+    } else {
+        statusDiv.innerHTML = "🔴 OFFLINE";
+        statusDiv.className = "status-glow-offline";
+    }
+}
+window.addEventListener('online', updateOnlineStatus);
+window.addEventListener('offline', updateOnlineStatus);
+$(document).ready(function() {
+    updateOnlineStatus();
+    populateOptions();
+    setTimeout(() => {
+        initializeSelect2();
+    }, 500);
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('inDate').value = today;
+    document.getElementById('exDate').value = today;
+    document.getElementById('repFrom').value = new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0];
+    document.getElementById('repTo').value = today;
+    initPettyCashSection();
+    setTimeout(() => {
+        if (document.getElementById('sec-petty').style.display === 'block') {
+            displaySavedPeriodSummaries();
+        }
+    }, 1000);
+    addMultiRow();
+    $('#allocTypeSelect').on('change', function() {
+        updateAllocationCodeSelect();
+    });
+    
+    // Offline queue status click event
+    const queueStatus = document.getElementById('offlineQueueStatus');
+    if (queueStatus) {
+        queueStatus.addEventListener('click', function() {
+            if (navigator.onLine && offlineQueue.length > 0) {
+                processOfflineQueue();
+            } else if (!navigator.onLine) {
+                showToast("⚠️ අන්තර්ජාල සම්බන්ධතාවයක් නොමැත!");
+            }
+        });
+    }
+    
+    // පිටුව පූරණය වූ විට පෝලිමේ ඇති දත්ත ප්‍රමාණය පෙන්වන්න
+    updateOfflineQueueDisplay();
+    
+    // Offline queue පරීක්ෂා කිරීම (සෑම තත්පර 30කට වරක්)
+    setInterval(checkOfflineQueue, 30000);
+});
+
+function updateAllocationCodeSelect() {
+    const type = $('#allocTypeSelect').val();
+    const select = $('#allocCodeSelect');
+    let options = '<option value=""></option>';
+    if (type === 'IN') {
+        S_CODES.forEach(code => {
+            options += `<option value="${code}">${code} - ${CODE_INFO[code].substring(0, 40)}...</option>`;
+        });
+    } else {
+        EX_CODES.forEach(code => {
+            options += `<option value="${code}">${code} - ${CODE_INFO[code].substring(0, 40)}...</option>`;
+        });
+    }
+    select.html(options);
+    select.trigger('change');
+}
+function loadPettyFloat() {
+    const saved = localStorage.getItem('sch_petty_float');
+    return saved ? parseFloat(saved) : 0;
+}
+function savePettyFloat() {
+    if (userRole !== 'ADMIN') {
+        showToast("❌ අවසර නැත!");
+        return;
+    }
+    const floatVal = parseAmount(document.getElementById('pettyFloat').value);
+    if (floatVal < 0) {
+        showToast("⚠️ වලංගු මුදලක් ඇතුළත් කරන්න");
+        return;
+    }
+    localStorage.setItem('sch_petty_float', floatVal);
+    showToast("✅ ස්ථාවර මුදල සුරකින ලදී!");
+    renderPettyBook();
+}
+function initPettyFloat() {
+    const floatInput = document.getElementById('pettyFloat');
+    if (floatInput) {
+        floatInput.value = loadPettyFloat().toFixed(2);
+    }
+}
+function renderPettyBook() {
+    const db = getData();
+    const pettyEx = JSON.parse(sessionStorage.getItem('sch_petty_expenses') || '[]');
+    const container = document.getElementById('pettyCashBookBody');
+    if (!container) return;
+    const allTransactions = [];
+    db.filter(t => t.code === 'PC' && (t.type === 'IN' || (t.type === 'EX' && t.desc.includes('ප්‍රතිපූරණය')))).forEach(entry => {
+    allTransactions.push({
+        id: entry.id,
+        date: entry.date,
+        vouch: entry.vouch || '',
+        desc: entry.desc,
+        amt: parseFloat(entry.amt) || 0,
+        isReceipt: true,
+        isReplenishment: entry.desc.includes('ප්‍රතිපූරණය') || false,
+        category: entry.code,
+        source: entry.source || '',
+        isTransferred: false
+    });
+});
+    pettyEx.forEach(entry => {
+        allTransactions.push({
+            id: entry.id,
+            date: entry.date,
+            vouch: entry.voucher || '',
+            desc: entry.desc,
+            amt: parseFloat(entry.amt) || 0,
+            isReceipt: false,
+            isReplenishment: false,
+            category: entry.category,
+            source: 'PC',
+            isTransferred: entry.transferred === true
+        });
+    });
+    allTransactions.sort((a, b) => new Date(a.date) - new Date(b.date));
+    const replenishmentIndices = [];
+    allTransactions.forEach((t, idx) => {
+        if (t.isReplenishment) replenishmentIndices.push(idx);
+    });
+    let periods = [];
+    let startIdx = 0;
+    for (let repIdx of replenishmentIndices) {
+        if (repIdx > startIdx) {
+            periods.push({
+                start: startIdx,
+                end: repIdx - 1,
+                openingBalance: 0,
+                transactions: allTransactions.slice(startIdx, repIdx),
+                hasReplenishment: false
+            });
+        }
+        startIdx = repIdx;
+    }
+    if (startIdx < allTransactions.length) {
+        periods.push({
+            start: startIdx,
+            end: allTransactions.length - 1,
+            openingBalance: 0,
+            transactions: allTransactions.slice(startIdx),
+            hasReplenishment: false
+        });
+    }
+    if (replenishmentIndices.length === 0 && allTransactions.length > 0) {
+        periods = [{
+            start: 0,
+            end: allTransactions.length - 1,
+            openingBalance: 0,
+            transactions: allTransactions,
+            hasReplenishment: false
+        }];
+    }
+    let previousPeriodClosing = 0;
+    let cumulativeTotals = { REx1: 0, REx5: 0, REx6: 0, REx7: 0, REx3: 0 };
+    let tableBody = '';
+    periods.forEach((period, periodIndex) => {
+        const periodTransactions = period.transactions;
+        const isFirstPeriod = (periodIndex === 0);
+        let openingBalance;
+        if (isFirstPeriod) {
+            openingBalance = 0;
+        } else {
+            openingBalance = previousPeriodClosing;
+        }
+        let periodTotalReceipts = 0;
+        let periodTotalExpenses = 0;
+        let periodCategoryTotals = { REx1: 0, REx5: 0, REx6: 0, REx7: 0, REx3: 0 };
+        periodTransactions.forEach(t => {
+            if (t.isReceipt) {
+                periodTotalReceipts += t.amt;
+            } else {
+                periodTotalExpenses += t.amt;
+                if (!t.isTransferred && periodCategoryTotals.hasOwnProperty(t.category)) {
+                    periodCategoryTotals[t.category] += t.amt;
+                }
+            }
+        });
+        if (!isFirstPeriod) {
+            // Do nothing
+        } else {
+            const firstReceipt = periodTransactions.find(t => t.isReceipt && !t.isReplenishment);
+            if (firstReceipt) {
+                tableBody += `<tr style="background: #e3f2fd; font-weight: bold;">
+                    <td style="padding: 8px; border: 1px solid #000; text-align: right;"></td>
+                    <td style="padding: 8px; border: 1px solid #000; text-align: center;"></td>
+                    <td style="padding: 8px; border: 1px solid #000; text-align: center;">${firstReceipt.date}</td>
+                    <td style="padding: 8px; border: 1px solid #000;">ආරම්භක අග්‍රිමය (Opening Imprest)</td>
+                    <td style="padding: 8px; border: 1px solid #000; text-align: right;">${firstReceipt.amt.toFixed(2)}</td>
+                    <td colspan="5" style="border: 1px solid #000;"></td>
+                </tr>`;
+            }
+        }
+        periodTransactions.forEach(t => {
+            const rex1Amt = (t.category === 'REx1' && !t.isReceipt) ? t.amt.toFixed(2) : '';
+            const rex5Amt = (t.category === 'REx5' && !t.isReceipt) ? t.amt.toFixed(2) : '';
+            const rex6Amt = (t.category === 'REx6' && !t.isReceipt) ? t.amt.toFixed(2) : '';
+            const rex7Amt = (t.category === 'REx7' && !t.isReceipt) ? t.amt.toFixed(2) : '';
+            const rex3Amt = (t.category === 'REx3' && !t.isReceipt) ? t.amt.toFixed(2) : '';
+            const receiptAmt = t.isReceipt ? t.amt.toFixed(2) : '';
+            const paymentAmt = !t.isReceipt ? t.amt.toFixed(2) : '';
+            let rowStyle = '';
+            let transferredBadge = '';
+            if (t.isTransferred) {
+                rowStyle = 'style="background-color: #e8f4fd; border-left: 5px solid #2980b9;"';
+                transferredBadge = ' <span style="background: #2980b9; color: white; font-size: 9px; padding: 2px 6px; border-radius: 12px; margin-left: 8px; display: inline-block; font-weight: normal;">✓ Period</span>';
+            } else if (t.isReplenishment) {
+                rowStyle = 'style="background-color: #fff9c4;"';
+            }
+            let actionButtons = '';
+            if (!t.isReceipt) {
+                if (userRole === 'ADMIN' || userRole === 'STAFF') {
+                    actionButtons += `<button class="petty-edit-btn" onclick="editPettyExpense(${t.id})" style="background:none; border:none; color:#2980b9; cursor:pointer; margin-left:5px;" title="Edit"><i class="fas fa-edit"></i></button>`;
+                }
+                if (userRole === 'ADMIN') {
+                    actionButtons += `<button class="petty-delete-btn" onclick="deletePettyExpense(${t.id})" style="background:none; border:none; color:#c0392b; cursor:pointer; margin-left:5px;" title="Delete"><i class="fas fa-trash"></i></button>`;
+                }
+            }
+            tableBody += `<tr ${rowStyle}>
+                <td style="padding: 8px; border: 1px solid #000; text-align: right;">${receiptAmt}</td>
+                <td style="padding: 8px; border: 1px solid #000; text-align: center;">${t.vouch}</td>
+                <td style="padding: 8px; border: 1px solid #000; text-align: center;">${t.date}</td>
+                <td style="padding: 8px; border: 1px solid #000;">${t.desc}${transferredBadge} ${actionButtons}</td>
+                <td style="padding: 8px; border: 1px solid #000; text-align: right;">${paymentAmt}</td>
+                <td style="padding: 8px; border: 1px solid #000; text-align: right;">${rex1Amt}</td>
+                <td style="padding: 8px; border: 1px solid #000; text-align: right;">${rex5Amt}</td>
+                <td style="padding: 8px; border: 1px solid #000; text-align: right;">${rex6Amt}</td>
+                <td style="padding: 8px; border: 1px solid #000; text-align: right;">${rex7Amt}</td>
+                <td style="padding: 8px; border: 1px solid #000; text-align: right;">${rex3Amt}</td>
+            </tr>`;
+        });
+        tableBody += `<tr style="font-weight: bold; background: #eee;">
+            <td colspan="4" style="text-align: right; border: 1px solid #000; padding: 8px;">මුළු වියදම (Total Expenses) - මෙම කාලපරිච්ඡේදය</td>
+            <td style="border: 1px solid #000; text-align: right; padding: 8px;">${periodTotalExpenses.toFixed(2)}</td>
+            <td style="border: 1px solid #000; text-align: right;">${periodCategoryTotals.REx1.toFixed(2)}</td>
+            <td style="border: 1px solid #000; text-align: right;">${periodCategoryTotals.REx5.toFixed(2)}</td>
+            <td style="border: 1px solid #000; text-align: right;">${periodCategoryTotals.REx6.toFixed(2)}</td>
+            <td style="border: 1px solid #000; text-align: right;">${periodCategoryTotals.REx7.toFixed(2)}</td>
+            <td style="border: 1px solid #000; text-align: right;">${periodCategoryTotals.REx3.toFixed(2)}</td>
+        </tr>`;
+        if (periodTotalReceipts > 0) {
+            tableBody += `<tr style="font-weight: bold; background: #e8f5e9;">
+                <td colspan="4" style="text-align: right; border: 1px solid #000; padding: 8px;">මුළු ලැබීම් (Total Receipts) - මෙම කාලපරිච්ඡේදය</td>
+                <td style="border: 1px solid #000; text-align: right; padding: 8px;"></td>
+                <td colspan="5" style="border: 1px solid #000; text-align: right;">${periodTotalReceipts.toFixed(2)}</td>
+            </tr>`;
+        }
+        const closingBalance = openingBalance + periodTotalReceipts - periodTotalExpenses;
+        tableBody += `<tr style="background-color: #ecf0f1; font-weight: bold; border-bottom: 3px double #000;">
+            <td colspan="4" style="text-align: right; border: 1px solid #000;">ශේෂය ප/ගෙ (Balance c/d)</td>
+            <td style="text-align: right; border: 1px solid #000;">${closingBalance.toFixed(2)}</td>
+            <td colspan="5" style="border: 1px solid #000; background-color: #bdc3c7;"></td>
+        </tr>`;
+        if (periodIndex < periods.length - 1) {
+            const nextPeriodFirstTx = periods[periodIndex + 1].transactions[0];
+            const nextDate = nextPeriodFirstTx ? nextPeriodFirstTx.date : '';
+            const [nextYear, nextMonth] = nextDate.split('-');
+            const nextMonthName = getMonthName(nextMonth);
+            tableBody += `<tr style="height: 10px; background-color: #1b5e20;">
+                <td colspan="10" style="border: none;"></td>
+            </tr>`;
+            tableBody += `<tr style="font-weight: bold; background-color: #fff9c4;">
+                <td style="text-align: right; border: 1px solid #000;">${closingBalance.toFixed(2)}</td>
+                <td style="border: 1px solid #000;"></td>
+                <td style="text-align: center; border: 1px solid #000;">${nextDate}</td>
+                <td style="border: 1px solid #000;">ශේෂය ඉ/ගෙ (Balance b/f) - ${nextMonthName} ${nextYear}</td>
+                <td colspan="6" style="border: 1px solid #000;"></td>
+            </tr>`;
+        }
+        cumulativeTotals.REx1 += periodCategoryTotals.REx1;
+        cumulativeTotals.REx5 += periodCategoryTotals.REx5;
+        cumulativeTotals.REx6 += periodCategoryTotals.REx6;
+        cumulativeTotals.REx7 += periodCategoryTotals.REx7;
+        cumulativeTotals.REx3 += periodCategoryTotals.REx3;
+        previousPeriodClosing = closingBalance;
+    });
+    container.innerHTML = tableBody;
+    updateCategoryTotalsDisplay(cumulativeTotals);
+    document.getElementById('manualREx1').value = cumulativeTotals.REx1.toFixed(2);
+    document.getElementById('manualREx5').value = cumulativeTotals.REx5.toFixed(2);
+    document.getElementById('manualREx6').value = cumulativeTotals.REx6.toFixed(2);
+    document.getElementById('manualREx7').value = cumulativeTotals.REx7.toFixed(2);
+    document.getElementById('manualREx3').value = cumulativeTotals.REx3.toFixed(2);
+    updatePeriodTotal();
+    const totalReceipts = allTransactions.filter(t => t.isReceipt).reduce((sum, t) => sum + t.amt, 0);
+    const totalExpenses = allTransactions.filter(t => !t.isReceipt).reduce((sum, t) => sum + t.amt, 0);
+    document.getElementById('pettyFloatDisplay').innerText = loadPettyFloat().toFixed(2);
+    document.getElementById('pettyTotalReceipts').innerText = totalReceipts.toFixed(2);
+    document.getElementById('pettyTotalExpenses').innerText = totalExpenses.toFixed(2);
+    document.getElementById('pettyCashInHand').innerText = (totalReceipts - totalExpenses).toFixed(2);
+}
+function getMonthName(monthNum) {
+    const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+    const monthNames = ['ජන', 'පෙබ', 'මාර්', 'අප්‍රේල්', 'මැයි', 'ජූනි', 'ජූලි', 'අගෝ', 'සැප්', 'ඔක්', 'නොවැ', 'දෙසැ'];
+    const index = months.indexOf(monthNum.padStart(2, '0'));
+    return monthNames[index] || monthNum;
+}
+function updateCategoryTotalsDisplay(totals) {
+    const container = document.getElementById('periodCategoryTotals');
+    if (!container) return;
+    container.innerHTML = `
+        <div style="background: #e8f5e9; padding: 10px; border-radius: 6px; text-align: center;">
+            <div style="font-size: 12px; color: #1b5e20;">REx1</div>
+            <div style="font-size: 16px; font-weight: bold;">රු. ${totals.REx1.toFixed(2)}</div>
+        </div>
+        <div style="background: #e3f2fd; padding: 10px; border-radius: 6px; text-align: center;">
+            <div style="font-size: 12px; color: #01579b;">REx5</div>
+            <div style="font-size: 16px; font-weight: bold;">රු. ${totals.REx5.toFixed(2)}</div>
+        </div>
+        <div style="background: #fff3e0; padding: 10px; border-radius: 6px; text-align: center;">
+            <div style="font-size: 12px; color: #e65100;">REx6</div>
+            <div style="font-size: 16px; font-weight: bold;">රු. ${totals.REx6.toFixed(2)}</div>
+        </div>
+        <div style="background: #fce4ec; padding: 10px; border-radius: 6px; text-align: center;">
+            <div style="font-size: 12px; color: #880e4f;">REx7</div>
+            <div style="font-size: 16px; font-weight: bold;">රු. ${totals.REx7.toFixed(2)}</div>
+        </div>
+        <div style="background: #f3e5f5; padding: 10px; border-radius: 6px; text-align: center;">
+            <div style="font-size: 12px; color: #4a148c;">REx3</div>
+            <div style="font-size: 16px; font-weight: bold;">රු. ${totals.REx3.toFixed(2)}</div>
+        </div>
+    `;
+}
+function printPettyCashBook() {
+    const printContent = document.getElementById('pettyCashBookTable').cloneNode(true);
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>සුළු මුදල් පොත</title>
+            <style>
+                body { font-family: 'Noto Sans Sinhala', sans-serif; padding: 20px; }
+                h1 { color: #1b5e20; text-align: center; }
+                h2 { color: #2e7d32; text-align: center; }
+                table { width: 100%; border-collapse: collapse; }
+                th { background: #1b5e20; color: #ffeb3b; padding: 8px; border: 1px solid #333; }
+                td { padding: 6px; border: 1px solid #333; }
+                .footer { margin-top: 30px; text-align: right; }
+                .school-name { text-align: center; margin-bottom: 20px; }
+            </style>
+        </head>
+        <body>
+            <div class="school-name">
+                <h1>මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</h1>
+                <h2>සුළු මුදල් පොත</h2>
+                <p>මුද්‍රණය: ${new Date().toLocaleDateString('si-LK')}</p>
+            </div>
+            ${printContent.outerHTML}
+            <div class="footer">
+                <p>....................................</p>
+                <p><b>භාණ්ඩාගාරික</b></p>
+                <p style="margin-top: 20px;">....................................</p>
+                <p><b>විදුහල්පති</b></p>
+            </div>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+}
+async function exportPettyCashToPDF() {
+    if (userRole === 'GUEST') {
+        showToast("❌ PDF බාගත කිරීමට අවසර නැත!");
+        return;
+    }
+    toggleLoading(true);
+    try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const element = document.getElementById('pettyCashBookTable');
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            backgroundColor: '#ffffff'
+        });
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = 210;
+        const pageHeight = 297;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+        let position = 0;
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        while (heightLeft >= 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+        }
+        
+        pdf.save(`සුළු_මුදල්_පොත_${new Date().toISOString().slice(0,10)}.pdf`);
+        
+        showToast("✅ PDF බාගත කරන ලදී!");
+    } catch (error) {
+        console.error("PDF export error:", error);
+        showToast("❌ PDF ජනනය කිරීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+    }
+}
+function initPettyCashSection() {
+    const today = new Date().toISOString().split('T')[0];
+    const pettyDate = document.getElementById('pettyDate');
+    if (pettyDate) pettyDate.value = today;
+    const float = loadPettyFloat();
+    const pettyFloat = document.getElementById('pettyFloat');
+    if (pettyFloat) pettyFloat.value = float.toFixed(2);
+    
+    const sCodeOptions = S_CODES.map(c => `<option value="${c}">${c} - ${CODE_INFO[c]}</option>`).join('');
+    const replenishSource = document.getElementById('replenishSourceSelect');
+    if (replenishSource) replenishSource.innerHTML = '<option value=""></option>' + sCodeOptions;
+    
+    if (typeof $ !== 'undefined' && $.fn && $.fn.select2) {
+        $('#replenishSourceSelect, #pettyCategorySelect').select2({
+            placeholder: "තෝරන්න...",
+            allowClear: true,
+            width: '100%'
+        });
+    }
+}
+
+// ============ Petty Cash Functions ============
+// Edit petty expense
+function editPettyExpense(id) {
+    const expense = pettyExpenses.find(e => e.id == id);
+    if (!expense) {
+        showToast("⚠️ වියදම සොයාගත නොහැක!");
+        return;
+    }
+    document.getElementById('pettyDate').value = expense.date;
+    document.getElementById('pettyDesc').value = expense.desc;
+    $('#pettyCategorySelect').val(expense.category).trigger('change');
+    document.getElementById('pettyVoucher').value = expense.voucher;
+    document.getElementById('pettyAmt').value = expense.amt.toFixed(2);
+    document.getElementById('edit-petty-id').value = expense.id;
+    document.getElementById('btn-save-petty').innerText = "යාවත්කාලීන කරන්න";
+    // Scroll to form
+    document.getElementById('petty-expense-form').scrollIntoView({ behavior: 'smooth' });
+}
+
+async function savePettyExpense() {
+    if(userRole === 'GUEST') {
+        showToast("❌ සුළු මුදල් වියදම් ඇතුළත් කිරීමට ඔබට අවසර නැත.");
+        return;
+    }
+    
+    const saveButton = document.getElementById('btn-save-petty');
+    saveButton.disabled = true;
+    saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> සුරකිමින්...';
+    
+    const date = document.getElementById('pettyDate').value;
+    const desc = document.getElementById('pettyDesc').value.trim();
+    const category = $('#pettyCategorySelect').val();
+    const voucher = document.getElementById('pettyVoucher').value.trim();
+    const amt = parseAmount(document.getElementById('pettyAmt').value);
+    const editId = document.getElementById('edit-petty-id')?.value;
+    const isEdit = editId && editId !== '';
+    
+    if(!date) {
+        showToast("⚠️ කරුණාකර දිනය ඇතුළත් කරන්න");
+        saveButton.disabled = false;
+        saveButton.innerHTML = "එකතු කරන්න";
+        document.getElementById('pettyDate').focus();
+        return;
+    }
+    if(!desc) {
+        showToast("⚠️ කරුණාකර විස්තරය ඇතුළත් කරන්න");
+        saveButton.disabled = false;
+        saveButton.innerHTML = "එකතු කරන්න";
+        document.getElementById('pettyDesc').focus();
+        return;
+    }
+    if(!category) {
+        showToast("⚠️ කරුණාකර කාණ්ඩය තෝරන්න");
+        saveButton.disabled = false;
+        saveButton.innerHTML = "එකතු කරන්න";
+        $('#pettyCategorySelect').select2('open');
+        return;
+    }
+    if(!voucher) {
+        showToast("⚠️ කරුණාකර වවුචර් අංකය ඇතුළත් කරන්න");
+        saveButton.disabled = false;
+        saveButton.innerHTML = "එකතු කරන්න";
+        document.getElementById('pettyVoucher').focus();
+        return;
+    }
+    if(amt <= 0) {
+        showToast("⚠️ කරුණාකර වලංගු මුදලක් ඇතුළත් කරන්න");
+        saveButton.disabled = false;
+        saveButton.innerHTML = "එකතු කරන්න";
+        document.getElementById('pettyAmt').focus();
+        return;
+    }
+    
+    // Multi-field validation
+    const excludeId = isEdit ? parseInt(editId) : null;
+    if (checkDuplicatePettyExpense(date, voucher, amt, category, excludeId)) {
+        showToast("⚠️ මෙම වවුචර් අංකය, දිනය, කාණ්ඩය සහ මුදල සහිත වියදමක් දැනටමත් පවතී!");
+        saveButton.disabled = false;
+        saveButton.innerHTML = "එකතු කරන්න";
+        return;
+    }
+    
+    const id = isEdit ? parseInt(editId) : (Date.now() + Math.floor(Math.random() * 1000));
+    const data = {
+        action: 'save_petty_expense',
+        id: id,
+        date: date,
+        desc: desc,
+        category: category,
+        voucher: voucher,
+        amt: amt,
+        clientId: generateUUID()
+    };
+    
+    toggleLoading(true);
+    
+    try {
+        if (!navigator.onLine) {
+            // Offline - පෝලිමට එකතු කරන්න
+            addToOfflineQueue('save_petty_expense', data);
+            
+            if (isEdit) {
+                const index = pettyExpenses.findIndex(e => e.id == id);
+                if (index !== -1) {
+                    pettyExpenses[index] = { ...data, offline: true };
+                }
+            } else {
+                pettyExpenses.push({ ...data, offline: true });
+            }
+            sessionStorage.setItem('sch_petty_expenses', JSON.stringify(pettyExpenses));
+            
+            showToast("📦 Offline මාදිලියේ සුරකින ලදී!");
+        } else {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if(result.status === 'success') {
+                if (isEdit) {
+                    const index = pettyExpenses.findIndex(e => e.id == id);
+                    if (index !== -1) {
+                        pettyExpenses[index] = { ...data, offline: false };
+                    }
+                } else {
+                    pettyExpenses.push({ ...data, offline: false });
+                }
+                sessionStorage.setItem('sch_petty_expenses', JSON.stringify(pettyExpenses));
+                
+                showToast(isEdit ? "✅ වියදම යාවත්කාලීන කරන ලදී!" : "✅ සුළු මුදල් වියදම එකතු කරන ලදී!");
+            } else {
+                throw new Error(result.message || 'Save failed');
+            }
+        }
+        
+        // පෝරමය හිස් කරන්න
+        document.getElementById('pettyDate').value = new Date().toISOString().split('T')[0];
+        document.getElementById('pettyDesc').value = '';
+        $('#pettyCategorySelect').val('').trigger('change');
+        document.getElementById('pettyVoucher').value = '';
+        document.getElementById('pettyAmt').value = '';
+        document.getElementById('edit-petty-id').value = '';
+        
+        renderPettyBook();
+        
+    } catch (error) {
+        console.error("Save petty expense error:", error);
+        showToast("❌ සුරැකීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+        saveButton.disabled = false;
+        saveButton.innerHTML = "එකතු කරන්න";
+    }
+}
+
+async function deletePettyExpense(id) {
+    if(userRole !== 'ADMIN') {
+        showToast("❌ මකා දැමීමට අවසර ඇත්තේ පරිපාලකට පමණි!");
+        return;
+    }
+    
+    const confirm = await showConfirmDialog(
+        "🗑️ සුළු මුදල් වියදම මකන්න",
+        "මෙම වියදම ස්ථිරවම මකා දමන්නද?",
+        "ඔව්, මකන්න",
+        "අවලංගු කරන්න"
+    );
+    
+    if(!confirm) return;
+    
+    toggleLoading(true);
+    
+    try {
+        const response = await fetch(SCRIPT_URL + "?action=delete_petty_expense&id=" + id + "&t=" + Date.now());
+        const result = await response.json();
+        
+        if(result.status === 'success') {
+            pettyExpenses = pettyExpenses.filter(e => e.id != id);
+            sessionStorage.setItem('sch_petty_expenses', JSON.stringify(pettyExpenses));
+            showToast("✅ වියදම මකා දමන ලදී!");
+            renderPettyBook();
+        } else {
+            throw new Error(result.message || 'Delete failed');
+        }
+    } catch (error) {
+        console.error("Delete petty expense error:", error);
+        showToast("❌ මකා දැමීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+    }
+}
+
+async function replenishPettyCash() {
+    if(userRole !== 'ADMIN') {
+        showToast("❌ ප්‍රතිපූරණය කිරීමට අවසර ඇත්තේ පරිපාලකට පමණි!");
+        return;
+    }
+    
+    const source = $('#replenishSourceSelect').val();
+    if(!source) {
+        showToast("⚠️ කරුණාකර මූලාශ්‍ර අරමුදල තෝරන්න");
+        $('#replenishSourceSelect').select2('open');
+        return;
+    }
+    
+    const voucher = document.getElementById('replenishVoucher').value.trim();
+    if(!voucher) {
+        showToast("⚠️ කරුණාකර වවුචර් අංකය ඇතුළත් කරන්න");
+        document.getElementById('replenishVoucher').focus();
+        return;
+    }
+    
+    const chequeNo = document.getElementById('replenishCheque').value.trim();
+    
+    // ස්ථාවර මුදල (Float) - මෙය පරිශීලකයා විසින් ඇතුළත් කරන ලද අගය භාවිතා කරමු.
+   const float = parseAmount(document.getElementById('pettyFloat').value);
+	if (float < 0) {  // <= 0 වෙනුවට < 0 ලෙස වෙනස් කරන්න
+    showToast("⚠️ කරුණාකර වලංගු ස්ථාවර මුදලක් ඇතුළත් කරන්න (0 හෝ ඊට වැඩි)");
+    document.getElementById('pettyFloat').focus();
+    return;
+	}
+    
+    // ============ Google Sheets දත්ත පමණක් භාවිතා කර ගණනය කිරීම ============
+    const db = getData();
+    const pettyEx = pettyExpenses;
+    
+    // මෙතෙක් ලැබුණු මුළු ප්‍රතිපූරණ
+    const totalReplenishmentsEver = db
+        .filter(t => t.type === 'EX' && t.code === 'PC' && t.desc.includes('ප්‍රතිපූරණය'))
+        .reduce((sum, t) => sum + t.amt, 0);
+    
+    // මෙතෙක් වියදම් කළ මුළු මුදල
+    const totalExpensesEver = pettyEx.reduce((sum, e) => sum + e.amt, 0);
+    
+    const currentBalance = totalReplenishmentsEver - totalExpensesEver;
+    
+    // ප්‍රතිපූරණය කළ යුතු මුදල
+    const replenishAmount = float - currentBalance;
+    
+    if(replenishAmount <= 0) {
+        showToast(`⚠️ ප්‍රතිපූරණය කිරීමට අවශ්‍ය මුදලක් නැත. (වත්මන් ශේෂය: රු. ${currentBalance.toFixed(2)})`);
+        return;
+    }
+    
+    const confirmMessage = 
+        `ස්ථාවර මුදල: රු. ${float.toFixed(2)}\n` +
+        `මෙතෙක් ලැබුණු මුළු ප්‍රතිපූරණ: රු. ${totalReplenishmentsEver.toFixed(2)}\n` +
+        `මෙතෙක් වියදම් කළ මුළු මුදල: රු. ${totalExpensesEver.toFixed(2)}\n` +
+        `වත්මන් ශේෂය: රු. ${currentBalance.toFixed(2)}\n\n` +
+        `ප්‍රතිපූරණය කළ යුතු මුදල: රු. ${replenishAmount.toFixed(2)}\n\n` +
+        `මෙම මුදල නව ප්‍රතිපූරණ ගනුදෙනුවක් ලෙස එකතු කරන්නද?`;
+    
+    const confirm = await showConfirmDialog(
+        "💰 සුළු මුදල් ප්‍රතිපූරණය",
+        confirmMessage,
+        "ඔව්, ප්‍රතිපූරණය කරන්න",
+        "අවලංගු කරන්න"
+    );
+    
+    if(!confirm) return;
+    
+    const today = new Date();
+    const currentDate = today.toISOString().split('T')[0];
+    
+    const data = {
+        action: 'save_transaction',
+        id: Date.now(),
+        date: currentDate,
+        ref: chequeNo,
+        vouch: voucher,
+        code: 'PC',
+        amt: replenishAmount,
+        desc: `සුළු මුදල් ප්‍රතිපූරණය (${source}) - ${currentDate}`,
+        type: 'EX',
+        source: source,
+        proj: '',
+        status: true,
+        isOp: false,
+        isImprest: false,
+        clientId: generateUUID()
+    };
+    
+    toggleLoading(true);
+    
+    try {
+        if (!navigator.onLine) {
+            addToOfflineQueue('save_transaction', data);
+            let db = getData();
+            db.push({ ...data, offline: true });
+            setDataCache(db);
+            showToast("📦 Offline මාදිලියේ ප්‍රතිපූරණය සුරකින ලදී.");
+        } else {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if(result.status === 'success') {
+                let db = getData();
+                db.push(data);
+                setDataCache(db);
+                
+                showToast(`✅ ප්‍රතිපූරණය සාර්ථකයි! 
+                    ප්‍රතිපූරණ මුදල: රු. ${replenishAmount.toFixed(2)}
+                    අලුත් ශේෂය: රු. ${float.toFixed(2)}`);
+                
+                document.getElementById('replenishVoucher').value = '';
+                document.getElementById('replenishCheque').value = '';
+                $('#replenishSourceSelect').val('').trigger('change');
+                
+                renderPettyBook();
+                refreshDashboard();
+            } else {
+                throw new Error(result.message || 'Save failed');
+            }
+        }
+    } catch (error) {
+        console.error("Replenishment error:", error);
+        showToast("❌ ප්‍රතිපූරණය අසාර්ථකයි!");
+    } finally {
+        toggleLoading(false);
+    }
+}
+
+// ============ Period Report Functions ============
+function getReplenishmentPeriods() {
+    const db = getData();
+    const replenishments = db.filter(t => t.type === 'EX' && t.code === 'PC' && t.desc.includes('ප්‍රතිපූරණය'))
+        .sort((a, b) => new Date(a.date) - new Date(b.date));
+    let periods = [];
+    for (let i = 0; i < replenishments.length; i++) {
+        const startDate = replenishments[i].date;
+        const endDate = (i < replenishments.length - 1) ? replenishments[i+1].date : new Date().toISOString().split('T')[0];
+        periods.push({
+            label: `${startDate} සිට ${endDate} දක්වා`,
+            start: startDate,
+            end: endDate
+        });
+    }
+    return periods;
+}
+
+function populatePeriodDropdown() {
+    const periods = getReplenishmentPeriods();
+    const select = document.getElementById('periodReportSelect');
+    if (!select) return;
+    select.innerHTML = '<option value="">-- තෝරන්න --</option>';
+    periods.forEach(p => {
+        const option = document.createElement('option');
+        option.value = p.label;
+        option.setAttribute('data-start', p.start);
+        option.setAttribute('data-end', p.end);
+        option.textContent = p.label;
+        select.appendChild(option);
+    });
+}
+
+function generatePeriodReport() {
+    const select = document.getElementById('periodReportSelect');
+    const selectedOption = select.options[select.selectedIndex];
+    if (!selectedOption.value) {
+        showToast("⚠️ කරුණාකර කාලපරිච්ඡේදයක් තෝරන්න");
+        return;
+    }
+    const startDate = selectedOption.getAttribute('data-start');
+    const endDate = selectedOption.getAttribute('data-end');
+    
+    const db = getData();
+    const pettyEx = pettyExpenses;
+    
+    // විවෘත ශේෂය (startDate ට පෙර ලැබීම් - වියදම්)
+    const receiptsBefore = db.filter(t => t.type === 'EX' && t.code === 'PC' && t.desc.includes('ප්‍රතිපූරණය') && t.date < startDate)
+                             .reduce((sum, t) => sum + t.amt, 0);
+    const expensesBefore = pettyEx.filter(e => e.date < startDate).reduce((sum, e) => sum + e.amt, 0);
+    const openingBalance = receiptsBefore - expensesBefore;
+    
+    // මෙම කාලයේ ලැබීම්
+    const periodReceipts = db.filter(t => t.type === 'EX' && t.code === 'PC' && t.desc.includes('ප්‍රතිපූරණය') && t.date >= startDate && t.date <= endDate);
+    const totalReceipts = periodReceipts.reduce((sum, t) => sum + t.amt, 0);
+    
+    // මෙම කාලයේ වියදම්
+    const periodExpenses = pettyEx.filter(e => e.date >= startDate && e.date <= endDate);
+    const totalExpenses = periodExpenses.reduce((sum, e) => sum + e.amt, 0);
+    
+    const closingBalance = openingBalance + totalReceipts - totalExpenses;
+    
+    // වාර්තාව සැකසීම
+    let html = `
+        <div style="padding: 10px;">
+            <h4 style="color: var(--primary);">කාලපරිච්ඡේද වාර්තාව: ${startDate} සිට ${endDate} දක්වා</h4>
+            <div style="display: grid; grid-template-columns: repeat(4,1fr); gap:10px; margin-bottom:20px;">
+                <div style="background:#e8f5e9; padding:10px; border-radius:8px; text-align:center;">
+                    <div>විවෘත ශේෂය</div>
+                    <div style="font-size:20px; font-weight:bold;">රු. ${openingBalance.toFixed(2)}</div>
+                </div>
+                <div style="background:#e3f2fd; padding:10px; border-radius:8px; text-align:center;">
+                    <div>මෙම කාලයේ ලැබීම්</div>
+                    <div style="font-size:20px; font-weight:bold;">රු. ${totalReceipts.toFixed(2)}</div>
+                </div>
+                <div style="background:#fff3e0; padding:10px; border-radius:8px; text-align:center;">
+                    <div>මෙම කාලයේ වියදම්</div>
+                    <div style="font-size:20px; font-weight:bold;">රු. ${totalExpenses.toFixed(2)}</div>
+                </div>
+                <div style="background:#f3e5f5; padding:10px; border-radius:8px; text-align:center;">
+                    <div>අවසන් ශේෂය</div>
+                    <div style="font-size:20px; font-weight:bold;">රු. ${closingBalance.toFixed(2)}</div>
+                </div>
+            </div>
+            <h5>ගනුදෙනු විස්තර</h5>
+            <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr style="background:var(--primary); color:white;">
+                        <th>දිනය</th>
+                        <th>විස්තරය</th>
+                        <th>වවුචර්</th>
+                        <th>කාණ්ඩය</th>
+                        <th>ලැබීම් (රු.)</th>
+                        <th>ගෙවීම් (රු.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    
+    // ගනුදෙනු එකතු කර දින අනුව පෙළගැස්වීම
+    const allTransactions = [
+        ...periodReceipts.map(t => ({...t, isReceipt: true, categoryDisplay: 'ප්‍රතිපූරණය', voucherDisplay: t.vouch})),
+        ...periodExpenses.map(e => ({...e, isReceipt: false, categoryDisplay: e.category, voucherDisplay: e.voucher}))
+    ].sort((a,b) => new Date(a.date) - new Date(b.date));
+    
+    allTransactions.forEach(t => {
+        html += `<tr>
+            <td>${t.date}</td>
+            <td>${t.desc}</td>
+            <td>${t.voucherDisplay || '-'}</td>
+            <td>${t.isReceipt ? 'PC' : t.categoryDisplay}</td>
+            <td style="text-align:right;">${t.isReceipt ? t.amt.toFixed(2) : '-'}</td>
+            <td style="text-align:right;">${!t.isReceipt ? t.amt.toFixed(2) : '-'}</td>
+        </tr>`;
+    });
+    
+    html += `</tbody></table></div>`;
+    
+    document.getElementById('periodReportContent').innerHTML = html;
+    document.getElementById('periodReportModal').style.display = 'flex';
+}
+
+function printPeriodReport() {
+    const content = document.getElementById('periodReportContent').innerHTML;
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>කාලපරිච්ඡේද වාර්තාව</title>
+            <style>
+                body { font-family: 'Noto Sans Sinhala', sans-serif; padding: 20px; }
+                h1 { color: #1b5e20; text-align: center; }
+                table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                th { background: #1b5e20; color: #ffeb3b; padding: 10px; }
+                td { padding: 8px; border: 1px solid #ddd; }
+                .footer { margin-top: 30px; text-align: right; }
+            </style>
+        </head>
+        <body>
+            <h1>මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</h1>
+            <h2>කාලපරිච්ඡේද වාර්තාව</h2>
+            ${content}
+            <div class="footer">
+                <p>....................................</p>
+                <p><b>භාණ්ඩාගාරික</b></p>
+                <p style="margin-top:20px;">....................................</p>
+                <p><b>විදුහල්පති</b></p>
+            </div>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+}
+
+async function exportPeriodReportPDF() {
+    if (userRole === 'GUEST') {
+        showToast("❌ PDF බාගත කිරීමට අවසර නැත!");
+        return;
+    }
+    
+    const content = document.getElementById('periodReportContent');
+    if (!content.innerHTML.trim()) {
+        showToast("⚠️ මුලින් වාර්තාවක් ජනනය කරන්න");
+        return;
+    }
+    
+    toggleLoading(true);
+    
+    try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        
+        const canvas = await html2canvas(content, {
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            backgroundColor: '#ffffff'
+        });
+        
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = 210;
+        const pageHeight = 297;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        
+        let heightLeft = imgHeight;
+        let position = 0;
+        
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        
+        while (heightLeft >= 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+        }
+        
+        pdf.save(`කාලපරිච්ඡේද_වාර්තාව_${new Date().toISOString().slice(0,10)}.pdf`);
+        
+        showToast("✅ PDF බාගත කරන ලදී!");
+    } catch (error) {
+        console.error("PDF export error:", error);
+        showToast("❌ PDF ජනනය කිරීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+    }
+}
+
+// ============ ලදුපත් අංක සම්බන්ධ ශ්‍රිතයන් ============
+function formatReceiptRange(fromRef, toRef) {
+    fromRef = fromRef.trim();
+    fromRef = fromRef.replace(/[^0-9]/g, '');
+    const paddedFrom = fromRef.padStart(3, '0');
+    
+    if (!toRef || toRef.trim() === '') {
+        return paddedFrom;
+    }
+    
+    toRef = toRef.trim().replace(/[^0-9]/g, '');
+    if (toRef === '') {
+        return paddedFrom;
+    }
+    
+    const paddedTo = toRef.padStart(3, '0');
+    
+    if (paddedFrom === paddedTo) {
+        return paddedFrom;
+    } else {
+        return paddedFrom + " සිට " + paddedTo + " දක්වා";
+    }
+}
+
+function parseReceiptRange(refValue) {
+    let fromRef = '';
+    let toRef = '';
+    
+    if (!refValue) return { fromRef: '', toRef: '' };
+    
+    if (refValue.includes(' සිට ') && refValue.includes(' දක්වා')) {
+        const parts = refValue.split(' සිට ');
+        fromRef = parts[0];
+        toRef = parts[1] ? parts[1].split(' දක්වා')[0] : '';
+    } else {
+        fromRef = refValue;
+        toRef = '';
+    }
+    
+    return { fromRef, toRef };
+}
+
+function checkDuplicateReceipt(fromRef, toRef, excludeId = null) {
+    const db = getData();
+    const newFrom = parseInt(fromRef) || 0;
+    
+    let newTo = newFrom;
+    if (toRef && toRef.trim() !== '') {
+        newTo = parseInt(toRef) || 0;
+    }
+    
+    if (toRef && toRef.trim() !== '' && newFrom > newTo) {
+        return {
+            isDuplicate: true,
+            message: "⚠️ 'දක්වා' අංකය 'සිට' අංකයට වඩා විශාල විය යුතුය!"
+        };
+    }
+    
+    const incomeTransactions = db.filter(r => 
+        r.type === 'IN' && 
+        !r.isOp && 
+        (excludeId === null || r.id !== excludeId)
+    );
+    
+    for (let trans of incomeTransactions) {
+        const transRef = trans.ref || '';
+        let transFrom = 0, transTo = 0;
+        
+        if (transRef.includes(' සිට ') && transRef.includes(' දක්වා')) {
+            const parts = transRef.split(' සිට ');
+            transFrom = parseInt(parts[0]) || 0;
+            transTo = parseInt(parts[1]?.split(' දක්වා')[0]) || 0;
+        } else {
+            transFrom = parseInt(transRef) || 0;
+            transTo = transFrom;
+        }
+        
+        if ((newFrom >= transFrom && newFrom <= transTo) ||
+            (newTo >= transFrom && newTo <= transTo) ||
+            (newFrom <= transFrom && newTo >= transTo)) {
+            
+            let duplicateInfo = `${transFrom.toString().padStart(3, '0')}`;
+            if (transFrom !== transTo) {
+                duplicateInfo += ` සිට ${transTo.toString().padStart(3, '0')} දක්වා`;
+            }
+            
+            let newRangeInfo = `${newFrom.toString().padStart(3, '0')}`;
+            if (newFrom !== newTo) {
+                newRangeInfo += ` සිට ${newTo.toString().padStart(3, '0')} දක්වා`;
+            }
+            
+            return {
+                isDuplicate: true,
+                message: `⚠️ ලදුපත් අංකය (${newRangeInfo}) දැනටමත් භාවිතා කර ඇත!\nපවතින ගනුදෙනුව: ${duplicateInfo}`,
+                existingTransaction: trans
+            };
+        }
+    }
+    
+    return { isDuplicate: false };
+}
+
+// ============ Transaction Search Functions ============
+function searchTransactions(event) {
+    if (event && event.key === 'Enter') {
+        event.preventDefault();
+    }
+    
+    const searchTerm = document.getElementById('transactionSearchInput')?.value?.trim() || '';
+    const typeFilter = document.getElementById('transactionTypeFilter')?.value || 'ALL';
+    const dateFilter = document.getElementById('transactionDateFilter')?.value || 'ALL';
+    const inCodeFilter = document.getElementById('searchInCode')?.value || '';
+    const exCodeFilter = document.getElementById('searchExCode')?.value || '';
+    const sourceFilter = document.getElementById('searchSource')?.value || '';
+    const minAmount = parseAmount(document.getElementById('searchMinAmount')?.value || '0');
+    const maxAmount = parseAmount(document.getElementById('searchMaxAmount')?.value || '0');
+    const projectFilter = document.getElementById('searchProject')?.value || '';
+    
+    const db = getData();
+    let results = [...db];
+    
+    if (typeFilter !== 'ALL') {
+        results = results.filter(r => r.type === typeFilter);
+    }
+    
+    if (inCodeFilter) {
+        results = results.filter(r => r.code === inCodeFilter || r.source === inCodeFilter);
+    }
+    if (exCodeFilter) {
+        results = results.filter(r => r.code === exCodeFilter);
+    }
+    if (sourceFilter) {
+        results = results.filter(r => r.source === sourceFilter);
+    }
+    
+    if (projectFilter) {
+        results = results.filter(r => r.proj === projectFilter);
+    }
+    
+    if (minAmount > 0) {
+        results = results.filter(r => r.amt >= minAmount);
+    }
+    if (maxAmount > 0) {
+        results = results.filter(r => r.amt <= maxAmount);
+    }
+    
+    if (dateFilter !== 'ALL') {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+        
+        const thisWeekStart = new Date(today);
+        thisWeekStart.setDate(today.getDate() - today.getDay());
+        
+        const thisMonthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+        
+        const lastMonthStart = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+        const lastMonthEnd = new Date(today.getFullYear(), today.getMonth(), 0);
+        
+        const thisYearStart = new Date(today.getFullYear(), 0, 1);
+        
+        results = results.filter(r => {
+            const transDate = new Date(r.date);
+            transDate.setHours(0, 0, 0, 0);
+            
+            switch(dateFilter) {
+                case 'TODAY': return transDate.getTime() === today.getTime();
+                case 'YESTERDAY': return transDate.getTime() === yesterday.getTime();
+                case 'THIS_WEEK': return transDate >= thisWeekStart;
+                case 'THIS_MONTH': return transDate >= thisMonthStart;
+                case 'LAST_MONTH': return transDate >= lastMonthStart && transDate <= lastMonthEnd;
+                case 'THIS_YEAR': return transDate >= thisYearStart;
+                default: return true;
+            }
+        });
+    }
+    
+    if (searchTerm) {
+        const termLower = searchTerm.toLowerCase();
+        results = results.filter(r => {
+            if (r.amt.toString() === termLower || 
+                r.amt.toFixed(2).toString() === termLower ||
+                r.amt.toLocaleString('en-US', {minimumFractionDigits: 2}).includes(termLower)) {
+                return true;
+            }
+            
+            if (r.ref && r.ref.toLowerCase().includes(termLower)) {
+                return true;
+            }
+            
+            if (r.vouch && r.vouch.toLowerCase().includes(termLower)) {
+                return true;
+            }
+            
+            if (r.type === 'EX' && r.ref && r.ref.toLowerCase().includes(termLower)) {
+                return true;
+            }
+            
+            if (r.code && r.code.toLowerCase().includes(termLower)) {
+                return true;
+            }
+            
+            if (r.source && r.source.toLowerCase().includes(termLower)) {
+                return true;
+            }
+            
+            if (r.desc && r.desc.toLowerCase().includes(termLower)) {
+                return true;
+            }
+            
+            if (r.id && r.id.toString().includes(termLower)) {
+                return true;
+            }
+            
+            return false;
+        });
+    }
+    
+    displaySearchResults(results);
+}
+
+function displaySearchResults(results) {
+    const resultsContainer = document.getElementById('transactionSearchResults');
+    const resultsTable = document.getElementById('transactionSearchResultsTable');
+    const resultCount = document.getElementById('searchResultCount');
+    
+    if (results.length === 0) {
+        resultsTable.innerHTML = `
+            <div style="text-align: center; padding: 40px; background: #f8f9fa; border-radius: 10px;">
+                <i class="fas fa-search" style="font-size: 48px; color: #ccc; margin-bottom: 15px;"></i>
+                <h4 style="color: #666; margin-bottom: 10px;">ගනුදෙනු කිසිවක් හමු නොවීය</h4>
+                <p style="color: #999; font-size: 13px;">කරුණාකර වෙනත් සෙවුම් පදයක් උත්සාහ කරන්න</p>
+            </div>
+        `;
+        resultCount.textContent = 'ගනුදෙනු 0ක්';
+        resultsContainer.style.display = 'block';
+        return;
+    }
+    
+    results.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    let html = `
+        <div class="table-container" style="overflow-x: auto; max-height: 400px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px;">
+            <table class="transaction-search-table" style="width: 100%; border-collapse: collapse;">
+                <thead style="position: sticky; top: 0; z-index: 10;">
+                    <tr style="background: var(--deep-blue); color: white;">
+                        <th style="padding: 12px; border: 1px solid #ddd;">දිනය</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">වර්ගය</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">කේතය</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">මූලාශ්‍රය</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">ලදුපත්/වවුචර්</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">චෙක්පත් අංකය</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">විස්තරය</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">මුදල (රු.)</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">ව්‍යාපෘතිය</th>
+                        <th style="padding: 12px; border: 1px solid #ddd;">ක්‍රියා</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    
+    results.forEach(r => {
+        const isIncome = r.type === 'IN';
+        const badgeColor = isIncome ? 'var(--success)' : 'var(--danger)';
+        const badgeText = isIncome ? 'ලැබීම්' : 'ගෙවීම්';
+        const amountColor = isIncome ? 'green' : 'red';
+        
+        let refDisplay = '-';
+        if (isIncome) {
+            if (r.ref && r.ref.includes(' සිට ') && r.ref.includes(' දක්වා')) {
+                const parts = r.ref.split(' සිට ');
+                const fromPart = parts[0];
+                const toPart = parts[1]?.split(' දක්වා')[0] || '';
+                if (fromPart === toPart) {
+                    refDisplay = fromPart;
+                } else {
+                    refDisplay = r.ref;
+                }
+            } else {
+                refDisplay = r.ref || '-';
+            }
+        } else {
+            refDisplay = r.vouch || '-';
+        }
+        
+        const chequeNumber = !isIncome ? (r.ref || '-') : '-';
+        
+        let actionButtons = '';
+        
+        if (userRole === 'ADMIN') {
+            actionButtons = `
+                <button onclick="editTransaction(${r.id})" class="table-btn" style="background: var(--deep-blue); color: white; padding: 5px 10px; font-size: 11px;">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+                <button onclick="deleteTransaction(${r.id})" class="table-btn" style="background: var(--danger); color: white; padding: 5px 10px; font-size: 11px; margin-left: 5px;">
+                    <i class="fas fa-trash"></i> Del
+                </button>
+            `;
+        } else {
+            actionButtons = '<span style="color: #999; font-size: 11px;">-</span>';
+        }
+        
+        html += `
+            <tr style="border-bottom: 1px solid #eee; ${isIncome ? 'background: #f9fff9;' : 'background: #fff9f9;'}" 
+                onmouseover="this.style.background='${isIncome ? '#e8f5e9' : '#ffebee'}'" 
+                onmouseout="this.style.background='${isIncome ? '#f9fff9' : '#fff9f9'}'">
+                <td style="padding: 10px; border: 1px solid #ddd;">${r.date}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">
+                    <span style="background: ${badgeColor}; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">
+                        ${badgeText}
+                    </span>
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: ${isIncome ? 'var(--primary)' : 'var(--danger)'};">
+                    ${r.code || '-'}
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; color: var(--primary);">
+                    ${r.source || '-'}
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; font-family: monospace;">
+                    ${refDisplay}
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; font-family: monospace;">
+                    ${chequeNumber}
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd;">
+                    ${r.desc || '-'}
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: right; font-weight: bold; color: ${amountColor};">
+                    ${r.amt.toLocaleString(undefined, {minimumFractionDigits: 2})}
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd;">
+                    ${r.proj || '-'}
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">
+                    ${actionButtons}
+                </td>
+            </tr>
+        `;
+    });
+    
+    html += `
+                </tbody>
+            </table>
+        </div>
+    `;
+    
+    resultsTable.innerHTML = html;
+    resultCount.textContent = `ගනුදෙනු ${results.length}ක්`;
+    resultsContainer.style.display = 'block';
+    
+    setTimeout(() => {
+        resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+}
+
+// ============ Delete Transaction Function ============
+async function deleteTransaction(id) {
+    if (userRole !== 'ADMIN') {
+        showToast("❌ ගනුදෙනු මකා දැමීමට අවසර ඇත්තේ පරිපාලකට පමණි!");
+        return;
+    }
+    
+    const confirm = await showConfirmDialog(
+        "🗑️ ගනුදෙනුව මකා දමන්න",
+        `ID ${id} සහිත ගනුදෙනුව ස්ථිරවම මකා දමන්නද?`,
+        "ඔව්, මකන්න",
+        "අවලංගු කරන්න"
+    );
+    
+    if (!confirm) return;
+    
+    toggleLoading(true);
+    
+    try {
+        const response = await fetch(SCRIPT_URL + "?action=delete&id=" + id + "&t=" + Date.now());
+        const result = await response.json();
+        
+        if (result.status === 'success') {
+            let db = getData();
+            db = db.filter(item => item.id != id);
+            setDataCache(db); // update cache and storage
+            showToast("✅ ගනුදෙනුව මකා දමන ලදී!");
+            
+            const resultsDiv = document.getElementById('transactionSearchResults');
+            if (resultsDiv && resultsDiv.style.display === 'block') {
+                searchTransactions();
+            }
+            loadRecentTable();
+            refreshDashboard();
+        } else {
+            throw new Error(result.message || 'Delete failed');
+        }
+    } catch (error) {
+        console.error("Delete error:", error);
+        showToast("❌ මකා දැමීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+    }
+}
+
+function toggleAdvancedSearch() {
+    const panel = document.getElementById('advancedSearchPanel');
+    const toggle = document.getElementById('advancedSearchToggle');
+    
+    if (panel.style.display === 'none' || panel.style.display === '') {
+        panel.style.display = 'block';
+        toggle.innerHTML = '<i class="fas fa-chevron-up"></i> උසස් සෙවීම් විකල්ප සඟවන්න';
+        populateAdvancedSearchFilters();
+    } else {
+        panel.style.display = 'none';
+        toggle.innerHTML = '<i class="fas fa-chevron-down"></i> උසස් සෙවීම් විකල්ප';
+    }
+}
+
+function populateAdvancedSearchFilters() {
+    const inCodeSelect = document.getElementById('searchInCode');
+    if (inCodeSelect) {
+        let options = '<option value="">සියල්ල</option>';
+        S_CODES.forEach(code => {
+            options += `<option value="${code}">${code} - ${CODE_INFO[code].substring(0, 30)}...</option>`;
+        });
+        inCodeSelect.innerHTML = options;
+    }
+    
+    const exCodeSelect = document.getElementById('searchExCode');
+    if (exCodeSelect) {
+        let options = '<option value="">සියල්ල</option>';
+        EX_CODES.forEach(code => {
+            options += `<option value="${code}">${code} - ${CODE_INFO[code].substring(0, 30)}...</option>`;
+        });
+        exCodeSelect.innerHTML = options;
+    }
+    
+    const sourceSelect = document.getElementById('searchSource');
+    if (sourceSelect) {
+        let options = '<option value="">සියල්ල</option>';
+        S_CODES.forEach(code => {
+            options += `<option value="${code}">${code} - ${CODE_INFO[code].substring(0, 30)}...</option>`;
+        });
+        sourceSelect.innerHTML = options;
+    }
+    
+    const projectSelect = document.getElementById('searchProject');
+    if (projectSelect) {
+        const projs = getProjects(true);
+        let options = '<option value="">සියල්ල</option>';
+        projs.forEach(p => {
+            options += `<option value="${p.projectName}">${p.projectName} ${p.completed ? '(Completed)' : ''}</option>`;
+        });
+        projectSelect.innerHTML = options;
+    }
+}
+
+function clearTransactionSearch() {
+    document.getElementById('transactionSearchInput').value = '';
+    document.getElementById('transactionTypeFilter').value = 'ALL';
+    document.getElementById('transactionDateFilter').value = 'ALL';
+    
+    if (document.getElementById('searchInCode')) document.getElementById('searchInCode').value = '';
+    if (document.getElementById('searchExCode')) document.getElementById('searchExCode').value = '';
+    if (document.getElementById('searchSource')) document.getElementById('searchSource').value = '';
+    if (document.getElementById('searchMinAmount')) document.getElementById('searchMinAmount').value = '';
+    if (document.getElementById('searchMaxAmount')) document.getElementById('searchMaxAmount').value = '';
+    if (document.getElementById('searchProject')) document.getElementById('searchProject').value = '';
+    
+    document.getElementById('transactionSearchResults').style.display = 'none';
+    document.getElementById('transactionSearchInput').focus();
+    
+    showToast("🧹 සෙවුම් පෙරහන් ඉවත් කරන ලදී");
+}
+
+function exportSearchResults() {
+    if (userRole !== 'ADMIN') {
+        showToast("❌ CSV බාගත කිරීමට අවසර ඇත්තේ පරිපාලකට පමණි!");
+        return;
+    }
+    
+    const resultsTable = document.querySelector('#transactionSearchResultsTable table');
+    if (!resultsTable) {
+        showToast("⚠️ බාගත කිරීමට දත්ත නැත!");
+        return;
+    }
+    
+    try {
+        let csvContent = "දිනය,වර්ගය,කේතය,මූලාශ්‍රය,ලදුපත්/වවුචර්,චෙක්පත් අංකය,විස්තරය,මුදල (රු.),ව්‍යාපෘතිය\n";
+        
+        const rows = resultsTable.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            const cols = row.querySelectorAll('td');
+            const rowData = [
+                cols[0]?.innerText || '',
+                cols[1]?.innerText.replace(/[^ලැබීම්ගෙවීම්]/g, '') || '',
+                cols[2]?.innerText || '',
+                cols[3]?.innerText || '',
+                cols[4]?.innerText || '',
+                cols[5]?.innerText || '',
+                `"${(cols[6]?.innerText || '').replace(/"/g, '""')}"`,
+                cols[7]?.innerText || '',
+                cols[8]?.innerText || ''
+            ].join(',');
+            csvContent += rowData + "\n";
+        });
+        
+        const blob = new Blob(["\ufeff" + csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        
+        link.setAttribute("href", url);
+        link.setAttribute("download", `ගනුදෙනු_සෙවුම්_ප්‍රතිඵල_${new Date().toISOString().slice(0,10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        showToast("✅ සෙවුම් ප්‍රතිඵල CSV ලෙස බාගත කරන ලදී!");
+    } catch (error) {
+        console.error("CSV Export Error:", error);
+        showToast("❌ CSV බාගත කිරීමේ දෝෂයක්!");
+    }
+}
+
+// ============ පද්ධති ශ්‍රිතයන් ============
+function formatAmount(input) {
+    let value = input.value.replace(/[^\d.]/g, '');
+
+    if (value.includes('.')) {
+        const parts = value.split('.');
+        if (parts[1].length > 2) {
+            parts[1] = parts[1].substring(0, 2);
+            value = parts.join('.');
+        }
+    }
+    
+    input.value = value;
+  
+    const pattern = /^(\d+)(\.\d{0,2})?$/;
+    if (value && !pattern.test(value)) {
+        input.style.borderColor = 'var(--danger)';
+        input.style.boxShadow = '0 0 5px rgba(231, 76, 60, 0.5)';
+    } else {
+        input.style.borderColor = '#dcedc8';
+        input.style.boxShadow = 'none';
+    }
+}
+
+function parseAmount(amountStr) {
+    if (!amountStr) return 0;
+    const num = parseFloat(amountStr);
+    return isNaN(num) ? 0 : num;
+}
+
+function showConfirmDialog(title, message, yesText = "ඔව්", noText = "නැත") {
+    return new Promise((resolve) => {
+        document.getElementById('confirmTitle').textContent = title;
+        document.getElementById('confirmMessage').textContent = message;
+        document.getElementById('confirmYes').textContent = yesText;
+        document.getElementById('confirmNo').textContent = noText;
+        
+        const dialog = document.getElementById('confirmDialog');
+        dialog.style.display = 'flex';
+        
+        document.getElementById('confirmYes').onclick = () => {
+            dialog.style.display = 'none';
+            resolve(true);
+        };
+        
+        document.getElementById('confirmNo').onclick = () => {
+            dialog.style.display = 'none';
+            resolve(false);
+        };
+    });
+}
+
+// ============ Caching Functions ============
+function setDataCache(data) {
+    dbCache = data;
+    sessionStorage.setItem('sch_db', JSON.stringify(data));
+}
+
+function setProjectsCache(data) {
+    projectsCache = data;
+    sessionStorage.setItem('sch_projs', JSON.stringify(data));
+}
+
+function setAllocationsCache(data) {
+    allocationsCache = data;
+    allocations = data;
+    sessionStorage.setItem('sch_allocations', JSON.stringify(data));
+}
+
+function setPettyExpensesCache(data) {
+    pettyExpensesCache = data;
+    pettyExpenses = data;
+    sessionStorage.setItem('sch_petty_expenses', JSON.stringify(data));
+}
+
+function setPeriodExpensesCache(data) {
+    periodExpensesCache = data;
+    periodExpenses = data;
+    sessionStorage.setItem('sch_period_expenses', JSON.stringify(data));
+}
+
+function getData() {
+    if (!dbCache) {
+        dbCache = JSON.parse(sessionStorage.getItem('sch_db') || '[]');
+    }
+    return dbCache;
+}
+
+function getProjects(includeCompleted = true) {
+    if (!projectsCache) {
+        projectsCache = JSON.parse(sessionStorage.getItem('sch_projs') || '[]');
+    }
+    if (!includeCompleted) {
+        return projectsCache.filter(p => !p.completed);
+    }
+    return projectsCache;
+}
+
+// ============ නවීකරණය කළ Login Function ============
+async function checkLogin(event) {
+    // Enter යතුර එබූ විට event එක handle කිරීම
+    if (event && event.key === 'Enter') {
+        event.preventDefault();
+    }
+    
+    const username = document.getElementById('usernameSelect').value;
+    const password = document.getElementById('passInput').value;
+    
+    // පරිශීලක නාමය තෝරා ඇත්දැයි පරීක්ෂා කිරීම
+    if (!username) {
+        showToast("⚠️ කරුණාකර පරිශීලක නාමය තෝරන්න");
+        document.getElementById('usernameSelect').focus();
+        return;
+    }
+    
+    // පරිශීලක නාමය අනුව මුරපදය පරීක්ෂා කිරීම
+    if (username === "Admin") {
+        if (password === "Bunny") { 
+            userRole = 'ADMIN';
+        } else {
+            showToast("❌ වැරදි මුරපදය! කරුණාකර නැවත උත්සාහ කරන්න");
+            document.getElementById('passInput').value = '';
+            document.getElementById('passInput').focus();
+            return;
+        }
+    } 
+    else if (username === "Staff") {
+        if (password === "gjsstaff") {  
+            userRole = 'STAFF';
+        } else {
+            showToast("❌ වැරදි මුරපදය! කරුණාකර නැවත උත්සාහ කරන්න");
+            document.getElementById('passInput').value = '';
+            document.getElementById('passInput').focus();
+            return;
+        }
+    } 
+    else if (username === "Guest") {
+        if (password === "Guest") { 
+            userRole = 'GUEST';
+        } else {
+            showToast("❌ වැරදි මුරපදය! කරුණාකර නැවත උත්සාහ කරන්න");
+            document.getElementById('passInput').value = '';
+            document.getElementById('passInput').focus();
+            return;
+        }
+    } 
+    else {
+        showToast("❌ පරිශීලක නාමය වලංගු නොවේ!");
+        return;
+    }
+    
+    // වහාම පිවිසුම් තිරය ඉවත් කර Dashboard පෙන්වන්න
+    document.getElementById('login-overlay').style.display = 'none';
+    showSec('dash');
+    applyPermissions();
+    showToast(`✅ ${username} ලෙස පද්ධතියට ඇතුළු විය! දත්ත ලබා ගනිමින් පවතී...`);
+    
+    // පසුබිමේ දත්ත සමාන්තරව ලබා ගන්න
+    fetchAllDataParallel().then(() => {
+        refreshDashboard();
+        loadRecentTable();
+        renderPettyBook();
+        renderCodesList();
+        updateProjectSelects();
+        renderProjectList();
+        displaySavedPeriodSummaries();
+        showToast("✅ සියලු දත්ත යාවත්කාලීන කරන ලදී!");
+    }).catch(error => {
+        console.error("දත්ත යාවත්කාලීන දෝෂය:", error);
+        showToast("⚠️ සමහර දත්ත යාවත්කාලීන කිරීමේ දෝෂයක්. පැරණි දත්ත පෙන්වයි.");
+    });
+    
+    setTimeout(() => {
+        initializeSelect2();
+    }, 100);
+    
+    initialized = true;
+}
+
+// ============ Enter Key Event Listener එකතු කිරීම ============
+document.addEventListener('DOMContentLoaded', function() {
+    // Username select එක Enter key handle කිරීම
+    document.getElementById('usernameSelect').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            checkLogin();
+        }
+    });
+    
+    // Password input එක Enter key handle කිරීම
+    document.getElementById('passInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            checkLogin();
+        }
+    });
+    
+    // නව mobile sidebar toggle function එක call කිරීම (දැනටමත් තිබේ නම්)
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.mobile-sidebar-overlay');
+    const fab = document.querySelector('.mobile-fab i');
+    
+    if (navLinks.length > 0) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 600) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    if (fab) {
+                        fab.className = 'fas fa-bars';
+                    }
+                }
+            });
+        });
+    }
+    
+    // Close sidebar when window resizes to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 600) {
+            sidebar.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            if (fab) fab.className = 'fas fa-bars';
+        }
+    });
+});
+
+// ============ Parallel Data Fetching ============
+async function fetchAllDataParallel() {
+    if (!navigator.onLine) {
+        // Offline නම් cached data පමණක් භාවිතා කරන්න
+        return;
+    }
+    
+    try {
+        const promises = [
+            fetchRemoteData(),
+            fetchRemoteProjects(),
+            fetchRemoteAllocations(),
+            fetchRemotePettyExpenses(),
+            fetchRemotePeriodExpenses()
+        ];
+        
+        const results = await Promise.allSettled(promises);
+        
+        // අසාර්ථක වූ ඒවා පමණක් log කරන්න
+        results.forEach((result, index) => {
+            if (result.status === 'rejected') {
+                console.error(`Data fetch ${index} failed:`, result.reason);
+            }
+        });
+        
+    } catch (error) {
+        console.error("Parallel fetch error:", error);
+    }
+}
+async function fetchRemotePeriodSummaries() {
+    try {
+        const response = await fetch(SCRIPT_URL + "?action=read_period_summaries&t=" + Date.now());
+        const summaries = await response.json();
+        // Save to localStorage or a dedicated cache variable
+        localStorage.setItem('sch_remote_period_summaries', JSON.stringify(summaries));
+        return summaries;
+    } catch (e) {
+        console.error("Remote period summaries fetch error:", e);
+        return [];
+    }
+}
+
+// ============ Batch Save Functions ============
+async function saveBatchTransactions(transactions) {
+    if (transactions.length === 0) return true;
+    
+    // එක එක ගනුදෙනුව වෙන වෙනම save කරන්න
+    let successCount = 0;
+    
+    for (let t of transactions) {
+        try {
+            // action එක ඉවත් කරන්න (දැනටමත් තිබේ නම්)
+            const transactionData = { ...t };
+            
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(transactionData)
+            });
+            
+            const result = await response.json();
+            if (result.status === 'success') {
+                successCount++;
+            } else {
+                console.error("Individual save failed:", result);
+            }
+        } catch (e) {
+            console.error("Individual save failed for transaction:", t, e);
+        }
+    }
+    
+    return successCount === transactions.length;
+}
+
+// ============ Offline Sync ============
+async function syncOfflineUpdates() {
+    const offlineUpdates = JSON.parse(sessionStorage.getItem('sch_offline_updates') || '[]');
+    if (offlineUpdates.length === 0 || !navigator.onLine) return;
+    
+    showToast(`🔄 සමමුහුර්ත කරමින්... (${offlineUpdates.length} updates)`);
+    
+    // Batch save උත්සාහ කරන්න
+    const success = await saveBatchTransactions(offlineUpdates);
+    
+    if (success) {
+        sessionStorage.setItem('sch_offline_updates', '[]');
+        showToast("✅ සමමුහුර්ත කිරීම සාර්ථකයි!");
+    } else {
+        showToast("⚠️ සමහර ගනුදෙනු සමමුහුර්ත කිරීම අසාර්ථක විය.");
+    }
+}
+
+async function manualRefresh() { 
+    if (isLoading) return;
+    
+    toggleLoading(true);
+    isLoading = true;
+    
+    try {
+        // Offline updates sync කරන්න උත්සාහ කරන්න
+        await syncOfflineUpdates();
+        
+        // දත්ත අලුත් කරන්න
+        await fetchAllDataParallel();
+        
+        refreshDashboard();
+        loadRecentTable();
+        renderPettyBook();
+        showToast("✅ දත්ත අලුත් කරන ලදී!"); 
+    } catch (error) {
+        console.error("Manual refresh error:", error);
+        showToast("⚠️ දත්ත අලුත් කිරීමේ දෝෂයක්");
+    } finally {
+        toggleLoading(false);
+        isLoading = false;
+    }
+}
+
+function editTransaction(id) {
+    if (userRole !== 'ADMIN') {
+        showToast("❌ ගනුදෙනු සංස්කරණය කිරීමට අවසර ඇත්තේ පරිපාලකට පමණි!");
+        return;
+    }
+
+    const db = getData();
+    const entry = db.find(r => r.id === id);
+    if(!entry) return;
+
+    showSec('entry');
+
+    if(entry.type === 'IN') {
+        document.getElementById('edit-id-in').value = entry.id;
+        document.getElementById('inDate').value = entry.date.split('T')[0];
+        
+        const { fromRef, toRef } = parseReceiptRange(entry.ref);
+        document.getElementById('inRefFrom').value = fromRef;
+        document.getElementById('inRefTo').value = toRef || '';
+        
+        $('#inCodeSelect').val(entry.code).trigger('change');
+        document.getElementById('inAmt').value = entry.amt.toFixed(2);
+        $('#inProjSelect').val(entry.proj).trigger('change');
+        document.getElementById('inDesc').value = entry.desc;
+        document.getElementById('btn-save-in').innerText = "යාවත්කාලීන කරන්න (Update)";
+        document.getElementById('edit-id-ex').value = '';
+    } else {
+        document.getElementById('edit-id-ex').value = entry.id;
+        document.getElementById('exDate').value = entry.date.split('T')[0];
+        document.getElementById('exVoucher').value = entry.vouch;
+        document.getElementById('exRef').value = entry.ref;
+        document.getElementById('exAmt').value = entry.amt.toFixed(2);
+        $('#exCodeSelect').val(entry.code).trigger('change');
+        $('#exSourceSelect').val(entry.source).trigger('change');
+        $('#exProjSelect').val(entry.proj).trigger('change');
+        document.getElementById('exDesc').value = entry.desc;
+        document.getElementById('btn-save-ex').innerText = "යාවත්කාලීන කරන්න (Update)";
+        document.getElementById('edit-id-in').value = '';
+    }
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+async function fetchRemoteData() {
+    try {
+        const response = await fetch(SCRIPT_URL + "?action=read&t=" + Date.now());
+        const remoteData = await response.json();
+        
+        setDataCache(remoteData);
+        
+        let statusObj = {};
+        remoteData.forEach(t => {
+            if (t.type === 'EX' && t.ref && t.ref.trim() !== '') {
+                statusObj[t.id] = t.status === true ? 'Cleared' : 'Pending';
+            }
+        });
+        sessionStorage.setItem('sch_cleared', JSON.stringify(statusObj));
+        clearedStatus = statusObj;
+        
+        return remoteData;
+    } catch (e) {
+        console.error("Remote data fetch error:", e);
+        return getData();
+    }
+}
+
+async function fetchRemoteProjects() {
+    try {
+        const response = await fetch(SCRIPT_URL + "?action=read_projects&t=" + Date.now());
+        const projects = await response.json();
+        
+        const updatedProjects = projects.map(p => ({
+            ...p,
+            completed: p.completed || false
+        }));
+        
+        setProjectsCache(updatedProjects);
+    } catch (e) {
+        console.error("Remote projects fetch error:", e);
+    }
+}
+
+async function fetchRemoteAllocations() {
+    try {
+        const response = await fetch(SCRIPT_URL + "?action=read_allocations&t=" + Date.now());
+        const allocs = await response.json();
+        
+        let allocObj = {};
+        allocs.forEach(a => {
+            if (a.code) {
+                allocObj[a.code] = a.amount;
+                // Store type information as well
+                if (a.type) {
+                    allocObj[a.code + '_type'] = a.type;
+                }
+            }
+        });
+        setAllocationsCache(allocObj);
+    } catch (e) {
+        console.error("Remote allocations fetch error:", e);
+    }
+}
+
+async function fetchRemotePettyExpenses() {
+    try {
+        const response = await fetch(SCRIPT_URL + "?action=read_petty_expenses&t=" + Date.now());
+        const expenses = await response.json();
+        setPettyExpensesCache(expenses);
+    } catch (e) {
+        console.error("Remote petty expenses fetch error:", e);
+        // cache එක නැවත පාවිච්චි කරන්න
+        pettyExpenses = JSON.parse(sessionStorage.getItem('sch_petty_expenses') || '[]');
+    }
+}
+
+async function fetchRemotePeriodExpenses() {
+    try {
+        const response = await fetch(SCRIPT_URL + "?action=read_period_expenses&t=" + Date.now());
+        const expenses = await response.json();
+        setPeriodExpensesCache(expenses);
+    } catch (e) {
+        console.error("Remote period expenses fetch error:", e);
+        periodExpenses = JSON.parse(sessionStorage.getItem('sch_period_expenses') || '[]');
+    }
+}
+
+function getAllExpenseDataForReports() {
+    const db = getData();
+    const periodEx = periodExpenses.map(p => ({
+        ...p,
+        type: 'EX',
+        code: p.category,
+        source: p.source || 'PC',
+        proj: '',
+        ref: '',
+        vouch: p.voucher,
+        status: true,
+        isOp: false
+    }));
+    
+    return [...db, ...periodEx];
+}
+
+function updatePeriodTotal() {
+    const REx1 = parseAmount(document.getElementById('manualREx1').value);
+    const REx5 = parseAmount(document.getElementById('manualREx5').value);
+    const REx6 = parseAmount(document.getElementById('manualREx6').value);
+    const REx7 = parseAmount(document.getElementById('manualREx7').value);
+    const REx3 = parseAmount(document.getElementById('manualREx3').value);
+    
+    const total = REx1 + REx5 + REx6 + REx7 + REx3;
+    document.getElementById('manualTotal').value = total.toFixed(2);
+}
+
+function savePeriodCategorySummary() {
+    if(userRole !== 'ADMIN') {
+        showToast("❌ මෙම ක්‍රියාව සඳහා අවසර ඇත්තේ පරිපාලකට පමණි!");
+        return;
+    }
+    
+    const summary = {
+        date: new Date().toISOString().split('T')[0],
+        REx1: parseAmount(document.getElementById('manualREx1').value),
+        REx5: parseAmount(document.getElementById('manualREx5').value),
+        REx6: parseAmount(document.getElementById('manualREx6').value),
+        REx7: parseAmount(document.getElementById('manualREx7').value),
+        REx3: parseAmount(document.getElementById('manualREx3').value),
+        total: parseAmount(document.getElementById('manualTotal').value)
+    };
+    
+    let summaries = JSON.parse(localStorage.getItem('sch_period_summaries') || '[]');
+    
+    summaries.push({
+        ...summary,
+        timestamp: new Date().toISOString(),
+        id: Date.now()
+    });
+    
+    if (summaries.length > 12) {
+        summaries = summaries.slice(-12);
+    }
+    
+    localStorage.setItem('sch_period_summaries', JSON.stringify(summaries));
+    
+    showToast("✅ කාලපරිච්ඡේද වියදම් සාරාංශය සුරකින ලදී!");
+    
+    displaySavedPeriodSummaries();
+}
+
+function viewPeriodSummaryDetails(summaryId) {
+    const summaries = JSON.parse(localStorage.getItem('sch_period_summaries') || '[]');
+    const summary = summaries.find(s => s.id === summaryId);
+    
+    if (!summary) {
+        showToast("⚠️ සාරාංශය හමු නොවීය!");
+        return;
+    }
+    
+    const periodExpensesForDate = periodExpenses.filter(e => 
+        e.date === summary.date && 
+        ['REx1', 'REx5', 'REx6', 'REx7', 'REx3'].includes(e.category)
+    );
+    
+    let html = `
+        <div style="padding: 10px;">
+            <h4 style="color: var(--primary); margin-top: 0;">📅 ${summary.date} දින සාරාංශ විස්තර</h4>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 8px;">
+                    <h5 style="margin: 0 0 10px 0; color: #2e7d32;">කාණ්ඩ අනුව වියදම්</h5>
+                    <table style="width:100%;">
+                        <tr><td>REx1 (ලිපි ද්‍රව්‍ය):</td><td style="text-align:right; font-weight:bold;">රු. ${summary.REx1.toFixed(2)}</td></tr>
+                        <tr><td>REx5 (උපකරණ නඩත්තු):</td><td style="text-align:right; font-weight:bold;">රු. ${summary.REx5.toFixed(2)}</td></tr>
+                        <tr><td>REx6 (සුළු නඩත්තු):</td><td style="text-align:right; font-weight:bold;">රු. ${summary.REx6.toFixed(2)}</td></tr>
+                        <tr><td>REx7 (පවිත්‍රතා):</td><td style="text-align:right; font-weight:bold;">රු. ${summary.REx7.toFixed(2)}</td></tr>
+                        <tr><td>REx3 (විවිධ):</td><td style="text-align:right; font-weight:bold;">රු. ${summary.REx3.toFixed(2)}</td></tr>
+                        <tr style="border-top: 2px solid #ddd;"><td><strong>මුළු එකතුව:</strong></td><td style="text-align:right; font-weight:bold; color: #1b5e20;">රු. ${summary.total.toFixed(2)}</td></tr>
+                    </table>
+                </div>
+                
+                <div style="background: #fff3e0; padding: 15px; border-radius: 8px;">
+                    <h5 style="margin: 0 0 10px 0; color: #e65100;">අදාළ ගනුදෙනු</h5>
+                    ${periodExpensesForDate.length > 0 ? `
+                        <table style="width:100%; font-size: 10px;">
+                            <thead>
+                                <tr>
+                                    <th>කාණ්ඩය</th>
+                                    <th>විස්තරය</th>
+                                    <th>වවුචර්</th>
+                                    <th style="text-align:right;">මුදල</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${periodExpensesForDate.map(e => `
+                                    <tr>
+                                        <td>${e.category}</td>
+                                        <td>${e.desc.substring(0, 20)}...</td>
+                                        <td>${e.voucher || '-'}</td>
+                                        <td style="text-align:right;">රු. ${e.amt.toFixed(2)}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    ` : '<p style="color: #666;">ගනුදෙනු විස්තර නැත</p>'}
+                </div>
+            </div>
+            
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px;">
+                <h5 style="margin: 0 0 10px 0; color: #0c5460;">සටහන</h5>
+                <p style="margin: 0;">මෙම කාලපරිච්ඡේදයේ සුළු මුදල් වියදම් එකතුව රු. ${summary.total.toFixed(2)} කි. මෙම වියදම් මුදල් පොතට ඇතුළත් නොකර, අදාළ REx ගෙවීම් කේත වලට පමණක් එකතු කර ඇත.</p>
+            </div>
+            
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="btn" style="background: #95a5a6; color: white;" onclick="closePeriodSummaryDetails()">
+                    <i class="fas fa-times"></i> වසන්න
+                </button>
+                <button class="btn" style="background: var(--deep-blue); color: white;" onclick="printPeriodSummaryDetails(${summaryId})">
+                    <i class="fas fa-print"></i> මුද්‍රණය කරන්න
+                </button>
+            </div>
+        </div>
+    `;
+    
+    const modal = document.createElement('div');
+    modal.id = 'periodSummaryDetailsModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.7);
+        z-index: 10003;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    `;
+    
+    modal.innerHTML = `
+        <div style="background: white; padding: 25px; border-radius: 12px; width: 90%; max-width: 800px; max-height: 80vh; overflow-y: auto;">
+            ${html}
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+}
+
+function closePeriodSummaryDetails() {
+    const modal = document.getElementById('periodSummaryDetailsModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+function printPeriodSummaryDetails(summaryId) {
+    const summaries = JSON.parse(localStorage.getItem('sch_period_summaries') || '[]');
+    const summary = summaries.find(s => s.id === summaryId);
+    
+    if (!summary) {
+        showToast("⚠️ සාරාංශය හමු නොවීය!");
+        return;
+    }
+    
+    const periodExpensesForDate = periodExpenses.filter(e => 
+        e.date === summary.date && 
+        ['REx1', 'REx5', 'REx6', 'REx7', 'REx3'].includes(e.category)
+    );
+    
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>කාලපරිච්ඡේද වියදම් සාරාංශ විස්තර</title>
+            <style>
+                body { font-family: 'Noto Sans Sinhala', sans-serif; padding: 20px; }
+                h1 { color: #1b5e20; text-align: center; }
+                h2 { color: #2e7d32; text-align: center; }
+                table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                th { background: #1b5e20; color: #ffeb3b; padding: 10px; }
+                td { padding: 8px; border: 1px solid #ddd; }
+                .total { font-weight: bold; background: #f0f0f0; }
+                .footer { margin-top: 30px; text-align: right; }
+            </style>
+        </head>
+        <body>
+            <h1>මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</h1>
+            <h2>කාලපරිච්ඡේද වියදම් සාරාංශ විස්තර - ${summary.date}</h2>
+            
+            <h3>කාණ්ඩ අනුව වියදම් එකතුව</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>වියදම් කාණ්ඩය</th>
+                        <th>කේතය</th>
+                        <th style="text-align:right;">මුදල (රු.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>ලිපි ද්‍රව්‍ය</td><td>REx1</td><td style="text-align:right;">${summary.REx1.toFixed(2)}</td></tr>
+                    <tr><td>උපකරණ නඩත්තු</td><td>REx5</td><td style="text-align:right;">${summary.REx5.toFixed(2)}</td></tr>
+                    <tr><td>සුළු නඩත්තු</td><td>REx6</td><td style="text-align:right;">${summary.REx6.toFixed(2)}</td></tr>
+                    <tr><td>පවිත්‍රතා</td><td>REx7</td><td style="text-align:right;">${summary.REx7.toFixed(2)}</td></tr>
+                    <tr><td>විවිධ</td><td>REx3</td><td style="text-align:right;">${summary.REx3.toFixed(2)}</td></tr>
+                    <tr class="total"><td colspan="2" style="text-align:right;">මුළු එකතුව:</td><td style="text-align:right;">${summary.total.toFixed(2)}</td></tr>
+                </tbody>
+            </table>
+            
+            <h3 style="margin-top: 30px;">අදාළ ගනුදෙනු විස්තර</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>කාණ්ඩය</th>
+                        <th>විස්තරය</th>
+                        <th>වවුචර් අංකය</th>
+                        <th style="text-align:right;">මුදල (රු.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${periodExpensesForDate.length > 0 ? 
+                        periodExpensesForDate.map(e => `
+                            <tr>
+                                <td>${e.category}</td>
+                                <td>${e.desc}</td>
+                                <td>${e.voucher || '-'}</td>
+                                <td style="text-align:right;">${e.amt.toFixed(2)}</td>
+                            </tr>
+                        `).join('') 
+                        : '<tr><td colspan="4" style="text-align:center;">ගනුදෙනු විස්තර නැත</td></tr>'
+                    }
+                </tbody>
+            </table>
+            
+            <div class="footer">
+                <p>....................................</p>
+                <p><b>භාණ්ඩාගාරික</b></p>
+                <p style="margin-top: 20px;">....................................</p>
+                <p><b>විදුහල්පති</b></p>
+            </div>
+            
+            <p style="text-align:center; margin-top: 20px; color: #666; font-size: 12px;">
+                මුද්‍රණය කළ දිනය: ${new Date().toLocaleString('si-LK')}
+            </p>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+}
+
+function printPeriodSummary() {
+    const REx1 = parseAmount(document.getElementById('manualREx1').value);
+    const REx5 = parseAmount(document.getElementById('manualREx5').value);
+    const REx6 = parseAmount(document.getElementById('manualREx6').value);
+    const REx7 = parseAmount(document.getElementById('manualREx7').value);
+    const REx3 = parseAmount(document.getElementById('manualREx3').value);
+    const total = parseAmount(document.getElementById('manualTotal').value);
+    
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>කාලපරිච්ඡේද වියදම් සාරාංශය</title>
+            <style>
+                body { font-family: 'Noto Sans Sinhala', sans-serif; padding: 20px; }
+                h1 { color: #1b5e20; text-align: center; }
+                h2 { color: #2e7d32; text-align: center; }
+                table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                th { background: #1b5e20; color: #ffeb3b; padding: 10px; }
+                td { padding: 8px; border: 1px solid #ddd; }
+                .total { font-weight: bold; background: #f0f0f0; }
+                .footer { margin-top: 30px; text-align: right; }
+            </style>
+        </head>
+        <body>
+            <h1>මො/ගම්පංගුව කනිෂ්ඨ විද්‍යාලය</h1>
+            <h2>කාලපරිච්ඡේද වියදම් සාරාංශය - ${new Date().toLocaleDateString('si-LK')}</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>වියදම් කාණ්ඩය</th>
+                        <th>කේතය</th>
+                        <th style="text-align:right;">මුදල (රු.)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ලිපි ද්‍රව්‍ය</td>
+                        <td>REx1</td>
+                        <td style="text-align:right;">${REx1.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>උපකරණ නඩත්තු</td>
+                        <td>REx5</td>
+                        <td style="text-align:right;">${REx5.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>සුළු නඩත්තු</td>
+                        <td>REx6</td>
+                        <td style="text-align:right;">${REx6.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>පවිත්‍රතා</td>
+                        <td>REx7</td>
+                        <td style="text-align:right;">${REx7.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>විවිධ</td>
+                        <td>REx3</td>
+                        <td style="text-align:right;">${REx3.toFixed(2)}</td>
+                    </tr>
+                    <tr class="total">
+                        <td colspan="2" style="text-align:right;">මුළු එකතුව:</td>
+                        <td style="text-align:right;">${total.toFixed(2)}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="footer">
+                <p>....................................</p>
+                <p><b>භාණ්ඩාගාරික</b></p>
+                
+                <p style="margin-top: 20px;">....................................</p>
+                <p><b>විදුහල්පති</b></p>
+            </div>
+            
+            <p style="text-align:center; margin-top: 20px; color: #666; font-size: 12px;">
+                මුද්‍රණය කළ දිනය: ${new Date().toLocaleString('si-LK')}
+            </p>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+}
+
+// ============ saveManualPeriodExpenses ශ්‍රිතය (Batch Save සහිතව) ============
+// ============ වැඩිදියුණු කළ saveManualPeriodExpenses ශ්‍රිතය ============
+async function saveManualPeriodExpenses() {
+    if(userRole !== 'ADMIN') {
+        showToast("❌ මෙම ක්‍රියාව සඳහා අවසර ඇත්තේ පරිපාලකට පමණි!");
+        return;
+    }
+    
+    // ---------- 1. Transferred නොවන Petty Expenses පෙරීම ----------
+    const allPettyExpenses = JSON.parse(sessionStorage.getItem('sch_petty_expenses') || '[]');
+    const untransferredExpenses = allPettyExpenses.filter(exp => !exp.transferred);
+    
+    if (untransferredExpenses.length === 0) {
+        showToast("⚠️ මාරු කිරීමට අළුත් සුළු මුදල් වියදම් නැත!");
+        return;
+    }
+
+    // ---------- 2. කාණ්ඩ අනුව මුදල් ගණනය කිරීම ----------
+    const categoryTotals = {
+        REx1: 0, REx5: 0, REx6: 0, REx7: 0, REx3: 0
+    };
+
+    untransferredExpenses.forEach(exp => {
+        if (categoryTotals.hasOwnProperty(exp.category)) {
+            categoryTotals[exp.category] += exp.amt;
+        }
+    });
+
+    const totalAmount = Object.values(categoryTotals).reduce((sum, val) => sum + val, 0);
+    
+    if (totalAmount === 0) {
+        showToast("⚠️ මාරු කිරීමට වලංගු වියදම් නැත!");
+        return;
+    }
+
+    // ---------- 3. කාලපරිච්ඡේදයේ නිවැරදි ආරම්භක සහ අවසන් දිනයන් සොයා ගැනීම ----------
+    const currentDate = new Date().toISOString().split('T')[0];
+    
+    // ප්‍රථම ගනුදෙනුවේ දිනය (Period එකේ ආරම්භය)
+    const firstExpense = untransferredExpenses.sort((a, b) => new Date(a.date) - new Date(b.date))[0];
+    const periodStartDate = firstExpense.date;
+    
+    // අවසන් ප්‍රතිපූරණයේ දිනය (තිබේ නම්)
+    const db = getData();
+    const lastReplenishment = db
+        .filter(t => t.type === 'EX' && t.code === 'PC' && t.desc.includes('ප්‍රතිපූරණය'))
+        .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+    
+    // Period එකේ ආරම්භක දිනය නිවැරදිව තීරණය කිරීම
+    let effectiveStartDate = periodStartDate;
+    if (lastReplenishment && new Date(lastReplenishment.date) > new Date(periodStartDate)) {
+        effectiveStartDate = lastReplenishment.date;
+    }
+    
+    // Period එකේ අවසන් දිනය (වත්මන් දිනය හෝ අවසන් ගනුදෙනු දිනය)
+    const lastExpense = untransferredExpenses.sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+    const periodEndDate = lastExpense.date > currentDate ? lastExpense.date : currentDate;
+    
+    // Period Name නිවැරදිව සැකසීම
+    const periodName = effectiveStartDate === periodEndDate 
+        ? `${effectiveStartDate} දින` 
+        : `${effectiveStartDate} සිට ${periodEndDate} දක්වා`;
+
+    // ---------- 4. තහවුරු කිරීමේ සංවාදය පෙන්වීම ----------
+    const confirmMessage = `පහත සුළු මුදල් වියදම් REx ගෙවීම් ලෙස ඇතුළත් කරන්නද?\n\n` +
+        `📅 කාලපරිච්ඡේදය: ${periodName}\n` +
+        `📊 ගනුදෙනු ගණන: ${untransferredExpenses.length}\n\n` +
+        `REx1 (ලිපි ද්‍රව්‍ය): රු. ${categoryTotals.REx1.toFixed(2)}\n` +
+        `REx5 (උපකරණ නඩත්තු): රු. ${categoryTotals.REx5.toFixed(2)}\n` +
+        `REx6 (සුළු නඩත්තු): රු. ${categoryTotals.REx6.toFixed(2)}\n` +
+        `REx7 (පවිත්‍රතා): රු. ${categoryTotals.REx7.toFixed(2)}\n` +
+        `REx3 (විවිධ): රු. ${categoryTotals.REx3.toFixed(2)}\n\n` +
+        `💰 **මුළු වියදම්: රු. ${totalAmount.toFixed(2)}**\n\n` +
+        `මෙම මුදල් අදාළ REx ගෙවීම් කේත වලට එකතු කර, සුළු මුදල් ගනුදෙනු 'Transferred' ලෙස සලකුණු කරන්නද?`;
+
+    const confirm = await showConfirmDialog(
+        "💰 කාලපරිච්ඡේද වියදම් ඇතුළත් කිරීම",
+        confirmMessage,
+        "ඔව්, ඇතුළත් කරන්න",
+        "අවලංගු කරන්න"
+    );
+    
+    if (!confirm) return;
+
+    toggleLoading(true);
+    
+    try {
+        // ---------- 5. Period Expense ගනුදෙනු සකස් කිරීම ----------
+        const periodTransactions = [];
+        const timestamp = Date.now();
+        
+        for (const [category, amount] of Object.entries(categoryTotals)) {
+            if (amount <= 0) continue;
+            
+            // අනන්‍ය ID එකක් සෑදීම
+            const uniqueId = timestamp + Math.floor(Math.random() * 1000) + 
+                (category === 'REx1' ? 100 : 
+                 category === 'REx5' ? 200 : 
+                 category === 'REx6' ? 300 : 
+                 category === 'REx7' ? 400 : 500);
+            
+            const periodExpenseData = {
+                action: 'save_period_expense',
+                id: uniqueId,
+                date: currentDate,
+                desc: `කාලපරිච්ඡේද සාරාංශය - ${getCategoryDescription(category)} (${periodName})`,
+                category: category,
+                voucher: `PE-${new Date().getFullYear()}${(new Date().getMonth()+1).toString().padStart(2,'0')}-${category}`,
+                amt: amount,
+                source: 'PC',
+                periodStart: effectiveStartDate,
+                periodEnd: periodEndDate,
+                clientId: generateUUID()
+            };
+            periodTransactions.push(periodExpenseData);
+        }
+
+        // ---------- 6. ගනුදෙනු එකින් එක සුරැකීම (Batch save වෙනුවට) ----------
+        const saveResults = [];
+        let successCount = 0;
+        
+        for (const transaction of periodTransactions) {
+            try {
+                if (!navigator.onLine) {
+                    addToOfflineQueue('save_period_expense', transaction);
+                    periodExpenses.push({ ...transaction, offline: true });
+                    successCount++;
+                    saveResults.push({ id: transaction.id, success: true });
+                } else {
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        body: JSON.stringify(transaction)
+                    });
+                    
+                    const result = await response.json();
+                    if (result.status === 'success') {
+                        successCount++;
+                        saveResults.push({ id: transaction.id, success: true });
+                        
+                        // Cache එකට එකතු කරන්න
+                        periodExpenses.push(transaction);
+                    } else {
+                        saveResults.push({ id: transaction.id, success: false, error: result.message });
+                        console.error("Failed to save period expense:", result);
+                    }
+                }
+            } catch (e) {
+                saveResults.push({ id: transaction.id, success: false, error: e.message });
+                console.error("Error saving period expense:", e);
+            }
+        }
+        
+        // Cache එක යාවත්කාලීන කිරීම
+        setPeriodExpensesCache(periodExpenses);
+        
+        // ---------- 7. සාර්ථකව සුරැකුණු ගනුදෙනු ප්‍රමාණය අනුව කටයුතු කිරීම ----------
+        if (successCount > 0) {
+            
+            // Petty expenses transferred ලෙස සලකුණු කිරීම
+            const transferResults = await markExpensesAsTransferred(untransferredExpenses, allPettyExpenses);
+            
+            // ---------- 8. Period Summary එක Save කිරීම ----------
+            try {
+                const summaryData = {
+                    action: 'save_period_summary',
+                    date: currentDate,
+                    periodName: periodName,
+                    totalAmount: totalAmount,
+                    startDate: effectiveStartDate,
+                    endDate: periodEndDate,
+                    transactionCount: untransferredExpenses.length,
+                    categoryBreakdown: {
+                        REx1: categoryTotals.REx1,
+                        REx5: categoryTotals.REx5,
+                        REx6: categoryTotals.REx6,
+                        REx7: categoryTotals.REx7,
+                        REx3: categoryTotals.REx3
+                    },
+                    clientId: generateUUID()
+                };
+                
+                if (!navigator.onLine) {
+                    addToOfflineQueue('save_period_summary', summaryData);
+                } else {
+                    await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        body: JSON.stringify(summaryData)
+                    }).catch(e => console.log("Summary save non-critical error:", e));
+                }
+            } catch (summaryError) {
+                console.error("Period summary save error (non-critical):", summaryError);
+            }
+
+            // ---------- 9. Local Storage Summary එක Update කිරීම ----------
+            const localSummary = {
+                date: currentDate,
+                periodName: periodName,
+                startDate: effectiveStartDate,
+                endDate: periodEndDate,
+                REx1: categoryTotals.REx1,
+                REx5: categoryTotals.REx5,
+                REx6: categoryTotals.REx6,
+                REx7: categoryTotals.REx7,
+                REx3: categoryTotals.REx3,
+                total: totalAmount,
+                transactionCount: untransferredExpenses.length,
+                timestamp: new Date().toISOString(),
+                id: Date.now()
+            };
+            
+            let summaries = JSON.parse(localStorage.getItem('sch_period_summaries') || '[]');
+            summaries.push(localSummary);
+            if (summaries.length > 12) {
+                summaries = summaries.slice(-12);
+            }
+            localStorage.setItem('sch_period_summaries', JSON.stringify(summaries));
+            
+            // ප්‍රතිඵල පණිවිඩය
+            const failedCount = periodTransactions.length - successCount;
+            let message = `✅ කාලපරිච්ඡේද වියදම් ${successCount}ක් එකතු කරන ලදී!`;
+            
+            if (failedCount > 0) {
+                message += `\n⚠️ ගනුදෙනු ${failedCount}ක් අසාර්ථක විය.`;
+            }
+            
+            if (transferResults.failed > 0) {
+                message += `\n⚠️ වියදම් ${transferResults.failed}ක් 'Transferred' ලෙස සලකුණු කිරීමට නොහැකි විය.`;
+            }
+            
+            showToast(message);
+            
+        } else {
+            // කිසිදු ගනුදෙනුවක් සාර්ථක නොවූ විට
+            let errorDetails = saveResults.filter(r => !r.success).map(r => r.error).join(', ');
+            showToast(`❌ කිසිදු Period Expense එකක් සුරැකීමට නොහැකි විය! ${errorDetails ? 'දෝෂය: ' + errorDetails : ''}`);
+        }
+
+        // UI යාවත්කාලීන කිරීම
+        renderPettyBook();
+        refreshDashboard();
+        displaySavedPeriodSummaries();
+
+    } catch (error) {
+        console.error("Manual period expenses save error:", error);
+        showToast(`❌ දත්ත සුරැකීමේ දෝෂයක්: ${error.message}`);
+    } finally {
+        toggleLoading(false);
+    }
+}
+
+// ============ Helper: markExpensesAsTransferred ============
+async function markExpensesAsTransferred(untransferredExpenses, allPettyExpenses) {
+    const results = {
+        success: 0,
+        failed: 0,
+        details: []
+    };
+    
+    for (let expense of untransferredExpenses) {
+        try {
+            const updateData = {
+                action: 'mark_expense_transferred',
+                id: expense.id,
+                transferred: true,
+                clientId: generateUUID()
+            };
+            
+            if (navigator.onLine) {
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(updateData)
+                });
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    results.success++;
+                    const index = allPettyExpenses.findIndex(e => e.id === expense.id);
+                    if (index !== -1) {
+                        allPettyExpenses[index].transferred = true;
+                    }
+                } else {
+                    results.failed++;
+                    results.details.push({ id: expense.id, error: result.message });
+                }
+            } else {
+                // Offline mode
+                addToOfflineQueue('mark_expense_transferred', updateData);
+                
+                const index = allPettyExpenses.findIndex(e => e.id === expense.id);
+                if (index !== -1) {
+                    allPettyExpenses[index].transferred = true;
+                }
+                results.success++;
+            }
+        } catch (error) {
+            results.failed++;
+            results.details.push({ id: expense.id, error: error.message });
+            console.error(`Error updating transferred status for expense ${expense.id}:`, error);
+        }
+    }
+    
+    // Updated Petty Expenses list එක save කරන්න
+    setPettyExpensesCache(allPettyExpenses);
+    
+    return results;
+}
+
+// Helper function to get category description
+function getCategoryDescription(category) {
+    const descriptions = {
+        'REx1': 'ලිපි ද්‍රව්‍ය',
+        'REx5': 'උපකරණ නඩත්තු',
+        'REx6': 'සුළු නඩත්තු',
+        'REx7': 'පවිත්‍රතා',
+        'REx3': 'විවිධ'
+    };
+    return descriptions[category] || category;
+}
+
+async function startNewPeriod() {
+    if(userRole !== 'ADMIN') {
+        showToast("❌ මෙම ක්‍රියාව සඳහා අවසර ඇත්තේ පරිපාලකට පමණි!");
+        return;
+    }
+    
+    const REx1 = parseAmount(document.getElementById('manualREx1').value);
+    const REx5 = parseAmount(document.getElementById('manualREx5').value);
+    const REx6 = parseAmount(document.getElementById('manualREx6').value);
+    const REx7 = parseAmount(document.getElementById('manualREx7').value);
+    const REx3 = parseAmount(document.getElementById('manualREx3').value);
+    
+    const db = getData();
+    const pcTransactions = db.filter(t => t.type === 'EX' && t.code === 'PC' && !t.isImprest);
+    const totalPC = pcTransactions.reduce((sum, t) => sum + t.amt, 0);
+    const totalExpenses = pettyExpenses.reduce((sum, e) => sum + e.amt, 0);
+    const currentBalance = totalPC - totalExpenses;
+    
+    const confirm = await showConfirmDialog(
+        "🔄 නව කාලපරිච්ඡේදයක් ආරම්භ කරන්න",
+        `වත්මන් කාලපරිච්ඡේදයේ වියදම් සාරාංශය:\n` +
+        `REx1: රු. ${REx1.toFixed(2)}\n` +
+        `REx5: රු. ${REx5.toFixed(2)}\n` +
+        `REx6: රු. ${REx6.toFixed(2)}\n` +
+        `REx7: රු. ${REx7.toFixed(2)}\n` +
+        `REx3: රු. ${REx3.toFixed(2)}\n` +
+        `අවසන් ශේෂය: රු. ${currentBalance.toFixed(2)}\n\n` +
+        `මෙම වියදම් සාරාංශය සුරකින අතර නව කාලපරිච්ඡේදයක් ආරම්භ කරන්නද?`,
+        "ඔව්, ආරම්භ කරන්න",
+        "අවලංගු කරන්න"
+    );
+    
+    if(!confirm) return;
+    
+    const summary = {
+        date: new Date().toISOString().split('T')[0],
+        REx1: REx1,
+        REx5: REx5,
+        REx6: REx6,
+        REx7: REx7,
+        REx3: REx3,
+        balance: currentBalance,
+        total: REx1 + REx5 + REx6 + REx7 + REx3,
+        timestamp: new Date().toISOString(),
+        id: Date.now()
+    };
+    
+    let summaries = JSON.parse(localStorage.getItem('sch_period_summaries') || '[]');
+    summaries.push(summary);
+    
+    if (summaries.length > 12) {
+        summaries = summaries.slice(-12);
+    }
+    
+    localStorage.setItem('sch_period_summaries', JSON.stringify(summaries));
+    
+    document.getElementById('manualREx1').value = '0';
+    document.getElementById('manualREx5').value = '0';
+    document.getElementById('manualREx6').value = '0';
+    document.getElementById('manualREx7').value = '0';
+    document.getElementById('manualREx3').value = '0';
+    document.getElementById('manualTotal').value = '0';
+    
+    showToast("✅ නව කාලපරිච්ඡේදය ආරම්භ කරන ලදී!");
+    renderPettyBook();
+    displaySavedPeriodSummaries();
+}
+
+function displaySavedPeriodSummaries() {
+    const summaries = JSON.parse(localStorage.getItem('sch_period_summaries') || '[]');
+    const container = document.getElementById('periodSummariesDisplay');
+    
+    if (!container) return;
+    
+    if (summaries.length === 0) {
+        container.innerHTML = '';
+        return;
+    }
+    
+    let html = '<h5 style="margin: 20px 0 10px 0;">පෙර කාලපරිච්ඡේද සාරාංශ</h5>';
+    html += '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">';
+    
+    summaries.slice().reverse().forEach(s => {
+        html += `
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 6px; border-left: 3px solid #8e44ad;">
+                <div style="font-size: 12px; color: #666;">${s.date}</div>
+                <div style="font-size: 14px; font-weight: bold;">රු. ${s.total.toFixed(2)}</div>
+                <button class="btn" style="font-size: 11px; padding: 3px 8px; margin-top: 5px;" onclick="viewPeriodSummaryDetails(${s.id})">
+                    <i class="fas fa-eye"></i> බලන්න
+                </button>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function toggleLoading(show) {
+    if (show) {
+        document.getElementById('loading-overlay').style.display = 'flex';
+    } else {
+        document.getElementById('loading-overlay').style.display = 'none';
+    }
+}
+
+function applyPermissions() {
+    if(userRole === 'GUEST') {
+        document.querySelectorAll('.staff-only').forEach(el => el.style.display = 'none');
+        document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+        document.getElementById('print-btn').style.display = 'none';
+        document.getElementById('pdf-btn').style.display = 'none';
+        document.querySelectorAll('.table-btn').forEach(btn => btn.style.display = 'none');
+        document.getElementById('sec-entry').style.display = 'none';
+        
+        const csvExportBtn = document.querySelector('#transactionSearchResults .btn[onclick*="exportSearchResults"]');
+        if (csvExportBtn) csvExportBtn.style.display = 'none';
+        
+        const entryNav = document.getElementById('nav-entry');
+        if(entryNav) {
+            entryNav.style.display = 'none';
+        }
+        const projNav = document.getElementById('nav-proj');
+        if(projNav) {
+            projNav.style.display = 'none';
+        }
+        const pettyNav = document.getElementById('nav-petty');
+        if(pettyNav) {
+            pettyNav.style.display = 'none';
+        }
+    } 
+    else if(userRole === 'ADMIN') {
+        document.querySelectorAll('.staff-only').forEach(el => el.style.display = 'block');
+        document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+        document.getElementById('print-btn').style.display = 'flex';
+        document.getElementById('pdf-btn').style.display = 'flex';
+        document.querySelectorAll('.table-btn').forEach(btn => btn.style.display = 'inline-flex');
+        
+        const csvExportBtn = document.querySelector('#transactionSearchResults .btn[onclick*="exportSearchResults"]');
+        if (csvExportBtn) csvExportBtn.style.display = 'flex';
+        
+        const entryNav = document.getElementById('nav-entry');
+        if(entryNav) {
+            entryNav.style.display = 'block';
+        }
+        const projNav = document.getElementById('nav-proj');
+        if(projNav) {
+            projNav.style.display = 'block';
+        }
+        const pettyNav = document.getElementById('nav-petty');
+        if(pettyNav) {
+            pettyNav.style.display = 'block';
+        }
+    }
+    else if(userRole === 'STAFF') {
+        document.querySelectorAll('.staff-only').forEach(el => el.style.display = 'block');
+        document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+        document.getElementById('print-btn').style.display = 'flex';
+        document.getElementById('pdf-btn').style.display = 'flex';
+        
+        const csvExportBtn = document.querySelector('#transactionSearchResults .btn[onclick*="exportSearchResults"]');
+        if (csvExportBtn) csvExportBtn.style.display = 'none';
+        
+        document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+        
+        const entryNav = document.getElementById('nav-entry');
+        if(entryNav) {
+            entryNav.style.display = 'block';
+        }
+        const projNav = document.getElementById('nav-proj');
+        if(projNav) {
+            projNav.style.display = 'block';
+        }
+        const pettyNav = document.getElementById('nav-petty');
+        if(pettyNav) {
+            pettyNav.style.display = 'block';
+        }
+    }
+}
+
+function initializeSelect2() {
+    if (typeof $ !== 'undefined' && $.fn && $.fn.select2) {
+        try {
+            $('.select2').each(function() {
+                if ($(this).data('select2')) {
+                    $(this).select2('destroy');
+                }
+            });
+        } catch (e) {
+            console.log("Select2 destroy error, continuing...");
+        }
+        
+        $('#inCodeSelect, #exCodeSelect, #exSourceSelect, #opCodeSelect, #allocCodeSelect, #pettyCategorySelect, #replenishSourceSelect, #multiInProjSelect, #allocTypeSelect').each(function() {
+            if ($(this).length > 0) {
+                $(this).select2({
+                    placeholder: "තෝරන්න...",
+                    allowClear: true,
+                    width: '100%'
+                }).on('select2:open', function() {
+                    $(this).data('select2').$dropdown.find(':input.select2-search__field').focus();
+                });
+            }
+        });
+    }
+}
+
+function populateOptions() {
+    const sCodeOptions = S_CODES.map(c => `<option value="${c}">${c} - ${CODE_INFO[c]}</option>`).join('');
+    const exCodeOptions = EX_CODES.map(c => `<option value="${c}">${c} - ${CODE_INFO[c]}</option>`).join('');
+    const allCodeOptions = sCodeOptions + exCodeOptions;
+    
+    // inCodeSelect, exSourceSelect, opCodeSelect සඳහා S code options fill කරන්න (මේක එලෙසම තියන්න)
+['inCodeSelect', 'exSourceSelect', 'opCodeSelect'].forEach(sId => {
+    const el = document.getElementById(sId);
+    if(el) {
+        el.innerHTML = `<option value=""></option>` + sCodeOptions;
+    }
+});
+
+// exCodeSelect සඳහා EX code options fill කරන්න (මේක එලෙසම තියන්න)
+['exCodeSelect'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) {
+        el.innerHTML = `<option value=""></option>` + exCodeOptions;
+    }
+});
+
+// *** වැදගත්: allocCodeSelect එක හිස් කරන්න (මේ කොටස අලුතෙන් එකතු කරන්න) ***
+const allocCodeSelectEl = document.getElementById('allocCodeSelect');
+if (allocCodeSelectEl) {
+    allocCodeSelectEl.innerHTML = '<option value=""></option>'; // හිස් කරන්න
+}
+
+    const pettyCatEl = document.getElementById('pettyCategorySelect');
+    if (pettyCatEl) {
+        pettyCatEl.innerHTML = `
+            <option value=""></option>
+            <option value="REx1">ලිපි ද්‍රව්‍ය (REx1)</option>
+            <option value="REx5">උපකරණ නඩත්තු (REx5)</option>
+            <option value="REx6">සුළු නඩත්තු (REx6)</option>
+            <option value="REx7">පවිත්‍රතා (REx7)</option>
+            <option value="REx3">විවිධ (REx3)</option>
+        `;
+    }
+    
+    const replenishEl = document.getElementById('replenishSourceSelect');
+    if (replenishEl) {
+        replenishEl.innerHTML = `<option value=""></option>` + sCodeOptions;
+    }
+    
+    const repFilter = document.getElementById('repFilter');
+    if (repFilter) {
+        repFilter.innerHTML = '<option value="ALL">සියලුම කේතයන්</option>' + 
+                              sCodeOptions + exCodeOptions;
+    }
+    
+    // Initialize allocation type selector if it exists
+    const allocTypeEl = document.getElementById('allocTypeSelect');
+    if (allocTypeEl) {
+        // Ensure it has options
+        if (allocTypeEl.options.length === 0) {
+            allocTypeEl.innerHTML = `
+                <option value="IN">ලැබීම් කේත (S Codes)</option>
+                <option value="EX">ගෙවීම් කේත (EX Codes)</option>
+            `;
+        }
+    }
+
+
+setTimeout(function() {
+        if ($('#allocTypeSelect').length > 0) {
+            $('#allocTypeSelect').val('IN').trigger('change');
+            updateAllocationCodeSelect();
+        }
+    }, 100);
+}
+
+// ============ Dropdown Toggle Function ============
+function toggleDropdown(dropdownId) {
+    const dropdown = document.getElementById(dropdownId);
+    // Find the toggle button - since onclick attribute uses this function, we can find it by the ID
+    const toggle = document.querySelector(`[onclick="toggleDropdown('${dropdownId}')"]`);
+    
+    if (!dropdown || !toggle) return;
+    
+    // Toggle the dropdown visibility
+    if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+        dropdown.style.display = 'block';
+        toggle.classList.add('active');
+    } else {
+        dropdown.style.display = 'none';
+        toggle.classList.remove('active');
+    }
+}
+// ============ Allocation Type Functions ============
+function updateAllocationCodeSelect() {
+    const type = $('#allocTypeSelect').val(); // IN හෝ EX අගය ගන්න
+    const select = $('#allocCodeSelect');
+    
+    let options = '<option value=""></option>'; // හිස් ඔප්ෂන් එක
+    
+    if (type === 'IN') {
+        // IN නම් S_CODES array එකෙන් options හදන්න
+        S_CODES.forEach(code => {
+            options += `<option value="${code}">${code} - ${CODE_INFO[code].substring(0, 40)}...</option>`;
+        });
+    } else {
+        // EX නම් EX_CODES array එකෙන් options හදන්න
+        EX_CODES.forEach(code => {
+            options += `<option value="${code}">${code} - ${CODE_INFO[code].substring(0, 40)}...</option>`;
+        });
+    }
+    
+    select.html(options); // අලුත් options set කරන්න
+    select.trigger('change'); // select2 එක update කරන්න
+}
+
+
+function renderCodesList() {
+    document.getElementById('codes-s').innerHTML = S_CODES.map(c => 
+        `<div class="code-tag"><span class="code-num">${c}</span>${CODE_INFO[c]}</div>`
+    ).join('');
+    
+    document.getElementById('codes-ex').innerHTML = EX_CODES.map(c => 
+        `<div class="code-tag"><span class="code-num" style="background:var(--danger); color:white;">${c}</span>${CODE_INFO[c]}</div>`
+    ).join('');
+}
+
+function validateForm(type) {
+    const prefix = type === 'IN' ? 'in' : 'ex';
+    const date = document.getElementById(prefix + 'Date').value;
+    const amt = document.getElementById(prefix + 'Amt').value;
+    const code = $(`#${prefix}CodeSelect`).val();
+    const desc = document.getElementById(prefix + 'Desc').value;
+    
+    if(!date) {
+        showToast("⚠️ කරුණාකර දිනය ඇතුළත් කරන්න");
+        document.getElementById(prefix + 'Date').focus();
+        return false;
+    }
+    if(!amt || parseAmount(amt) <= 0) {
+        showToast("⚠️ කරුණාකර වලංගු මුදලක් ඇතුළත් කරන්න");
+        document.getElementById(prefix + 'Amt').focus();
+        return false;
+    }
+    if(!code || code === "") {
+        showToast("⚠️ කරුණාකර " + (type === 'IN' ? 'ලැබීම්' : 'ගෙවීම්') + " කේතය තෝරන්න");
+        $(`#${prefix}CodeSelect`).select2('open');
+        return false;
+    }
+    if(!desc.trim()) {
+        showToast("⚠️ කරුණාකර විස්තරය ඇතුළත් කරන්න");
+        document.getElementById(prefix + 'Desc').focus();
+        return false;
+    }
+    
+    if(type === 'IN') {
+        const fromRef = document.getElementById('inRefFrom').value.trim();
+        
+        if(!fromRef) {
+            showToast("⚠️ කරුණාකර ලදුපත් අංකය ඇතුළත් කරන්න");
+            document.getElementById('inRefFrom').focus();
+            return false;
+        }
+        
+        if (isNaN(parseInt(fromRef))) {
+            showToast("⚠️ කරුණාකර වලංගු අංකයක් ඇතුළත් කරන්න");
+            return false;
+        }
+        
+        const toRef = document.getElementById('inRefTo').value.trim();
+        if (toRef !== '') {
+            if (isNaN(parseInt(toRef))) {
+                showToast("⚠️ කරුණාකර වලංගු අංකයක් ඇතුළත් කරන්න");
+                return false;
+            }
+            if (parseInt(fromRef) > parseInt(toRef)) {
+                showToast("⚠️ 'දක්වා' අංකය 'සිට' අංකයට වඩා විශාල විය යුතුය!");
+                return false;
+            }
+        }
+    } else {
+        const voucher = document.getElementById('exVoucher').value;
+        const source = $('#exSourceSelect').val();
+        
+        if(!voucher.trim()) {
+            showToast("⚠️ කරුණාකර වවුචර් අංකය ඇතුළත් කරන්න");
+            document.getElementById('exVoucher').focus();
+            return false;
+        }
+        if(!source || source === "") {
+            showToast("⚠️ කරුණාකර මූලාශ්‍ර අරමුදල තෝරන්න");
+            $('#exSourceSelect').select2('open');
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+async function saveData(type) {
+    if(userRole === 'GUEST') {
+        showToast("❌ ගනුදෙනු ඇතුළත් කිරීමට ඔබට අවසර නැත.");
+        return;
+    }
+    
+    if(!validateForm(type)) return;
+    
+    const prefix = type === 'IN' ? 'in' : 'ex';
+    const existingId = document.getElementById('edit-id-' + prefix).value;
+    const isEdit = existingId && existingId !== '';
+    const currentId = isEdit ? parseInt(existingId) : (Date.now() + Math.floor(Math.random()*1000));
+    
+    // බොත්තම අක්‍රිය කරන්න
+    const saveButton = document.getElementById('btn-save-' + prefix);
+    saveButton.disabled = true;
+    saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> සුරකිමින්...';
+    
+    const action = isEdit ? 'update_transaction' : 'save_transaction';
+    
+    let referenceValue = "";
+    if (type === 'IN') {
+        const fromRef = document.getElementById('inRefFrom').value.trim();
+        const toRef = document.getElementById('inRefTo').value.trim();
+        
+        const excludeId = isEdit ? currentId : null;
+        const duplicateCheck = checkDuplicateReceipt(fromRef, toRef, excludeId);
+        if (duplicateCheck.isDuplicate) {
+            showToast(duplicateCheck.message);
+            saveButton.disabled = false;
+            saveButton.innerHTML = type === 'IN' ? "ලැබීම ගිණුම්ගත කරන්න" : "ගෙවීම ගිණුම්ගත කරන්න";
+            return;
+        }
+        
+        referenceValue = formatReceiptRange(fromRef, toRef);
+    } else {
+        referenceValue = document.getElementById(prefix + 'Ref').value;
+        
+        // Multi-field validation එකතු කරන්න (EX සඳහා)
+        const voucher = document.getElementById('exVoucher').value;
+        const date = document.getElementById('exDate').value;
+        const amount = parseAmount(document.getElementById('exAmt').value);
+        const excludeId = isEdit ? currentId : null;
+        
+        if (checkDuplicateTransaction(date, voucher, amount, 'EX', excludeId)) {
+            showToast("⚠️ මෙම වවුචර් අංකය, දිනය සහ මුදල සහිත ගනුදෙනුවක් දැනටමත් පවතී!");
+            saveButton.disabled = false;
+            saveButton.innerHTML = "ගෙවීම ගිණුම්ගත කරන්න";
+            return;
+        }
+    }
+    
+    const data = { 
+        action: action,
+        id: currentId,
+        date: document.getElementById(prefix + 'Date').value, 
+        ref: referenceValue, 
+        vouch: type === 'EX' ? document.getElementById('exVoucher').value : '', 
+        code: $(`#${prefix}CodeSelect`).val(), 
+        amt: parseAmount(document.getElementById(prefix + 'Amt')?.value || 0), 
+        desc: document.getElementById(prefix + 'Desc').value, 
+        type: type, 
+        source: type === 'EX' ? $('#exSourceSelect').val() : $('#inCodeSelect').val(),
+        proj: $(`#${prefix}ProjSelect`).val(),
+        status: true,
+        isOp: false,
+        isImprest: false,
+        clientId: generateUUID()
+    };
+    
+    toggleLoading(true);
+    
+    try {
+        if (!navigator.onLine) {
+            // Offline - පෝලිමට එකතු කරන්න
+            addToOfflineQueue(action, data);
+            
+            let db = getData();
+            if (isEdit) {
+                const existingIndex = db.findIndex(item => item.id === currentId);
+                if (existingIndex !== -1) {
+                    db[existingIndex] = { ...data, offline: true };
+                }
+            } else {
+                db.push({ ...data, offline: true });
+            }
+            setDataCache(db);
+            
+            showToast("📦 Offline මාදිලියේ සුරකින ලදී!");
+        } else {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                let db = getData();
+                
+                if (isEdit) {
+                    const existingIndex = db.findIndex(item => item.id === currentId);
+                    if (existingIndex !== -1) {
+                        db[existingIndex] = { ...data, offline: false };
+                    }
+                } else {
+                    db.push({ ...data, offline: false });
+                }
+                
+                setDataCache(db);
+                showToast(isEdit ? "✅ ගනුදෙනුව සාර්ථකව යාවත්කාලීන කරන ලදී!" : "✅ නව ගනුදෙනුව සාර්ථකව ගිණුම්ගත කරන ලදී!");
+            } else {
+                throw new Error(result.message || 'Save failed');
+            }
+        }
+    } catch (error) {
+        console.error("Save error:", error);
+        showToast("❌ දත්ත සුරැකීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+        saveButton.disabled = false;
+        saveButton.innerHTML = type === 'IN' ? "ලැබීම ගිණුම්ගත කරන්න" : "ගෙවීම ගිණුම්ගත කරන්න";
+    }
+    
+    refreshDashboard();
+    loadRecentTable();
+    resetForms();
+}
+
+async function saveOpening() {
+    if(userRole === 'GUEST') {
+        showToast("❌ ආරම්භක ශේෂයන් වෙනස් කිරීමට ඔබට අවසර නැත.");
+        return;
+    }
+    
+    const code = $('#opCodeSelect').val();
+    const amt = parseAmount(document.getElementById('opAmt').value || 0);
+    
+    if(!code || code === "") {
+        showToast("⚠️ කරුණාකර අරමුදල් කේතය තෝරන්න");
+        $('#opCodeSelect').select2('open');
+        return;
+    }
+    
+    if(amt <= 0) {
+        showToast("⚠️ මුදල ඇතුළත් කරන්න");
+        document.getElementById('opAmt').focus();
+        return;
+    }
+    
+    toggleLoading(true);
+    
+    const data = { 
+        action: 'save_transaction', 
+        id: Date.now(), 
+        date: "2024-01-01", 
+        ref: 'OPENING', 
+        vouch: '', 
+        code: code, 
+        amt: amt, 
+        desc: 'ආරම්භක ශේෂය', 
+        type: 'IN', 
+        source: code, 
+        isOp: true, 
+        status: true,
+        isImprest: false,
+        clientId: generateUUID()
+    };
+    
+    try {
+        if (!navigator.onLine) {
+            addToOfflineQueue('save_transaction', data);
+            let db = getData();
+            db.push({ ...data, offline: true });
+            setDataCache(db);
+            showToast("📦 Offline මාදිලියේ සුරකින ලදී!");
+        } else {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                let db = getData();
+                db.push(data);
+                setDataCache(db);
+                showToast("✅ ආරම්භක ශේෂය ගිණුම්ගත කෙරිණි!");
+            } else {
+                throw new Error(result.message || 'Save failed');
+            }
+        }
+    } catch (error) {
+        console.error("Opening save error:", error);
+        showToast("❌ දත්ත සුරැකීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+    }
+    
+    refreshDashboard();
+    document.getElementById('opAmt').value = '';
+}
+
+// Updated saveAllocation function to handle both S and EX codes
+async function saveAllocation() {
+    if(userRole === 'GUEST') {
+        showToast("❌ ප්‍රතිපාදන ගිණුම්ගත කිරීමට ඔබට අවසර නැත.");
+        return;
+    }
+    
+    const code = $('#allocCodeSelect').val();
+    const amt = parseAmount(document.getElementById('allocAmt').value || 0);
+    const type = $('#allocTypeSelect').val(); // 'IN' for S codes, 'EX' for EX codes
+    
+    if(!code || code === "") {
+        showToast("⚠️ කරුණාකර කේතය තෝරන්න");
+        $('#allocCodeSelect').select2('open');
+        return;
+    }
+    
+    if(amt <= 0) {
+        showToast("⚠️ වලංගු මුදලක් ඇතුළත් කරන්න");
+        document.getElementById('allocAmt').focus();
+        return;
+    }
+    
+    toggleLoading(true);
+    
+    const data = {
+        action: 'save_allocation',
+        allocCode: code,
+        allocAmt: amt,
+        allocType: type,
+        clientId: generateUUID()
+    };
+    
+    try {
+        if (!navigator.onLine) {
+            addToOfflineQueue('save_allocation', data);
+            allocations[code] = amt; 
+            allocations[code + '_type'] = type;
+            setAllocationsCache(allocations);
+            showToast("📦 Offline මාදිලියේ සුරකින ලදී!");
+        } else {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+            
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                allocations[code] = amt; 
+                allocations[code + '_type'] = type; // Store type info
+                setAllocationsCache(allocations);
+                showToast(`✅ ${type === 'IN' ? 'ලැබීම්' : 'ගෙවීම්'} ප්‍රතිපාදන ගිණුම්ගත කරන ලදී!`);
+                
+                // Refresh both budget reports if they're currently displayed
+                if (currentReport === 'BUDGET_VS_INCOME' || currentReport === 'VARIANCE') {
+                    generateReport();
+                }
+            } else {
+                throw new Error(result.message || 'Save failed');
+            }
+        }
+    } catch (error) {
+        console.error("Allocation save error:", error);
+        showToast("❌ ප්‍රතිපාදන සුරැකීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+        document.getElementById('allocAmt').value = '';
+    }
+}
+
+// ============ Open Report Function ============
+function openReport(type) {
+    currentReport = type;
+    showSec('report');
+    
+    // Update active state for sub-nav items
+    document.querySelectorAll('.sub-nav').forEach(item => {
+        item.classList.remove('active');
+    });
+    
+    // Find and highlight the clicked sub-nav
+    const subNavs = document.querySelectorAll('.sub-nav');
+    subNavs.forEach(item => {
+        if (item.getAttribute('onclick')?.includes(type)) {
+            item.classList.add('active');
+        }
+    });
+    
+    const filterBox = document.getElementById('filter-box');
+    if (type === 'IN' || type === 'EX') {
+        filterBox.style.display = 'block';
+        populateReportFilter(type);
+    } else {
+        filterBox.style.display = 'none';
+    }
+    
+    const bankBalBox = document.getElementById('bank-bal-box');
+    if(type === 'BANK') {
+        bankBalBox.style.display = 'block';
+    } else {
+        bankBalBox.style.display = 'none';
+    }
+    
+    generateReport();
+}
+
+function populateReportFilter(type) {
+    const filterSelect = document.getElementById('repFilter');
+    filterSelect.innerHTML = '<option value="ALL">සියලුම කේතයන්</option>';
+    
+    const codes = (type === 'IN') ? S_CODES : EX_CODES;
+    codes.forEach(c => {
+        filterSelect.innerHTML += `<option value="${c}">${c} - ${CODE_INFO[c]}</option>`;
+    });
+}
+
+function viewCodeDetails(code, type) {
+    // PC code සඳහා විශේෂ ප්‍රතිකාරය
+    if (code === 'PC') {
+        const floatAmount = loadPettyFloat();
+        const pettyExpenses = JSON.parse(sessionStorage.getItem('sch_petty_expenses') || '[]');
+        const transferredCount = pettyExpenses.filter(e => e.transferred).length;
+        const pendingCount = pettyExpenses.filter(e => !e.transferred).length;
+        
+        let html = '<div style="margin-bottom: 20px;">';
+        html += '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">';
+        html += '<div style="background: #d4edda; padding: 12px; border-radius: 8px; text-align: center;">';
+        html += '<div style="font-size: 12px; color: #155724;">ස්ථාවර මුදල (Float)</div>';
+        html += '<div style="font-size: 20px; font-weight: bold; color: green;">' + floatAmount.toLocaleString(undefined, {minimumFractionDigits: 2}) + '</div>';
+        html += '</div>';
+        html += '<div style="background: #d1ecf1; padding: 12px; border-radius: 8px; text-align: center;">';
+        html += '<div style="font-size: 12px; color: #0c5460;">වියදම් තොරතුරු</div>';
+        html += '<div style="font-size: 16px; font-weight: bold;">මාරු කළ: ' + transferredCount + ' | ඉතිරි: ' + pendingCount + '</div>';
+        html += '</div>';
+        html += '</div>';
+        
+        html += '<div style="background: #e8f4f8; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 5px solid #17a2b8;">';
+        html += '<div style="font-size: 14px; color: #0c5460;">';
+        html += '<strong>PC කේතය පිළිබඳ විස්තර:</strong><br>';
+        html += '• මෙය සුළු මුදල් ස්ථාවර මුදල (Petty Cash Float) පමණක් නිරූපණය කරයි.<br>';
+        html += '• සුළු මුදල් වියදම් REx කේත වලට මාරු කිරීමෙන් පසු ඒවා අදාළ REx කේත යටතේ පෙන්වයි.<br>';
+        html += '• ප්‍රතිපූරණ ගනුදෙනු ඒවායේ මූලාශ්‍ර S කේත යටතේ පෙන්වයි.<br>';
+        html += '• එමනිසා PC කේතය යටතේ පෙන්වන්නේ වත්මන් ස්ථාවර මුදල පමණි.';
+        html += '</div></div></div>';
+        
+        document.getElementById('modalCodeTitle').innerHTML = 
+            '<span style="font-size: 15px; font-weight: bold;">PC - සුළු මුදල් (Petty Cash)</span>';
+        document.getElementById('codeDetailsContent').innerHTML = html;
+        document.getElementById('codeDetailsModal').style.display = 'flex';
+        return;
+    }
+    
+    const allData = getAllExpenseDataForReports();
+    const from = document.getElementById('repFrom').value;
+    const to = document.getElementById('repTo').value;
+    
+    let incomeTransactions = [];
+    let sourceCodesUsed = {};
+    let expenseCodesUsed = {};
+    
+    let openingBalance = 0;
+    let openingTransactions = [];
+    
+    // ආරම්භක ශේෂය ගණනය කිරීම (IN type සඳහා පමණි)
+    if (type === 'IN') {
+        openingTransactions = allData.filter(r => r.isOp && (r.code === code || r.source === code));
+        openingBalance = openingTransactions.reduce((sum, r) => sum + r.amt, 0);
+    }
+    
+    // වත්මන් ලැබීම් ගනුදෙනු
+    const currentIncomeTransactions = allData.filter(r => {
+        if (type === 'IN') {
+            return !r.isOp && 
+                   r.type === 'IN' && 
+                   (r.code === code || r.source === code) && 
+                   (!from || r.date >= from) && 
+                   (!to || r.date <= to);
+        } else {
+            return r.code === code && 
+                   r.type === 'IN' && 
+                   (!from || r.date >= from) && 
+                   (!to || r.date <= to);
+        }
+    });
+    
+    // ගෙවීම් ගනුදෙනු (EX type සඳහා)
+    const expenseTransactions = allData.filter(r => {
+        if (type === 'EX') {
+            return r.code === code && 
+                   r.type === 'EX' && 
+                   (!from || r.date >= from) && 
+                   (!to || r.date <= to);
+        } else {
+            return r.source === code && 
+                   r.type === 'EX' && 
+                   (!from || r.date >= from) && 
+                   (!to || r.date <= to);
+        }
+    });
+    
+    const currentIncomeTotal = currentIncomeTransactions.reduce((sum, t) => sum + t.amt, 0);
+    const totalIncome = openingBalance + currentIncomeTotal;
+    const totalExpense = expenseTransactions.reduce((sum, t) => sum + t.amt, 0);
+    const balance = totalIncome - totalExpense;
+    
+    // EX type නම්, ගෙවීම් වල මූලාශ්‍ර කේත (S Codes) වෙන වෙනම ගණනය කරන්න
+    if (type === 'EX') {
+        expenseTransactions.forEach(tr => {
+            if (tr.source && CODE_INFO[tr.source]) {
+                if (!sourceCodesUsed[tr.source]) {
+                    sourceCodesUsed[tr.source] = {
+                        code: tr.source,
+                        name: CODE_INFO[tr.source],
+                        total: 0,
+                        transactions: []
+                    };
+                }
+                sourceCodesUsed[tr.source].total += tr.amt;
+                sourceCodesUsed[tr.source].transactions.push(tr);
+            }
+        });
+    }
+    
+    // IN type නම්, ලැබීම් වලින් ගෙවා ඇති EX කේත ගණනය කරන්න
+    if (type === 'IN') {
+        expenseTransactions.forEach(tr => {
+            if (tr.code && CODE_INFO[tr.code]) {
+                if (!expenseCodesUsed[tr.code]) {
+                    expenseCodesUsed[tr.code] = {
+                        code: tr.code,
+                        name: CODE_INFO[tr.code],
+                        total: 0,
+                        transactions: []
+                    };
+                }
+                expenseCodesUsed[tr.code].total += tr.amt;
+                expenseCodesUsed[tr.code].transactions.push(tr);
+            }
+        });
+        
+        incomeTransactions = [...openingTransactions, ...currentIncomeTransactions];
+    }
+    
+    document.getElementById('modalCodeTitle').innerHTML = 
+    '<span style="font-size: 15px; font-weight: bold;">' + 
+    code + ' - ' + CODE_INFO[code] + 
+    ' <span style="font-size: 10px; color: #666;">(' + (type === 'IN' ? 'ලැබීම්' : 'ගෙවීම්') + ')</span>' + 
+    '</span>';
+    
+    let html = '<div style="margin-bottom: 20px;">';
+    html += '<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 20px;">';
+    html += '<div style="background: #d4edda; padding: 12px; border-radius: 8px; text-align: center;">';
+    html += '<div style="font-size: 12px; color: #155724;">මුළු ලැබීම්</div>';
+    html += '<div style="font-size: 20px; font-weight: bold; color: green;">' + totalIncome.toLocaleString(undefined, {minimumFractionDigits: 2}) + '</div>';
+    html += '</div>';
+    html += '<div style="background: #f8d7da; padding: 12px; border-radius: 8px; text-align: center;">';
+    html += '<div style="font-size: 12px; color: #721c24;">මුළු ගෙවීම්</div>';
+    html += '<div style="font-size: 20px; font-weight: bold; color: red;">' + totalExpense.toLocaleString(undefined, {minimumFractionDigits: 2}) + '</div>';
+    html += '</div>';
+    html += '<div style="background: #d1ecf1; padding: 12px; border-radius: 8px; text-align: center;">';
+    html += '<div style="font-size: 12px; color: #0c5460;">ශේෂය</div>';
+    html += '<div style="font-size: 20px; font-weight: bold; color: ' + (balance >= 0 ? 'blue' : 'orange') + ';">' + balance.toLocaleString(undefined, {minimumFractionDigits: 2}) + '</div>';
+    html += '</div>';
+    html += '</div>';
+    
+    if (type === 'EX' && Object.keys(sourceCodesUsed).length > 0) {
+        html += '<h4 style="color: var(--primary); border-bottom: 1px solid var(--primary); padding-bottom: 3px; margin-top: 15px; font-size: 14px;">';
+        html += '<span style="background: var(--primary); color: white; padding: 2px 6px; border-radius: 3px; margin-right: 8px; font-size: 6px;">💰</span>';
+        html += 'වියදම් දරා ඇති ලැබීම් කේත (S Codes)';
+        html += '</h4>';
+        html += '<table style="width: 100%; border-collapse: collapse; margin-top: 8px; margin-bottom: 15px; font-size: 12px;">';
+        html += '<thead><tr style="background: #e8f5e9;">';
+        html += '<th style="padding: 6px; border: 1px solid #ddd; text-align: left; font-size: 11px;">ලැබීම් කේතය</th>';
+        html += '<th style="padding: 6px; border: 1px solid #ddd; text-align: left; font-size: 11px;">විස්තරය</th>';
+        html += '<th style="padding: 6px; border: 1px solid #ddd; text-align: right; font-size: 11px;">මුළු වියදම (රු.)</th>';
+        html += '<th style="padding: 6px; border: 1px solid #ddd; text-align: center; font-size: 11px;">ගනුදෙනු</th>';
+        html += '</tr></thead><tbody>';
+        
+        const sortedSourceCodes = Object.values(sourceCodesUsed).sort((a, b) => {
+            return S_CODES.indexOf(a.code) - S_CODES.indexOf(b.code);
+        });
+        
+        sortedSourceCodes.forEach(source => {
+            html += '<tr style="border-bottom: 1px solid #eee;">';
+            html += '<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: #2e7d32;">' + source.code + '</td>';
+            html += '<td style="padding: 8px; border: 1px solid #ddd;">' + source.name + '</td>';
+            html += '<td style="padding: 8px; border: 1px solid #ddd; text-align: right; font-weight: bold; color: #c62828;">';
+            html += source.total.toLocaleString(undefined, {minimumFractionDigits: 2});
+            html += '</td>';
+            html += '<td style="padding: 8px; border: 1px solid #ddd; text-align: center;">';
+            html += '<span style="background: #6c757d; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px;">';
+            html += source.transactions.length;
+            html += '</span></td></tr>';
+        });
+        
+        html += '</tbody><tfoot>';
+        html += '<tr style="background: #d4edda; font-weight: bold;">';
+        html += '<td colspan="2" style="padding: 10px; border: 1px solid #ddd; text-align: right;">මුළු වියදම:</td>';
+        html += '<td style="padding: 10px; border: 1px solid #ddd; text-align: right; color: #c62828; font-size: 1px;">';
+        html += Object.values(sourceCodesUsed).reduce((sum, s) => sum + s.total, 0).toLocaleString(undefined, {minimumFractionDigits: 2});
+        html += '</td>';
+        html += '<td style="padding: 10px; border: 1px solid #ddd; text-align: center;">';
+        html += expenseTransactions.length;
+        html += '</td></tr></tfoot></table>';
+    }
+    
+    if (type === 'IN' && Object.keys(expenseCodesUsed).length > 0) {
+        html += '<h4 style="color: var(--primary); border-bottom: 1px solid var(--primary); padding-bottom: 3px; margin-top: 15px;font-size: 14px;">';
+        html += '<span style="background: var(--primary); color: white; padding: 2px 6px; border-radius: 3px; margin-right: 8px;font-size: 12px;">💸</span>';
+        html += 'මෙම ලැබීම් කේතයෙන් ගෙවා ඇති වියදම් කේත (EX Codes)';
+        html += '</h4>';
+        html += '<table style="width: 100%; border-collapse: collapse; margin-top: 8px; margin-bottom: 15px;font-size: 12px;">';
+        html += '<thead><tr style="background: #fdeaea;">';
+        html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;font-size: 11px;">ගෙවීම් කේතය</th>';
+        html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;font-size: 11px;">විස්තරය</th>';
+        html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: right;font-size: 11px;">මුළු වියදම (රු.)</th>';
+        html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: center;font-size: 11px;">ගනුදෙනු</th>';
+        html += '</tr></thead><tbody>';
+        
+        const sortedExpenseCodes = Object.values(expenseCodesUsed).sort((a, b) => {
+            return EX_CODES.indexOf(a.code) - EX_CODES.indexOf(b.code);
+        });
+        
+        sortedExpenseCodes.forEach(expCode => {
+            html += '<tr style="border-bottom: 1px solid #eee;">';
+            html += '<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: #b71c1c;">' + expCode.code + '</td>';
+            html += '<td style="padding: 8px; border: 1px solid #ddd;">' + expCode.name + '</td>';
+            html += '<td style="padding: 8px; border: 1px solid #ddd; text-align: right; font-weight: bold; color: #c62828;">';
+            html += expCode.total.toLocaleString(undefined, {minimumFractionDigits: 2});
+            html += '</td>';
+            html += '<td style="padding: 8px; border: 1px solid #ddd; text-align: center;">';
+            html += '<span style="background: #6c757d; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px;">';
+            html += expCode.transactions.length;
+            html += '</span></td></tr>';
+        });
+        
+        html += '</tbody><tfoot>';
+        html += '<tr style="background: #f5c6cb; font-weight: bold;">';
+        html += '<td colspan="2" style="padding: 10px; border: 1px solid #ddd; text-align: right;">මුළු වියදම:</td>';
+        html += '<td style="padding: 10px; border: 1px solid #ddd; text-align: right; color: #c62828; font-size: 16px;">';
+        html += Object.values(expenseCodesUsed).reduce((sum, e) => sum + e.total, 0).toLocaleString(undefined, {minimumFractionDigits: 2});
+        html += '</td>';
+        html += '<td style="padding: 10px; border: 1px solid #ddd; text-align: center;">';
+        html += expenseTransactions.length;
+        html += '</td></tr></tfoot></table>';
+    }
+    
+    if (type === 'IN') {
+        html += '<h4 style="font-size: 13px;color: green; border-bottom: 2px solid #28a745; padding-bottom: 5px; margin-top: 20px;">';
+        html += '<span style="background: #28a745; color: white; padding: 3px 8px; border-radius: 4px; margin-right: 10px;">✔</span>';
+        html += 'ලැබීම් ගනුදෙනු';
+        html += '</h4>';
+        
+        if (incomeTransactions.length === 0) {
+            html += '<p style="text-align: center; color: #666; padding: 20px; background: #f8f9fa; border-radius: 8px;">ලැබීම් ගනුදෙනු කිසිවක් නැත</p>';
+        } else {
+            html += '<table style="width: 100%; border-collapse: collapse; margin-top: 10px;">';
+            html += '<thead><tr style="background: #d4edda;">';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;">දිනය</th>';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;">විස්තරය</th>';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;">ලදුපත් අංකය/පරාසය</th>';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;">ව්‍යාපෘතිය</th>';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: right;">මුදල (රු.)</th>';
+            html += '</tr></thead><tbody>';
+            
+            incomeTransactions.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(tr => {
+                let displayRef = tr.ref || '-';
+                
+                html += '<tr style="border-bottom: 1px solid #eee;">';
+                html += '<td style="padding: 8px; border: 1px solid #ddd;">' + tr.date + '</td>';
+                html += '<td style="padding: 8px; border: 1px solid #ddd;">' + tr.desc + '</td>';
+                html += '<td style="padding: 8px; border: 1px solid #ddd;">' + displayRef + '</td>';
+                html += '<td style="padding: 8px; border: 1px solid #ddd;">' + (tr.proj || '-') + '</td>';
+                html += '<td style="padding: 8px; border: 1px solid #ddd; text-align: right; font-weight: bold; color: green;">' + tr.amt.toLocaleString(undefined, {minimumFractionDigits: 2}) + '</td>';
+                html += '</tr>';
+            });
+            
+            html += '</tbody><tfoot>';
+            html += '<tr style="background: #c3e6cb; font-weight: bold;">';
+            html += '<td colspan="4" style="padding: 10px; border: 1px solid #ddd; text-align: right;">ලැබීම් මුළු එකතුව:</td>';
+            html += '<td style="padding: 10px; border: 1px solid #ddd; text-align: right; color: green;">' + totalIncome.toLocaleString(undefined, {minimumFractionDigits: 2}) + '</td>';
+            html += '</tr></tfoot></table>';
+        }
+    }
+    
+    if (type === 'EX') {
+        html += '<h4 style="font-size: 13px;color: #dc3545; border-bottom: 2px solid #dc3545; padding-bottom: 5px; margin-top: 20px;">';
+        html += '<span style="background: #dc3545; color: white; padding: 3px 8px; border-radius: 4px; margin-right: 10px;">✗</span>';
+        html += 'ගෙවීම් ගනුදෙනු';
+        html += '</h4>';
+        
+        if (expenseTransactions.length === 0) {
+            html += '<p style="text-align: center; color: #666; padding: 20px; background: #f8f9fa; border-radius: 8px;">ගෙවීම් ගනුදෙනු කිසිවක් නැත</p>';
+        } else {
+            html += '<table style="width: 100%; border-collapse: collapse; margin-top: 10px;">';
+            html += '<thead><tr style="background: #f8d7da;">';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;">දිනය</th>';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;">විස්තරය</th>';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;">වවුචර් අංකය</th>';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;">ව්‍යාපෘතිය</th>';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: left;">මූලාශ්‍ර (S Code)</th>';
+            html += '<th style="padding: 10px; border: 1px solid #ddd; text-align: right;">මුදල (රු.)</th>';
+            html += '</tr></thead><tbody>';
+            
+            expenseTransactions.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(tr => {
+                html += '<tr style="border-bottom: 1px solid #eee;">';
+                html += '<td style="padding: 8px; border: 1px solid #ddd;">' + tr.date + '</td>';
+                html += '<td style="padding: 8px; border: 1px solid #ddd;">' + tr.desc + '</td>';
+                html += '<td style="padding: 8px; border: 1px solid #ddd;">' + (tr.vouch || tr.ref || '-') + '</td>';
+                html += '<td style="padding: 8px; border: 1px solid #ddd;">' + (tr.proj || '-') + '</td>';
+                html += '<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: #2e7d32;">';
+                html += (tr.source || '-');
+                if (tr.source && CODE_INFO[tr.source]) {
+                    html += '<br><small style="color: #666;">' + CODE_INFO[tr.source] + '</small>';
+                }
+                html += '</td>';
+                html += '<td style="padding: 8px; border: 1px solid #ddd; text-align: right; font-weight: bold; color: red;">' + tr.amt.toLocaleString(undefined, {minimumFractionDigits: 2}) + '</td>';
+                html += '</tr>';
+            });
+            
+            html += '</tbody><tfoot>';
+            html += '<tr style="background: #f5c6cb; font-weight: bold;">';
+            html += '<td colspan="5" style="padding: 10px; border: 1px solid #ddd; text-align: right;">ගෙවීම් මුළු එකතුව:</td>';
+            html += '<td style="padding: 10px; border: 1px solid #ddd; text-align: right; color: red;">' + totalExpense.toLocaleString(undefined, {minimumFractionDigits: 2}) + '</td>';
+            html += '</tr></tfoot></table>';
+        }
+    }
+    
+    html += '<div style="background: #e8f4f8; padding: 15px; border-radius: 8px; margin-top: 30px; border-left: 5px solid #17a2b8;">';
+    html += '<div style="display: flex; justify-content: space-between; align-items: center;">';
+    html += '<div>';
+    html += '<div style="font-size: 14px; color: #0c5460;">කේතය: <strong>' + code + '</strong></div>';
+    html += '<div style="font-size: 14px; color: #0c5460; margin-top: 5px;">' + CODE_INFO[code] + '</div>';
+    html += '</div>';
+    html += '<div style="text-align: right;">';
+    html += '<div style="font-size: 18px; font-weight: bold; color: ' + (balance >= 0 ? 'blue' : 'orange') + ';">';
+    html += 'අවසාන ශේෂය: ' + balance.toLocaleString(undefined, {minimumFractionDigits: 2});
+    html += '</div>';
+    html += '<div style="font-size: 12px; color: #666; margin-top: 5px;">';
+    html += '(ලැබීම් ' + totalIncome.toLocaleString(undefined, {minimumFractionDigits: 2}) + ' - ගෙවීම් ' + totalExpense.toLocaleString(undefined, {minimumFractionDigits: 2}) + ')';
+    html += '</div>';
+    html += '</div></div></div></div>';
+    
+    document.getElementById('codeDetailsContent').innerHTML = html;
+    document.getElementById('codeDetailsModal').style.display = 'flex';
+}
+
+function closeCodeDetails() {
+    document.getElementById('codeDetailsModal').style.display = 'none';
+}
+
+// ============ අලුත් කරන ලද generateReport ශ්‍රිතය ============
+function generateReport() {
+    const allData = getAllExpenseDataForReports();
+    const db = getData();
+    const from = document.getElementById('repFrom').value;
+    const to = document.getElementById('repTo').value;
+    const selectedCode = document.getElementById('repFilter').value; 
+    let html = '';
+    
+    let filtered = allData.filter(r => !r.isOp && (!from || r.date >= from) && (!to || r.date <= to));
+
+    if (currentReport === 'CASHBOOK') {
+        // ... (මුදල් පොත සඳහා කේතය - වෙනසක් නැත) ...
+        document.getElementById('report-header-title').innerText = "මුදල් පොත";
+        document.getElementById('report-header-title').style.fontSize = "24px";
+        document.getElementById('report-header-title').style.fontWeight = "bold";
+        document.getElementById('report-header-title').style.color = "#0984e3";
+
+        let allTransactions = db.filter(r => !r.isOp).sort((a, b) => new Date(a.date) - new Date(b.date));
+        let initialOpBal = db.filter(r => r.isOp).reduce((a, c) => a + c.amt, 0);
+        
+        let runningBal = initialOpBal;
+        let monthlyData = {};
+
+        allTransactions.forEach(r => {
+            let monthKey = r.date.substring(0, 7);
+            if (!monthlyData[monthKey]) monthlyData[monthKey] = [];
+            monthlyData[monthKey].push(r);
+        });
+
+        html = `<table><thead><tr>
+                    <th>දිනය</th>
+                    <th>විස්තරය</th>
+                    <th>ලදුපත්/වවුචර්</th>
+                    <th>චෙක්පත් අංකය</th>
+                    <th>ලැබීම් (+)</th>
+                    <th>ගෙවීම් (-)</th>
+                    <th>ශේෂය</th>
+                </tr></thead><tbody>`;
+
+        Object.keys(monthlyData).sort().forEach(month => {
+            let monthInTotal = 0;
+            let monthOutTotal = 0;
+            let startBal = runningBal;
+
+            let isWithinRange = (!from || month >= from.substring(0, 7)) && (!to || month <= to.substring(0, 7));
+
+            if (isWithinRange) {
+                html += `<tr style="background:#e3f2fd; font-weight:bold;">
+                            <td colspan="6">ඉදිරියට ගෙන ආ ශේෂය (Balance B/F) - ${month}</td>
+                            <td style="text-align:right">${startBal.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                        </tr>`;
+            }
+
+            monthlyData[month].forEach(r => {
+                let amt = r.amt || 0;
+                if (r.type === 'IN') {
+                    runningBal += amt;
+                    monthInTotal += amt;
+                } else {
+                    runningBal -= amt;
+                    monthOutTotal += amt;
+                }
+
+                if (isWithinRange) {
+                    if ((!from || r.date >= from) && (!to || r.date <= to)) {
+                        let displayRef = r.type === 'IN' ? (r.ref || '-') : (r.vouch || '-');
+                        
+                        html += `<tr>
+                                    <td>${r.date ? r.date.split('T')[0] : ''}</td>
+                                    <td>${r.desc}</td>
+                                    <td>${displayRef}</td>
+                                    <td>${r.type === 'EX' ? (r.ref || '-') : '-'}</td>
+                                    <td style="text-align:right; color:green;">${r.type === 'IN' ? amt.toLocaleString(undefined, {minimumFractionDigits: 2}) : '-'}</td>
+                                    <td style="text-align:right; color:red;">${r.type === 'EX' ? amt.toLocaleString(undefined, {minimumFractionDigits: 2}) : '-'}</td>
+                                    <td style="text-align:right; font-weight:bold">${runningBal.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                                </tr>`;
+                    }
+                }
+            });
+
+            if (isWithinRange) {
+                html += `<tr style="background:#fff3e0; font-weight:bold; border-top: 1px solid #333;">
+                            <td colspan="4" style="text-align:right">මාසික එකතුව සහ ශේෂය:</td>
+                            <td style="text-align:right; color:green;">${monthInTotal.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                            <td style="text-align:right; color:red;">${monthOutTotal.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                            <td style="text-align:right"></td>
+                        </tr>
+                        <tr style="background:#f0f0f0; font-weight:bold;">
+                            <td colspan="6" style="text-align:right">පහළට ගෙන ගිය ශේෂය (Balance C/D):</td>
+                            <td style="text-align:right"> ${runningBal.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                        </tr>
+                        <tr style="height:20px;"><td colspan="7" style="border:none;"></td></tr>`;
+            }
+        });
+
+        html += '</tbody></table>';
+        document.getElementById('report-content').innerHTML = html;
+    } 
+    else if (currentReport === 'IN' || currentReport === 'EX') {
+        // ... (ලැබීම්/ගෙවීම් විශ්ලේෂණ වාර්තා සඳහා කේතය - PC සඳහා පමණක් වෙනස් කර ඇත) ...
+        document.getElementById('report-header-title').innerText = 
+            (currentReport === 'IN' ? "ලැබීම් විශ්ලේෂණ වාර්තාව" : "ගෙවීම් විශ්ලේෂණ වාර්තාව") + 
+            (selectedCode !== 'ALL' ? ` - ${selectedCode}` : "");
+     
+        // codes array එක නිවැරදිව සකස් කිරීම - PC code එක ඇතුළත් කරන්න
+        let codes;
+        if (currentReport === 'EX' && selectedCode === 'ALL') {
+    // EX_CODES array එකට PC ඇතුළත්දැයි පරීක්ෂා කරන්න
+    if (EX_CODES.includes('PC')) {
+        // දැනටමත් PC ඇති නිසා EX_CODES පමණක් භාවිතා කරන්න
+        codes = EX_CODES;
+    } else {
+        // PC නැත්නම් එකතු කරන්න (ආරක්ෂිත පියවරක් ලෙස)
+        codes = [...EX_CODES, 'PC'];
+    }
+	} else if (selectedCode === 'ALL') {
+    codes = (currentReport === 'IN' ? S_CODES : EX_CODES);
+	} else {
+    codes = [selectedCode];
+	}
+     
+        const openingBalances = {};
+        codes.forEach(code => {
+            const openingAmt = allData.filter(r => r.isOp && r.source === code)
+                .reduce((sum, r) => sum + r.amt, 0);
+            openingBalances[code] = openingAmt;
+        });
+      
+        html = `
+        <table style="width: 100%; border-collapse: collapse; border: 2px solid ${currentReport === 'IN' ? '#28a745' : '#dc3545'}; margin-bottom: 30px;">
+            <thead>
+                <tr style="background: ${currentReport === 'IN' ? '#28a745' : '#dc3545'}; color: white;">
+                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">කේතය</th>
+                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">විස්තරය</th>
+                    <th style="padding: 12px; border: 1px solid #ddd; text-align: right;">ආරම්භක ශේෂය (රු.)</th>
+                    <th style="padding: 12px; border: 1px solid #ddd; text-align: center;">ගනුදෙනු ගණන</th>
+                    <th style="padding: 12px; border: 1px solid #ddd; text-align: right;">මුළු ${currentReport === 'IN' ? 'ලැබීම්' : 'ගෙවීම්'} (රු.)</th>
+                    <th style="padding: 12px; border: 1px solid #ddd; text-align: right;">මුළු එකතුව (රු.)</th>
+                    <th style="padding: 12px; border: 1px solid #ddd; text-align: center;">ක්‍රියා</th>
+                </tr>
+            </thead>
+            <tbody>`;
+        
+        let grandTotal = 0;
+        let totalTransactions = 0;
+        let totalOpening = 0;
+        
+        codes.forEach(code => {
+            let transactions = [];
+            let codeTotal = 0;
+            let transactionCount = 0;
+            let codeDescription = CODE_INFO[code] || (code === 'PC' ? 'සුළු මුදල් අග්‍රිමය (Petty Cash Imprest)' : '');
+            
+            // ============ වෙනස් කරන ලද PC කේතය සඳහා විශේෂ සැලකිල්ල ============
+            if (currentReport === 'EX' && code === 'PC') {
+                // PC code එක සඳහා පෙන්වන්නේ ස්ථාවර මුදල (float) පමණයි - ප්‍රතිපූරණ ගනුදෙනු නොවේ
+                const floatAmount = loadPettyFloat(); // ගබඩා කර ඇති float එක ගන්න
+                
+                codeTotal = floatAmount; // float එක පෙන්වන්න
+                transactionCount = 1; // එක් "virtual" ගනුදෙනුවක් ලෙස පෙන්වන්න
+                
+                // වෙනත් ගනුදෙනු PC code එකට ඇතුළත් නොකරන්න
+                // මෙය replenishment ගනුදෙනු REx වලට මාරු කළ පසු ද්වි ගණනය වීම වළක්වයි
+            } else {
+                // අනෙකුත් කේත සඳහා සාමාන්‍ය පරිදි ගනුදෙනු ගණනය කරන්න
+                transactions = allData.filter(r => 
+                    r.type === currentReport && 
+                    r.code === code && 
+                    (!from || r.date >= from) && 
+                    (!to || r.date <= to)
+                );
+                codeTotal = transactions.reduce((sum, t) => sum + t.amt, 0);
+                transactionCount = transactions.length;
+            }
+            // ============ PC කේතය සඳහා වෙනස් කිරීම අවසානය ============
+            
+            const openingAmt = openingBalances[code] || 0;
+            
+            const effectiveOpeningAmt = currentReport === 'IN' ? openingAmt : 0;
+            const grandTotalForCode = currentReport === 'IN' ? (effectiveOpeningAmt + codeTotal) : codeTotal;
+            
+            grandTotal += grandTotalForCode;
+            totalTransactions += transactionCount;
+            totalOpening += effectiveOpeningAmt;
+            
+            html += `
+            <tr style="border-bottom: 1px solid #eee; ${transactionCount > 0 ? 'background: #f9f9f9;' : ''}">
+                <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; color: var(--primary);">${code}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">${codeDescription}</td>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: right; color: #006400; font-weight: bold;">
+                    ${effectiveOpeningAmt > 0 ? effectiveOpeningAmt.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">
+                    <span style="display: inline-block; background: ${transactionCount > 0 ? (currentReport === 'IN' ? '#28a745' : '#dc3545') : '#6c757d'}; color: white; padding: 3px 8px; border-radius: 12px; font-size: 12px;">
+                        ${transactionCount}
+                    </span>
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: right; font-weight: bold; color: ${currentReport === 'IN' ? 'green' : 'red'};">${codeTotal > 0 ? codeTotal.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: right; font-weight: bold; color: #1b5e20; background: #e8f5e9;">
+                    ${grandTotalForCode > 0 ? grandTotalForCode.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">
+                    ${code !== 'PC' ? `
+                    <button onclick="viewCodeDetails('${code}', '${currentReport}')" 
+                        style="background: ${currentReport === 'IN' ? 'var(--success)' : 'var(--danger)'}; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto; height: 36px; min-width: 100px; transition: all 0.3s;"
+                        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 3px 10px rgba(0,0,0,0.15)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                        <span>🔍</span> විස්තර
+                    </button>
+                    ` : `
+                    <span style="color: #999; font-size: 11px;">ස්ථාවර මුදල</span>
+                    `}
+                </td>
+            </tr>`;
+        });
+        
+        html += `
+            </tbody>
+            <tfoot>
+                <tr style="background: ${currentReport === 'IN' ? '#d4edda' : '#f8d7da'}; font-weight: bold;">
+                    <td colspan="2" style="padding: 12px; border: 1px solid #ddd; text-align: right;">මුළු එකතුව:</td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: right; color: #006400;">
+                        ${totalOpening > 0 ? totalOpening.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}
+                    </td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">
+                        <span style="display: inline-block; background: #343a40; color: white; padding: 4px 10px; border-radius: 12px;">
+                            ${totalTransactions}
+                        </span>
+                    </td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: right; color: ${currentReport === 'IN' ? 'green' : 'red'};">
+                        ${(grandTotal - totalOpening) > 0 ? (grandTotal - totalOpening).toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}
+                    </td>
+                    <td style="padding: 12px; border: 1px solid #ddd; text-align: right; color: #1b5e20; font-size: 18px; background: #c8e6c9;">
+                        ${grandTotal > 0 ? grandTotal.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}
+                    </td>
+                    <td style="padding: 12px; border: 1px solid #ddd;"></td>
+                </tr>
+            </tfoot>
+        </table>`;
+                
+        document.getElementById('report-content').innerHTML = html;
+    }
+    
+    else if(currentReport === 'BANK') {
+        // ... (බැංකු සැසඳුම් ප්‍රකාශය සඳහා කේතය - වෙනසක් නැත) ...
+        document.getElementById('report-header-title').innerText = "බැංකු සැසඳුම් ප්‍රකාශය";
+        let bankStmtBal = parseAmount(document.getElementById('bankStmtInput').value || 0);
+        
+        let uncreditedList = db.filter(r => 
+            r.type === 'IN' && 
+            r.vouch && r.vouch.trim() !== '' &&
+            r.isOp !== true &&
+            (clearedStatus[r.id] || 'Pending') === 'Pending' &&
+            (!from || r.date >= from) && 
+            (!to || r.date <= to)
+        );
+        let totalUncredited = uncreditedList.reduce((a, b) => a + b.amt, 0);
+
+        let unpresentedList = db.filter(r => 
+            r.type === 'EX' && 
+            r.ref && r.ref.trim() !== '' &&
+            (clearedStatus[r.id] || 'Pending') === 'Pending' &&
+            (!from || r.date >= from) && 
+            (!to || r.date <= to)
+        );
+        let totalUnpresented = unpresentedList.reduce((a, b) => a + b.amt, 0);
+
+        let adjustedBalance = bankStmtBal + totalUncredited - totalUnpresented;
+
+        html = `
+            <div style="background: #ffffff; padding: 20px; border: 2px solid #333; border-radius: 5px; color: #000;">
+                <h3 style="text-align:center; text-decoration: underline;">බැංකු සැසඳුම් ප්‍රකාශය - ${to || 'අද දිනට'}</h3>
+                <table style="width:100%; border-collapse: collapse; margin-top: 20px;">
+                    <tr>
+                        <td style="padding: 8px;"><b>බැංකු ප්‍රකාශය අනුව ශේෂය</b></td>
+                        <td style="text-align:right; padding: 8px;"><b> ${bankStmtBal > 0 ? bankStmtBal.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}</b></td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="2" style="padding: 8px; color: #1b5e20;">
+                            <b>එකතු කිරීම:</b> නිශ්කාෂණය නොවූ චෙක්පත් ලැබීම් (Uncredited Cheque Deposits)
+                        </td>
+                    </tr>`;
+        
+        if (uncreditedList.length > 0) {
+            uncreditedList.sort((a,b) => new Date(b.date) - new Date(a.date)).forEach(r => {
+                html += `<tr>
+                    <td style="padding-left:40px; font-size: 0.9em;">
+                        📅 ${r.date.split('T')[0]} - ${r.desc}<br>
+                        <span style="color: #666; font-size: 0.85em;">චෙක්පත් අංකය: ${r.vouch || '-'} | ලදුපත් අංකය: ${r.ref || '-'}</span>
+                        <span style="color: #f39c12; margin-left: 10px; font-size: 0.85em;">(Pending)</span>
+                    </td>
+                    <td style="text-align:right; padding-right: 20px; font-weight: bold; color: #27ae60;">
+                        + ${r.amt > 0 ? r.amt.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}
+                    </td>
+                </tr>`;
+            });
+        } else {
+            html += `<tr>
+                <td style="padding-left:40px; font-size: 0.9em; color: #666;">නිශ්කාෂණය නොවූ චෙක්පත් ලැබීම් නැත</td>
+                <td style="text-align:right; padding-right: 20px;">0.00</td>
+            </tr>`;
+        }
+
+        html += `<tr>
+                    <td style="padding-left:80px;"><b>මුළු නිශ්කාෂණය නොවූ චෙක්පත් ලැබීම් එකතුව</b></td>
+                    <td style="text-align:right; border-top:1px solid #000; padding: 8px; font-weight: bold; color: #27ae60;">
+                        + ${totalUncredited > 0 ? totalUncredited.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}
+                    </td>
+                </tr>
+                <tr style="background:#f0f0f0;">
+                    <td style="padding: 8px;"><b>උප එකතුව (Bank Balance + Uncredited Cheques)</b></td>
+                    <td style="text-align:right; padding: 8px;"><b> 
+                        ${(bankStmtBal + totalUncredited) > 0 ? (bankStmtBal + totalUncredited).toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}
+                    </b></td>
+                </tr>
+                
+                <tr>
+                    <td colspan="2" style="padding: 8px; color: #b71c1c;">
+                        <b>අඩු කිරීම:</b> ඉදිරිපත් නොවූ චෙක්පත් (Unpresented Cheques)
+                    </td>
+                </tr>`;
+
+        if (unpresentedList.length > 0) {
+            unpresentedList.sort((a,b) => new Date(b.date) - new Date(a.date)).forEach(r => {
+                html += `<tr>
+                    <td style="padding-left:40px; font-size: 0.9em;">
+                        📅 ${r.date.split('T')[0]} - ${r.desc}<br>
+                        <span style="color: #666; font-size: 0.85em;">චෙක්පත් අංකය: ${r.ref || '-'} | වවුචර් අංකය: ${r.vouch || '-'}</span>
+                        <span style="color: #f39c12; margin-left: 10px; font-size: 0.85em;">(Pending)</span>
+                    </td>
+                    <td style="text-align:right; padding-right: 20px; font-weight: bold; color: #c0392b;">
+                        - ${r.amt > 0 ? r.amt.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}
+                    </td>
+                </tr>`;
+            });
+        } else {
+            html += `<tr>
+                <td style="padding-left:40px; font-size: 0.9em; color: #666;">ඉදිරිපත් නොවූ චෙක්පත් නැත</td>
+                <td style="text-align:right; padding-right: 20px;">0.00</td>
+            </tr>`;
+        }
+
+        html += `<tr>
+                    <td style="padding-left:80px;"><b>මුළු ඉදිරිපත් නොකළ චෙක්පත් එකතුව</b></td>
+                    <td style="text-align:right; border-top:1px solid #000; padding: 8px; font-weight: bold; color: #c0392b;">
+                        - ${totalUnpresented > 0 ? totalUnpresented.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}
+                    </td>
+                </tr>
+                <tr style="border-bottom: 4px double #000; background: #fff8e1;">
+                    <td style="padding: 12px;"><b style="font-size:1.2em;">මුදල් පොතේ ශේෂය (Cash Book Balance)</b></td>
+                    <td style="text-align:right; padding: 12px;"><b style="font-size:1.2em; color: #1b5e20;"> 
+                        ${adjustedBalance > 0 ? adjustedBalance.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}
+                    </b></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="padding: 10px; text-align: right; font-size: 0.85em; color: #666; border-top: 1px dashed #999;">
+                        <i class="fas fa-calculator"></i> ගණනය කිරීම: බැංකු ශේෂය ${bankStmtBal.toLocaleString(undefined, {minimumFractionDigits: 2})} 
+                        + නිශ්කාෂණය නොවූ චෙක්පත් ලැබීම් ${totalUncredited.toLocaleString(undefined, {minimumFractionDigits: 2})} 
+                        - ඉදිරිපත් නොවූ චෙක්පත් ${totalUnpresented.toLocaleString(undefined, {minimumFractionDigits: 2})}
+                    </td>
+                </tr>
+            </table>
+        </div>`;
+
+        if(userRole === 'ADMIN' || userRole === 'STAFF') {
+            html += `
+            <div class="no-print" style="margin-top:40px;">
+                <hr style="border: 1px solid #1b5e20;">
+                <h4 style="color: var(--primary); display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-money-check-alt"></i> චෙක්පත් තත්ත්වය යාවත්කාලීන කරන්න (Pending Cheques Only)
+                </h4>
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <p style="margin: 0; font-size: 0.95em; color: #1b5e20;">
+                        <i class="fas fa-info-circle"></i> 
+                        මෙහි පෙන්වන්නේ <strong>Pending</strong> තත්ත්වයේ පවතින චෙක්පත් ගනුදෙනු පමණි.
+                    </p>
+                </div>
+                <table class="q-table">
+                    <thead>
+                        <tr>
+                            <th>දිනය</th>
+                            <th>විස්තරය</th>
+                            <th>චෙක්පත් අංකය</th>
+                            <th>වවුචර් අංකය</th>
+                            <th>මුදල (රු.)</th>
+                            <th>ගෙවීම් කේතය</th>
+                            <th>මූලාශ්‍ර අරමුදල</th>
+                            <th>තත්ත්වය</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+            let pendingCheques = db.filter(r => 
+                r.type === 'EX' && 
+                r.ref && r.ref.trim() !== '' &&
+                (clearedStatus[r.id] || 'Pending') === 'Pending' &&
+                (!from || r.date >= from) && 
+                (!to || r.date <= to)
+            );
+
+            if (pendingCheques.length > 0) {
+                pendingCheques.sort((a,b) => new Date(b.date) - new Date(a.date)).forEach(r => {
+                    let status = clearedStatus[r.id] || 'Pending';
+                    html += `<tr>
+                        <td>${r.date.split('T')[0]}</td>
+                        <td>${r.desc}</td>
+                        <td><span style="background: #f0f0f0; padding: 3px 8px; border-radius: 4px; font-family: monospace;">${r.ref || '-'}</span></td>
+                        <td>${r.vouch || '-'}</td>
+                        <td style="text-align: right; font-weight: bold; color: #c0392b;">${r.amt > 0 ? r.amt.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}</td>
+                        <td>${r.code || '-'}</td>
+                        <td>${r.source || '-'}</td>
+                        <td>
+                            <select class="status-select ${status === 'Cleared' ? 'status-cleared' : 'status-pending'}" 
+                                    onchange="updateClearedChequeStatus('${r.id}', this.value, '${r.date}', '${r.ref}', '${r.amt}', '${r.desc}')"
+                                    style="padding: 6px; border-radius: 4px; font-size: 12px;">
+                                <option value="Pending" ${status === 'Pending' ? 'selected' : ''}>⏳ Pending</option>
+                                <option value="Cleared" ${status === 'Cleared' ? 'selected' : ''}>✅ Cleared</option>
+                            </select>
+                        </td>
+                    </tr>`;
+                });
+            } else {
+                html += `<tr>
+                    <td colspan="8" style="text-align: center; padding: 30px; color: #666;">
+                        <i class="fas fa-check-circle" style="color: #27ae60; font-size: 30px; margin-bottom: 10px;"></i><br>
+                        <span style="font-size: 16px; font-weight: bold;">Pending තත්ත්වයේ චෙක්පත් කිසිවක් නැත</span><br>
+                        <span style="font-size: 14px;">සියලුම චෙක්පත් නිශ්කාෂණය වී ඇත.</span>
+                    </td>
+                </tr>`;
+            }
+
+            html += `</tbody></table></div>`;
+        } else {
+            html += `
+            <div style="margin-top:40px;">
+                <hr style="border: 1px solid #1b5e20;">
+                <h4 style="color: var(--primary);"><i class="fas fa-money-check-alt"></i> චෙක්පත් තත්ත්වය (Pending Cheques)</h4>
+                <div style="background: #fff3cd; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                    <p style="margin: 0; font-size: 0.9em; color: #856404;">
+                        <i class="fas fa-info-circle"></i> පෙන්වනු ලබන්නේ Pending තත්ත්වයේ චෙක්පත් පමණි
+                    </p>
+                </div>
+                <table class="q-table">
+                    <thead>
+                        <tr>
+                            <th>දිනය</th>
+                            <th>විස්තරය</th>
+                            <th>චෙක්පත් අංකය</th>
+                            <th>වවුචර් අංකය</th>
+                            <th>මුදල (රු.)</th>
+                            <th>ගෙවීම් කේතය</th>
+                            <th>මූලාශ්‍ර අරමුදල</th>
+                            <th>තත්ත්වය</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+            let pendingCheques = db.filter(r => 
+                r.type === 'EX' && 
+                r.ref && r.ref.trim() !== '' &&
+                (clearedStatus[r.id] || 'Pending') === 'Pending' &&
+                (!from || r.date >= from) && 
+                (!to || r.date <= to)
+            );
+
+            if (pendingCheques.length > 0) {
+                pendingCheques.sort((a,b) => new Date(b.date) - new Date(a.date)).forEach(r => {
+                    html += `<tr>
+                        <td>${r.date.split('T')[0]}</td>
+                        <td>${r.desc}</td>
+                        <td><span style="background: #f0f0f0; padding: 3px 8px; border-radius: 4px;">${r.ref || '-'}</span></td>
+                        <td>${r.vouch || '-'}</td>
+                        <td style="text-align: right; font-weight: bold; color: #c0392b;">${r.amt > 0 ? r.amt.toLocaleString(undefined, {minimumFractionDigits: 2}) : '0.00'}</td>
+                        <td>${r.code || '-'}</td>
+                        <td>${r.source || '-'}</td>
+                        <td><span class="status-badge status-pending" style="background: #fff3cd; color: #856404; padding: 5px 10px; border-radius: 20px;">⏳ Pending</span></td>
+                    </tr>`;
+                });
+            } else {
+                html += `<tr>
+                    <td colspan="8" style="text-align: center; padding: 20px; color: #666;">
+                        <i class="fas fa-check-circle" style="color: #27ae60;"></i> 
+                        Pending තත්ත්වයේ චෙක්පත් කිසිවක් නැත.
+                    </td>
+                </tr>`;
+            }
+            html += `</tbody></table></div>`;
+        }
+    }
+    // ============ ප්‍රතිපාදන හා ගෙවීම් සැසඳුම (VARIANCE) - නවීකරණය කරන ලදී ============
+    else if (currentReport === 'VARIANCE') {
+        document.getElementById('report-header-title').innerText = "ප්‍රතිපාදන හා ගෙවීම් සැසඳුම";
+        
+        html = '<table class="q-table" style="width:100%; border-collapse:collapse;">';
+        html += '<thead><tr style="background:var(--primary); color:white;">';
+        html += '<th>ගෙවීම් කේතය</th>';
+        html += '<th>විස්තරය</th>';
+        html += '<th style="text-align:right;">වාර්ෂික ප්‍රතිපාදන (රු.)</th>';
+        html += '<th style="text-align:right;">සැබෑ ගෙවීම් (රු.)</th>';
+        html += '<th style="text-align:right;">ශේෂය (රු.)</th>';
+        html += '<th style="text-align:center;">භාවිත %</th>';
+        html += '</tr></thead><tbody>';
+        
+        let totalAlloc = 0, totalExpense = 0;
+        let anyData = false;
+        
+        EX_CODES.forEach(code => {
+            const expense = allData.filter(r => r.type === 'EX' && r.code === code && (!from || r.date >= from) && (!to || r.date <= to))
+                                   .reduce((sum, r) => sum + r.amt, 0);
+            const alloc = allocations[code] || 0;
+            const balance = alloc - expense;
+            const perc = alloc > 0 ? ((expense / alloc) * 100).toFixed(1) : (expense > 0 ? '100' : '0');
+            
+            if (expense > 0 || alloc > 0) anyData = true;
+            
+            totalAlloc += alloc;
+            totalExpense += expense;
+            
+            html += `<tr>
+                <td><b>${code}</b></td>
+                <td>${CODE_INFO[code]}</td>
+                <td style="text-align:right;">${alloc > 0 ? alloc.toLocaleString(undefined, {minimumFractionDigits: 2}) : '-'}</td>
+                <td style="text-align:right; color:red;">${expense > 0 ? expense.toLocaleString(undefined, {minimumFractionDigits: 2}) : '-'}</td>
+                <td style="text-align:right; font-weight:bold; color:${balance >= 0 ? '#1b5e20' : '#c0392b'};">${balance !== 0 ? balance.toLocaleString(undefined, {minimumFractionDigits: 2}) : '-'}</td>
+                <td style="text-align:center;">${perc}%</td>
+            </tr>`;
+        });
+        
+        if (!anyData) {
+            html += `<tr><td colspan="6" style="text-align:center; padding:20px;">⚠️ මෙම කාල සීමාව තුළ දත්ත නොමැත</td></tr>`;
+        }
+        
+        html += `<tr class="q-total-row" style="background:#f0f0f0; font-weight:bold;">
+            <td colspan="2" style="text-align:right;">මුළු එකතුව</td>
+            <td style="text-align:right;">${totalAlloc > 0 ? totalAlloc.toLocaleString(undefined, {minimumFractionDigits:2}) : '-'}</td>
+            <td style="text-align:right; color:red;">${totalExpense > 0 ? totalExpense.toLocaleString(undefined, {minimumFractionDigits:2}) : '-'}</td>
+            <td style="text-align:right;">${(totalAlloc - totalExpense).toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+            <td style="text-align:center;"></td>
+        </tr>`;
+        html += '</tbody></table>';
+        
+        document.getElementById('report-content').innerHTML = html;
+    }
+    // ============ ප්‍රතිපාදන හා ලැබීම් සැසඳුම (BUDGET_VS_INCOME) - නවීකරණය කරන ලදී ============
+    else if (currentReport === 'BUDGET_VS_INCOME') {
+        document.getElementById('report-header-title').innerText = "ප්‍රතිපාදන හා ලැබීම් සැසඳුම";
+        
+        html = '<table class="q-table" style="width:100%; border-collapse:collapse;">';
+        html += '<thead><tr style="background:var(--primary); color:white;">';
+        html += '<th>ලැබීම් කේතය</th>';
+        html += '<th>විස්තරය</th>';
+        html += '<th style="text-align:right;">වාර්ෂික ප්‍රතිපාදන (රු.)</th>';
+        html += '<th style="text-align:right;">සැබෑ ලැබීම් (රු.)</th>';
+        html += '<th style="text-align:right;">ශේෂය (රු.)</th>';
+        html += '<th style="text-align:center;">භාවිත %</th>';
+        html += '</tr></thead><tbody>';
+        
+        let totalBudget = 0;
+        let totalIncome = 0;
+        let anyData = false;
+        
+        S_CODES.forEach(code => {
+            // ලැබීම් ගණනය කිරීම
+            const incomeTransactions = allData.filter(r => 
+                r.type === 'IN' && 
+                (r.code === code || r.source === code) && 
+                (!from || r.date >= from) && 
+                (!to || r.date <= to)
+            );
+            const income = incomeTransactions.reduce((sum, r) => sum + r.amt, 0);
+            const transactionCount = incomeTransactions.length;
+            
+            // ලැබීම් කේත සඳහා ප්‍රතිපාදන (S Codes වලට allocations තිබේ නම්)
+            const budget = allocations[code] || 0;
+            const balance = budget - income; // ඉතිරි ප්‍රතිපාදන
+            const perc = budget > 0 ? ((income / budget) * 100).toFixed(1) : (income > 0 ? '100' : '0');
+            
+            if (income > 0 || budget > 0 || transactionCount > 0) anyData = true;
+            
+            totalBudget += budget;
+            totalIncome += income;
+            
+            html += `<tr>
+                <td><b>${code}</b></td>
+                <td>${CODE_INFO[code]}</td>
+                <td style="text-align:right;">${budget > 0 ? budget.toLocaleString(undefined, {minimumFractionDigits:2}) : '-'}</td>
+                <td style="text-align:right; color:green;">${income > 0 ? income.toLocaleString(undefined, {minimumFractionDigits:2}) : '-'}</td>
+                <td style="text-align:right; font-weight:bold; color:${balance >= 0 ? '#1b5e20' : '#c0392b'};">${balance !== 0 ? balance.toLocaleString(undefined, {minimumFractionDigits:2}) : '-'}</td>
+                <td style="text-align:center;">${perc}%</td>
+            </tr>`;
+        });
+        
+        if (!anyData) {
+            html += `<tr><td colspan="6" style="text-align:center; padding:20px;">⚠️ මෙම කාල සීමාව තුළ දත්ත නොමැත</td></tr>`;
+        }
+        
+        html += `<tr class="q-total-row" style="background:#f0f0f0; font-weight:bold;">
+            <td colspan="2" style="text-align:right;">මුළු එකතුව</td>
+            <td style="text-align:right;">${totalBudget > 0 ? totalBudget.toLocaleString(undefined, {minimumFractionDigits:2}) : '-'}</td>
+            <td style="text-align:right; color:green;">${totalIncome > 0 ? totalIncome.toLocaleString(undefined, {minimumFractionDigits:2}) : '-'}</td>
+            <td style="text-align:right;">${(totalBudget - totalIncome).toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+            <td style="text-align:center;"></td>
+        </tr>`;
+        html += '</tbody></table>';
+        
+        document.getElementById('report-content').innerHTML = html;
+    }
+    
+else if(currentReport === 'QUARTER') {
+    // ... (සිව්මස් ගිණුම් වාර්තාව සඳහා කේතය) ...
+    document.getElementById('report-header-title').innerText = "සිව්මස් ගිණුම් වාර්තාව";
+    
+    const fromDate = new Date(document.getElementById('repFrom').value);
+    const toDate = new Date(document.getElementById('repTo').value);
+    const yearStart = new Date(fromDate.getFullYear(), 0, 1); 
+
+    let opBalTotal = allData.filter(r => r.isOp).reduce((a, b) => a + b.amt, 0);
+    let tinTotal = opBalTotal, texTotal = 0;
+
+    html = `<table class="q-table">
+        <thead>
+            <tr>
+                <th colspan="5" class="q-header">ලැබීම් (හර)</th>
+                <th colspan="5" class="q-header">ගෙවීම් (බැර)</th>
+            </tr>
+            <tr>
+                <th>කේතය</th>
+                <th>වාර්ෂික ඇස්තමේන්තුව</th>
+                <th>පෙර සිව්මස දක්වා</th>
+                <th>මෙම සිව්මස</th>
+                <th>මුළු එකතුව</th>
+                <th>කේතය</th>
+                <th>වාර්ෂික ප්‍රතිපාදන</th>
+                <th>පෙර සිව්මස දක්වා</th>
+                <th>මෙම සිව්මස</th>
+                <th>මුළු එකතුව</th>
+            </tr>
+        </thead>
+        <tbody>`;
+
+    const maxLength = Math.max(S_CODES.length, EX_CODES.length);
+
+    for (let i = 0; i < maxLength; i++) {
+        let s = S_CODES[i] || '';
+        let ex = EX_CODES[i] || '';
+        let sOp = s ? allData.filter(r => r.isOp && r.source === s).reduce((a, b) => a + b.amt, 0) : 0;
+        let sPrev = s ? allData.filter(r => r.type === 'IN' && !r.isOp && r.source === s && new Date(r.date) < fromDate).reduce((a, b) => a + b.amt, 0) : 0;
+        let sCurr = s ? allData.filter(r => r.type === 'IN' && r.source === s && new Date(r.date) >= fromDate && new Date(r.date) <= toDate).reduce((a, b) => a + b.amt, 0) : 0;
+        let sTotalPrev = sOp + sPrev;
+        
+        // ============ EX කේත සැකසීම - PC සඳහා විශේෂ සැලකිල්ල ============
+        let exPrev = 0;
+        let exCurr = 0;
+        
+        if (ex === 'PC') {
+            // PC code එක සඳහා පෙන්වන්නේ float එක (ස්ථාවර මුදල) පමණයි
+            // වාර්ෂික ප්‍රතිපාදන තීරුවේ float එක පෙන්වන්න
+            const floatAmount = loadPettyFloat();
+            
+            // පෙර සිව්මස සහ මෙම සිව්මස සඳහා float එක බෙදා දැක්වීම
+            // (සරල ලෙස, මුළු float එක මෙම සිව්මසට පෙන්විය හැක)
+            exPrev = 0; // පෙර කාල සීමාවට float එක අදාළ නොවේ
+            exCurr = floatAmount; // මෙම සිව්මසට float එක පෙන්වන්න
+        } else {
+            // අනෙකුත් EX කේත සඳහා සාමාන්‍ය පරිදි ගණනය කරන්න
+            exPrev = ex ? allData.filter(r => r.type === 'EX' && r.code === ex && new Date(r.date) < fromDate && new Date(r.date) >= yearStart).reduce((a, b) => a + b.amt, 0) : 0;
+            exCurr = ex ? allData.filter(r => r.type === 'EX' && r.code === ex && new Date(r.date) >= fromDate && new Date(r.date) <= toDate).reduce((a, b) => a + b.amt, 0) : 0;
+        }
+        // ============ PC සඳහා වෙනස් කිරීම අවසානය ============
+        
+        tinTotal += (sPrev + sCurr); 
+        texTotal += (exPrev + exCurr);
+        
+        html += `<tr>
+            <td>${s}</td>
+            <td class="val-col"> - </td>
+            <td class="val-col">${sTotalPrev > 0 ? sTotalPrev.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+            <td class="val-col">${sCurr > 0 ? sCurr.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+            <td class="val-col" style="background:#f9f9f9">${(sTotalPrev + sCurr) > 0 ? (sTotalPrev + sCurr).toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+            
+            <td>${ex}</td>
+            <td class="val-col">${ex === 'PC' ? loadPettyFloat().toLocaleString(undefined, {minimumFractionDigits: 2}) : ((allocations[ex] || 0) > 0 ? allocations[ex].toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - ')}</td>
+            <td class="val-col">${exPrev > 0 ? exPrev.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+            <td class="val-col">${exCurr > 0 ? exCurr.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+            <td class="val-col" style="background:#f9f9f9">${(exPrev + exCurr) > 0 ? (exPrev + exCurr).toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+        </tr>`;
+    } 
+
+    html += `<tr class="q-total-row">
+        <td colspan="4">මුළු ලැබීම් එකතුව (ආරම්භක ශේෂය සහිතව)</td>
+        <td class="val-col">${tinTotal > 0 ? tinTotal.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+        <td colspan="4">මුළු ගෙවීම් එකතුව</td>
+        <td class="val-col">${texTotal > 0 ? texTotal.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+    </tr>
+    <tr class="q-total-row">
+        <td colspan="9" style="text-align:right">අතැති ශේෂය (Balance)</td>
+        <td class="val-col" style="background:var(--gold)">${(tinTotal - texTotal) > 0 ? (tinTotal - texTotal).toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+    </tr>
+    </tbody></table>`;
+}
+    
+    else {
+        // ... (වෙනත් වාර්තා සඳහා කේතය - වෙනසක් නැත) ...
+        document.getElementById('report-header-title').innerText = currentReport === 'IN' ? "ලැබීම් විශ්ලේෂණ වාර්තාව" : "ගෙවීම් විශ්ලේෂණ වාර්තාව";
+        const codes = selectedCode === 'ALL' ? (currentReport === 'IN' ? S_CODES : EX_CODES) : [selectedCode];
+        
+        if (currentReport === 'IN') {
+            html = '<table><tr><th>කේතය</th><th>විස්තරය</th><th style="text-align:right;">මුළු ලැබීම් (රු.)</th><th style="text-align:right;">වැය කළ වියදම (රු.)</th><th style="text-align:right;">ශේෂය (රු.)</th></tr>';
+        } else {
+            html = '<table><tr><th>කේතය</th><th>විස්තරය</th><th style="text-align:right;">මුදල (රු.)</th></tr>';
+        }
+
+        let totalIn = 0, totalEx = 0;
+
+        codes.forEach(c => { 
+            const incomeAmt = allData.filter(r => {
+                const isCorrectType = r.type === 'IN';
+                const isCorrectCode = (r.code === c || r.source === c);
+                const isWithinDate = (!from || r.date >= from) && (!to || r.date <= to);
+                return isCorrectType && isCorrectCode && (isWithinDate || r.isOp === true);
+            }).reduce((a, b) => a + b.amt, 0);
+
+            if (currentReport === 'IN') {
+                const expenseAmt = allData.filter(r => r.type === 'EX' && r.source === c && (!from || r.date >= from) && (!to || r.date <= to)).reduce((a, b) => a + b.amt, 0);
+                const balance = incomeAmt - expenseAmt;
+                html += `<tr><td><b>${c}</b></td><td>${CODE_INFO[c]}</td><td class="val-col">${incomeAmt > 0 ? incomeAmt.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td><td class="val-col" style="color:red;">${expenseAmt > 0 ? expenseAmt.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td><td class="val-col" style="font-weight:bold;">${balance > 0 ? balance.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td></tr>`;
+                totalIn += incomeAmt;
+                totalEx += expenseAmt;
+            } else {
+                html += `<tr><td><b>${c}</b></td><td>${CODE_INFO[c]}</td><td class="val-col">${incomeAmt > 0 ? incomeAmt.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td></tr>`;
+                totalIn += incomeAmt;
+            }
+        });
+
+        if (currentReport === 'IN') {
+            html += `<tr style="background:#f1f2f6; font-weight:bold;"><td colspan="2">මුළු එකතුව</td><td class="val-col"> ${totalIn > 0 ? totalIn.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td><td class="val-col" style="color:red;">රු. ${totalEx > 0 ? totalEx.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td><td class="val-col">රු. ${(totalIn - totalEx) > 0 ? (totalIn - totalEx).toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td></tr></table>`;
+        } else {
+            html += `<tr style="background:#f1f2f6; font-weight:bold;"><td colspan="2">මුළු එකතුව</td><td class="val-col"> ${totalIn > 0 ? totalIn.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td></tr></table>`;
+        }
+    }
+
+    html += `<div class="print-signatures">
+                <div style="width: 33%; text-align: center;">
+                    <p>....................................</p>
+                    <p><b>පරීක්ෂා කළේ</b></p>
+                </div>
+                <div style="width: 33%; text-align: center;">
+                    <p>....................................</p>
+                    <p><b>භාණ්ඩාගාරික</b></p>
+                </div>
+                <div style="width: 33%; text-align: center;">
+                    <p>....................................</p>
+                    <p><b>විදුහල්පති</b></p>
+                </div>
+            </div>`;
+    
+    document.getElementById('report-content').innerHTML = html;
+    document.getElementById('report-date-range').innerText = `කාලසීමාව: ${(from || "ආරම්භය")} සිට ${(to || "අද")} දක්වා`;
+}
+async function updateClearedChequeStatus(id, status, date, ref, amt, desc) {
+    if(userRole === 'GUEST') {
+        showToast("❌ චෙක්පත් තත්ත්වය වෙනස් කිරීමට ඔබට අවසර නැත.");
+        return;
+    }
+    
+    const confirm = await showConfirmDialog(
+        "✓ චෙක්පත් තත්ත්වය වෙනස් කරන්න",
+        `ID: ${id}\nචෙක්පත් අංකය: ${ref}\nමුදල: Rs. ${parseFloat(amt).toFixed(2)}\n\nතත්ත්වය "${status}" ලෙස වෙනස් කරන්නද?`,
+        "ඔව්, වෙනස් කරන්න",
+        "අවලංගු කරන්න"
+    );
+    
+    if (!confirm) {
+        generateReport();
+        return;
+    }
+    
+    toggleLoading(true);
+    
+    clearedStatus[id] = status;
+    sessionStorage.setItem('sch_cleared', JSON.stringify(clearedStatus));
+    
+    let db = getData();
+    let transactionIndex = db.findIndex(t => t.id == id);
+    if (transactionIndex !== -1) {
+        db[transactionIndex].status = (status === 'Cleared');
+        setDataCache(db);
+    }
+    
+    try {
+        if (!navigator.onLine) {
+            const data = {
+                action: 'update_cheque_status',
+                id: id,
+                status: status === 'Cleared' ? true : false,
+                date: date,
+                ref: ref,
+                amt: parseFloat(amt),
+                desc: desc,
+                clientId: generateUUID()
+            };
+            addToOfflineQueue('update_cheque_status', data);
+            showToast("📦 Offline මාදිලියේ සුරකින ලදී!");
+        } else {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    action: 'update_cheque_status',
+                    id: id,
+                    status: status === 'Cleared' ? true : false,
+                    date: date,
+                    ref: ref,
+                    amt: parseFloat(amt),
+                    desc: desc
+                })
+            });
+            
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                showToast(`✅ චෙක්පත ${status} ලෙස යාවත්කාලීන කරන ලදී!`);
+            } else {
+                throw new Error(result.message || 'Server update failed');
+            }
+        }
+    } catch (error) {
+        console.error("Cheque status update error:", error);
+        showToast("❌ සර්වර් එකට සම්බන්ධ වීමට නොහැකි විය.");
+    } finally {
+        toggleLoading(false);
+        generateReport();
+    }
+}
+
+function updateClearedStatus(id, val) {
+    if(userRole === 'GUEST') {
+        showToast("❌ චෙක්පත් තත්ත්වය වෙනස් කිරීමට ඔබට අවසර නැත.");
+        return;
+    }
+    
+    clearedStatus[id] = val;
+    sessionStorage.setItem('sch_cleared', JSON.stringify(clearedStatus));
+    generateReport();
+    showToast("✅ චෙක්පත් තත්ත්වය යාවත්කාලීන කරන ලදී!");
+}
+
+async function refreshDashboard() {
+    const db = getData();
+    const tin = db.filter(r => r.type === 'IN').reduce((a,b) => a + b.amt, 0);
+    const tex = db.filter(r => r.type === 'EX').reduce((a,b) => a + b.amt, 0);
+    
+    document.getElementById('dash-in').innerText = tin.toLocaleString(undefined, {minimumFractionDigits:2});
+    document.getElementById('dash-ex').innerText = tex.toLocaleString(undefined, {minimumFractionDigits:2});
+    document.getElementById('dash-bal').innerText = (tin-tex).toLocaleString(undefined, {minimumFractionDigits:2});
+    
+    let fundHtml = '';
+    
+    S_CODES.forEach((s, i) => {
+        const bal = db.filter(r => r.source === s).reduce((a,b) => a + (b.type==='IN'?b.amt:-b.amt), 0);
+        
+        const balanceText = bal.toLocaleString(undefined, {
+            minimumFractionDigits: 2, 
+            maximumFractionDigits: 2
+        });
+        
+        fundHtml += `
+            <div class="fund-box" style="background:${COLORS[i]}; position:relative;">
+                <span class="fund-index">${i+1}</span>
+                <div class="fund-code">
+                    ${s}
+                </div>
+                <div class="fund-amount ${bal >= 0 ? 'positive' : 'negative'}">
+                    ${balanceText}
+                </div>
+                <div class="fund-description">
+                    ${CODE_INFO[s]}
+                </div>
+            </div>`;
+    });
+    
+    document.getElementById('dash-funds').innerHTML = fundHtml;
+}
+
+async function loadRecentTable() {
+    const db = await getData();
+    let html = '<table><tr><th>දිනය</th><th>විස්තරය</th><th>ලදුපත්/වවුචර්</th><th>මුදල (රු.)</th><th>Status</th><th>ක්‍රියා</th></tr>';
+    
+    db.sort((a,b) => b.id - a.id).slice(0,5).forEach(r => {
+        const syncStatus = r.offline ? '<span class="sync-pending">⏳ Offline</span>' : '<span class="sync-done">✅ Online</span>';
+        
+        let displayRef = '';
+        if (r.type === 'IN') {
+            displayRef = r.ref || '-';
+        } else {
+            displayRef = r.vouch || r.ref || '-';
+        }
+        
+        let actions = [];
+        if(userRole === 'ADMIN') {
+            actions.push(`<button onclick="editTransaction(${r.id})" class="table-btn" style="background:var(--deep-blue); color:white;">Edit</button>`);
+            actions.push(`<button onclick="deleteTransaction(${r.id})" class="table-btn" style="background:var(--danger); color:white;">Delete</button>`);
+        }
+        const actionHtml = actions.length > 0 ? actions.join(' ') : '<span style="color: #999; font-size: 12px;">-</span>';
+
+        html += `<tr>
+            <td>${r.date.split('T')[0]}</td>
+            <td>${r.desc}</td>
+            <td>${displayRef}</td>
+            <td style="color:${r.type==='IN'?'green':'red'}"> ${r.amt > 0 ? r.amt.toLocaleString(undefined, {minimumFractionDigits: 2}) : ' - '}</td>
+            <td>${syncStatus}</td> 
+            <td>${actionHtml}</td>
+        </tr>`;
+    });
+    document.getElementById('recent-transactions-table').innerHTML = html + '</table>';
+}
+async function saveProject() {
+    if(userRole === 'GUEST') {
+        showToast("❌ ව්‍යාපෘති ඇතුළත් කිරීමට ඔබට අවසර නැත.");
+        return;
+    }
+    const name = document.getElementById('projName').value.trim();
+    const est = parseAmount(document.getElementById('projEst').value);
+    
+    if(!name || !est) {
+        showToast("⚠️ කරුණාකර ව්‍යාපෘතියේ නම සහ ඇස්තමේන්තුගත මුදල ඇතුළත් කරන්න");
+        return;
+    }
+    toggleLoading(true);
+    try { 
+        if (!navigator.onLine) {
+            const data = {
+                action: 'saveProject',
+                projectName: name,
+                est: est,
+                completed: false,
+                clientId: generateUUID()
+            };
+            addToOfflineQueue('saveProject', data);
+            let projects = getProjects(true);
+            projects.push({ ...data, offline: true });
+            setProjectsCache(projects);
+            showToast("📦 Offline මාදිලියේ සුරකින ලදී!");
+        } else {
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    action: 'saveProject',
+                    projectName: name,
+                    est: est,
+                    completed: false
+                })
+            });
+            showToast("✅ ව්‍යාපෘතිය සුරැකිණි!"); 
+            await fetchRemoteProjects(); 
+        }
+        updateProjectSelects();
+        renderProjectList();
+    } catch(e) {
+        console.error("Save project error:", e);
+        showToast("❌ දෝෂයක් ඇතිවිය!");
+    }
+    toggleLoading(false);
+    document.getElementById('projName').value = '';
+    document.getElementById('projEst').value = '';
+}
+async function completeProject(projectName) {
+    if (userRole !== 'ADMIN') {
+        showToast("❌ ව්‍යාපෘති අවසන් කිරීමට අවසර ඇත්තේ පරිපාලකට පමණි!");
+        return;
+    }
+    const confirm = await showConfirmDialog(
+        "🏁 ව්‍යාපෘතිය අවසන් කරන්න",
+        `"${projectName}" ව්‍යාපෘතිය අවසන් කර Complete ලෙස සලකුණු කරන්නද?\n\n⚠️ අවසන් කළ ව්‍යාපෘති තවදුරටත් dropdown එකේ නොපෙන්වයි.`,
+        "ඔව්, අවසන් කරන්න",
+        "අවලංගු කරන්න"
+    );
+    if (!confirm) return;
+    toggleLoading(true);
+    try {
+        if (!navigator.onLine) {
+            const data = {
+                action: 'completeProject',
+                projectName: projectName,
+                completed: true,
+                clientId: generateUUID()
+            };
+            addToOfflineQueue('completeProject', data);
+            let projects = getProjects(true);
+            projects = projects.map(p => {
+                if (p.projectName === projectName) {
+                    return { ...p, completed: true, offline: true };
+                }
+                return p;
+            });
+            setProjectsCache(projects);
+            showToast("📦 Offline මාදිලියේ සුරකින ලදී!");
+        } else {
+            const response = await fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    action: 'completeProject',
+                    projectName: projectName,
+                    completed: true
+                })
+            });
+            const result = await response.json();
+            if (result.status === 'success') {
+                let projects = getProjects(true);
+                projects = projects.map(p => {
+                    if (p.projectName === projectName) {
+                        return { ...p, completed: true };
+                    }
+                    return p;
+                });
+                setProjectsCache(projects);
+                showToast(`✅ "${projectName}" ව්‍යාපෘතිය අවසන් කරන ලදී!`);
+            } else {
+                throw new Error(result.message || 'Server error');
+            }
+        }
+        renderProjectList();
+        updateProjectSelects();
+    } catch (error) {
+        console.error("Complete project error:", error);
+        showToast("❌ ව්‍යාපෘතිය අවසන් කිරීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+    }
+}
+async function deleteProject(projectName) {
+    if (userRole !== 'ADMIN') {
+        showToast("❌ ව්‍යාපෘති ඉවත් කිරීමට අවසර ඇත්තේ පරිපාලකට පමණි!");
+        return;
+    }
+    const confirm = await showConfirmDialog(
+        "🗑️ ව්‍යාපෘතිය ස්ථිරවම ඉවත් කරන්න",
+        `"${projectName}" ව්‍යාපෘතිය සම්පූර්ණයෙන්ම මකා දමන්නද?\n\n⚠️ මෙය ආපසු හැරවිය නොහැක!`,
+        "ඔව්, ඉවත් කරන්න",
+        "අවලංගු කරන්න"
+    );
+    if (!confirm) return;
+    toggleLoading(true);
+    try {
+        if (!navigator.onLine) {
+            const data = {
+                action: 'delete_project',
+                name: projectName,
+                clientId: generateUUID()
+            };
+            addToOfflineQueue('delete_project', data);
+            let projects = getProjects(true);
+            projects = projects.filter(p => p.projectName !== projectName);
+            setProjectsCache(projects);
+            showToast("📦 Offline මාදිලියේ සුරකින ලදී!");
+        } else {
+            const response = await fetch(SCRIPT_URL + "?action=delete_project&name=" + encodeURIComponent(projectName));
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                let projects = getProjects(true);
+                projects = projects.filter(p => p.projectName !== projectName);
+                setProjectsCache(projects);
+                showToast(`✅ "${projectName}" ව්‍යාපෘතිය ඉවත් කරන ලදී!`);
+            } else {
+                throw new Error(result.message || 'Server error');
+            }
+        }
+        renderProjectList();
+        updateProjectSelects();
+    } catch (error) {
+        console.error("Delete project error:", error);
+        showToast("❌ ව්‍යාපෘතිය ඉවත් කිරීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+    }
+}
+function renderProjectList() {
+    const allProjects = getProjects(true);
+    const activeProjects = allProjects.filter(p => !p.completed);
+    const completedProjects = allProjects.filter(p => p.completed === true);
+    const db = getData();
+    let html = `
+        <h4 style="color: var(--success); border-bottom: 2px solid var(--success); padding-bottom: 5px;">
+            <i class="fas fa-play-circle"></i> ක්‍රියාත්මක ව්‍යාපෘති
+        </h4>
+        <table class="project-table" style="width:100%; border-collapse:collapse; margin-bottom:30px;">
+            <thead>
+                <tr style="background: var(--primary); color: white;">
+                    <th>ව්‍යාපෘතිය</th>
+                    <th>ඇස්තමේන්තුව (රු.)</th>
+                    <th>ආදායම (රු.)</th>
+                    <th>වියදම (රු.)</th>
+                    <th>ශේෂය (රු.)</th>
+                    <th style="text-align:center;">ක්‍රියා</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+    if (activeProjects.length === 0) {
+        html += `<tr><td colspan="6" style="text-align:center; padding:20px; color:#666;">ක්‍රියාත්මක ව්‍යාපෘති කිසිවක් නැත</td></tr>`;
+    } else {
+        activeProjects.forEach(p => {
+            const pin = db.filter(r => r.proj === p.projectName && r.type === 'IN').reduce((a, b) => a + b.amt, 0);
+            const pex = db.filter(r => r.proj === p.projectName && r.type === 'EX').reduce((a, b) => a + b.amt, 0);
+            const balance = (p.est + pin) - pex;
+            html += `<tr style="border-bottom:1px solid #eee;">
+                <td style="padding:10px; font-weight:bold;">${p.projectName}</td>
+                <td style="padding:10px; text-align:right;">${p.est.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+                <td style="padding:10px; text-align:right; color:green;">${pin.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+                <td style="padding:10px; text-align:right; color:red;">${pex.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+                <td style="padding:10px; text-align:right; font-weight:bold; color:${balance >= 0 ? '#1b5e20' : '#c0392b'};">${balance.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+                <td style="padding:10px; text-align:center;">
+                    ${userRole === 'ADMIN' ? `
+                        <button onclick="completeProject('${p.projectName}')" class="table-btn" style="background: #f39c12; color:white; margin-right:5px;">
+                            <i class="fas fa-check-circle"></i> අවසන් කරන්න
+                        </button>
+                        <button onclick="deleteProject('${p.projectName}')" class="table-btn" style="background: var(--danger); color:white;">
+                            <i class="fas fa-trash"></i> ඉවත් කරන්න
+                        </button>
+                    ` : userRole === 'STAFF' ? `
+                        <span style="color:#999; font-size:11px;">-</span>
+                    ` : ''}
+                </td>
+            </tr>`;
+        });
+    }
+    html += `</tbody></table>`;
+    if (completedProjects.length > 0) {
+        html += `
+            <h4 style="color: #6c757d; border-bottom: 2px solid #6c757d; padding-bottom: 5px; margin-top: 20px;">
+                <i class="fas fa-check-double"></i> අවසන් කළ ව්‍යාපෘති
+            </h4>
+            <table class="project-table" style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr style="background: #6c757d; color: white;">
+                        <th>ව්‍යාපෘතිය</th>
+                        <th>ඇස්තමේන්තුව (රු.)</th>
+                        <th>ආදායම (රු.)</th>
+                        <th>වියදම (රු.)</th>
+                        <th>අවසන් ශේෂය (රු.)</th>
+                        ${userRole === 'ADMIN' ? '<th style="text-align:center;">ඉවත් කරන්න</th>' : ''}
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+        completedProjects.forEach(p => {
+            const pin = db.filter(r => r.proj === p.projectName && r.type === 'IN').reduce((a, b) => a + b.amt, 0);
+            const pex = db.filter(r => r.proj === p.projectName && r.type === 'EX').reduce((a, b) => a + b.amt, 0);
+            const balance = (p.est + pin) - pex;
+            html += `<tr style="background:#f8f9fa; color:#666;">
+                <td style="padding:10px;">${p.projectName}</td>
+                <td style="padding:10px; text-align:right;">${p.est.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+                <td style="padding:10px; text-align:right;">${pin.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+                <td style="padding:10px; text-align:right;">${pex.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+                <td style="padding:10px; text-align:right; font-weight:bold;">${balance.toLocaleString(undefined, {minimumFractionDigits:2})}</td>
+                ${userRole === 'ADMIN' ? `
+                    <td style="padding:10px; text-align:center;">
+                        <button onclick="deleteProject('${p.projectName}')" class="table-btn" style="background: var(--danger); color:white;">
+                            <i class="fas fa-trash"></i> ඉවත් කරන්න
+                        </button>
+                    </td>
+                ` : ''}
+            </tr>`;
+        });
+
+        html += `</tbody></table>`;
+    }
+    document.getElementById('project-list-table').innerHTML = html;
+}
+function updateProjectSelects() {
+    const activeProjects = getProjects(false);
+    ['inProjSelect', 'exProjSelect', 'searchProject', 'multiInProjSelect'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.innerHTML = '<option value="">නොමැත / සියල්ල</option>';
+            activeProjects.forEach(p => {
+                el.innerHTML += `<option value="${p.projectName}">${p.projectName}</option>`;
+            });
+        }
+    });
+}
+function showSec(id) {
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    document.getElementById('sec-' + id).style.display = 'block';
+    document.getElementById('nav-' + id)?.classList.add('active');
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.style.display = 'none';
+    });
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+        toggle.classList.remove('active');
+    });
+    if(id === 'entry') loadRecentTable();
+    if(id === 'proj') renderProjectList();
+    if(id === 'dash') refreshDashboard();
+    if(id === 'petty') {
+        initPettyFloat();
+        renderPettyBook();
+        populatePeriodDropdown();
+        setTimeout(() => {
+            displaySavedPeriodSummaries();
+        }, 500);
+    }
+    if(id === 'codes') {
+        renderCodesList();
+        setTimeout(() => {
+            populateAdvancedSearchFilters();
+            const resultsDiv = document.getElementById('transactionSearchResults');
+            if (resultsDiv) resultsDiv.style.display = 'none';
+            const advPanel = document.getElementById('advancedSearchPanel');
+            if (advPanel) advPanel.style.display = 'none';
+            const toggle = document.getElementById('advancedSearchToggle');
+            if (toggle) toggle.innerHTML = '<i class="fas fa-chevron-down"></i> උසස් සෙවීම් විකල්ප';
+        }, 100);
+    }
+}
+function resetForms() {
+    document.getElementById('edit-id-in').value = '';
+    document.getElementById('edit-id-ex').value = '';
+    ['inRefFrom', 'inRefTo', 'inAmt', 'inDesc', 'exVoucher', 'exRef', 'exAmt', 'exDesc'].forEach(id => {
+        if (document.getElementById(id)) {
+            document.getElementById(id).value = '';
+        }
+    });
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('inDate').value = today; 
+    document.getElementById('exDate').value = today;
+    $('#inCodeSelect, #exCodeSelect, #exSourceSelect, #inProjSelect, #exProjSelect').val('').trigger('change');
+    document.getElementById('btn-save-in').innerText = "ලැබීම ගිණුම්ගත කරන්න";
+    document.getElementById('btn-save-ex').innerText = "ගෙවීම ගිණුම්ගත කරන්න";
+}
+
+function downloadBackupJSON() {
+    const db = getData();
+    const blob = new Blob([JSON.stringify(db, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a'); 
+    a.href = URL.createObjectURL(blob); 
+    a.download = 'backup.json'; 
+    a.click();
+    showToast("✅ JSON බැකප් ලබා ගන්නා ලදී!");
+}
+function downloadBackupCSV() {
+    try {
+        const db = getData();
+        if (db.length === 0) {
+            showToast("⚠️ බාගත කිරීමට දත්ත කිසිවක් නැත!");
+            return;
+        }
+        let csvContent = "ID,දිනය,වර්ගය,කේතය,මූලාශ්‍ර,මුදල,විස්තරය,වවුචර්,ලදුපත් අංකය/පරාසය,ව්‍යාපෘතිය,Status\n";
+        db.forEach(t => {
+            const row = [
+                t.id,
+                t.date,
+                t.type,
+                t.code,
+                t.source || '',
+                t.amt,
+                `"${t.desc.replace(/"/g, '""')}"`,
+                t.vouch || '',
+                t.ref || '',
+                t.proj || '',
+                t.offline ? 'Offline' : 'Online'
+            ].join(",");
+            csvContent += row + "\n";
+        });
+        const blob = new Blob(["\ufeff" + csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.setAttribute("href", url);
+        link.setAttribute("download", `පාසල්_ගිණුම්_දත්ත_${new Date().toISOString().slice(0,10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast("✅ CSV දත්ත පිටපත බාගත කරන ලදී!");
+    } catch (error) {
+        console.error("CSV Download Error:", error);
+        showToast("❌ දත්ත බාගත කිරීමේදී දෝෂයක් සිදු විය!");
+    }
+}
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.innerText = msg;
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 6000);
+}
+async function exportToPDF() {
+    if(userRole === 'GUEST') {
+        showToast("❌ PDF බාගත කිරීමට අවසර නැත!");
+        return;
+    }
+    toggleLoading(true);
+    try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        
+        const element = document.getElementById('printable-area');
+        
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            backgroundColor: '#ffffff'
+        });
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = 210;
+        const pageHeight = 297;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+        let position = 0;
+        
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        while (heightLeft >= 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+        }
+        pdf.save(`වාර්තා_${currentReport}_${new Date().toISOString().slice(0,10)}.pdf`);
+        showToast("✅ PDF වාර්තාව බාගත කරන ලදී!");
+    } catch (error) {
+        console.error("PDF generation error:", error);
+        showToast("❌ PDF ජනනය කිරීමේ දෝෂයක්!");
+    } finally {
+        toggleLoading(false);
+    }
+}
+function addMultiRow() {
+    const container = document.getElementById('multiRowsContainer');
+    if (!container) return;
+    const row = document.createElement('div');
+    row.className = 'multi-row';
+    row.style.display = 'flex';
+    row.style.gap = '10px';
+    row.style.marginBottom = '10px';
+    row.style.alignItems = 'center';
+    const codeSelect = document.createElement('select');
+    codeSelect.className = 'multiCode';
+    codeSelect.style.flex = '2';
+    codeSelect.style.minWidth = '150px';
+    codeSelect.style.padding = '8px';
+    codeSelect.style.border = '1px solid #dcedc8';
+    codeSelect.style.borderRadius = '5px';
+    S_CODES.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.textContent = c + ' - ' + CODE_INFO[c].substring(0, 30);
+        codeSelect.appendChild(opt);
+    });
+    const amtInput = document.createElement('input');
+    amtInput.type = 'text';
+    amtInput.className = 'multiAmt amount-input';
+    amtInput.placeholder = 'මුදල';
+    amtInput.style.flex = '1';
+    amtInput.oninput = function() { formatAmount(this); };
+    amtInput.inputMode = 'decimal';
+    amtInput.pattern = '[0-9]*\\.?[0-9]{0,2}';
+    const descInput = document.createElement('input');
+    descInput.type = 'text';
+    descInput.className = 'multiDesc';
+    descInput.placeholder = 'විස්තරය (විකල්ප)';
+    descInput.style.flex = '2';
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'btn remove-row';
+    removeBtn.style.background = '#e74c3c';
+    removeBtn.style.color = 'white';
+    removeBtn.style.minWidth = '40px';
+    removeBtn.style.padding = '8px 12px';
+    removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+    removeBtn.onclick = function() { row.remove(); };
+    row.appendChild(codeSelect);
+    row.appendChild(amtInput);
+    row.appendChild(descInput);
+    row.appendChild(removeBtn);
+    container.appendChild(row);
+}
+async function saveMultiLineReceipt() {
+    if (userRole === 'GUEST') {
+        showToast("❌ ගනුදෙනු ඇතුළත් කිරීමට ඔබට අවසර නැත.");
+        return;
+    }
+    const fromRef = document.getElementById('multiInRefFrom').value.trim();
+    const toRef = document.getElementById('multiInRefTo').value.trim();
+    const date = document.getElementById('multiInDate').value;
+    const proj = document.getElementById('multiInProjSelect').value;
+    
+    if (!fromRef) {
+        showToast("⚠️ කරුණාකර ලදුපත් අංකය ඇතුළත් කරන්න");
+        document.getElementById('multiInRefFrom').focus();
+        return;
+    }
+    if (isNaN(parseInt(fromRef))) {
+        showToast("⚠️ කරුණාකර වලංගු අංකයක් ඇතුළත් කරන්න");
+        return;
+    }
+    if (toRef && isNaN(parseInt(toRef))) {
+        showToast("⚠️ කරුණාකර වලංගු අංකයක් ඇතුළත් කරන්න");
+        return;
+    }
+    if (toRef && parseInt(fromRef) > parseInt(toRef)) {
+        showToast("⚠️ 'දක්වා' අංකය 'සිට' අංකයට වඩා විශාල විය යුතුය!");
+        return;
+    }
+    if (!date) {
+        showToast("⚠️ කරුණාකර දිනය ඇතුළත් කරන්න");
+        document.getElementById('multiInDate').focus();
+        return;
+    }
+    const rows = document.querySelectorAll('#multiRowsContainer .multi-row');
+    if (rows.length === 0) {
+        showToast("⚠️ කරුණාකර අවම වශයෙන් එක් පේළියක් හෝ එකතු කරන්න");
+        return;
+    }
+    const transactions = [];
+    let totalAmount = 0;
+    for (let row of rows) {
+        const codeSelect = row.querySelector('.multiCode');
+        const amtInput = row.querySelector('.multiAmt');
+        const descInput = row.querySelector('.multiDesc');
+        if (!codeSelect || !amtInput) continue;
+        const code = codeSelect.value;
+        const amt = parseAmount(amtInput.value);
+        const desc = descInput.value.trim() || 'බහු-රේඛීය ලැබීම';
+        
+        if (!code) {
+            showToast("⚠️ සියලු පේළි සඳහා කේතය තෝරන්න");
+            return;
+        }
+        if (amt <= 0) {
+            showToast("⚠️ සියලු පේළි සඳහා වලංගු මුදලක් ඇතුළත් කරන්න");
+            return;
+        }
+        totalAmount += amt;
+        transactions.push({
+            action: 'save_transaction',
+            id: Date.now() + Math.floor(Math.random() * 1000) + transactions.length,
+            date: date,
+            ref: formatReceiptRange(fromRef, toRef),
+            vouch: '',
+            code: code,
+            amt: amt,
+            desc: desc,
+            type: 'IN',
+            source: code,
+            proj: proj,
+            status: true,
+            isOp: false,
+            isImprest: false,
+            clientId: generateUUID()
+        });
+    }
+        const duplicateCheck = checkDuplicateReceipt(fromRef, toRef, null);
+    if (duplicateCheck.isDuplicate) {
+        showToast(duplicateCheck.message);
+        return;
+    }
+    
+    // Save button disable කරන්න
+    const saveButton = document.querySelector('button[onclick="saveMultiLineReceipt()"]');
+    saveButton.disabled = true;
+    saveButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> සුරකිමින්...';
+    
+    toggleLoading(true);
+    try {
+        if (!navigator.onLine) {
+            // Offline - සියලුම ගනුදෙනු පෝලිමට එකතු කරන්න
+            transactions.forEach(t => {
+                addToOfflineQueue('save_transaction', t);
+            });
+            
+            // දේශීය cache එකට එකතු කරන්න
+            let db = getData();
+            db.push(...transactions.map(t => ({ ...t, offline: true })));
+            setDataCache(db);
+            
+            showToast(`📦 Offline මාදිලියේ ගනුදෙනු ${transactions.length}ක් සුරකින ලදී!`);
+        } else {
+            // Batch save උත්සාහ කරන්න
+            const success = await saveBatchTransactions(transactions);        
+            if (success) {
+                // දේශීය cache එකට එකතු කරන්න
+                let db = getData();
+                db.push(...transactions);
+                setDataCache(db);
+                
+                showToast(`✅ ලැබීම් ${transactions.length}ක් සාර්ථකව ගිණුම්ගත කරන ලදී!`);
+            } else {
+                showToast("❌ ගනුදෙනු සුරැකීම අසාර්ථකයි!");
+            }
+        }
+        
+        document.getElementById('multiInRefFrom').value = '';
+        document.getElementById('multiInRefTo').value = '';
+        document.getElementById('multiInDate').value = new Date().toISOString().split('T')[0];
+        document.getElementById('multiInProjSelect').value = '';
+        document.getElementById('multiRowsContainer').innerHTML = ''; // සියලු පේළි ඉවත් කරන්න
+        addMultiRow(); // එක් හිස් පේළියක් එකතු කරන්න
+        refreshDashboard();
+        loadRecentTable();
+    } catch (error) {
+        console.error("Multi-line save error:", error);
+        showToast("❌ දෝෂයක් සිදු විය!");
+    } finally {
+        toggleLoading(false);
+        saveButton.disabled = false;
+        saveButton.innerHTML = '<i class="fas fa-save"></i> බහු-රේඛීය ලැබීම සුරකින්න';
+    }
+}
+function toggleFoldableCard(cardId) {
+    const content = document.getElementById(cardId);
+    const icon = document.getElementById(cardId + '-icon');
+    if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        if (icon) {
+            icon.style.transform = 'rotate(180deg)';
+        }
+    } else {
+        content.style.display = 'none';
+        if (icon) {
+            icon.style.transform = 'rotate(0deg)';
+        }
+    }
+}
+// ============ Mobile Sidebar Toggle Function ============
+function toggleMobileSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.mobile-sidebar-overlay');
+    const fab = document.querySelector('.mobile-fab i');
+    
+    if (sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        if (fab) {
+            fab.className = 'fas fa-bars';
+        }
+    } else {
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
+        if (fab) {
+            fab.className = 'fas fa-times';
+        }
+    }
+}
+
+// Close mobile sidebar when clicking on a nav link (optional)
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.mobile-sidebar-overlay');
+    const fab = document.querySelector('.mobile-fab i');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 600) {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                if (fab) {
+                    fab.className = 'fas fa-bars';
+                }
+            }
+        });
+    });
+    
+    // Close sidebar when window resizes to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 600) {
+            sidebar.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+            if (fab) fab.className = 'fas fa-bars';
+        }
+    });
+    
+    // Offline queue status click event
+    const queueStatus = document.getElementById('offlineQueueStatus');
+    if (queueStatus) {
+        queueStatus.addEventListener('click', function() {
+            if (navigator.onLine && offlineQueue.length > 0) {
+                processOfflineQueue();
+            } else if (!navigator.onLine) {
+                showToast("⚠️ අන්තර්ජාල සම්බන්ධතාවයක් නොමැත!");
+            }
+        });
+    }
+    
+    // Offline queue පරීක්ෂා කිරීම (සෑම තත්පර 30කට වරක්)
+    setInterval(checkOfflineQueue, 30000);
+    
+    // පිටුව පූරණය වූ විට පෝලිමේ ඇති දත්ත ප්‍රමාණය පෙන්වන්න
+    updateOfflineQueueDisplay();
+});
