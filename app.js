@@ -1983,6 +1983,7 @@ async function checkLogin(event) {
     else if (username === "Guest") {
         if (password === "Guest") { 
             userRole = 'GUEST';
+			document.body.classList.add('guest-mode');
         } else {
             showToast("❌ වැරදි මුරපදය! කරුණාකර නැවත උත්සාහ කරන්න");
             document.getElementById('passInput').value = '';

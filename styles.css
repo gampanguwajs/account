@@ -2113,3 +2113,14 @@ tr[style*="background-color: #e8f4fd"]:hover {
         font-size: 12px !important;
     }
 }
+/* Hide specific navigation items for Guest */
+body.guest-mode #nav-entry,
+body.guest-mode #nav-cashbook,
+body.guest-mode #nav-proj,
+body.guest-mode #nav-petty,
+body.guest-mode #nav-codes,
+body.guest-mode #nav-quarter,
+body.guest-mode #nav-bank,
+body.guest-mode #budget-dropdown {
+    display: none !important;
+}
