@@ -3101,17 +3101,33 @@ function applyPermissions() {
         const csvExportBtn = document.querySelector('#transactionSearchResults .btn[onclick*="exportSearchResults"]');
         if (csvExportBtn) csvExportBtn.style.display = 'none';
         
-        const entryNav = document.getElementById('nav-entry');
-        if(entryNav) {
-            entryNav.style.display = 'none';
+        // Hide all navigation items except Dashboard and Analysis
+        const navItems = ['nav-entry', 'nav-proj', 'nav-petty', 'nav-codes', 'nav-cashbook', 'nav-quarter', 'nav-bank'];
+        navItems.forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.style.display = 'none';
+        });
+        
+        // Hide Budget dropdown completely
+        const budgetDropdown = document.getElementById('budget-dropdown');
+        if(budgetDropdown) {
+            budgetDropdown.style.display = 'none';
+            const toggle = budgetDropdown.closest('.nav-dropdown')?.querySelector('.dropdown-toggle');
+            if(toggle) toggle.style.display = 'none';
         }
-        const projNav = document.getElementById('nav-proj');
-        if(projNav) {
-            projNav.style.display = 'none';
-        }
-        const pettyNav = document.getElementById('nav-petty');
-        if(pettyNav) {
-            pettyNav.style.display = 'none';
+        
+        // Show only IN and EX in Analysis dropdown
+        const analysisDropdown = document.getElementById('analysis-dropdown');
+        if(analysisDropdown) {
+            analysisDropdown.querySelectorAll('.sub-nav').forEach(sub => {
+                const onclick = sub.getAttribute('onclick') || '';
+                if(onclick.includes("openReport('IN')") || onclick.includes("openReport('EX')")) {
+                    sub.style.display = 'block';
+                } else {
+                    sub.style.display = 'none';
+                }
+            });
+            analysisDropdown.style.display = 'block';
         }
     } 
     else if(userRole === 'ADMIN') {
@@ -3125,17 +3141,11 @@ function applyPermissions() {
         if (csvExportBtn) csvExportBtn.style.display = 'flex';
         
         const entryNav = document.getElementById('nav-entry');
-        if(entryNav) {
-            entryNav.style.display = 'block';
-        }
+        if(entryNav) entryNav.style.display = 'block';
         const projNav = document.getElementById('nav-proj');
-        if(projNav) {
-            projNav.style.display = 'block';
-        }
+        if(projNav) projNav.style.display = 'block';
         const pettyNav = document.getElementById('nav-petty');
-        if(pettyNav) {
-            pettyNav.style.display = 'block';
-        }
+        if(pettyNav) pettyNav.style.display = 'block';
     }
     else if(userRole === 'STAFF') {
         document.querySelectorAll('.staff-only').forEach(el => el.style.display = 'block');
@@ -3149,17 +3159,11 @@ function applyPermissions() {
         document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
         
         const entryNav = document.getElementById('nav-entry');
-        if(entryNav) {
-            entryNav.style.display = 'block';
-        }
+        if(entryNav) entryNav.style.display = 'block';
         const projNav = document.getElementById('nav-proj');
-        if(projNav) {
-            projNav.style.display = 'block';
-        }
+        if(projNav) projNav.style.display = 'block';
         const pettyNav = document.getElementById('nav-petty');
-        if(pettyNav) {
-            pettyNav.style.display = 'block';
-        }
+        if(pettyNav) pettyNav.style.display = 'block';
     }
 }
 
