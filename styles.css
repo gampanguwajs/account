@@ -2124,3 +2124,566 @@ body.guest-mode #nav-bank,
 body.guest-mode #budget-dropdown {
     display: none !important;
 }
+/* ============================================================
+   📱 COMPLETE MOBILE OPTIMIZATION - FULL DATA VIEW
+   ============================================================ */
+
+/* ---------- DESKTOP DEFAULT (වෙනස් නැත) ---------- */
+body { 
+    font-family: 'Noto Sans Sinhala', 'Segoe UI', sans-serif !important; 
+    margin: 0; 
+    background: var(--light); 
+    display: flex;
+    font-size: 0.9em !important;
+}
+
+/* ---------- TABLET VIEW (768px - 1024px) ---------- */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .sidebar {
+        width: 240px;
+        font-size: 0.85em;
+    }
+    
+    .main-content {
+        margin-left: 240px;
+        padding: 15px;
+    }
+    
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .fund-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .school-header-banner h1 {
+        font-size: 32px !important;
+    }
+    
+    .school-header-banner div {
+        font-size: 22px !important;
+    }
+}
+
+/* ---------- SMART PHONE VIEW (Up to 768px) ---------- */
+@media (max-width: 768px) {
+    /* ====== SIDEBAR - Laptop style with touch ====== */
+    .sidebar {
+        transform: translateX(-100%);
+        width: 75%;
+        max-width: 320px;
+        position: fixed;
+        z-index: 1001;
+        transition: transform 0.3s ease;
+        height: 100vh;
+        overflow-y: auto;
+        font-size: 0.95em;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .sidebar .nav-link {
+        font-size: 14px !important;
+        padding: 14px 16px !important;
+        min-height: 48px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    
+    .sidebar .nav-link i {
+        font-size: 20px !important;
+        width: 28px !important;
+    }
+    
+    .sidebar-header {
+        font-size: 16px !important;
+        padding: 18px 15px !important;
+    }
+    
+    .mobile-fab {
+        display: flex !important;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: var(--gold);
+        border: 3px solid var(--gold);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .mobile-fab:active {
+        transform: scale(0.95);
+    }
+    
+    .mobile-sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    
+    .mobile-sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+    
+    /* ====== MAIN CONTENT - Full width ====== */
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+    
+    /* ====== HEADER - Clear and readable ====== */
+    .school-header-banner {
+        padding: 15px 20px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .school-header-banner h1 {
+        font-size: 28px !important;
+        letter-spacing: 1px;
+    }
+    
+    .school-header-banner div {
+        font-size: 18px !important;
+        padding: 12px 20px;
+        margin-top: 10px;
+        letter-spacing: 2px;
+    }
+    
+    /* ====== STAT CARDS - Full width, clear numbers ====== */
+    .stat-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 20px 25px;
+        border-radius: 16px;
+        text-align: center;
+    }
+    
+    .stat-card h5 {
+        font-size: 15px !important;
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+    }
+    
+    .stat-card h2 {
+        font-size: 32px !important;
+        font-weight: 800;
+    }
+    
+    /* ====== FUND BOXES - Grid view with clear info ====== */
+    .fund-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    
+    .fund-box {
+        min-height: 150px;
+        padding: 18px 15px;
+        border-radius: 20px;
+    }
+    
+    .fund-code {
+        font-size: 26px !important;
+        font-weight: 800;
+    }
+    
+    .fund-amount {
+        font-size: 22px !important;
+        min-width: 100px;
+        padding: 8px 16px;
+        border-radius: 40px;
+    }
+    
+    .fund-index {
+        font-size: 14px;
+        padding: 3px 10px;
+        top: 10px;
+        left: 12px;
+    }
+    
+    /* ====== FORMS - Full width, large touch targets ====== */
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .field {
+        min-width: 100%;
+        width: 100%;
+    }
+    
+    input, select, textarea {
+        font-size: 16px !important;
+        height: 48px !important;
+        padding: 10px 14px !important;
+        border-radius: 10px !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    textarea {
+        height: 100px !important;
+        min-height: 100px !important;
+        max-height: 200px !important;
+    }
+    
+    label, .required, .field label {
+        font-size: 14px !important;
+        font-weight: 600 !important;
+        margin-bottom: 6px !important;
+    }
+    
+    /* ====== BUTTONS - Large and clear ====== */
+    .btn {
+        font-size: 14px !important;
+        height: 48px !important;
+        padding: 8px 20px !important;
+        min-width: 120px !important;
+        border-radius: 10px !important;
+        font-weight: 700;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    
+    .button-container .btn {
+        width: 100%;
+    }
+    
+    /* ====== TABLES - Scrollable, clear data ====== */
+    .table-container {
+        overflow-x: auto;
+        overflow-y: auto;
+        max-height: 500px;
+        border-radius: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table-container table {
+        min-width: 700px;
+        font-size: 13px;
+    }
+    
+    th, td {
+        padding: 12px 10px !important;
+        font-size: 13px !important;
+        white-space: nowrap;
+    }
+    
+    th {
+        font-size: 12px !important;
+        padding: 12px 10px !important;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    
+    .q-table th, .q-table td {
+        font-size: 12px !important;
+        padding: 10px 8px !important;
+    }
+    
+    .val-col {
+        min-width: 80px;
+    }
+    
+    /* ====== SELECT2 - Mobile friendly ====== */
+    .select2-container .select2-selection--single {
+        height: 48px !important;
+        border-radius: 10px !important;
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 46px !important;
+        font-size: 16px !important;
+        padding-left: 14px !important;
+    }
+    
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 46px !important;
+    }
+    
+    .select2-container--default .select2-results__option {
+        font-size: 15px !important;
+        padding: 10px 14px !important;
+    }
+    
+    .select2-dropdown {
+        font-size: 15px !important;
+    }
+    
+    /* ====== CARDS - Clean layout ====== */
+    .card {
+        padding: 16px 18px;
+        border-radius: 14px;
+        margin-bottom: 16px;
+    }
+    
+    .card h3, .card h4 {
+        font-size: 18px !important;
+    }
+    
+    .section-title {
+        font-size: 20px !important;
+        padding-left: 12px;
+        margin-bottom: 16px;
+    }
+    
+    /* ====== CODE TAGS - Readable ====== */
+    .code-tag-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .code-tag {
+        padding: 12px 14px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+    
+    .code-num {
+        font-size: 14px;
+        padding: 4px 12px;
+        margin-right: 12px;
+    }
+    
+    /* ====== MODALS - Full screen friendly ====== */
+    .code-details-content {
+        width: 95% !important;
+        max-width: 95% !important;
+        padding: 18px !important;
+        max-height: 85vh !important;
+        border-radius: 16px !important;
+    }
+    
+    .code-details-header {
+        padding: 14px 18px !important;
+        margin: -18px -18px 15px -18px !important;
+        border-radius: 16px 16px 0 0 !important;
+    }
+    
+    .code-details-header h3 {
+        font-size: 16px !important;
+    }
+    
+    .confirm-content {
+        width: 92% !important;
+        padding: 25px !important;
+        border-radius: 16px !important;
+    }
+    
+    .confirm-content h3 {
+        font-size: 18px !important;
+    }
+    
+    .confirm-content p {
+        font-size: 15px !important;
+        line-height: 1.6;
+    }
+    
+    /* ====== TOAST - Clear notification ====== */
+    .toast {
+        font-size: 14px !important;
+        padding: 14px 20px !important;
+        max-width: 90% !important;
+        top: 15px;
+        right: 15px;
+        left: 15px;
+        width: auto;
+        border-radius: 12px !important;
+    }
+    
+    /* ====== PETTY CASH - Full width ====== */
+    #sec-petty .stat-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    #sec-petty .stat-card {
+        padding: 15px;
+    }
+    
+    #sec-petty .stat-card h2 {
+        font-size: 22px !important;
+    }
+    
+    #pettyCashBookTable {
+        font-size: 12px;
+    }
+    
+    #pettyCashBookTable th,
+    #pettyCashBookTable td {
+        padding: 8px 6px !important;
+        font-size: 11px !important;
+    }
+    
+    /* ====== OFFLINE QUEUE - Visible and clear ====== */
+    #offlineQueueStatus {
+        bottom: 80px !important;
+        left: 15px !important;
+        right: 15px !important;
+        width: auto !important;
+        padding: 12px 18px !important;
+        font-size: 14px !important;
+        border-radius: 30px !important;
+        text-align: center;
+        z-index: 999;
+    }
+    
+    /* ====== SEARCH - Large and clear ====== */
+    #transactionSearchInput {
+        font-size: 16px !important;
+        height: 48px !important;
+        padding: 10px 14px !important;
+        border-radius: 10px !important;
+    }
+    
+    #transactionSearchInput + .btn {
+        height: 48px !important;
+        font-size: 14px !important;
+    }
+    
+    /* ====== CREATOR FOOTER ====== */
+    .footer-credit {
+        flex-direction: column;
+        gap: 8px;
+        padding: 15px !important;
+        margin: 10px 0 !important;
+        font-size: 13px !important;
+        border-radius: 12px !important;
+    }
+    
+    .footer-credit a {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 12px !important;
+        font-size: 13px !important;
+        border-radius: 30px !important;
+    }
+    
+    /* ====== CREATOR BRAND IN SIDEBAR ====== */
+    .creator-brand {
+        padding: 12px 10px;
+        font-size: 0.9em;
+    }
+    
+    .creator-name {
+        font-size: 15px !important;
+    }
+    
+    .creator-sub {
+        font-size: 12px !important;
+    }
+    
+    /* ====== BACKUP BUTTONS ====== */
+    .sidebar-backup-buttons {
+        flex-direction: row;
+        gap: 5px;
+        padding: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .backup-nav-btn {
+        font-size: 11px !important;
+        padding: 8px 12px !important;
+        flex: 1;
+        min-width: 80px;
+        border-radius: 8px !important;
+        height: auto !important;
+    }
+}
+
+/* ---------- VERY SMALL PHONES (320px - 400px) ---------- */
+@media (max-width: 400px) {
+    .fund-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #sec-petty .stat-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .school-header-banner h1 {
+        font-size: 22px !important;
+    }
+    
+    .school-header-banner div {
+        font-size: 15px !important;
+        padding: 10px 15px;
+    }
+    
+    .stat-card h2 {
+        font-size: 26px !important;
+    }
+    
+    .fund-amount {
+        font-size: 20px !important;
+        min-width: 80px;
+    }
+    
+    .btn {
+        font-size: 13px !important;
+        height: 44px !important;
+        padding: 6px 12px !important;
+        min-width: 100% !important;
+    }
+    
+    .mobile-fab {
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 20px !important;
+        bottom: 15px !important;
+        right: 15px !important;
+    }
+    
+    .sidebar {
+        width: 85%;
+    }
+}
+
+/* ---------- LARGE PHONES / SMALL TABLETS (400px - 768px) ---------- */
+@media (min-width: 401px) and (max-width: 768px) {
+    .fund-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    #sec-petty .stat-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
